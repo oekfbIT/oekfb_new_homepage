@@ -1,0 +1,1 @@
+export { TeamDetailSquadWrapper } from "./TeamDetailSquadWrapper";

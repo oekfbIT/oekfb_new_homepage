@@ -1,0 +1,137 @@
+.leaderboard-stat {
+  background-color: var(--themewhite);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #e9ebed;
+  display: flex;
+  padding: 9.14px 16px 10.16px;
+  position: relative;
+}
+
+.leaderboard-stat .left-container-5 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 5px;
+  position: relative;
+}
+
+.leaderboard-stat .image-10 {
+  background-image: url(../../../static/img/image-8.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 35px;
+  position: relative;
+  width: 35px;
+}
+
+.leaderboard-stat .name-5 {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 13.9px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.leaderboard-stat .text-wrapper-19 {
+  color: #000e14;
+  font-family: "Inter", Helvetica;
+  font-size: 13.9px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.leaderboard-stat .text-wrapper-20 {
+  font-weight: 700;
+}
+
+.leaderboard-stat .right-container {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  max-width: 369.33px;
+  min-width: 100px;
+  position: relative;
+}
+
+.leaderboard-stat .team-logo-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  width: 24px;
+}
+
+.leaderboard-stat .team-logo-3 {
+  background-image: url(../../../static/img/team-logo-1.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  height: 24px;
+  position: relative;
+}
+
+.leaderboard-stat .team-name-4 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.leaderboard-stat .team-name-5 {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 13.7px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.leaderboard-stat .count {
+  color: var(--themeswamp);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+}
+
+.leaderboard-stat.property-1-4-desktop {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: space-between;
+  width: 1149px;
+}
+
+.leaderboard-stat.property-1-4-mobile {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+  width: 390px;
+}
+
+.leaderboard-stat.property-1-4-desktop .right-container {
+  flex: 1;
+  flex-grow: 1;
+}
+
+.leaderboard-stat.property-1-4-mobile .right-container {
+  align-self: stretch;
+  flex: 0 0 auto;
+  width: 100%;
+}

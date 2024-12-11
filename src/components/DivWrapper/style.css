@@ -1,0 +1,150 @@
+.div-wrapper {
+  align-items: flex-start;
+  display: flex;
+  padding: 4px 0px;
+  position: relative;
+  width: 436px;
+}
+
+.div-wrapper .team-detail-squad-4 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  position: relative;
+}
+
+.div-wrapper .team-detail-squad-5 {
+  align-items: center;
+  background-color: var(--themewhite);
+  box-shadow: 0px 2px 8px #000e140d;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: space-between;
+  padding: 8px 16.01px 8px 16px;
+  position: relative;
+}
+
+.div-wrapper .frame-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 5px;
+  position: relative;
+}
+
+.div-wrapper .team-detail-squad-6 {
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 48px;
+  position: relative;
+  width: 48px;
+}
+
+.div-wrapper .team-detail-squad-7 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+}
+
+.div-wrapper .team-detail-squad-8 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+}
+
+.div-wrapper .team-detail-squad-9 {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-15-63-font-family);
+  font-size: var(--theme-inter-regular-15-63-font-size);
+  font-style: var(--theme-inter-regular-15-63-font-style);
+  font-weight: var(--theme-inter-regular-15-63-font-weight);
+  letter-spacing: var(--theme-inter-regular-15-63-letter-spacing);
+  line-height: var(--theme-inter-regular-15-63-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.div-wrapper .team-detail-squad-10 {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-bold-15-63-font-family);
+  font-size: var(--theme-inter-bold-15-63-font-size);
+  font-style: var(--theme-inter-bold-15-63-font-style);
+  font-weight: var(--theme-inter-bold-15-63-font-weight);
+  letter-spacing: var(--theme-inter-bold-15-63-letter-spacing);
+  line-height: var(--theme-inter-bold-15-63-line-height);
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.div-wrapper .frame-4 {
+  align-items: flex-end;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+}
+
+.div-wrapper .nationality-flags-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding: 2.55px 0px 4px;
+  position: relative;
+  width: 41px;
+}
+
+.div-wrapper .nationality-flags-3 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  margin-right: -0.32px;
+  position: relative;
+}
+
+.div-wrapper .flagicon-3 {
+  background-position: 50% 50%;
+  background-size: cover;
+  border: 1px solid;
+  border-color: var(--themegallery);
+  height: 16px;
+  position: relative;
+  width: 20.66px;
+}
+
+.div-wrapper .flagicon-4 {
+  background-position: 50% 50%;
+  background-size: cover;
+  border: 1px solid;
+  border-color: var(--themegallery);
+  height: 16px;
+  margin-left: -3.2e-14px;
+  position: relative;
+  width: 20.66px;
+}
+
+.div-wrapper .team-detail-squad-11 {
+  color: var(--themeoslo-gray);
+  font-family: "Inter", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}

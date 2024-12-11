@@ -1,0 +1,68 @@
+.upload-request {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 31px;
+  position: relative;
+  width: 736px;
+}
+
+.upload-request .upload-request-data {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  width: 100%;
+}
+
+.upload-request .upload-request-data-2 {
+  align-self: stretch;
+  color: var(--themeouter-space);
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.10px;
+  line-height: 16px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.upload-request .upload-request-data-3 {
+  align-self: stretch;
+  color: var(--themeoslo-gray);
+  font-family: "Inter", Helvetica;
+  font-size: 11.7px;
+  font-weight: 400;
+  letter-spacing: 0.10px;
+  line-height: 16px;
+  position: relative;
+}
+
+.upload-request .button-container {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: var(--themeswamp);
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  min-height: 48px;
+  padding: 8.5px 16px 9px;
+  position: relative;
+  width: 100%;
+}
+
+.upload-request .button-title-2 {
+  color: var(--themewhite);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 11.4px;
+  font-weight: 700;
+  letter-spacing: 1.00px;
+  line-height: 30px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}

@@ -1,0 +1,41 @@
+.club-cell {
+  align-items: flex-start;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100px;
+}
+
+.club-cell .img-container {
+  align-self: stretch;
+  height: 70px;
+  max-width: 100px;
+  position: relative;
+  width: 100%;
+}
+
+.club-cell .text-container {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  padding: 13px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.club-cell .club-cell-name {
+  color: var(--themeouter-space);
+  flex: 1;
+  font-family: var(--theme-inter-bold-11-44-font-family);
+  font-size: var(--theme-inter-bold-11-44-font-size);
+  font-style: var(--theme-inter-bold-11-44-font-style);
+  font-weight: var(--theme-inter-bold-11-44-font-weight);
+  letter-spacing: var(--theme-inter-bold-11-44-letter-spacing);
+  line-height: var(--theme-inter-bold-11-44-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}

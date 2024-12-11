@@ -1,0 +1,1 @@
+export { ElementNewsMobile } from "./ElementNewsMobile";

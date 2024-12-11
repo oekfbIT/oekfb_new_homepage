@@ -1,0 +1,54 @@
+.action-cell {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 484px;
+  position: relative;
+  width: 457px;
+}
+
+.action-cell .image-wrapper-2 {
+  align-self: stretch;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+}
+
+.action-cell .textwrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: 171px;
+  padding: 15px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.action-cell .title-4 {
+  align-self: stretch;
+  color: var(--themeswamp);
+  font-family: var(--theme-inter-bold-21-font-family);
+  font-size: var(--theme-inter-bold-21-font-size);
+  font-style: var(--theme-inter-bold-21-font-style);
+  font-weight: var(--theme-inter-bold-21-font-weight);
+  letter-spacing: var(--theme-inter-bold-21-letter-spacing);
+  line-height: var(--theme-inter-bold-21-line-height);
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.action-cell .subtitle-4 {
+  align-self: stretch;
+  color: var(--themenevada);
+  font-family: var(--theme-inter-regular-15-13-font-family);
+  font-size: var(--theme-inter-regular-15-13-font-size);
+  font-style: var(--theme-inter-regular-15-13-font-style);
+  font-weight: var(--theme-inter-regular-15-13-font-weight);
+  letter-spacing: var(--theme-inter-regular-15-13-letter-spacing);
+  line-height: var(--theme-inter-regular-15-13-line-height);
+  position: relative;
+}

@@ -1,0 +1,1 @@
+export { ElementTeamDetail } from "./ElementTeamDetail";

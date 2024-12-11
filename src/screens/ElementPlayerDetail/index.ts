@@ -1,0 +1,1 @@
+export { ElementPlayerDetail } from "./ElementPlayerDetail";

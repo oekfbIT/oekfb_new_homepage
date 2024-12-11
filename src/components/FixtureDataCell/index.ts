@@ -1,0 +1,1 @@
+export { FixtureDataCell } from "./FixtureDataCell";

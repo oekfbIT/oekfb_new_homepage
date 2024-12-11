@@ -1,0 +1,39 @@
+.league-selection {
+  align-items: flex-start;
+  background-color: var(--themewhite);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 360px;
+  padding: 17px 15px;
+  position: relative;
+  transform: rotate(180deg);
+  width: 360px;
+}
+
+.league-selection .name {
+  align-self: stretch;
+  color: var(--themeswamp);
+  font-family: var(--theme-inter-bold-20-63-font-family);
+  font-size: var(--theme-inter-bold-20-63-font-size);
+  font-style: var(--theme-inter-bold-20-63-font-style);
+  font-weight: var(--theme-inter-bold-20-63-font-weight);
+  letter-spacing: var(--theme-inter-bold-20-63-letter-spacing);
+  line-height: var(--theme-inter-bold-20-63-line-height);
+  position: relative;
+  transform: rotate(180deg);
+}
+
+.league-selection .subtitle {
+  align-self: stretch;
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-bold-13-upper-font-family);
+  font-size: var(--theme-inter-bold-13-upper-font-size);
+  font-style: var(--theme-inter-bold-13-upper-font-style);
+  font-weight: var(--theme-inter-bold-13-upper-font-weight);
+  letter-spacing: var(--theme-inter-bold-13-upper-letter-spacing);
+  line-height: var(--theme-inter-bold-13-upper-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  transform: rotate(180deg);
+}

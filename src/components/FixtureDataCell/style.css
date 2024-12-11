@@ -1,0 +1,243 @@
+.fixture-data-cell {
+  align-items: center;
+  background-color: #ffffff;
+  display: flex;
+  position: relative;
+}
+
+.fixture-data-cell .fixture-data {
+  align-items: center;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.fixture-data-cell .home-team {
+  align-items: center;
+  flex-direction: column;
+  padding: 0px 5px;
+  position: relative;
+}
+
+.fixture-data-cell .gameday-livescore {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  max-width: 1140px;
+  position: relative;
+}
+
+.fixture-data-cell .gameday-livescore-2 {
+  color: var(--themenevada);
+  font-family: "Inter", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+  position: relative;
+  text-align: right;
+  width: fit-content;
+}
+
+.fixture-data-cell .gameday-livescore-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 32px;
+  justify-content: center;
+  margin-left: -0.01px;
+  position: relative;
+  width: 32px;
+}
+
+.fixture-data-cell .gameday-livescore-3 {
+  align-self: stretch;
+  background-image: url(../../../static/img/gameday-livescore-team-img.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+}
+
+.fixture-data-cell .schedule-container {
+  align-items: center;
+  border: 1px solid;
+  border-color: #ebe5eb;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 4px 7px;
+  position: relative;
+}
+
+.fixture-data-cell .time-string {
+  color: #37003c;
+  font-family: "Arial-Regular", Helvetica;
+  font-size: 15.2px;
+  font-weight: 400;
+  height: 24px;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: 39px;
+}
+
+.fixture-data-cell .away-team {
+  align-items: center;
+  flex-direction: column;
+  padding: 0px 5px;
+  position: relative;
+}
+
+.fixture-data-cell .gameday-livescore-4 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 32px;
+  justify-content: center;
+  position: relative;
+  width: 32px;
+}
+
+.fixture-data-cell .gameday-livescore-5 {
+  color: var(--themenevada);
+  font-family: "Inter", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-left: -0.01px;
+  position: relative;
+  width: fit-content;
+}
+
+.fixture-data-cell .staium-wrapper {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 9px;
+  position: relative;
+}
+
+.fixture-data-cell .stadium-image {
+  height: 13.75px;
+  position: relative;
+  width: 20px;
+}
+
+.fixture-data-cell .stadium-location {
+  color: #000000;
+  font-family: "Inter", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: -0.40px;
+  line-height: 18px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.fixture-data-cell .fixture-btn-wrapper {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 16px;
+  position: relative;
+}
+
+.fixture-data-cell .fixture-btn {
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #ebe5eb;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px 20px;
+  position: relative;
+}
+
+.fixture-data-cell .btn-txt {
+  color: #37003c;
+  font-family: "Arial-Regular", Helvetica;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 16.1px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.fixture-data-cell.state-mobile {
+  flex-direction: column;
+  gap: 10px;
+  padding: 8px 0px;
+  width: 326px;
+}
+
+.fixture-data-cell.state-desktop {
+  justify-content: space-between;
+  padding: 8px 32px;
+  width: 1136px;
+}
+
+.fixture-data-cell.state-mobile .fixture-data {
+  display: flex;
+  justify-content: space-between;
+  margin-left: -10.49px;
+  margin-right: -10.49px;
+  width: 346.98px;
+}
+
+.fixture-data-cell.state-desktop .fixture-data {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.fixture-data-cell.state-mobile .home-team {
+  display: flex;
+  width: 141.99px;
+}
+
+.fixture-data-cell.state-desktop .home-team {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.fixture-data-cell.state-mobile .gameday-livescore-2 {
+  margin-top: -1.00px;
+}
+
+.fixture-data-cell.state-desktop .gameday-livescore-2 {
+  white-space: nowrap;
+}
+
+.fixture-data-cell.state-mobile .away-team {
+  display: flex;
+  width: 141.99px;
+}
+
+.fixture-data-cell.state-desktop .away-team {
+  display: inline-flex;
+  flex: 0 0 auto;
+}
+
+.fixture-data-cell.state-mobile .gameday-livescore-5 {
+  margin-top: -1.00px;
+}
+
+.fixture-data-cell.state-desktop .gameday-livescore-5 {
+  text-align: right;
+  white-space: nowrap;
+}

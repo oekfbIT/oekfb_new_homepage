@@ -1,0 +1,595 @@
+.element-game-report {
+  align-items: center;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.element-game-report .design-component-instance-node-2 {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.element-game-report .game-report-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  max-width: 1140px;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .game-report-wrapper-2 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--themewhite);
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .game-report-top-row {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  height: 46px;
+  justify-content: center;
+  padding: 0px 32px;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .left-wrapper {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  height: 46px;
+  max-width: 285px;
+  padding: 0px 0px 0px 8px;
+  position: relative;
+}
+
+.element-game-report .img-3 {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.element-game-report .game-report-back {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 0px 0px 0px 8px;
+  position: relative;
+}
+
+.element-game-report .game-report-back-2 {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-13-45-font-family);
+  font-size: var(--theme-inter-regular-13-45-font-size);
+  font-style: var(--theme-inter-regular-13-45-font-style);
+  font-weight: var(--theme-inter-regular-13-45-font-weight);
+  letter-spacing: var(--theme-inter-regular-13-45-letter-spacing);
+  line-height: var(--theme-inter-regular-13-45-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-game-report .middle-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  height: 46px;
+  justify-content: center;
+  max-width: 570px;
+  padding: 0px 265.4px 0px 265.41px;
+  position: relative;
+}
+
+.element-game-report .middle-wrapper-game {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-13-78-font-family);
+  font-size: var(--theme-inter-regular-13-78-font-size);
+  font-style: var(--theme-inter-regular-13-78-font-style);
+  font-weight: var(--theme-inter-regular-13-78-font-weight);
+  letter-spacing: var(--theme-inter-regular-13-78-letter-spacing);
+  line-height: var(--theme-inter-regular-13-78-line-height);
+  margin-left: -231.07px;
+  margin-right: -231.07px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-game-report .right-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 5.68e-14px;
+  height: 46px;
+  justify-content: flex-end;
+  max-width: 285px;
+  padding: 0px 8px 0px 0px;
+  position: relative;
+}
+
+.element-game-report .right-wrapper-text {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-13-45-font-family);
+  font-size: var(--theme-inter-regular-13-45-font-size);
+  font-style: var(--theme-inter-regular-13-45-font-style);
+  font-weight: var(--theme-inter-regular-13-45-font-weight);
+  letter-spacing: var(--theme-inter-regular-13-45-letter-spacing);
+  line-height: var(--theme-inter-regular-13-45-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  text-decoration: underline;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-game-report .game-report-middle {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 15px 15px;
+  justify-content: center;
+  padding: 0px 32px;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .away-team-2 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+  height: 80px;
+  margin-left: -9.50px;
+  margin-right: -9.50px;
+  max-width: 475px;
+  min-width: 340px;
+  position: relative;
+}
+
+.element-game-report .club-name {
+  color: var(--themeswamp);
+  flex: 1;
+  font-family: var(--theme-inter-bold-25-9-font-family);
+  font-size: var(--theme-inter-bold-25-9-font-size);
+  font-style: var(--theme-inter-bold-25-9-font-style);
+  font-weight: var(--theme-inter-bold-25-9-font-weight);
+  letter-spacing: var(--theme-inter-bold-25-9-letter-spacing);
+  line-height: var(--theme-inter-bold-25-9-line-height);
+  position: relative;
+}
+
+.element-game-report .club-img-2 {
+  background-image: url(../../../static/img/club-img-3.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 80px;
+  max-width: 80px;
+  position: relative;
+  width: 80px;
+}
+
+.element-game-report .score-wrapper {
+  align-items: flex-start;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  max-width: 260px;
+  padding: 0px 21px;
+  position: relative;
+  width: 260px;
+}
+
+.element-game-report .margin {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  padding: 0px 1px;
+  position: relative;
+  width: 74px;
+}
+
+.element-game-report .background-2 {
+  background-color: var(--themetorch-red);
+  height: 80px;
+  position: relative;
+  width: 72px;
+}
+
+.element-game-report .container-5 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 92px;
+  justify-content: center;
+  position: relative;
+  top: -6px;
+  width: 72px;
+}
+
+.element-game-report .container-6 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 7px 19.33px 0px;
+  position: relative;
+  width: 72px;
+}
+
+.element-game-report .link-10 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  margin-left: -0.33px;
+  margin-right: -0.33px;
+  padding: 1.5px 0px;
+  position: relative;
+}
+
+.element-game-report .text-wrapper-105 {
+  color: var(--themewhite);
+  font-family: var(--theme-inter-bold-16-72-upper-font-family);
+  font-size: var(--theme-inter-bold-16-72-upper-font-size);
+  font-style: var(--theme-inter-bold-16-72-upper-font-style);
+  font-weight: var(--theme-inter-bold-16-72-upper-font-weight);
+  letter-spacing: var(--theme-inter-bold-16-72-upper-letter-spacing);
+  line-height: var(--theme-inter-bold-16-72-upper-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-game-report .container-7 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  margin-top: -1px;
+  padding: 0px 22.36px;
+  position: relative;
+  width: 72px;
+}
+
+.element-game-report .text-wrapper-106 {
+  color: var(--themewhite);
+  font-family: var(--theme-inter-bold-44-font-family);
+  font-size: var(--theme-inter-bold-44-font-size);
+  font-style: var(--theme-inter-bold-44-font-style);
+  font-weight: var(--theme-inter-bold-44-font-weight);
+  letter-spacing: var(--theme-inter-bold-44-letter-spacing);
+  line-height: var(--theme-inter-bold-44-line-height);
+  margin-left: -0.36px;
+  margin-right: -0.36px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-game-report .background-3 {
+  background-color: var(--themeblack);
+  height: 80px;
+  position: relative;
+  width: 72px;
+}
+
+.element-game-report .container-8 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 7px 20.12px 0px 20.13px;
+  position: relative;
+  width: 72px;
+}
+
+.element-game-report .link-11 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  margin-left: -0.12px;
+  margin-right: -0.12px;
+  padding: 1.5px 0px;
+  position: relative;
+}
+
+.element-game-report .text-wrapper-107 {
+  color: var(--themewhite);
+  font-family: var(--theme-inter-bold-15-94-upper-font-family);
+  font-size: var(--theme-inter-bold-15-94-upper-font-size);
+  font-style: var(--theme-inter-bold-15-94-upper-font-style);
+  font-weight: var(--theme-inter-bold-15-94-upper-font-weight);
+  letter-spacing: var(--theme-inter-bold-15-94-upper-letter-spacing);
+  line-height: var(--theme-inter-bold-15-94-upper-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-game-report .text-wrapper-108 {
+  color: var(--themewhite);
+  font-family: var(--theme-inter-bold-44-font-family);
+  font-size: var(--theme-inter-bold-44-font-size);
+  font-style: var(--theme-inter-bold-44-font-style);
+  font-weight: var(--theme-inter-bold-44-font-weight);
+  letter-spacing: var(--theme-inter-bold-44-letter-spacing);
+  line-height: var(--theme-inter-bold-44-line-height);
+  margin-left: -1.86px;
+  margin-right: -1.86px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-game-report .game-report-bottom {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: center;
+  max-width: 780px;
+  padding: 24px 0px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .game-report-match {
+  align-items: center;
+  background-color: var(--themewhite);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 16px;
+  position: relative;
+}
+
+.element-game-report .divider {
+  align-self: stretch;
+  background-color: var(--themeswamp);
+  height: 1px;
+  opacity: 0.1;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .game-setting-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .referee-wrapper {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 4px 0px;
+  position: relative;
+}
+
+.element-game-report .referee-name {
+  align-self: stretch;
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-11-25-font-family);
+  font-size: var(--theme-inter-regular-11-25-font-size);
+  font-style: var(--theme-inter-regular-11-25-font-style);
+  font-weight: var(--theme-inter-regular-11-25-font-weight);
+  letter-spacing: var(--theme-inter-regular-11-25-letter-spacing);
+  line-height: var(--theme-inter-regular-11-25-line-height);
+  margin-left: -369.00px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: right;
+  width: 514px;
+}
+
+.element-game-report .stadium-wrapper {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 10px;
+  padding: 4px 0px;
+  position: relative;
+}
+
+.element-game-report .stadium-img {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 0px 8px;
+  position: relative;
+}
+
+.element-game-report .dfl-image {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4.03px 0px 3.97px;
+  position: relative;
+}
+
+.element-game-report .DFL-STA-b-png {
+  background-image: url(../../../static/img/dfl-sta-000006-b-png-3.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 32px;
+  max-width: 29.38px;
+  position: relative;
+  width: 29.38px;
+}
+
+.element-game-report .stadium-text {
+  align-self: stretch;
+  color: var(--themeouter-space);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 11.4px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 40px;
+  margin-top: -1.00px;
+  position: relative;
+  text-decoration: underline;
+}
+
+.element-game-report .event-row-instance {
+  background-image: url(../../../static/img/event-card-player-profile-3.png) !important;
+}
+
+.element-game-report .event-row-2 {
+  background-image: url(../../../static/img/event-card-team-img-3.png) !important;
+}
+
+.element-game-report .event-row-3 {
+  margin-top: unset !important;
+}
+
+.element-game-report .event-row-4 {
+  gap: 0px 0px !important;
+  padding: 10px 0px !important;
+}
+
+.element-game-report .team-detail-squad-17 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-around;
+  max-width: 1140px;
+  padding: 0px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .team-detail-team-5 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 8px;
+  position: relative;
+}
+
+.element-game-report .team-detail-squad-18 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 1140px;
+  position: relative;
+}
+
+.element-game-report .container-9 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .team-detail-squad-19 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+}
+
+.element-game-report .team-detail-squad-header {
+  background-image: url(../../../static/img/club-img-3.png) !important;
+}
+
+.element-game-report .team-detail-squad-20 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.element-game-report .team-detail-squad-instance {
+  margin-right: -6.01px !important;
+}
+
+.element-game-report .team-detail-squad-cell-instance {
+  background-image: url(../../../static/img/team-detail-squad-cell-img.png) !important;
+}
+
+.element-game-report .team-detail-squad-21 {
+  margin-left: -155px !important;
+}
+
+.element-game-report .team-detail-squad-22 {
+  background-image: url(../../../static/img/flagicon-1.png) !important;
+}
+
+.element-game-report .team-detail-squad-23 {
+  background-image: url(../../../static/img/de-png.png) !important;
+}
+
+.element-game-report .footer-37 {
+  align-self: stretch !important;
+  background-color: transparent !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.element-game-report .footer-38 {
+  margin-left: -324px !important;
+}

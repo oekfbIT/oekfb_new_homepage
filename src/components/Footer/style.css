@@ -1,0 +1,281 @@
+.footer {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: center;
+  position: relative;
+  width: 1200px;
+}
+
+.footer .footer-content {
+  align-items: flex-start;
+  background-color: var(--themeshark);
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+  justify-content: center;
+  padding: 0px 33px;
+  position: relative;
+}
+
+.footer .footer-content-2 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: space-between;
+  max-width: 1200px;
+  position: relative;
+}
+
+.footer .footer-content-3 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 32px;
+  min-width: 320px;
+  padding: 32px 0px;
+  position: relative;
+}
+
+.footer .footer-content-4 {
+  height: 68.61px;
+  position: relative;
+  width: 186.97px;
+}
+
+.footer .frame {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.footer .footer-content-5 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  max-width: 500px;
+  position: relative;
+}
+
+.footer .item {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 32px;
+  position: relative;
+  width: 140px;
+}
+
+.footer .link-2 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.footer .text-wrapper-3 {
+  color: var(--themeiron);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 11.6px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.footer .text-wrapper-4 {
+  color: var(--themeiron);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 11.4px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.footer .text-wrapper-5 {
+  color: var(--themeiron);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 11.2px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.footer .text-wrapper-6 {
+  color: var(--themeiron);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.footer .link-3 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.footer .text-wrapper-7 {
+  color: var(--themeiron);
+  font-family: "Inter", Helvetica;
+  font-size: 11.6px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.footer .sponsors-2 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  width: 100%;
+}
+
+.footer .title {
+  color: var(--themeiron);
+  font-family: var(--theme-inter-regular-11-63-font-family);
+  font-size: var(--theme-inter-regular-11-63-font-size);
+  font-style: var(--theme-inter-regular-11-63-font-style);
+  font-weight: var(--theme-inter-regular-11-63-font-weight);
+  letter-spacing: var(--theme-inter-regular-11-63-letter-spacing);
+  line-height: var(--theme-inter-regular-11-63-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.footer .list {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.footer .item-2 {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 130px;
+  position: relative;
+  width: 130px;
+}
+
+.footer .logo-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.footer .logo {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.footer .logo-2 {
+  align-self: stretch;
+  background-image: url(../../../static/img/logo-3.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  max-width: 90px;
+  position: relative;
+  width: 100%;
+}
+
+.footer .logo-3 {
+  align-self: stretch;
+  background-image: url(../../../static/img/logo-4.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  max-width: 90px;
+  position: relative;
+  width: 100%;
+}
+
+.footer .logo-4 {
+  align-self: stretch;
+  background-image: url(../../../static/img/logo-5.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  max-width: 90px;
+  position: relative;
+  width: 100%;
+}
+
+.footer .bundesliga-footer {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  position: relative;
+}
+
+.footer .link-4 {
+  display: block;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.footer .link-5 {
+  flex: 0 0 auto;
+  position: relative;
+}

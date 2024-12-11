@@ -1,0 +1,205 @@
+.element-gameday-mobile {
+  align-items: center;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.element-gameday-mobile .instance-node-7 {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.element-gameday-mobile .livescore {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  padding: 0px 32px 60px;
+  position: relative;
+  width: 100%;
+}
+
+.element-gameday-mobile .dropdown-instance {
+  overflow: unset !important;
+}
+
+.element-gameday-mobile .dropdown-2 {
+  font-weight: 400 !important;
+  margin-right: unset !important;
+}
+
+.element-gameday-mobile .dropdown-3 {
+  font-weight: 400 !important;
+}
+
+.element-gameday-mobile .livescore-header {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 1400px;
+  position: relative;
+  width: 100%;
+}
+
+.element-gameday-mobile .gameday {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.element-gameday-mobile .gameday-header {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.element-gameday-mobile .gameday-header-date {
+  color: var(--themeouter-space);
+  font-family: "Inter", Helvetica;
+  font-size: 13.9px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-gameday-mobile .text-wrapper-91 {
+  font-family: var(--theme-inter-bold-13-89-font-family);
+  font-size: var(--theme-inter-bold-13-89-font-size);
+  font-style: var(--theme-inter-bold-13-89-font-style);
+  font-weight: var(--theme-inter-bold-13-89-font-weight);
+  letter-spacing: var(--theme-inter-bold-13-89-letter-spacing);
+  line-height: var(--theme-inter-bold-13-89-line-height);
+}
+
+.element-gameday-mobile .text-wrapper-92 {
+  color: #34383c;
+  font-family: var(--theme-inter-regular-13-89-font-family);
+  font-size: var(--theme-inter-regular-13-89-font-size);
+  font-style: var(--theme-inter-regular-13-89-font-style);
+  font-weight: var(--theme-inter-regular-13-89-font-weight);
+  letter-spacing: var(--theme-inter-regular-13-89-letter-spacing);
+  line-height: var(--theme-inter-regular-13-89-line-height);
+}
+
+.element-gameday-mobile .gameday-header-time {
+  color: var(--themeouter-space);
+  font-family: "Inter", Helvetica;
+  font-size: 13.7px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-gameday-mobile .text-wrapper-93 {
+  font-family: var(--theme-inter-bold-13-67-font-family);
+  font-size: var(--theme-inter-bold-13-67-font-size);
+  font-style: var(--theme-inter-bold-13-67-font-style);
+  font-weight: var(--theme-inter-bold-13-67-font-weight);
+  letter-spacing: var(--theme-inter-bold-13-67-letter-spacing);
+  line-height: var(--theme-inter-bold-13-67-line-height);
+}
+
+.element-gameday-mobile .text-wrapper-94 {
+  color: #34383c;
+  font-family: var(--theme-inter-regular-13-67-font-family);
+  font-size: var(--theme-inter-regular-13-67-font-size);
+  font-style: var(--theme-inter-regular-13-67-font-style);
+  font-weight: var(--theme-inter-regular-13-67-font-weight);
+  letter-spacing: var(--theme-inter-regular-13-67-letter-spacing);
+  line-height: var(--theme-inter-regular-13-67-line-height);
+}
+
+.element-gameday-mobile .fixture-data-cell-instance {
+  align-self: stretch !important;
+  margin-left: unset !important;
+  margin-right: unset !important;
+  width: 100% !important;
+}
+
+.element-gameday-mobile .fixture-data-cell-2 {
+  flex: 1 !important;
+  flex-grow: 1 !important;
+  width: unset !important;
+}
+
+.element-gameday-mobile .fixture-data-cell-3 {
+  margin-left: -2.75px !important;
+  margin-right: -2.75px !important;
+}
+
+.element-gameday-mobile .footer-15 {
+  align-self: stretch !important;
+  background-color: transparent !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.element-gameday-mobile .footer-16 {
+  margin-left: -324px !important;
+}
+
+.element-gameday-mobile .page-frame-2 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.element-gameday-mobile .livescore-2 {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  padding: 0px 32px 60px;
+  position: relative;
+  width: 900px;
+}
+
+.element-gameday-mobile .page-header-4 {
+  flex: 0 0 auto !important;
+  width: 836px !important;
+}
+
+.element-gameday-mobile .gamedays {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 32px;
+  position: relative;
+  width: 100%;
+}

@@ -1,0 +1,326 @@
+.event-row {
+  align-items: center;
+  border-bottom-style: solid;
+  border-bottom-width: 0.3px;
+  border-color: #00000033;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1px 1px 8px;
+  position: relative;
+  width: 716px;
+}
+
+.event-row .event-card-bottom {
+  align-items: center;
+  align-self: stretch;
+  background-color: #ffffff;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 15px;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .div-12 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  position: relative;
+}
+
+.event-row .event-card-container {
+  align-items: flex-end;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .player-data-wrapper {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .player-data {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+.event-row .event-card-data {
+  align-items: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  height: 50px;
+  justify-content: center;
+  padding: 0px 10px 0px 0px;
+  position: relative;
+}
+
+.event-row .event-card-data-2 {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+.event-row .event-card-player {
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 50px;
+  position: relative;
+  width: 50px;
+}
+
+.event-row .event-card-team {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  left: 32px;
+  position: absolute;
+  top: 32px;
+  width: 24px;
+}
+
+.event-row .event-card-team-img {
+  align-self: stretch;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 23.95px;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .event-card-name {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .event-card-first {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-15-75-font-family);
+  font-size: var(--theme-inter-regular-15-75-font-size);
+  font-style: var(--theme-inter-regular-15-75-font-style);
+  font-weight: var(--theme-inter-regular-15-75-font-weight);
+  letter-spacing: var(--theme-inter-regular-15-75-letter-spacing);
+  line-height: var(--theme-inter-regular-15-75-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.event-row .event-card-last-name {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-bold-15-75-font-family);
+  font-size: var(--theme-inter-bold-15-75-font-size);
+  font-style: var(--theme-inter-bold-15-75-font-style);
+  font-weight: var(--theme-inter-bold-15-75-font-weight);
+  letter-spacing: var(--theme-inter-bold-15-75-letter-spacing);
+  line-height: var(--theme-inter-bold-15-75-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.event-row .event-card-score {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  position: relative;
+  width: 56px;
+}
+
+.event-row .event-card-minute {
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 56px;
+}
+
+.event-row .event-card-minute-2 {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-14-font-family);
+  font-size: var(--theme-inter-regular-14-font-size);
+  font-style: var(--theme-inter-regular-14-font-style);
+  font-weight: var(--theme-inter-regular-14-font-weight);
+  letter-spacing: var(--theme-inter-regular-14-letter-spacing);
+  line-height: var(--theme-inter-regular-14-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.event-row .event-card-type-img {
+  flex: 0 0 auto;
+  min-width: 56px;
+  position: relative;
+}
+
+.event-row .event-card-score-2 {
+  color: var(--themeouter-space);
+  font-family: "Inter", Helvetica;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.event-row .event-card-bottom-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: var(--themewhite);
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .event-card-bottom-2 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .player-data-2 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+.event-row .event-card-name-2 {
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+.event-row .goal-home {
+  justify-content: center;
+}
+
+.event-row .property-1-0-yellowred-away {
+  align-items: flex-start;
+  gap: 4px 4px;
+}
+
+.event-row .property-1-0-goal-away {
+  align-items: center;
+  gap: 0px 0px;
+  padding: 10px 0px;
+}
+
+.event-row .property-1-0-yellow-home {
+  align-items: flex-start;
+  gap: 4px 4px;
+}
+
+.event-row .property-1-0-goal-home {
+  align-items: flex-start;
+  gap: 4px 4px;
+}
+
+.event-row .property-1-0-red-away {
+  align-items: flex-start;
+  gap: 4px 4px;
+}
+
+.event-row .property-1-0-red-home {
+  align-items: flex-start;
+  gap: 4px 4px;
+}
+
+.event-row .property-1-0-yellowred-home {
+  align-items: flex-start;
+  gap: 4px 4px;
+}
+
+.event-row .property-1-0-yellow-away {
+  align-items: flex-start;
+  gap: 4px 4px;
+}
+
+.event-row .player-data.yellowred-away .event-card-name {
+  gap: 0px 0px;
+}
+
+.event-row .player-data.goal-away .event-card-name {
+  gap: 0px 0px;
+}
+
+.event-row .player-data.yellow-home .event-card-name {
+  gap: 0px 0px;
+  padding: 10px 0px;
+}
+
+.event-row .player-data.goal-home .event-card-name {
+  gap: 0px 0px;
+  padding: 10px 0px;
+}
+
+.event-row .player-data.red-away .event-card-name {
+  gap: 0px 0px;
+}
+
+.event-row .player-data.red-home .event-card-name {
+  gap: 4px 4px;
+}
+
+.event-row .player-data.yellowred-home .event-card-name {
+  gap: 4px 4px;
+}
+
+.event-row .player-data.yellow-away .event-card-name {
+  gap: 0px 0px;
+}

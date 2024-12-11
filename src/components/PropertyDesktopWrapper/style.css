@@ -1,0 +1,149 @@
+.property-desktop-wrapper {
+  background-color: var(--themewhite);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: #e9ebed;
+  display: flex;
+  padding: 9.14px 16px 10.16px;
+  position: relative;
+}
+
+.property-desktop-wrapper .left-container-4 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 5px;
+  position: relative;
+}
+
+.property-desktop-wrapper .image-7 {
+  background-image: url(../../../static/img/image-8.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 35px;
+  position: relative;
+  width: 35px;
+}
+
+.property-desktop-wrapper .name-4 {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 13.9px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.property-desktop-wrapper .text-wrapper-13 {
+  color: #000e14;
+  font-family: "Inter", Helvetica;
+  font-size: 13.9px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.property-desktop-wrapper .text-wrapper-14 {
+  font-weight: 700;
+}
+
+.property-desktop-wrapper .transfer-details {
+  align-items: center;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.property-desktop-wrapper .div-4 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  max-width: 369.33px;
+  position: relative;
+}
+
+.property-desktop-wrapper .team-logo-2 {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  width: 24px;
+}
+
+.property-desktop-wrapper .image-8 {
+  background-image: url(../../../static/img/image-4.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  height: 24px;
+  position: relative;
+}
+
+.property-desktop-wrapper .team-name-wrapper {
+  align-items: flex-start;
+  display: inline-flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.property-desktop-wrapper .team-name-3 {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 13.7px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.property-desktop-wrapper .icn-arrow-right {
+  height: 12px;
+  position: relative;
+  width: 12px;
+}
+
+.property-desktop-wrapper .image-9 {
+  background-image: url(../../../static/img/image-7.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+  flex-grow: 1;
+  height: 24px;
+  position: relative;
+}
+
+.property-desktop-wrapper.property-1-2-desktop {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px 25px;
+  justify-content: space-between;
+  width: 1149px;
+}
+
+.property-desktop-wrapper.property-1-2-mobile {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 25px;
+  width: 390px;
+}
+
+.property-desktop-wrapper.property-1-2-desktop .transfer-details {
+  display: inline-flex;
+  gap: 25px;
+}
+
+.property-desktop-wrapper.property-1-2-mobile .transfer-details {
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 10px;
+  width: 100%;
+}

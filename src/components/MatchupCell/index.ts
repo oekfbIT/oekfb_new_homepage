@@ -1,0 +1,1 @@
+export { MatchupCell } from "./MatchupCell";

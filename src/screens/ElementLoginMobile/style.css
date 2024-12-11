@@ -1,0 +1,384 @@
+.element-login-mobile {
+  align-items: center;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+}
+
+.element-login-mobile .navigation-desktop-30 {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.element-login-mobile .content-frame-4 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-form-16 {
+  align-items: flex-start;
+  background-color: var(--themewhite);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 21px;
+  max-width: 570px;
+  padding: 40px 40px 20px;
+  position: relative;
+}
+
+.element-login-mobile .div-16 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-state-12 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  height: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-state-13 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  height: 24px;
+  justify-content: center;
+  padding: 11px 253px;
+  position: relative;
+}
+
+.element-login-mobile .authentication-state-14 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 2px;
+  padding: 0px 4px;
+  position: relative;
+  width: 32px;
+}
+
+.element-login-mobile .authentication-state-15 {
+  background-color: var(--themeswamp);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--themeswamp);
+  border-top-style: solid;
+  border-top-width: 1px;
+  height: 2px;
+  position: relative;
+  width: 24px;
+}
+
+.element-login-mobile .authentication-state-16 {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  height: 1px;
+  padding: 0px 4px;
+  position: relative;
+  width: 32px;
+}
+
+.element-login-mobile .authentication-state-17 {
+  background-color: var(--themeswamp);
+  height: 1px;
+  opacity: 0.4;
+  position: relative;
+  width: 24px;
+}
+
+.element-login-mobile .div-wrapper-7 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-5 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 5px;
+  max-width: 570px;
+  padding: 32px 0px;
+  position: relative;
+}
+
+.element-login-mobile .authentication-6 {
+  align-self: stretch;
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 48px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.element-login-mobile .authentication-7 {
+  align-self: stretch;
+  color: var(--themenevada);
+  font-family: "Inter", Helvetica;
+  font-size: 15.1px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 24px;
+  position: relative;
+  text-align: center;
+}
+
+.element-login-mobile .authentication-state-18 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: center;
+  min-height: 48px;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-state-19 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 570px;
+  position: relative;
+}
+
+.element-login-mobile .authentication-state-20 {
+  align-items: flex-start;
+  align-self: stretch;
+  border: 2px solid;
+  border-color: var(--themesilver-sand);
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  padding: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-state-21 {
+  align-items: flex-start;
+  background-color: var(--themewhite);
+  box-shadow: 0px 1px 8px #000e141a;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  justify-content: center;
+  position: relative;
+}
+
+.element-login-mobile .title-11 {
+  color: var(--themeswamp);
+  flex: 1;
+  font-family: "Inter", Helvetica;
+  font-size: 11.7px;
+  font-weight: 700;
+  letter-spacing: 1.00px;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+}
+
+.element-login-mobile .authentication-state-22 {
+  align-items: flex-start;
+  background-color: var(--themesilver-sand);
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  justify-content: center;
+  opacity: 0.4;
+  position: relative;
+}
+
+.element-login-mobile .title-12 {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 11.7px;
+  font-weight: 700;
+  letter-spacing: 1.00px;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  width: 64px;
+}
+
+.element-login-mobile .authentication-form-17 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px 0px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-form-18 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+.element-login-mobile .authentication-form-19 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--themewild-sand);
+  border-radius: 4px 4px 0px 0px;
+  display: flex;
+  height: 48px;
+  overflow: hidden;
+  padding: 0px 16px;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-form-20 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 1px;
+  min-height: 30px;
+  padding: 2px 0px;
+  position: relative;
+}
+
+.element-login-mobile .authentication-form-21 {
+  color: var(--themeblack-60);
+  font-family: "Inter", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.29px;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-login-mobile .authentication-form-22 {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--themeblack-42);
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 47px;
+  width: 490px;
+}
+
+.element-login-mobile .authentication-8 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.element-login-mobile .authentication-form-23 {
+  align-self: stretch;
+  color: var(--themeoslo-gray);
+  font-family: "Inter", Helvetica;
+  font-size: 9.7px;
+  font-weight: 400;
+  letter-spacing: 0.10px;
+  line-height: 16px;
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.element-login-mobile .action-button-8 {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  max-width: unset !important;
+  width: 100% !important;
+}
+
+.element-login-mobile .action-button-9 {
+  align-self: unset !important;
+  height: 48px !important;
+}
+
+.element-login-mobile .authentication-form-24 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: var(--themeswamp);
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  justify-content: center;
+  min-height: 48px;
+  padding: 8.5px 17px 9px;
+  position: relative;
+}
+
+.element-login-mobile .authentication-form-25 {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 11.7px;
+  font-weight: 700;
+  letter-spacing: 1.00px;
+  line-height: 30px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.element-login-mobile .footer-32 {
+  align-self: stretch !important;
+  background-color: transparent !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.element-login-mobile .footer-33 {
+  margin-left: -324px !important;
+}

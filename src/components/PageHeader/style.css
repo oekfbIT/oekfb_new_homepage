@@ -1,0 +1,46 @@
+.page-header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 1200px;
+  position: relative;
+  width: 1160px;
+}
+
+.page-header .header-wrapper {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 1200px;
+  position: relative;
+  width: 100%;
+}
+
+.page-header .title-2 {
+  align-self: stretch;
+  color: var(--themeswamp);
+  font-family: var(--theme-inter-black-36-25-font-family);
+  font-size: var(--theme-inter-black-36-25-font-size);
+  font-style: var(--theme-inter-black-36-25-font-style);
+  font-weight: var(--theme-inter-black-36-25-font-weight);
+  letter-spacing: var(--theme-inter-black-36-25-letter-spacing);
+  line-height: var(--theme-inter-black-36-25-line-height);
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.page-header .subtitle-2 {
+  align-self: stretch;
+  color: var(--themeswamp);
+  font-family: var(--theme-inter-bold-15-75-upper-font-family);
+  font-size: var(--theme-inter-bold-15-75-upper-font-size);
+  font-style: var(--theme-inter-bold-15-75-upper-font-style);
+  font-weight: var(--theme-inter-bold-15-75-upper-font-weight);
+  letter-spacing: var(--theme-inter-bold-15-75-upper-letter-spacing);
+  line-height: var(--theme-inter-bold-15-75-upper-line-height);
+  position: relative;
+}
