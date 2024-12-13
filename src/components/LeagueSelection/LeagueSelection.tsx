@@ -15,7 +15,7 @@ export const LeagueSelection = ({ className }: Props): JSX.Element => {
   return (
     <Link
       className={`league-selection ${className}`}
-      to="/02u46-homepage-desktop"
+      to="/homepage"
     >
       <div className="name">Wiener Liga 1</div>
 

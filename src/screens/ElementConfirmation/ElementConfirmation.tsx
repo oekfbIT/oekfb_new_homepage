@@ -121,7 +121,7 @@ export const ElementConfirmation = (): JSX.Element => {
                 tagen mit ihnen kontakt Aufnehmen.
               </p>
 
-              <Link to="/02u46-homepage-desktop">
+              <Link to="/homepage">
                 <button className="submit-button">
                   <button className="button">HOME</button>
                 </button>
