@@ -1,7 +1,7 @@
 import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
-import { NavigationDesktop } from "../../components/NavigationDesktop";
+import { NavigationDesktop } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { PropertyDesktopWrapper } from "../../components/PropertyDesktopWrapper";
 import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";

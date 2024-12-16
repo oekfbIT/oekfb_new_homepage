@@ -2,7 +2,7 @@ import React from "react";
 import { DivWrapper } from "../../components/DivWrapper";
 import { EventRow } from "../../components/EventRow";
 import { Footer } from "../../components/Footer";
-import { NavigationDesktop } from "../../components/NavigationDesktop";
+import { NavigationDesktop } from "../../components/Navigation";
 import { TeamDetailSquadWrapper } from "../../components/TeamDetailSquadWrapper";
 import "./style.css";
 

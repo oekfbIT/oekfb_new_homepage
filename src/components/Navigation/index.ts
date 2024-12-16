@@ -1,1 +1,1 @@
-export { NavigationDesktop } from "./NavigationDesktop";
+export { Navigation } from "./Navigation";

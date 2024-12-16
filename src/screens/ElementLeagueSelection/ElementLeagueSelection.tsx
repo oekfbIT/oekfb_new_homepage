@@ -3,10 +3,10 @@ import { useWindowWidth } from "../../breakpoints";
 import { Dropdown } from "../../components/Dropdown";
 import { Footer } from "../../components/Footer";
 import { LeagueSelection } from "../../components/LeagueSelection";
-import { NavigationDesktop } from "../../components/NavigationDesktop";
 import { Sponsors } from "../../components/Sponsors";
 import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
 import "./style.css";
+import {Navigation} from "../../components/Navigation";
 
 export const ElementLeagueSelection = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -25,29 +25,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
     >
       {screenWidth < 900 && (
         <>
-          <NavigationDesktop
-            className="instance-node"
-            img="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem="/img/league-row-item-content-img-1090.png"
-            leagueRowItem1="/img/league-row-item-content-img-1090.png"
-            leagueRowItem10="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem11="/img/league-row-item-content-img-1090.png"
-            leagueRowItem12="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem13="/img/league-row-item-content-img-1090.png"
-            leagueRowItem14="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem15="/img/league-row-item-content-img-1090.png"
-            leagueRowItem16="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem2="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem3="/img/league-row-item-content-img-1090.png"
-            leagueRowItem4="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem5="/img/league-row-item-content-img-1090.png"
-            leagueRowItem6="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem7="/img/league-row-item-content-img-1090.png"
-            leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem9="/img/league-row-item-content-img-1090.png"
-            mobileBurgerMenu="/img/mobile-burger-menu-8.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-8.svg"
-          />
+          <Navigation/>
           <div className="page-header-wrapper">
             <div className="page-header-2">
               <div className="page-header-wrapper-2">

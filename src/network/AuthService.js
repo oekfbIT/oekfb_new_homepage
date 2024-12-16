@@ -1,7 +1,7 @@
 class AuthService {
     constructor() {
-        this.baseURL = 'https://api.oekfb.eu/';
-        // this.baseURL = "http://localhost:8080"; // Uncomment for local development
+        // this.baseURL = 'https://api.oekfb.eu/';
+        this.baseURL = "http://localhost:8080"; // Uncomment for local development
     }
 
     /**
@@ -53,16 +53,14 @@ class AuthService {
     }
 
     /**
-     * Set authentication cookies based on the provided token and user ID.
-     * @param {string} userId - The ID of the user.
-     * @param {string} token - The authentication token.
+     * Set a cookie with specified key and value.
+     * @param {string} key - The name of the cookie.
+     * @param {string} value - The value of the cookie.
      */
-    setAuthCookies(userId, token) {
+    setCookie(key, value) {
         const secureAttribute = window.location.protocol === 'https:' ? '; secure' : '';
         const cookieOptions = `path=/; max-age=${7 * 24 * 60 * 60}; samesite=strict${secureAttribute}`;
-
-        document.cookie = `adminID=${userId}; ${cookieOptions}`;
-        document.cookie = `authToken=${token}; ${cookieOptions}`;
+        document.cookie = `${key}=${value}; ${cookieOptions}`;
     }
 
     /**
@@ -74,6 +72,52 @@ class AuthService {
         const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
         if (match) return match[2];
         return null;
+    }
+
+    /**
+     * Set the league code and league ID in cookies.
+     * @param {string} leagueCode - The league code to set.
+     * @param {string} leagueID - The league ID to set.
+     */
+    setLeagueData(leagueCode, leagueID) {
+        this.setCookie('leagueCode', leagueCode);
+        this.setCookie('leagueID', leagueID);
+    }
+
+    /**
+     * Get the league code stored in cookies.
+     * @returns {string|null} - The league code, or null if not found.
+     */
+    getLeagueCode() {
+        return this.getCookie('leagueCode');
+    }
+
+    /**
+     * Get the league ID stored in cookies.
+     * @returns {string|null} - The league ID, or null if not found.
+     */
+    getLeagueID() {
+        return this.getCookie('leagueID');
+    }
+
+    /**
+     * Log out the user by clearing authentication cookies and league data.
+     */
+    logoutUser() {
+        document.cookie = 'authToken=; path=/; max-age=0; secure; samesite=strict';
+        document.cookie = 'adminID=; path=/; max-age=0; secure; samesite=strict';
+        document.cookie = 'leagueCode=; path=/; max-age=0; secure; samesite=strict';
+        document.cookie = 'leagueID=; path=/; max-age=0; secure; samesite=strict';
+    }
+
+    /**
+     * Check if the user is authenticated.
+     * @returns {boolean} - True if authenticated, false otherwise.
+     */
+    isAuthenticated() {
+        const adminID = this.getCookie('adminID');
+        const authToken = this.getCookie('authToken');
+        return !!(adminID && authToken);
     }
 
     /**
@@ -90,24 +134,6 @@ class AuthService {
      */
     getAuthToken() {
         return this.getCookie('authToken');
-    }
-
-    /**
-     * Check if the user is authenticated.
-     * @returns {boolean} - True if authenticated, false otherwise.
-     */
-    isAuthenticated() {
-        const adminID = this.getCookie('adminID');
-        const authToken = this.getCookie('authToken');
-        return !!(adminID && authToken);
-    }
-
-    /**
-     * Log out the user by clearing authentication cookies.
-     */
-    logoutUser() {
-        document.cookie = 'authToken=; path=/; max-age=0; secure; samesite=strict';
-        document.cookie = 'adminID=; path=/; max-age=0; secure; samesite=strict';
     }
 }
 

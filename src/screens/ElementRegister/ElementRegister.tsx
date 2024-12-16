@@ -1,7 +1,7 @@
 import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
-import { NavigationDesktop } from "../../components/NavigationDesktop";
+import { Navigation } from "../../components/Navigation";
 import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
@@ -22,29 +22,8 @@ export const ElementRegister = (): JSX.Element => {
     >
       {screenWidth < 900 && (
         <>
-          <NavigationDesktop
-            className="navigation-desktop-13"
-            img="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem="/img/league-row-item-content-img-1090.png"
-            leagueRowItem1="/img/league-row-item-content-img-1090.png"
-            leagueRowItem10="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem11="/img/league-row-item-content-img-1090.png"
-            leagueRowItem12="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem13="/img/league-row-item-content-img-1090.png"
-            leagueRowItem14="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem15="/img/league-row-item-content-img-1090.png"
-            leagueRowItem16="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem2="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem3="/img/league-row-item-content-img-1090.png"
-            leagueRowItem4="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem5="/img/league-row-item-content-img-1090.png"
-            leagueRowItem6="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem7="/img/league-row-item-content-img-1090.png"
-            leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem9="/img/league-row-item-content-img-1090.png"
-            mobileBurgerMenu="/img/mobile-burger-menu-97.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
-          />
+          <Navigation/>
+
           <div className="authentication-form">
             <div className="div-15">
               <div className="authentication-state">

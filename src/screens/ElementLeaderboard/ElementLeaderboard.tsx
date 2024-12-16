@@ -3,7 +3,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { LeaderboardHighligh } from "../../components/LeaderboardHighligh";
 import { LeaderboardStat } from "../../components/LeaderboardStat";
-import { NavigationDesktop } from "../../components/NavigationDesktop";
+import { NavigationDesktop } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
 import "./style.css";

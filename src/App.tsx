@@ -31,86 +31,86 @@ const router = createBrowserRouter([
     path: "/league-selection",
     element: <ElementLeagueSelection />,
   },
-  {
-    path: "/mobilenav",
-    element: <ElementMobilenav />,
-  },
-  {
-    path: "/sperren",
-    element: <ElementSperrenDesktop />,
-  },
-  {
-    path: "/clubs",
-    element: <ElementClubsDesktop />,
-  },
-  {
-    path: "/table",
-    element: <ElementTableMobile />,
-  },
-  {
-    path: "/news",
-    element: <ElementNewsMobile />,
-  },
-  {
-    path: "/register",
-    element: <ElementRegister />,
-  },
-  {
-    path: "/news-detail",
-    element: <ElementNewsDetail />,
-  },
-  {
-    path: "/gameday",
-    element: <ElementGamedayMobile />,
-  },
-  {
-    path: "/registration-upload",
-    element: <ElementRegistration />,
-  },
-  {
-    path: "/confirmation",
-    element: <ElementConfirmation />,
-  },
-  {
-    path: "/transfers",
-    element: <ElementTransfersDesktop />,
-  },
-  {
-    path: "/leaderboard",
-    element: <ElementLeaderboard />,
-  },
-  {
-    path: "/player-detail",
-    element: <ElementPlayerDetail />,
-  },
-  {
-    path: "/team-detail",
-    element: <ElementTeamDetail />,
-  },
-  {
-    path: "/contact",
-    element: <ElementContactMobile />,
-  },
-  {
-    path: "/impressium",
-    element: <ElementImpressiumMobile />,
-  },
-  {
-    path: "/login",
-    element: <ElementLoginMobile />,
-  },
-  {
-    path: "/terms",
-    element: <ElementTermsMobile />,
-  },
-  {
-    path: "/homepage",
-    element: <ElementHomepageDesktop />,
-  },
-  {
-    path: "/game-report",
-    element: <ElementGameReport />,
-  },
+  // {
+  //   path: "/mobilenav",
+  //   element: <ElementMobilenav />,
+  // },
+  // {
+  //   path: "/sperren",
+  //   element: <ElementSperrenDesktop />,
+  // },
+  // {
+  //   path: "/clubs",
+  //   element: <ElementClubsDesktop />,
+  // },
+  // {
+  //   path: "/table",
+  //   element: <ElementTableMobile />,
+  // },
+  // {
+  //   path: "/news",
+  //   element: <ElementNewsMobile />,
+  // },
+  // {
+  //   path: "/register",
+  //   element: <ElementRegister />,
+  // },
+  // {
+  //   path: "/news-detail",
+  //   element: <ElementNewsDetail />,
+  // },
+  // {
+  //   path: "/gameday",
+  //   element: <ElementGamedayMobile />,
+  // },
+  // {
+  //   path: "/registration-upload",
+  //   element: <ElementRegistration />,
+  // },
+  // {
+  //   path: "/confirmation",
+  //   element: <ElementConfirmation />,
+  // },
+  // {
+  //   path: "/transfers",
+  //   element: <ElementTransfersDesktop />,
+  // },
+  // {
+  //   path: "/leaderboard",
+  //   element: <ElementLeaderboard />,
+  // },
+  // {
+  //   path: "/player-detail",
+  //   element: <ElementPlayerDetail />,
+  // },
+  // {
+  //   path: "/team-detail",
+  //   element: <ElementTeamDetail />,
+  // },
+  // {
+  //   path: "/contact",
+  //   element: <ElementContactMobile />,
+  // },
+  // {
+  //   path: "/impressium",
+  //   element: <ElementImpressiumMobile />,
+  // },
+  // {
+  //   path: "/login",
+  //   element: <ElementLoginMobile />,
+  // },
+  // {
+  //   path: "/terms",
+  //   element: <ElementTermsMobile />,
+  // },
+  // {
+  //   path: "/homepage",
+  //   element: <ElementHomepageDesktop />,
+  // },
+  // {
+  //   path: "/game-report",
+  //   element: <ElementGameReport />,
+  // },
 ]);
 
 export const App = () => {

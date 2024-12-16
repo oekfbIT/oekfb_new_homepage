@@ -3,7 +3,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { Dropdown } from "../../components/Dropdown";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
 import { Footer } from "../../components/Footer";
-import { NavigationDesktop } from "../../components/NavigationDesktop";
+import { NavigationDesktop } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
 import "./style.css";
