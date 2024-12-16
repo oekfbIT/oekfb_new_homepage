@@ -122,7 +122,7 @@
   flex: 1 !important;
   flex-grow: 1 !important;
   min-width: 260px !important;
-  width: unset !important;
+  /*width: unset !important;*/
 }
 
 .element-league-selection .footer-instance {
@@ -188,17 +188,17 @@
 }
 
 .element-league-selection .league-cell-list-2 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  gap: 18px 18px;
-  max-width: 1200px;
-  padding: 0px 0px 120px;
-  position: relative;
-  width: 100%;
+  display: grid; /* Use CSS Grid */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Grid with up to 3 columns */
+  gap: 18px; /* Spacing between items */
+  align-items: stretch; /* Ensure items stretch vertically */
+  justify-items: center; /* Center the content horizontally */
+  max-width: 1200px; /* Restrict the width */
+  padding: 0 16px 120px; /* Top/bottom padding with side spacing */
+  width: 100%; /* Take full container width */
+  box-sizing: border-box; /* Include padding in width */
 }
+
 
 .element-league-selection .sponsors-instance {
   align-items: center !important;

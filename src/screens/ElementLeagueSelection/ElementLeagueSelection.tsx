@@ -13,22 +13,39 @@ export const ElementLeagueSelection = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const clientController = new ClientController();
 
-    // State to store league options and selected value
-    const [leagues, setLeagues] = useState<any[]>([]);
-    const [selectedLeague, setSelectedLeague] = useState<string>("W1"); // Default selection "W1"
+    // States for leagues and selected state
+    const [allLeagues, setAllLeagues] = useState<any[]>([]);
+    const [filteredLeagues, setFilteredLeagues] = useState<any[]>([]);
+    const [selectedState, setSelectedState] = useState<string>("wien"); // Default selected state
 
-    // Fetch league options
+    // Austrian states for the dropdown
+    const austrianStates = [
+        { name: "Wien", value: "wien" },
+        { name: "Niederösterreich", value: "niederoesterreich" },
+        { name: "Oberösterreich", value: "oberoesterreich" },
+        { name: "Steiermark", value: "steiermark" },
+        { name: "Kärnten", value: "kaernten" },
+        { name: "Salzburg", value: "salzburg" },
+        { name: "Tirol", value: "tirol" },
+        { name: "Vorarlberg", value: "vorarlberg" },
+        { name: "Burgenland", value: "burgenland" },
+    ];
+
+    // Fetch all leagues on mount
     useEffect(() => {
         const fetchLeagues = async () => {
             try {
                 const data = await clientController.fetchLeagueSelection();
 
-                // Filter out unwanted leagues (name = "Mannschaft aus der Liga ausgetreten")
-                const filteredLeagues = data.filter(
+                // Filter out unwanted leagues
+                const validLeagues = data.filter(
                     (league) => league.name !== "Mannschaft aus der Liga ausgetreten"
                 );
 
-                setLeagues(filteredLeagues);
+                setAllLeagues(validLeagues);
+
+                // Set filtered leagues for "wien"
+                setFilteredLeagues(validLeagues.filter((league) => league.state === "wien"));
             } catch (error) {
                 console.error("Error fetching leagues:", error);
             }
@@ -38,9 +55,10 @@ export const ElementLeagueSelection = (): JSX.Element => {
     }, []);
 
     // Handle dropdown selection change
-    const handleDropdownChange = (selectedCode: string) => {
-        setSelectedLeague(selectedCode);
-        console.log("Selected League Code:", selectedCode);
+    const handleStateChange = (state: string) => {
+        setSelectedState(state);
+        const filtered = allLeagues.filter((league) => league.state === state);
+        setFilteredLeagues(filtered);
     };
 
     return (
@@ -56,11 +74,9 @@ export const ElementLeagueSelection = (): JSX.Element => {
                     <div className="page-header-wrapper">
                         <div className="page-header-2">
                             <div className="page-header-wrapper-2">
-                                <div className="page-header-wrapper-3">TITLE</div>
+                                <div className="page-header-wrapper-3">Ligen Auswahl</div>
                                 <p className="page-header-wrapper-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec varius lorem,
-                                    eget faucibus ex. Vivamus vehicula dui non leo laoreet luctus. Etiam congue
-                                    consequat placerat.
+                                    Wählen Sie ein Bundesland aus, um die Ligen anzuzeigen.
                                 </p>
                             </div>
                         </div>
@@ -70,16 +86,23 @@ export const ElementLeagueSelection = (): JSX.Element => {
                         <div className="leagues-wrapper">
                             <Dropdown
                                 className="instance-node-2"
-                                options={leagues}
+                                options={austrianStates}
                                 displayKey="name"
-                                valueKey="code"
-                                text="Select a League"
-                                placeholder="Choose a league"
-                                onChange={handleDropdownChange}
+                                valueKey="value"
+                                text="Bundesland auswählen"
+                                placeholder="Wählen Sie ein Bundesland"
+                                onChange={handleStateChange}
+                                defaultValue="wien" // Default selected value
                             />
                             <div className="league-cell-list">
-                                <LeagueSelection className="league-selection-cell" />
-                                <LeagueSelection className="league-selection-cell" />
+                                {filteredLeagues.map((league) => (
+                                    <LeagueSelection
+                                        key={league.id}
+                                        className="league-selection-cell"
+                                        name={league.name}
+                                        teams={league.teamcount}
+                                    />
+                                ))}
                             </div>
                         </div>
 
@@ -89,8 +112,6 @@ export const ElementLeagueSelection = (): JSX.Element => {
                     <Footer
                         className="footer-instance"
                         footerContent="/img/footer-content-wrapper-left-logo-8.png"
-                        footerContentClassName="footer-2"
-                        footerContentClassNameOverride="footer-3"
                         href="https://www.facebook.com/kleinfeldliga/"
                         href1="https://www.youtube.com/@OEKFB"
                         href2="https://www.instagram.com/oekfb/?hl=en"
@@ -114,16 +135,23 @@ export const ElementLeagueSelection = (): JSX.Element => {
                         <div className="leagues-wrapper-2">
                             <Dropdown
                                 className="instance-node"
-                                options={leagues}
+                                options={austrianStates}
                                 displayKey="name"
-                                valueKey="code"
-                                text="Select a League"
-                                placeholder="Choose a league"
-                                onChange={handleDropdownChange}
+                                valueKey="value"
+                                text="Bundesland auswählen"
+                                placeholder="Wählen Sie ein Bundesland"
+                                onChange={handleStateChange}
+                                defaultValue="wien" // Default selected value
                             />
                             <div className="league-cell-list-2">
-                                <LeagueSelection className="league-selection-cell" />
-                                <LeagueSelection className="league-selection-cell" />
+                                {filteredLeagues.map((league) => (
+                                    <LeagueSelection
+                                        key={league.id}
+                                        className="league-selection-cell"
+                                        name={league.name}
+                                        teams={league.teamcount}
+                                    />
+                                ))}
                             </div>
                         </div>
 

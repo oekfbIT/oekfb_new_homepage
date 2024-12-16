@@ -34,7 +34,6 @@
   padding: 1.5px 0px;
   position: absolute;
   top: 7px;
-  width: 84px;
 }
 
 .dropdown .mat-label-select-a {
@@ -122,4 +121,10 @@
 .dropdown-option-item:hover {
   background-color: black;
   color: white;
+}
+
+/* Add hover effect and pointer cursor */
+.dropdown-wrapper-3 {
+  cursor: pointer; /* Changes the cursor to a pointer (finger) */
+  transition: background-color 0.3s ease; /* Optional: smooth transition */
 }

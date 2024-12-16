@@ -569,6 +569,7 @@
 
 .view-default-wrapper.default {
   width: 1200px;
+  background-color: white;
 }
 
 .view-default-wrapper.mobile {
