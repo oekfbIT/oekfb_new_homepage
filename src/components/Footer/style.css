@@ -70,6 +70,7 @@
   gap: 0px 0px;
   max-width: 500px;
   position: relative;
+  flex-direction: column;
 }
 
 .footer .item {
