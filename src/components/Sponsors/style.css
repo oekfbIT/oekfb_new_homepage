@@ -86,6 +86,13 @@
   width: 85px;
 }
 
+.sponsors .image-4 {
+  height: 80px;
+  object-fit: contain;
+  position: relative;
+  width: 85px;
+}
+
 .sponsors .v-white {
   height: 47px;
   position: relative;

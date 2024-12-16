@@ -31,16 +31,18 @@ export const Sponsors = ({
 
         <div className="sponsors-container-2">
           <img
-            className="sportsselection"
-            alt="Sportsselection"
-            src="/img/sportsselection-2zlg-subl-g-t-1.png"
+              className="sportsselection"Ron
+              alt="Sportsselection"
+              src="/img/sportsselection-2zlg-subl-g-t-1.png"
           />
 
-          <img className="image-2" alt="Image" src="/img/image-1-1.png" />
+          <img className="image-2" alt="Image" src="/img/image-1-1.png"/>
 
-          <img className="image-3" alt="Image" src="/img/image-2-1.png" />
+          <img className="image-3" alt="Image" src="/img/image-2-1.png"/>
 
-          <img className="v-white" alt="V white" src={vWhite} />
+          <img className="image-4" alt="Image" src="/img/wmfLogo.png"/>
+
+          <img className="v-white" alt="V white" src={vWhite}/>
         </div>
       </div>
     </div>
