@@ -1,180 +1,140 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
-
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-interface Props {
-  className: any;
-  footerContentClassName: any;
-  footerContent: string;
-  footerContentClassNameOverride: any;
-  link: string;
-  img: string;
-  link1: string;
-  link2: string;
-  href: string;
-  href1: string;
-  href2: string;
-}
-
-export const Footer = ({
-  className,
-  footerContentClassName,
-  footerContent = "/img/footer-content-wrapper-left-logo-7.png",
-  footerContentClassNameOverride,
-  link = "/img/link-28.svg",
-  img = "/img/link-29.svg",
-  link1 = "/img/link-30.svg",
-  link2 = "/img/link-31.svg",
-  href,
-  href1,
-  href2,
-}: Props): JSX.Element => {
+/**
+ * Footer Component
+ *
+ * This component renders a structured footer with links, logos, and optional sponsor details.
+ */
+export const Footer = (): JSX.Element => {
   return (
-    <div className={`footer ${className}`}>
-      <div className={`footer-content ${footerContentClassName}`}>
-        <div className="footer-content-2">
-          <div className="footer-content-3">
-            <img
-              className="footer-content-4"
-              alt="Footer content"
-              src={footerContent}
-            />
+      <div className="footer">
+        {/* Left Section: Footer Content */}
+        <div className="footer-content">
+          <div className="footer-content-2">
+            {/* Section: Logo and Links */}
+            <div className="footer-content-3">
+              {/* Logo */}
+              <img
+                  className="footer-content-4"
+                  alt="Footer Logo"
+                  src="/img/footer-content-wrapper-left-logo-7.png"
+              />
 
-            <div className="frame">
-              <div className="footer-content-5">
-                <div className="item">
-                  <div className="link-2">
-                    <div className="text-wrapper-3">Der Bund</div>
-                  </div>
+              {/* Navigation Links */}
+              <div className="frame">
+                {/* Column 1 */}
+                <div className="footer-content-5">
+                  <FooterItem label="Der Bund" />
+                  <FooterItem label="News" />
+                  <FooterItem label="Kontakt" />
+                  <FooterItem label="Impressum" />
+                  <FooterItem label="Datenschutz" />
                 </div>
 
-                <div className="item">
-                  <div className="link-2">
-                    <div className="text-wrapper-3">News</div>
-                  </div>
-                </div>
-
-                <div className="item">
-                  <div className="link-2">
-                    <div className="text-wrapper-3">Kontakt</div>
-                  </div>
-                </div>
-
-                <div className="item">
-                  <div className="link-2">
-                    <div className="text-wrapper-3">Impressum</div>
-                  </div>
-                </div>
-
-                <div className="item">
-                  <div className="link-2">
-                    <div className="text-wrapper-4">Datenschutz</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="footer-content-5">
-                <div className="item">
-                  <div className="link-2">
-                    <div className="text-wrapper-3">Ligaordnung</div>
-                  </div>
-                </div>
-
-                <div className="item">
-                  <div className="link-2">
-                    <div className="text-wrapper-3">Spielregeln</div>
-                  </div>
-                </div>
-
-                <a
-                  className="item"
-                  href="team.oekfb.eu"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <div className="link-2">
-                    <div className="text-wrapper-5">Spieler Login</div>
-                  </div>
-                </a>
-
-                <a
-                  className="item"
-                  href="ref.oekfb.eu"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  <div className="link-2">
-                    <div className="text-wrapper-6">Schiedsrichter Login</div>
-                  </div>
-                </a>
-
-                <Link className="item" to="/12u465-register-desktop">
-                  <div className="link-3">
-                    <div className="text-wrapper-7">Team Registrierung</div>
-                  </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          <div className={`footer-content-3 ${footerContentClassNameOverride}`}>
-            <div className="sponsors-2">
-              <div className="title">Sponsored By</div>
-
-              <div className="list">
-                <div className="item-2">
-                  <div className="logo-wrapper">
-                    <div className="logo">
-                      <div className="logo-2" />
+                {/* Column 2 */}
+                <div className="footer-content-5">
+                  <FooterItem label="Ligaordnung" />
+                  <FooterItem label="Spielregeln" />
+                  <FooterLink
+                      href="team.oekfb.eu"
+                      label="Spieler Login"
+                      className="text-wrapper-5"
+                  />
+                  <FooterLink
+                      href="ref.oekfb.eu"
+                      label="Schiedsrichter Login"
+                      className="text-wrapper-6"
+                  />
+                  <Link className="item" to="/12u465-register-desktop">
+                    <div className="link-3">
+                      <div className="text-wrapper-7">Team Registrierung</div>
                     </div>
-                  </div>
-                </div>
-
-                <div className="item-2">
-                  <div className="logo-wrapper">
-                    <div className="logo">
-                      <div className="logo-3" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="item-2">
-                  <div className="logo-wrapper">
-                    <div className="logo">
-                      <div className="logo-4" />
-                    </div>
-                  </div>
+                  </Link>
                 </div>
               </div>
             </div>
 
-            <div className="bundesliga-footer">
-              <a href={href} rel="noopener noreferrer" target="_blank">
-                <img className="link-4" alt="Link" src={link} />
-              </a>
+            {/* Sponsors and Social Links */}
+            <div className="footer-content-3">
+              {/* Sponsors Section */}
+              <div className="sponsors-2">
+                <div className="title">Sponsored By</div>
+                <div className="list">
+                  <SponsorLogo imgClass="logo-2" />
+                  <SponsorLogo imgClass="logo-3" />
+                  <SponsorLogo imgClass="logo-4" />
+                </div>
+              </div>
 
-              <a href={href1} rel="noopener noreferrer" target="_blank">
-                <img className="link-4" alt="Link" src={img} />
-              </a>
-
-              <img className="link-5" alt="Link" src={link1} />
-
-              <a href={href2} rel="noopener noreferrer" target="_blank">
-                <img className="link-4" alt="Link" src={link2} />
-              </a>
+              {/* Social Media Links */}
+              <div className="bundesliga-footer">
+                <SocialLink
+                    href="https://www.facebook.com/kleinfeldliga/"
+                    src="/img/link-32.svg"
+                />
+                <SocialLink
+                    href="https://www.youtube.com/@OEKFB"
+                    src="/img/link-33.svg"
+                />
+                <img className="link-5" alt="Link" src="/img/link-34.svg" />
+                <SocialLink
+                    href="https://www.instagram.com/oekfb/?hl=en"
+                    src="/img/link-35.svg"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
+
+/**
+ * FooterItem Component - A reusable navigation link placeholder.
+ */
+const FooterItem = ({ label }) => (
+    <div className="item">
+      <div className="link-2">
+        <div className="text-wrapper-3">{label}</div>
+      </div>
+    </div>
+);
+
+/**
+ * FooterLink Component - Renders an anchor link.
+ */
+const FooterLink = ({ href, label, className }) => (
+    <a href={href} className="item" target="_blank" rel="noopener noreferrer">
+      <div className="link-2">
+        <div className={className}>{label}</div>
+      </div>
+    </a>
+);
+
+/**
+ * SponsorLogo Component - Renders sponsor logos.
+ */
+const SponsorLogo = ({ imgClass }) => (
+    <div className="item-2">
+      <div className="logo-wrapper">
+        <div className="logo">
+          <div className={imgClass} />
+        </div>
+      </div>
+    </div>
+);
+
+/**
+ * SocialLink Component - Renders social media icons as links.
+ */
+const SocialLink = ({ href, src }) => (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      <img className="link-4" alt="Social Link" src={src} />
+    </a>
+);
 
 Footer.propTypes = {
   footerContent: PropTypes.string,
