@@ -192,17 +192,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
                         <Sponsors className="sponsors-3" vWhite="/img/v-white-1-2.svg"/>
                     </div>
 
-                    <Footer
-                        className="footer-instance"
-                        footerContent="/img/footer-content-wrapper-left-logo-8.png"
-                        href="https://www.facebook.com/kleinfeldliga/"
-                        href1="https://www.youtube.com/@OEKFB"
-                        href2="https://www.instagram.com/oekfb/?hl=en"
-                        img="/img/link-45.svg"
-                        link="/img/link-44.svg"
-                        link1="/img/link-46.svg"
-                        link2="/img/link-47.svg"
-                    />
+                    <Footer/>
                 </>
             )}
         </div>

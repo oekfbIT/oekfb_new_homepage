@@ -80,7 +80,7 @@
   flex: 0 0 auto;
   justify-content: space-between;
   position: relative;
-  width: 49px;
+  gap: 5px;
 }
 
 .view-default-wrapper .league-row-item-8 {
@@ -107,6 +107,7 @@
   height: 1px;
   position: relative;
   width: 100%;
+  background-color: black;
 }
 
 .view-default-wrapper .league-row-item-11 {
