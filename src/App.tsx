@@ -39,10 +39,10 @@ const router = createBrowserRouter([
   //   path: "/sperren",
   //   element: <ElementSperrenDesktop />,
   // },
-  // {
-  //   path: "/clubs",
-  //   element: <ElementClubsDesktop />,
-  // },
+  {
+    path: "/clubs",
+    element: <ElementClubsDesktop />,
+  },
   // {
   //   path: "/table",
   //   element: <ElementTableMobile />,
