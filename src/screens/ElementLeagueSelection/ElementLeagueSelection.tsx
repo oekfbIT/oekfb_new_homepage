@@ -8,10 +8,12 @@ import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 import { Navigation } from "../../components/Navigation";
 import ClientController from "../../network/ClientController";
+import AuthService from "../../network/AuthService";
 
 export const ElementLeagueSelection = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const clientController = new ClientController();
+    const authService = new AuthService(); // Initialize AuthService
 
     // States for leagues and selected state
     const [allLeagues, setAllLeagues] = useState<any[]>([]);
@@ -61,6 +63,12 @@ export const ElementLeagueSelection = (): JSX.Element => {
         setFilteredLeagues(filtered);
     };
 
+    // Handle LeagueSelection click and set cookie
+    const handleLeagueSelect = (league: any) => {
+        authService.setLeagueData(league.code, league.id);
+        console.log(`League selected: Code = ${league.code}, ID = ${league.id}`);
+    };
+
     return (
         <div
             className="element-league-selection"
@@ -92,17 +100,24 @@ export const ElementLeagueSelection = (): JSX.Element => {
                                 text="Bundesland auswählen"
                                 placeholder="Wählen Sie ein Bundesland"
                                 onChange={handleStateChange}
-                                defaultValue="wien" // Default selected value
+                                defaultValue="wien"
                             />
                             <div className="league-cell-list">
-                                {filteredLeagues.map((league) => (
-                                    <LeagueSelection
-                                        key={league.id}
-                                        className="league-selection-cell"
-                                        name={league.name}
-                                        teams={league.teamcount}
-                                    />
-                                ))}
+                                {filteredLeagues.length > 0 ? (
+                                    filteredLeagues.map((league) => (
+                                        <LeagueSelection
+                                            key={league.id}
+                                            className="league-selection-cell"
+                                            name={league.name}
+                                            teams={league.teamcount}
+                                            onClick={() => handleLeagueSelect(league)} // Set cookie on click
+                                        />
+                                    ))
+                                ) : (
+                                    <p className="no-results-text">
+                                        Aktuell haben wir keine Liga in diesem Bundesland.
+                                    </p>
+                                )}
                             </div>
                         </div>
 
@@ -141,17 +156,24 @@ export const ElementLeagueSelection = (): JSX.Element => {
                                 text="Bundesland auswählen"
                                 placeholder="Wählen Sie ein Bundesland"
                                 onChange={handleStateChange}
-                                defaultValue="wien" // Default selected value
+                                defaultValue="wien"
                             />
                             <div className="league-cell-list-2">
-                                {filteredLeagues.map((league) => (
-                                    <LeagueSelection
-                                        key={league.id}
-                                        className="league-selection-cell"
-                                        name={league.name}
-                                        teams={league.teamcount}
-                                    />
-                                ))}
+                                {filteredLeagues.length > 0 ? (
+                                    filteredLeagues.map((league) => (
+                                        <LeagueSelection
+                                            key={league.id}
+                                            className="league-selection-cell"
+                                            name={league.name}
+                                            teams={league.teamcount}
+                                            onClick={() => handleLeagueSelect(league)} // Set cookie on click
+                                        />
+                                    ))
+                                ) : (
+                                    <p className="no-results-text">
+                                        Aktuell haben wir keine Liga in diesem Bundesland.
+                                    </p>
+                                )}
                             </div>
                         </div>
 
