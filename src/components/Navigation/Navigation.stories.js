@@ -1,7 +1,7 @@
 import { NavigationDesktop } from ".";
 
 export default {
-  title: "Components/NavigationDesktop",
+  title: "Components/Navigation",
   component: NavigationDesktop,
 };
 

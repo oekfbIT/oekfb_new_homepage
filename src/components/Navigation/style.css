@@ -1,0 +1,74 @@
+/* Navigation container */
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* League row with horizontal scroll */
+.league-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 15px;
+  border-bottom: 1px solid #e9ebed;
+}
+
+.league-item {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.league-item img {
+  width: 30px;
+  height: 30px;
+}
+
+.league-text {
+  font-size: 12px;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* Navigation bar */
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-logo {
+  width: 120px;
+}
+
+.nav-items a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+
+.login-btn {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.burger-menu {
+  width: 24px;
+  height: 24px;
+}
+
+/* Responsive behavior for screens under 800px */
+@media (max-width: 800px) {
+  .nav-items,
+  .login-btn {
+    display: none;
+  }
+}
