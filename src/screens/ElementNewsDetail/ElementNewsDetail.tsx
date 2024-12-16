@@ -2,7 +2,7 @@ import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { NavigationDesktop } from "../../components/Navigation";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementNewsDetail = (): JSX.Element => {
@@ -126,7 +126,7 @@ export const ElementNewsDetail = (): JSX.Element => {
 
       {screenWidth >= 900 && (
         <>
-          <ViewDefaultWrapper
+          <DesktopNav
             className="navigation-desktop-14"
             img="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem="/img/league-row-item-content-img-1090.png"

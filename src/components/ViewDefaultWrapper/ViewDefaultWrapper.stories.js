@@ -1,8 +1,8 @@
-import { ViewDefaultWrapper } from ".";
+import { DesktopNav } from ".";
 
 export default {
   title: "Components/ViewDefaultWrapper",
-  component: ViewDefaultWrapper,
+  component: DesktopNav,
   argTypes: {
     view: {
       options: ["mobile", "default"],

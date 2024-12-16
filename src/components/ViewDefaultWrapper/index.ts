@@ -1,1 +1,1 @@
-export { ViewDefaultWrapper } from "./ViewDefaultWrapper";
+export { DesktopNav } from "./DesktopNav";

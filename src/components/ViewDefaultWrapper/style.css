@@ -72,6 +72,7 @@
   flex-direction: column;
   gap: 3px;
   position: relative;
+  width: 50px;
 }
 
 .view-default-wrapper .content-2 {

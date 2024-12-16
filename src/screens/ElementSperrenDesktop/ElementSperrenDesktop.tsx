@@ -4,7 +4,7 @@ import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation/Navigation"; // Unified component
 import { PageHeader } from "../../components/PageHeader";
 import { SingleTransferCell } from "../../components/SingleTransferCell";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementSperrenDesktop = (): JSX.Element => {
@@ -30,7 +30,7 @@ export const ElementSperrenDesktop = (): JSX.Element => {
 
       {screenWidth >= 900 && (
         <>
-          <ViewDefaultWrapper
+          <DesktopNav
             className="instance-node-3"
             img="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem="/img/league-row-item-content-img-1090.png"

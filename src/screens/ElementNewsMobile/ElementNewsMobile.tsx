@@ -5,7 +5,7 @@ import { Footer } from "../../components/Footer";
 import { NavigationDesktop } from "../../components/Navigation";
 import { NewsArticle } from "../../components/NewsArticle";
 import { PageHeader } from "../../components/PageHeader";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementNewsMobile = (): JSX.Element => {
@@ -92,7 +92,7 @@ export const ElementNewsMobile = (): JSX.Element => {
 
       {screenWidth >= 900 && (
         <>
-          <ViewDefaultWrapper
+          <DesktopNav
             className="instance-node-6"
             img="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem="/img/league-row-item-content-img-1090.png"

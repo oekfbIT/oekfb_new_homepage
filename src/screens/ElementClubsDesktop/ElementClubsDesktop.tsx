@@ -3,7 +3,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { ClubCard } from "../../components/ClubCard";
 import { Footer } from "../../components/Footer";
 import { PageHeader } from "../../components/PageHeader";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementClubsDesktop = (): JSX.Element => {
@@ -21,7 +21,7 @@ export const ElementClubsDesktop = (): JSX.Element => {
               : undefined,
       }}
     >
-      <ViewDefaultWrapper
+      <DesktopNav
         className="instance-node-4"
         divClassName={`${screenWidth < 900 && "class-4"}`}
         divClassNameOverride={`${screenWidth < 900 && "class-6"}`}

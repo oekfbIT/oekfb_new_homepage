@@ -4,7 +4,7 @@ import { Dropdown } from "../../components/Dropdown";
 import { Footer } from "../../components/Footer";
 import { LeagueSelection } from "../../components/LeagueSelection";
 import { Sponsors } from "../../components/Sponsors";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 import { Navigation } from "../../components/Navigation";
 import ClientController from "../../network/ClientController";
@@ -140,7 +140,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
             {screenWidth >= 900 && (
                 <>
-                    <ViewDefaultWrapper
+                    <DesktopNav
                         className="instance-node"
                         img="/img/league-row-item-content-seperator-1080.svg"
                         leagueRowItem="/img/league-row-item-content-img-1090.png"

@@ -8,13 +8,13 @@ import { Hero } from "../../components/Hero";
 import { MatchupCell } from "../../components/MatchupCell";
 import { NewsArticle } from "../../components/NewsArticle";
 import { Sponsors } from "../../components/Sponsors";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   return (
     <div className="element-homepage-desktop">
-      <ViewDefaultWrapper
+      <DesktopNav
         className="design-component-instance-node"
         img="/img/league-row-item-content-seperator-1080.svg"
         leagueRowItem="/img/league-row-item-content-img-1090.png"

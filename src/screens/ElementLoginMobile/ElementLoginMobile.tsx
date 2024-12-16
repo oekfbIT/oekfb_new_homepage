@@ -3,7 +3,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { ActionButton } from "../../components/ActionButton";
 import { Footer } from "../../components/Footer";
 import { NavigationDesktop } from "../../components/Navigation";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementLoginMobile = (): JSX.Element => {
@@ -48,7 +48,7 @@ export const ElementLoginMobile = (): JSX.Element => {
       )}
 
       {screenWidth >= 900 && (
-        <ViewDefaultWrapper
+        <DesktopNav
           className="navigation-desktop-30"
           img="/img/league-row-item-content-seperator-108.svg"
           leagueRowItem="/img/league-row-item-content-img-108.png"

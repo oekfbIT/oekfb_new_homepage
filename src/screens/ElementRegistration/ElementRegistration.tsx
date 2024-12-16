@@ -3,7 +3,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { NavigationDesktop } from "../../components/Navigation";
 import { UploadRequest } from "../../components/UploadRequest";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementRegistration = (): JSX.Element => {
@@ -73,7 +73,7 @@ export const ElementRegistration = (): JSX.Element => {
 
       {screenWidth >= 900 && (
         <>
-          <ViewDefaultWrapper
+          <DesktopNav
             className="instance-node-8"
             img="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem="/img/league-row-item-content-img-1090.png"

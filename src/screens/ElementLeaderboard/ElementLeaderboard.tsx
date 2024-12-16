@@ -5,7 +5,7 @@ import { LeaderboardHighligh } from "../../components/LeaderboardHighligh";
 import { LeaderboardStat } from "../../components/LeaderboardStat";
 import { NavigationDesktop } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementLeaderboard = (): JSX.Element => {
@@ -50,7 +50,7 @@ export const ElementLeaderboard = (): JSX.Element => {
       )}
 
       {screenWidth >= 900 && (
-        <ViewDefaultWrapper
+        <DesktopNav
           className="instance-node-10"
           img="/img/league-row-item-content-seperator-1080.svg"
           leagueRowItem="/img/league-row-item-content-img-1090.png"

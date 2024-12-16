@@ -2,7 +2,7 @@ import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { PageHeader } from "../../components/PageHeader";
-import { ViewDefaultWrapper } from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 import Navigation from "../../components/Navigation/Navigation";
 
@@ -1011,7 +1011,7 @@ export const ElementTableMobile = (): JSX.Element => {
 
       {screenWidth >= 900 && (
         <>
-          <ViewDefaultWrapper
+          <DesktopNav
             className="instance-node-5"
             img="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem="/img/league-row-item-content-img-1090.png"
