@@ -28,16 +28,21 @@
 
 .element-league-selection .page-header-2 {
   align-items: flex-start;
-  align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
   gap: 10px;
   max-width: 1200px;
-  padding: 0px 32px;
+  padding: 0px 175px; /* Default padding */
   position: relative;
   width: 100%;
+}
 
+/* Media query for viewports under 800px */
+@media (max-width: 800px) {
+  .element-league-selection .page-header-2 {
+    padding: 0px 32px; /* Adjusted padding */
+  }
 }
 
 .element-league-selection .page-header-wrapper-2 {
@@ -183,7 +188,7 @@
   flex-direction: column;
   gap: 18px;
   justify-content: center;
-  max-width: 1140px;
+  max-width: 1200px;
   padding: 0px 32px;
   position: relative;
   width: 900px;
@@ -194,9 +199,9 @@
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Grid with up to 3 columns */
   gap: 18px; /* Spacing between items */
   align-items: stretch; /* Ensure items stretch vertically */
-  justify-items: center; /* Center the content horizontally */
+  /*justify-items: center; !* Center the content horizontally *!*/
   max-width: 1200px; /* Restrict the width */
-  padding: 0 16px 120px; /* Top/bottom padding with side spacing */
+  padding: 0 0px 120px; /* Top/bottom padding with side spacing */
   width: 100%; /* Take full container width */
   box-sizing: border-box; /* Include padding in width */
 }

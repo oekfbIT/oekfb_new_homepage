@@ -146,6 +146,18 @@ export const ElementLeagueSelection = (): JSX.Element => {
                         leagueRowItem="/img/league-row-item-content-img-1090.png"
                         view="default"
                     />
+
+                    <div className="page-header-wrapper">
+                        <div className="page-header-2">
+                            <div className="page-header-wrapper-2">
+                                <div className="page-header-wrapper-3">Ligen Auswahl</div>
+                                <p className="page-header-wrapper-4">
+                                    Wählen Sie ein Bundesland aus, um die Ligen anzuzeigen.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="page-content-2">
                         <div className="leagues-wrapper-2">
                             <Dropdown
@@ -177,7 +189,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
                             </div>
                         </div>
 
-                        <Sponsors className="sponsors-3" vWhite="/img/v-white-1-2.svg" />
+                        <Sponsors className="sponsors-3" vWhite="/img/v-white-1-2.svg"/>
                     </div>
 
                     <Footer
