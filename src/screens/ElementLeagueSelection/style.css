@@ -41,7 +41,7 @@
 /* Media query for viewports under 800px */
 @media (max-width: 800px) {
   .element-league-selection .page-header-2 {
-    padding: 0px 32px; /* Adjusted padding */
+    padding: 0px 0px; /* Adjusted padding */
   }
 }
 
