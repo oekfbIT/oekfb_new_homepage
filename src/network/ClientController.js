@@ -15,7 +15,7 @@ class ClientController {
      * @returns {Promise<Object>} Homepage data.
      */
     async fetchHomepageData(code) {
-        return this.apiService.get(`home/league/${code}`);
+        return this.apiService.get(`webClient/home/league/${code}`);
     }
 
     /**
@@ -24,7 +24,7 @@ class ClientController {
      * @returns {Promise<Object[]>} List of leagues.
      */
     async fetchLeagueSelection() {
-        return this.apiService.get(`selection`);
+        return this.apiService.get(`webClient/selection`);
     }
 
     /**
@@ -34,7 +34,7 @@ class ClientController {
      * @returns {Promise<Object[]>} List of clubs.
      */
     async fetchLeagueClubs(code) {
-        return this.apiService.get(`clubs/league/${code}`);
+        return this.apiService.get(`webClient/clubs/league/${code}`);
     }
 
     /**
@@ -44,7 +44,7 @@ class ClientController {
      * @returns {Promise<Object>} Club details.
      */
     async fetchClubDetail(id) {
-        return this.apiService.get(`clubs/detail/${id}`);
+        return this.apiService.get(`webClient/clubs/detail/${id}`);
     }
 
     /**
@@ -54,7 +54,7 @@ class ClientController {
      * @returns {Promise<Object[]>} Table data.
      */
     async fetchTable(code) {
-        return this.apiService.get(`table/league/${code}`);
+        return this.apiService.get(`webClient/table/league/${code}`);
     }
 
     /**
@@ -64,7 +64,7 @@ class ClientController {
      * @returns {Promise<Object[]>} List of news items.
      */
     async fetchLeagueNews(code) {
-        return this.apiService.get(`news/league/${code}`);
+        return this.apiService.get(`webClient/news/league/${code}`);
     }
 
     /**
@@ -74,7 +74,7 @@ class ClientController {
      * @returns {Promise<Object>} News item details.
      */
     async fetchNewsDetail(id) {
-        return this.apiService.get(`news/detail/${id}`);
+        return this.apiService.get(`webClient/news/detail/${id}`);
     }
 
     /**
@@ -84,7 +84,7 @@ class ClientController {
      * @returns {Promise<Object[]>} List of matches.
      */
     async fetchFirstSeasonMatches(code) {
-        return this.apiService.get(`matches/league/${code}`);
+        return this.apiService.get(`webClient/matches/league/${code}`);
     }
 
     /**
@@ -94,7 +94,7 @@ class ClientController {
      * @returns {Promise<Object>} Match details.
      */
     async fetchMatchDetail(id) {
-        return this.apiService.get(`match/detail/${id}`);
+        return this.apiService.get(`webClient/match/detail/${id}`);
     }
 
     /**
@@ -104,7 +104,7 @@ class ClientController {
      * @returns {Promise<Object>} Player details.
      */
     async fetchPlayerDetail(id) {
-        return this.apiService.get(`player/detail/${id}`);
+        return this.apiService.get(`webClient/player/detail/${id}`);
     }
 
     /**
@@ -114,7 +114,7 @@ class ClientController {
      * @returns {Promise<Object[]>} Goal leaderboard data.
      */
     async fetchGoalLeaderBoard(id) {
-        return this.apiService.get(`leaderboard/${id}/goal`);
+        return this.apiService.get(`webClient/leaderboard/${id}/goal`);
     }
 
     /**
@@ -124,7 +124,7 @@ class ClientController {
      * @returns {Promise<Object[]>} Red card leaderboard data.
      */
     async fetchRedCardLeaderBoard(id) {
-        return this.apiService.get(`leaderboard/${id}/redCard`);
+        return this.apiService.get(`webClient/leaderboard/${id}/redCard`);
     }
 
     /**
@@ -134,7 +134,7 @@ class ClientController {
      * @returns {Promise<Object[]>} Yellow card leaderboard data.
      */
     async fetchYellowCardLeaderBoard(id) {
-        return this.apiService.get(`leaderboard/${id}/yellowCard`);
+        return this.apiService.get(`webClient/leaderboard/${id}/yellowCard`);
     }
 
     /**
@@ -144,7 +144,7 @@ class ClientController {
      * @returns {Promise<Object[]>} List of blocked players.
      */
     async fetchBlockedPlayers(code) {
-        return this.apiService.get(`blocked/league/${code}`);
+        return this.apiService.get(`webClient/blocked/league/${code}`);
     }
 }
 
