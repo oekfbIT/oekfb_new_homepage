@@ -51,8 +51,13 @@ export const Navigation = ({
     // Handle league row click
     const handleLeagueClick = (code, id) => {
         authService.setLeagueData(code, id); // Save data to cookies
-        setActiveLeague(code); // Update state
-        navigate("/homepage"); // Navigate to homepage
+
+        if (window.location.pathname === "/homepage") {
+            // Force reload if already on /homepage
+            window.location.reload();
+        } else {
+            navigate("/homepage"); // Normal navigation
+        }
     };
 
     return (

@@ -5,8 +5,12 @@ import "./style.css";
 import AuthService from "../../network/AuthService";
 
 // Reusable LeagueRowItem Component
-const LeagueRowItem = ({ img, text, separator, isActive }) => (
-    <div className={`league-row-item-6 ${isActive ? "active" : ""}`}>
+const LeagueRowItem = ({ img, text, separator, isActive, onClick }) => (
+    <div
+        className={`league-row-item-6 ${isActive ? "active" : ""}`}
+        onClick={onClick} // Attach onClick handler here
+        style={{ cursor: "pointer" }} // Ensure pointer cursor on hover
+    >
         <div className="league-row-item-wrapper">
             <div className="league-row-item-7">
                 <div className="content-2">
@@ -23,7 +27,7 @@ LeagueRowItem.propTypes = {
     img: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     separator: PropTypes.string.isRequired,
-    isActive: PropTypes.bool,
+    isActive: PropTypes.bool
 };
 
 // Main Component
@@ -63,15 +67,21 @@ export const DesktopNav = ({
 
     const handleLeagueClick = (code, id) => {
         authService.setLeagueData(code, id); // Save data to cookies
-        setActiveLeague(code); // Update state
-        navigate("/homepage"); // Navigate to homepage
+        console.log("PRESS OCCUR and REGISTERING PRESS");
+
+        if (window.location.pathname === "/homepage") {
+            // Force reload if already on /homepage
+            window.location.reload();
+        } else {
+            navigate("/homepage"); // Normal navigation
+        }
     };
 
     return (
         <div className={`view-default-wrapper ${view} ${className}`}>
             {/* League Rows */}
             <div className="league-rows-2">
-                <div className="leauge-row-wrapper-2">
+                <div className="leauge-row-wrapper-2" style={{cursor: "pointer"}}>
                     {leagueRows.map((row, index) => (
                         <LeagueRowItem
                             key={index}
