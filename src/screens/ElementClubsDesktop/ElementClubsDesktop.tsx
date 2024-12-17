@@ -44,6 +44,15 @@ export const ElementClubsDesktop = (): JSX.Element => {
 
     return (
         <div className="element-clubs-desktop" style={{ minWidth: isMobile ? "390px" : "900px" }}>
+            {isMobile ? (
+                <>
+                    <Navigation />
+                </>
+            ) : (
+                <>
+                    <DesktopNav />
+                </>
+            )}
             <div
                 className="page-content-3"
                 style={{
@@ -55,15 +64,6 @@ export const ElementClubsDesktop = (): JSX.Element => {
                     padding: isMobile ? "0px 20px" : undefined,
                 }}
             >
-                {isMobile ? (
-                    <>
-                        <Navigation />
-                    </>
-                ) : (
-                    <>
-                        <DesktopNav />
-                    </>
-                    )}
                 <PageHeader className="instance-node-4" text="Mannschaften" />
 
                 <div className="club-grid">

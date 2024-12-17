@@ -70,7 +70,7 @@
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
-  gap: 32px 32px;
+  gap: 15px 32px;
   justify-content: center;
   max-width: 1200px;
   position: relative;

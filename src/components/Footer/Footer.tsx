@@ -27,28 +27,49 @@ export const Footer = (): JSX.Element => {
               <div className="frame">
                 {/* Column 1 */}
                 <div className="footer-content-5">
-                  <FooterItem label="Der Bund" />
-                  <FooterItem label="News" />
-                  <FooterItem label="Kontakt" />
-                  <FooterItem label="Impressum" />
-                  <FooterItem label="Datenschutz" />
+                  <Link className="mobile-menu-item" to="/homepage">
+                    <FooterItem label="Der Bund" />
+                  </Link>
+
+                  <Link className="mobile-menu-item" to="/news">
+                    <FooterItem label="News" />
+                  </Link>
+
+                  <Link className="mobile-menu-item" to="/kontakt">
+                    <FooterItem label="Kontakt" />
+                  </Link>
+
+                  <Link className="mobile-menu-item" to="/impressum">
+                    <FooterItem label="Impressum" />
+                  </Link>
+
+                  <Link className="mobile-menu-item" to="/privacy">
+                    <FooterItem label="Datenschutz" />
+                  </Link>
+
                 </div>
 
                 {/* Column 2 */}
                 <div className="footer-content-5">
-                  <FooterItem label="Ligaordnung" />
-                  <FooterItem label="Spielregeln" />
+                  <Link className="mobile-menu-item" to="/ligaordnung">
+                    <FooterItem label="Ligaordnung" />
+                  </Link>
+
+                  <Link className="mobile-menu-item" to="/spielregeln">
+                    <FooterItem label="Spielregeln" />
+                  </Link>
+
                   <FooterLink
-                      href="team.oekfb.eu"
+                      href="https://team.oekfb.eu"
                       label="Spieler Login"
                       className="text-wrapper-5"
                   />
                   <FooterLink
-                      href="ref.oekfb.eu"
+                      href="https://ref.oekfb.eu"
                       label="Schiedsrichter Login"
                       className="text-wrapper-6"
                   />
-                  <Link className="item" to="/12u465-register-desktop">
+                  <Link className="item" to="/register">
                     <div className="link-3">
                       <div className="text-wrapper-7">Team Registrierung</div>
                     </div>

@@ -106,7 +106,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
                 <div
                     className="club-carousel-action"
                     style={{cursor: "pointer"}}
-                    onClick={() => navigate("/clubs")} // Wrap navigate in an arrow function
+                    onClick={() => navigate("/teams")} // Wrap navigate in an arrow function
                 >
                   ALLE MANNSCHAFTEN
                 </div>
