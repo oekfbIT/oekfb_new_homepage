@@ -43,10 +43,10 @@ const router = createBrowserRouter([
     path: "/teams",
     element: <ElementClubsDesktop />,
   },
-  // {
-  //   path: "/tabelle",
-  //   element: <ElementTableMobile />,
-  // },
+  {
+    path: "/tabelle",
+    element: <ElementTableMobile />,
+  },
   // {
   //   path: "/news",
   //   element: <ElementNewsMobile />,

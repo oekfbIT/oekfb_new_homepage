@@ -511,9 +511,9 @@
 }
 
 .element-table-mobile .mask-group {
-  height: 16px;
+  height: 20px;
   position: relative;
-  width: 16px;
+  width: 20px;
 }
 
 .element-table-mobile .data-10 {
@@ -1173,7 +1173,6 @@
   align-self: stretch;
   display: flex;
   flex-direction: column;
-  height: 1008px;
   justify-content: center;
   position: relative;
   width: 100%;
@@ -1252,7 +1251,7 @@
 
 .element-table-mobile .text-wrapper-56 {
   align-self: stretch;
-  color: var(--themeoslo-gray);
+  color: black;
   font-family: "Inter", Helvetica;
   font-size: 15.2px;
   font-weight: 700;
@@ -1422,13 +1421,13 @@
 }
 
 .element-table-mobile .data-30 {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   height: 56px;
-  padding: 18.08px 4px 21.92px 1px;
+  padding: 20px 15px;
   position: relative;
-  width: 21px;
+  width: 40px;
 }
 
 .element-table-mobile .data-31 {
