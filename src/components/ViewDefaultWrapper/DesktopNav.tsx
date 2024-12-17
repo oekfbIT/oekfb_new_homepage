@@ -80,7 +80,10 @@ export const DesktopNav = ({
             {/* Navigation Row */}
             <div className="nav-row-wrapper-4">
                 <div className="nav-row-wrapper-5">
-                    <img className="nav-row-wrapper-6" alt="Logo" src={navRowWrapper} />
+                    <Link to="/">
+                        <img className="nav-row-wrapper-6" alt="Logo" src={navRowWrapper}/>
+                    </Link>
+
 
                     {view === "default" && (
                         <>

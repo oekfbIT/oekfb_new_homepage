@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import "./style.css";
 import { ElementMobilenav } from "../../screens/ElementMobilenav";
 import AuthService from "../../network/AuthService";
+import {Link} from "react-router-dom";
 
 export const Navigation = ({
                                className = "",
@@ -73,7 +74,9 @@ export const Navigation = ({
             {/* Navigation Row */}
             <div className="nav-row-wrapper">
                 <div className="nav-row-wrapper-2">
-                    <img className="nav-row-logo" alt="Nav row wrapper" src={navRowWrapper} />
+                    <Link to="/">
+                        <img className="nav-row-logo" alt="Nav row wrapper" src={navRowWrapper} />
+                    </Link>
                     {isMobile ? (
                         <img
                             className="mobile-burger-menu"
