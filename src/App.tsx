@@ -55,10 +55,10 @@ const router = createBrowserRouter([
   //   path: "/register",
   //   element: <ElementRegister />,
   // },
-  // {
-  //   path: "/news-detail",
-  //   element: <ElementNewsDetail />,
-  // },
+  {
+    path: "/news-detail/:id",
+    element: <ElementNewsDetail />,
+  },
   // {
   //   path: "/spielplan",
   //   element: <ElementGamedayMobile />,

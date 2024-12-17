@@ -135,6 +135,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
                       title={newsItem.title}
                       image={newsItem.image}
                       text={newsItem.text}
+                      id={newsItem.id}
                   />
               ))}
             </div>
