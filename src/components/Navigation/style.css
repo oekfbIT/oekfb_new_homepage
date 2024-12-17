@@ -6,7 +6,7 @@
   gap: 10px;
   justify-content: center;
   position: relative;
-  width: 390px;
+  width: 100%;
 }
 
 .navigation-desktop .main-navigation {
@@ -67,6 +67,14 @@
   position: relative;
 }
 
+.league-row-item.active .link {
+  background-color: black; /* Example: Set background */
+  color: white; /* Example: Text color */
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+
 .navigation-desktop .div {
   align-items: flex-start;
   display: inline-flex;
@@ -92,7 +100,6 @@
 }
 
 .navigation-desktop .text-wrapper {
-  color: var(--themeouter-space);
   font-family: var(--theme-inter-bold-12-font-family);
   font-size: var(--theme-inter-bold-12-font-size);
   font-style: var(--theme-inter-bold-12-font-style);

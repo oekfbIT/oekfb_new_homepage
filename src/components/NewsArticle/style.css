@@ -9,7 +9,6 @@
   max-width: 365px;
   padding: 0px 0px 1px;
   position: relative;
-  width: 360px;
 }
 
 .news-article .div-2 {
@@ -18,7 +17,6 @@
   background-color: var(--themewhite);
   display: flex;
   flex-direction: column;
-  height: 408.13px;
   justify-content: center;
   position: relative;
   width: 100%;
@@ -27,7 +25,7 @@
 .news-article .news-article-img {
   align-self: stretch;
   background-color: #e9ebed;
-  height: 204.75px;
+  height: auto;
   position: relative;
   width: 100%;
 }
@@ -39,9 +37,10 @@
   flex: 1;
   flex-direction: column;
   flex-grow: 1;
-  padding: 16px;
+  padding: 20px 10px;
   position: relative;
   width: 100%;
+  gap: 5px
 }
 
 .news-article .title-3 {
@@ -55,6 +54,10 @@
   line-height: var(--theme-inter-bold-21-line-height);
   margin-top: -1.00px;
   position: relative;
+  display: -webkit-box; /* Ensure truncation works */
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+
 }
 
 .news-article .subtitle-3 {
@@ -66,4 +69,20 @@
   letter-spacing: 0;
   line-height: 22.9px;
   position: relative;
+}
+
+.news-article .subtitle-3 {
+  align-self: stretch;
+  color: var(--themenevada);
+  font-family: "Inter", Helvetica;
+  font-size: 15.2px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 22.9px;
+  position: relative;
+  display: -webkit-box; /* Ensure truncation works */
+  -webkit-line-clamp: 3; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

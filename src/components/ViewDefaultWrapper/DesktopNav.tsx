@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import AuthService from "../../network/AuthService";
 
 // Reusable LeagueRowItem Component
-const LeagueRowItem = ({ img, text, separator }) => (
-    <div className="league-row-item-6">
+const LeagueRowItem = ({ img, text, separator, isActive }) => (
+    <div className={`league-row-item-6 ${isActive ? "active" : ""}`}>
         <div className="league-row-item-wrapper">
             <div className="league-row-item-7">
                 <div className="content-2">
@@ -22,17 +23,21 @@ LeagueRowItem.propTypes = {
     img: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     separator: PropTypes.string.isRequired,
+    isActive: PropTypes.bool,
 };
 
 // Main Component
 export const DesktopNav = ({
-                                       view = "default",
-                                       className = "",
-                                       navRowWrapper = "/img/nav-row-wrapper-content-logo-9.svg",
-                                       navRowWrapper1 = "/img/nav-row-wrapper-content-login-wrapper-image-4.svg",
-                                       mobileBurgerMenu1 = "/img/mobile-burger-menu-10.svg",
-                                       to = "/",
-                                   }) => {
+                               view = "default",
+                               className = "",
+                               navRowWrapper = "/img/nav-row-wrapper-content-logo-9.svg",
+                               navRowWrapper1 = "/img/nav-row-wrapper-content-login-wrapper-image-4.svg",
+                               mobileBurgerMenu1 = "/img/mobile-burger-menu-10.svg",
+                               to = "/",
+                           }) => {
+    const [activeLeague, setActiveLeague] = useState(null);
+    const authService = new AuthService();
+
     // League Rows Data
     const leagueRows = [
         { img: "/img/league-row-item-content-img-90.png", text: "2. Wiener Liga A", code: "W2A", id: "80B164B6-4015-4D95-A432-D85CBAD5AF8B" },
@@ -49,17 +54,11 @@ export const DesktopNav = ({
         { img: "/img/league-row-item-content-img-90.png", text: "2. Liga Innsbruck", code: "INS2", id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8" },
     ];
 
-    // Navigation Links
-    const navLinks = [
-        { label: "Startseite", to: "/02u46-homepage-desktop" },
-        { label: "Clubs", to: "#" },
-        { label: "Tabelle", to: "#" },
-        { label: "Spielplan", to: "#" },
-        { label: "Leaderboards", to: "#" },
-        { label: "News", to: "#" },
-        { label: "Bund", to: "#" },
-        { label: "Kontakt", to: "#" },
-    ];
+    // Fetch active league from cookie on mount
+    useEffect(() => {
+        const savedLeagueCode = authService.getLeagueCode(); // Fetch league code
+        if (savedLeagueCode) setActiveLeague(savedLeagueCode);
+    }, []);
 
     return (
         <div className={`view-default-wrapper ${view} ${className}`}>
@@ -71,7 +70,8 @@ export const DesktopNav = ({
                             key={index}
                             img={row.img}
                             text={row.code}
-                            separator={row.separator}
+                            separator="/img/league-row-item-content-seperator-90.svg"
+                            isActive={row.code === activeLeague} // Apply active class if matches
                         />
                     ))}
                 </div>
@@ -86,7 +86,12 @@ export const DesktopNav = ({
                         <>
                             <div className="nav-row-wrapper-7">
                                 <div className="nav-row-wrapper-8">
-                                    {navLinks.map((link, index) => (
+                                    {[
+                                        { label: "Startseite", to: "/02u46-homepage-desktop" },
+                                        { label: "Clubs", to: "#" },
+                                        { label: "Tabelle", to: "#" },
+                                        { label: "Spielplan", to: "#" },
+                                    ].map((link, index) => (
                                         <Link key={index} className="item-3" to={link.to}>
                                             <div className="link-6">
                                                 <div className="text-wrapper-8">{link.label}</div>

@@ -95,11 +95,10 @@
   width: 40px;
 }
 
-.matchup-cell .matchup-cell-bottom-3 {
+.matchup-cell .logo {
   align-self: stretch;
-  background-image: url(../../../static/img/matchup-cell-bottom-content-homeimg.png);
   background-position: 50% 50%;
-  background-size: cover;
+  background-size: contain;
   flex: 1;
   flex-grow: 1;
   position: relative;
@@ -110,6 +109,7 @@
   display: inline-flex;
   flex: 0 0 auto;
   position: relative;
+  padding: 0px 5px;
 }
 
 .matchup-cell .matchup-cell-bottom-5 {
@@ -168,15 +168,15 @@
   width: fit-content;
 }
 
-.matchup-cell .matchup-cell-bottom-10 {
-  align-self: stretch;
-  background-image: url(../../../static/img/matchup-cell-bottom-content-awayimg.png);
-  background-position: 50% 50%;
-  background-size: cover;
-  flex: 1;
-  flex-grow: 1;
-  position: relative;
-}
+/*.matchup-cell .matchup-cell-bottom-10 {*/
+/*  align-self: stretch;*/
+/*  background-image: url(../../../static/img/matchup-cell-bottom-content-awayimg.png);*/
+/*  background-position: 50% 50%;*/
+/*  background-size: cover;*/
+/*  flex: 1;*/
+/*  flex-grow: 1;*/
+/*  position: relative;*/
+/*}*/
 
 .matchup-cell .background {
   align-items: center;
@@ -277,8 +277,8 @@
 }
 
 .matchup-cell
-  .matchup-cell-bottom-6.state-fixture-w-top
-  .matchup-cell-bottom-7 {
+.matchup-cell-bottom-6.state-fixture-w-top
+.matchup-cell-bottom-7 {
   color: var(--themeswamp);
 }
 
@@ -287,8 +287,8 @@
 }
 
 .matchup-cell
-  .matchup-cell-bottom-6.state-fixture-no-top
-  .matchup-cell-bottom-7 {
+.matchup-cell-bottom-6.state-fixture-no-top
+.matchup-cell-bottom-7 {
   color: var(--themeswamp);
 }
 
@@ -297,8 +297,8 @@
 }
 
 .matchup-cell
-  .matchup-cell-bottom-8.state-1-fixture-w-top
-  .matchup-cell-bottom-9 {
+.matchup-cell-bottom-8.state-1-fixture-w-top
+.matchup-cell-bottom-9 {
   color: var(--themeswamp);
 }
 
@@ -307,8 +307,8 @@
 }
 
 .matchup-cell
-  .matchup-cell-bottom-8.state-1-fixture-no-top
-  .matchup-cell-bottom-9 {
+.matchup-cell-bottom-8.state-1-fixture-no-top
+.matchup-cell-bottom-9 {
   color: var(--themeswamp);
 }
 
@@ -334,4 +334,39 @@
 .matchup-cell .background.state-3-live-top .container {
   margin-left: -24.27px;
   margin-right: -24.28px;
+}
+
+
+.team-logo {
+  width: 100%; /* Ensure the image fills the wrapper */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Display entire image without cropping */
+}
+/* Background for Pending */
+.background.state-gray {
+  /*background-color: var(--themeporcelain); !* Gray color *!*/
+}
+
+/* Background for Live States (first, second, halftime) */
+.background.state-red {
+  background-color: var(--themetorch-red); /* Red color */
+}
+
+.team-logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 50%;
+  /*background-color: #f1f1f1; !* Fallback background *!*/
+}
+
+.matchup-cell-bottom-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 35px;
+  height: 35px;
+  /*border-radius: 50%;*/
+  background-color: white;
 }

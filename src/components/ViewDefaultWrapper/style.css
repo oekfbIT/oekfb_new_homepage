@@ -91,7 +91,7 @@
 }
 
 .view-default-wrapper .league-row-item-9 {
-  color: var(--themeouter-space);
+  /*color: var(--themeouter-space);*/
   font-family: var(--theme-inter-bold-12-font-family);
   font-size: var(--theme-inter-bold-12-font-size);
   font-style: var(--theme-inter-bold-12-font-style);
@@ -634,4 +634,8 @@
 .view-default-wrapper.mobile .league-row-item-42 {
   margin-bottom: -3928.42px;
   margin-right: -3892.00px;
+}
+.league-row-item-6.active {
+  background-color: black; /* Active background */
+  color: white; /* Active text color */
 }

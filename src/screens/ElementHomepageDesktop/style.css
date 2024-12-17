@@ -9,7 +9,7 @@
 }
 
 .element-homepage-desktop .design-component-instance-node {
-  align-self: stretch !important;
+  /*align-self: stretch !important;*/
   flex: 0 0 auto !important;
   width: 100% !important;
 }
@@ -39,7 +39,6 @@
 
 .element-homepage-desktop .div-17 {
   align-items: flex-start;
-  align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
@@ -52,9 +51,9 @@
   align-items: flex-start;
   display: flex;
   height: 121px;
-  margin-right: -236.00px;
+  margin-left: 12px;
   position: relative;
-  width: 1172px;
+  width: 100%;
 }
 
 .element-homepage-desktop .matchup-cell-instance {
@@ -71,13 +70,12 @@
 }
 
 .element-homepage-desktop .hero-instance {
-  align-self: stretch !important;
+  /*align-self: stretch !important;*/
   width: 100% !important;
 }
 
 .element-homepage-desktop .club-carousel-header {
   align-items: flex-start;
-  align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
@@ -137,7 +135,7 @@
 
 .element-homepage-desktop .action-cell-2 {
   align-items: center;
-  align-self: stretch;
+  /*align-self: stretch;*/
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
@@ -157,7 +155,7 @@
 
 .element-homepage-desktop .banner {
   align-items: center;
-  align-self: stretch;
+  /*align-self: stretch;*/
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
@@ -247,7 +245,6 @@
 
 .element-homepage-desktop .news-7 {
   align-items: center;
-  align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
@@ -321,8 +318,28 @@
 }
 
 .element-homepage-desktop .footer-36 {
-  align-self: stretch !important;
+  /*align-self: stretch !important;*/
   background-color: transparent !important;
   flex: 0 0 auto !important;
   width: 100% !important;
+}
+
+.element-homepage-desktop .news-container-grid-7 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .element-homepage-desktop .news-container-grid-7 {
+    grid-template-columns: repeat(1, 1fr); /* 2 columns on mobile */
+  }
+}
+
+@media (min-width: 801px) {
+  .element-homepage-desktop .news-container-grid-7 {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
+  }
 }

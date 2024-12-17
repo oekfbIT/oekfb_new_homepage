@@ -103,10 +103,10 @@ const router = createBrowserRouter([
   //   path: "/terms",
   //   element: <ElementTermsMobile />,
   // },
-  // {
-  //   path: "/homepage",
-  //   element: <ElementHomepageDesktop />,
-  // },
+  {
+    path: "/homepage",
+    element: <ElementHomepageDesktop />,
+  },
   // {
   //   path: "/game-report",
   //   element: <ElementGameReport />,

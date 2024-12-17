@@ -4,8 +4,6 @@ import "./style.css";
 import { ElementMobilenav } from "../../screens/ElementMobilenav";
 import AuthService from "../../network/AuthService";
 
-// Import AuthService
-
 export const Navigation = ({
                                className = "",
                                navRowWrapper = "/img/nav-row-wrapper-content-logo-7.svg",
@@ -13,14 +11,9 @@ export const Navigation = ({
                            }) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const authService = new AuthService(); // Initialize AuthService
+    const [activeLeague, setActiveLeague] = useState(null); // State to track active league
 
-    // Handle screen resizing
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth <= 800);
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    const authService = new AuthService();
 
     // League data
     const leagueData = [
@@ -38,10 +31,25 @@ export const Navigation = ({
         { img: "/img/league-row-item-content-img-90.png", text: "2. Liga Innsbruck", code: "INS2", id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8" },
     ];
 
+    // On component mount, load the active league from cookie
+    useEffect(() => {
+        const leagueCode = authService.getLeagueCode(); // Fetch league code from cookie
+        if (leagueCode) {
+            setActiveLeague(leagueCode);
+        }
+    }, []);
+
+    // Handle screen resizing
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 800);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
     // Handle league row click
     const handleLeagueClick = (code, id) => {
-        authService.setLeagueData(code, id); // Set the cookie with league code and id
-        console.log(`Cookie set: League Code = ${code}, League ID = ${id}`);
+        authService.setLeagueData(code, id); // Save league code and id to cookie
+        setActiveLeague(code); // Update active league state
     };
 
     return (
@@ -56,6 +64,7 @@ export const Navigation = ({
                             text={item.code}
                             separator="/img/league-row-item-content-seperator-90.svg"
                             onClick={() => handleLeagueClick(item.code, item.id)} // Set cookie on click
+                            isActive={item.code === activeLeague} // Check if this item is active
                         />
                     ))}
                 </div>
@@ -103,8 +112,12 @@ Navigation.propTypes = {
 };
 
 // Reusable LeagueRow Component
-const LeagueRow = ({ img, text, separator, onClick }) => (
-    <div className="league-row-item" onClick={onClick} style={{ cursor: "pointer" }}>
+const LeagueRow = ({ img, text, separator, onClick, isActive }) => (
+    <div
+        className={`league-row-item ${isActive ? "active" : ""}`} // Add active class dynamically
+        onClick={onClick}
+        style={{ cursor: "pointer" }}
+    >
         <div className="link">
             <div className="div">
                 <div className="content">
@@ -122,4 +135,7 @@ LeagueRow.propTypes = {
     text: PropTypes.string.isRequired,
     separator: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
+    isActive: PropTypes.bool.isRequired,
 };
+
+
