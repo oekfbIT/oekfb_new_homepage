@@ -55,6 +55,9 @@ export const ElementTableMobile = (): JSX.Element => {
                                         <div className="table">
                                             <header className="row-wrapper">
                                                 <div className="row">
+                                                    <div className="filler" style={{minWidth: "140px"}}>
+                                                        <div className="text-wrapper-25"></div>
+                                                    </div>
                                                     <div className="cell">
                                                         <div className="text-wrapper-25">M</div>
                                                     </div>
