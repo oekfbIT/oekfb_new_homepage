@@ -4,7 +4,7 @@ import { Footer } from "../../components/Footer";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
-import Navigation from "../../components/Navigation/Navigation";
+import {Navigation} from "../../components/Navigation";
 
 export const ElementTableMobile = (): JSX.Element => {
   const screenWidth = useWindowWidth();

@@ -24,7 +24,7 @@ export const Partners = ({
         <p className="p">
           <span className="span">OFFIZIELLE </span>
 
-          <span className="text-wrapper-2">SPONSOREN</span>
+          <span className="text-wrapper-2">PARTNER</span>
 
           <span className="span"> DES ÖKFB</span>
         </p>

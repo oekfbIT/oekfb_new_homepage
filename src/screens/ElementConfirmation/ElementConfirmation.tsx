@@ -4,7 +4,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
-import Navigation from "../../components/Navigation/Navigation";
+import {Navigation} from "../../components/Navigation";
 
 export const ElementConfirmation = (): JSX.Element => {
   const screenWidth = useWindowWidth();

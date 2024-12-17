@@ -108,10 +108,14 @@ export const DesktopNav = ({
                             <div className="nav-row-wrapper-7">
                                 <div className="nav-row-wrapper-8">
                                     {[
-                                        { label: "Startseite", to: "/02u46-homepage-desktop" },
-                                        { label: "Clubs", to: "#" },
-                                        { label: "Tabelle", to: "#" },
-                                        { label: "Spielplan", to: "#" },
+                                        { label: "Startseite", to: "/homepage" },
+                                        { label: "Teams", to: "/teams" },
+                                        { label: "Tabelle", to: "/tabelle" },
+                                        { label: "Spielplan", to: "/spielplan" },
+                                        { label: "Leaderboards", to: "/leaderboards" },
+                                        { label: "News", to: "/news" },
+                                        { label: "Bund", to: "/bund" },
+                                        { label: "Kontakt", to: "/kontakt" },
                                     ].map((link, index) => (
                                         <Link key={index} className="item-3" to={link.to}>
                                             <div className="link-6">

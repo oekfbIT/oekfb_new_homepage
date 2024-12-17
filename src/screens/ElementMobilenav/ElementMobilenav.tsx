@@ -15,27 +15,27 @@ export const ElementMobilenav = (): JSX.Element => {
         </div>
 
         <div className="mobile-menu-items">
-          <div className="mobile-menu-item">
+          <Link className="mobile-menu-item" to="/homepage">
             <div className="mobile-menu-item-2">Startseite</div>
-          </div>
-
-          <Link className="mobile-menu-item" to="/03u46-clubs-desktop-1">
-            <div className="mobile-menu-item-2">Clubs</div>
           </Link>
 
-          <Link className="mobile-menu-item" to="/04u46-table-mobile">
+          <Link className="mobile-menu-item" to="/teams">
+            <div className="mobile-menu-item-2">Teams</div>
+          </Link>
+
+          <Link className="mobile-menu-item" to="/tabelle">
             <div className="mobile-menu-item-2">Tabelle</div>
           </Link>
 
-          <Link className="mobile-menu-item" to="/07u46-gameday-mobile">
+          <Link className="mobile-menu-item" to="/spielplan">
             <div className="mobile-menu-item-2">Spielplan</div>
           </Link>
 
-          <Link className="mobile-menu-item" to="/17u46-leaderboard-mobile">
+          <Link className="mobile-menu-item" to="/leaderboards">
             <div className="mobile-menu-item-2">Leaderboards</div>
           </Link>
 
-          <Link className="mobile-menu-item" to="/05u46-news-mobile">
+          <Link className="mobile-menu-item" to="/news">
             <div className="mobile-menu-item-2">News</div>
           </Link>
 
@@ -43,7 +43,7 @@ export const ElementMobilenav = (): JSX.Element => {
             <div className="mobile-menu-item-2">Bund</div>
           </div>
 
-          <Link className="mobile-menu-item-wrapper" to="/08u46-contact-mobile">
+          <Link className="mobile-menu-item-wrapper" to="/kontakt">
             <div className="mobile-menu-item-2">Kontakt</div>
           </Link>
         </div>

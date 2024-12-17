@@ -31,20 +31,20 @@ const router = createBrowserRouter([
     path: "/league-selection",
     element: <ElementLeagueSelection />,
   },
-  // {
-  //   path: "/mobilenav",
-  //   element: <ElementMobilenav />,
-  // },
+  {
+    path: "/mobilenav",
+    element: <ElementMobilenav />,
+  },
   // {
   //   path: "/sperren",
   //   element: <ElementSperrenDesktop />,
   // },
   {
-    path: "/clubs",
+    path: "/teams",
     element: <ElementClubsDesktop />,
   },
   // {
-  //   path: "/table",
+  //   path: "/tabelle",
   //   element: <ElementTableMobile />,
   // },
   // {
@@ -60,7 +60,7 @@ const router = createBrowserRouter([
   //   element: <ElementNewsDetail />,
   // },
   // {
-  //   path: "/gameday",
+  //   path: "/spielplan",
   //   element: <ElementGamedayMobile />,
   // },
   // {
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
   //   element: <ElementTransfersDesktop />,
   // },
   // {
-  //   path: "/leaderboard",
+  //   path: "/leaderboards",
   //   element: <ElementLeaderboard />,
   // },
   // {
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
   //   element: <ElementTeamDetail />,
   // },
   // {
-  //   path: "/contact",
+  //   path: "/kontakt",
   //   element: <ElementContactMobile />,
   // },
   // {
