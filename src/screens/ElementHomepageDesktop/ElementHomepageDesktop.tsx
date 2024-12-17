@@ -12,6 +12,7 @@ import { useWindowWidth } from "../../breakpoints";
 import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
 import "./style.css";
+import { ClubCell } from "../../components/ClubCell";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -63,14 +64,20 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         {homepageData?.upcoming?.length > 0 && (
             <div className="div-17">
               <div className="matchup-row-list">
-                {homepageData.upcoming.map((matchup: any) => (
-                    <MatchupCell
-                        key={matchup.id}
-                        className="matchup-cell-2"
-                        matchup={matchup}
-                        state="fixture-w-top"
-                    />
-                ))}
+                {homepageData.upcoming
+                    .sort(
+                        (a: any, b: any) =>
+                            new Date(a.details.date).getTime() -
+                            new Date(b.details.date).getTime()
+                    )
+                    .map((matchup: any) => (
+                        <MatchupCell
+                            key={matchup.id}
+                            className="matchup-cell-2"
+                            matchup={matchup}
+                            state="fixture-w-top"
+                        />
+                    ))}
               </div>
             </div>
         )}
@@ -83,6 +90,21 @@ export const ElementHomepageDesktop = (): JSX.Element => {
                 description={homepageData.data.sliderdata[0].description}
                 image={homepageData.data.sliderdata[0].image}
             />
+        )}
+
+        {/* Team Carousel */}
+        {homepageData?.teams?.length > 0 && (
+            <div className="div-17">
+              <div className="club-carousel-header">
+                <div className="club-carousel-title">CLUBS</div>
+                <div className="club-carousel-action">ALL CLUBS</div>
+              </div>
+              <div className="club-carousel-list">
+                {homepageData.teams.map((team: any) => (
+                    <ClubCell key={team.id} team={team} />
+                ))}
+              </div>
+            </div>
         )}
 
         {/* Sponsors */}
@@ -105,12 +127,6 @@ export const ElementHomepageDesktop = (): JSX.Element => {
               ))}
             </div>
           </div>
-
-          {/*<ActionButton*/}
-          {/*    actionButtonClassName="action-button-11"*/}
-          {/*    className="action-button-10"*/}
-          {/*/>*/}
-
         </div>
 
         {/* Footer */}

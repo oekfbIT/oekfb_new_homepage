@@ -1,41 +1,41 @@
 .club-cell {
-  align-items: flex-start;
-  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  position: relative;
+  align-items: center;
+  /*justify-content: space-between;*/
+  background-color: #ffffff;
+  padding: 8px;
   width: 100px;
+  /*height: 110px; !* Adjusted for better proportions *!*/
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .club-cell .img-container {
-  align-self: stretch;
-  height: 70px;
-  max-width: 100px;
-  position: relative;
-  width: 100%;
+  width: 40px; /* Smaller image */
+  height: 40px;
+  object-fit: contain; /* Maintain aspect ratio */
+  margin-bottom: 6px;
 }
 
 .club-cell .text-container {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  padding: 13px 10px;
-  position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+  box-sizing: border-box;
 }
 
 .club-cell .club-cell-name {
-  color: var(--themeouter-space);
-  flex: 1;
-  font-family: var(--theme-inter-bold-11-44-font-family);
-  font-size: var(--theme-inter-bold-11-44-font-size);
-  font-style: var(--theme-inter-bold-11-44-font-style);
-  font-weight: var(--theme-inter-bold-11-44-font-weight);
-  letter-spacing: var(--theme-inter-bold-11-44-letter-spacing);
-  line-height: var(--theme-inter-bold-11-44-line-height);
-  margin-top: -1.00px;
-  position: relative;
+  color: #333333; /* Text color */
+  font-family: "Inter", sans-serif;
+  font-size: 11px; /* Adjusted size for small cells */
+  font-weight: 600;
+  line-height: 1.2;
+  word-wrap: break-word; /* Breaks long words */
+  overflow-wrap: break-word; /* Ensures wrapping */
   text-align: center;
+  max-width: 100%;
+  overflow: hidden; /* Ensures no layout breaking */
 }
