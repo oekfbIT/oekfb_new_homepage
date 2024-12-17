@@ -9,6 +9,7 @@ import "./style.css";
 import { Navigation } from "../../components/Navigation";
 import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import { useNavigate } from "react-router-dom";
 
 export const ElementLeagueSelection = (): JSX.Element => {
     const screenWidth = useWindowWidth();
@@ -19,6 +20,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
     const [allLeagues, setAllLeagues] = useState<any[]>([]);
     const [filteredLeagues, setFilteredLeagues] = useState<any[]>([]);
     const [selectedState, setSelectedState] = useState<string>("wien"); // Default selected state
+    const navigate = useNavigate(); // Initialize the navigate function
 
     // Austrian states for the dropdown
     const austrianStates = [
@@ -67,6 +69,10 @@ export const ElementLeagueSelection = (): JSX.Element => {
     const handleLeagueSelect = (league: any) => {
         authService.setLeagueData(league.code, league.id);
         console.log(`League selected: Code = ${league.code}, ID = ${league.id}`);
+
+        // Navigate to the homepage
+        navigate("/homepage");
+
     };
 
     return (

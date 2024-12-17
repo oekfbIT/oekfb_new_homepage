@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import "./style.css";
 import AuthService from "../../network/AuthService";
 
@@ -37,6 +37,7 @@ export const DesktopNav = ({
                            }) => {
     const [activeLeague, setActiveLeague] = useState(null);
     const authService = new AuthService();
+    const navigate = useNavigate(); // Initialize the navigate function
 
     // League Rows Data
     const leagueRows = [
@@ -60,6 +61,12 @@ export const DesktopNav = ({
         if (savedLeagueCode) setActiveLeague(savedLeagueCode);
     }, []);
 
+    const handleLeagueClick = (code, id) => {
+        authService.setLeagueData(code, id); // Save data to cookies
+        setActiveLeague(code); // Update state
+        navigate("/homepage"); // Navigate to homepage
+    };
+
     return (
         <div className={`view-default-wrapper ${view} ${className}`}>
             {/* League Rows */}
@@ -72,6 +79,7 @@ export const DesktopNav = ({
                             text={row.code}
                             separator="/img/league-row-item-content-seperator-90.svg"
                             isActive={row.code === activeLeague} // Apply active class if matches
+                            onClick={() => handleLeagueClick(row.code, row.id)} // Set cookie on click
                         />
                     ))}
                 </div>

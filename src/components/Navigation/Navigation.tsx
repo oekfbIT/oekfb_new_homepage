@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./style.css";
 import { ElementMobilenav } from "../../screens/ElementMobilenav";
 import AuthService from "../../network/AuthService";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export const Navigation = ({
                                className = "",
@@ -13,6 +13,7 @@ export const Navigation = ({
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [activeLeague, setActiveLeague] = useState(null); // State to track active league
+    const navigate = useNavigate(); // Initialize the navigate function
 
     const authService = new AuthService();
 
@@ -49,8 +50,9 @@ export const Navigation = ({
 
     // Handle league row click
     const handleLeagueClick = (code, id) => {
-        authService.setLeagueData(code, id); // Save league code and id to cookie
-        setActiveLeague(code); // Update active league state
+        authService.setLeagueData(code, id); // Save data to cookies
+        setActiveLeague(code); // Update state
+        navigate("/homepage"); // Navigate to homepage
     };
 
     return (
