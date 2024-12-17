@@ -13,12 +13,15 @@ import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
 import "./style.css";
 import { ClubCell } from "../../components/ClubCell";
+import {useNavigate} from "react-router-dom";
+import {Partners} from "../../components/Partners/Partners";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const clientController = new ClientController();
   const authService = new AuthService();
 
+  const navigate = useNavigate();
   const [homepageData, setHomepageData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -92,12 +95,21 @@ export const ElementHomepageDesktop = (): JSX.Element => {
             />
         )}
 
+        {/* Sponsors */}
+        <Sponsors className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
+
         {/* Team Carousel */}
         {homepageData?.teams?.length > 0 && (
             <div className="div-17">
               <div className="club-carousel-header">
                 <div className="club-carousel-title">CLUBS</div>
-                <div className="club-carousel-action">ALL CLUBS</div>
+                <div
+                    className="club-carousel-action"
+                    style={{cursor: "pointer"}}
+                    onClick={() => navigate("/clubs")} // Wrap navigate in an arrow function
+                >
+                  ALLE MANNSCHAFTEN
+                </div>
               </div>
               <div className="club-carousel-list">
                 {homepageData.teams.map((team: any) => (
@@ -107,8 +119,8 @@ export const ElementHomepageDesktop = (): JSX.Element => {
             </div>
         )}
 
-        {/* Sponsors */}
-        <Sponsors className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
+        {/* Partners */}
+        <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
 
         {/* News Section */}
         <div className="news-7">

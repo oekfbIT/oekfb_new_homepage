@@ -13,7 +13,7 @@ interface Props {
   sponsorsContainerClassName: any;
 }
 
-export const Sponsors = ({
+export const Partners = ({
   className,
   vWhite = "/img/v-white-1.svg",
   sponsorsContainerClassName,
@@ -30,19 +30,25 @@ export const Sponsors = ({
         </p>
 
         <div className="sponsors-container-2">
-          <img className="sponsor" alt="Image"
-               src="https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo-500x281.png"/>
-          <img className="sponsorc" alt="Image"
-               src="https://egt-digital.com/wp-content/uploads/2024/07/aircash-900x720-1.png"/>
-          <img className="sponsor" alt="Image"
-               src="https://kaddur.at/cdn/shop/files/Bildschirmfoto_2024-06-05_um_16.03.49.png?v=1717596335&width=500"/>
+          <img
+              className="sportsselection"Ron
+              alt="Sportsselection"
+              src="/img/sportsselection-2zlg-subl-g-t-1.png"
+          />
 
+          <img className="image-2" alt="Image" src="/img/image-1-1.png"/>
+
+          <img className="image-3" alt="Image" src="/img/image-2-1.png"/>
+
+          <img className="image-4" alt="Image" src="/img/wmfLogo.png"/>
+
+          <img className="v-white" alt="V white" src={vWhite}/>
         </div>
       </div>
     </div>
   );
 };
 
-Sponsors.propTypes = {
+Partners.propTypes = {
   vWhite: PropTypes.string,
 };
