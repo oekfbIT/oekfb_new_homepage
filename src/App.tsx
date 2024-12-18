@@ -35,6 +35,10 @@ const router = createBrowserRouter([
     path: "/mobilenav",
     element: <ElementMobilenav />,
   },
+  {
+    path: "/match/:id",
+    element: <ElementGameReport />,
+  },
   // {
   //   path: "/sperren",
   //   element: <ElementSperrenDesktop />,
@@ -106,11 +110,7 @@ const router = createBrowserRouter([
   {
     path: "/homepage",
     element: <ElementHomepageDesktop />,
-  },
-  {
-    path: "/game-report/:id",
-    element: <ElementGameReport />,
-  },
+  }
 ]);
 
 export const App = () => {

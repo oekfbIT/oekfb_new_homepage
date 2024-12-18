@@ -27228,7 +27228,13 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
+var _elementClubsDesktop = require("./screens/ElementClubsDesktop");
+var _elementGameReport = require("./screens/ElementGameReport");
+var _elementHomepageDesktop = require("./screens/ElementHomepageDesktop");
 var _elementLeagueSelection = require("./screens/ElementLeagueSelection");
+var _elementMobilenav = require("./screens/ElementMobilenav");
+var _elementNewsDetail = require("./screens/ElementNewsDetail");
+var _elementTableMobile = require("./screens/ElementTableMobile");
 const router = (0, _reactRouterDom.createBrowserRouter)([
     {
         path: "/*",
@@ -27243,6 +27249,110 @@ const router = (0, _reactRouterDom.createBrowserRouter)([
         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementLeagueSelection.ElementLeagueSelection), {}, void 0, false, {
             fileName: "src/App.tsx",
             lineNumber: 32,
+            columnNumber: 14
+        }, undefined)
+    },
+    {
+        path: "/mobilenav",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementMobilenav.ElementMobilenav), {}, void 0, false, {
+            fileName: "src/App.tsx",
+            lineNumber: 36,
+            columnNumber: 14
+        }, undefined)
+    },
+    {
+        path: "/match/:id",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementGameReport.ElementGameReport), {}, void 0, false, {
+            fileName: "src/App.tsx",
+            lineNumber: 40,
+            columnNumber: 14
+        }, undefined)
+    },
+    // {
+    //   path: "/sperren",
+    //   element: <ElementSperrenDesktop />,
+    // },
+    {
+        path: "/teams",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementClubsDesktop.ElementClubsDesktop), {}, void 0, false, {
+            fileName: "src/App.tsx",
+            lineNumber: 48,
+            columnNumber: 14
+        }, undefined)
+    },
+    {
+        path: "/tabelle",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementTableMobile.ElementTableMobile), {}, void 0, false, {
+            fileName: "src/App.tsx",
+            lineNumber: 52,
+            columnNumber: 14
+        }, undefined)
+    },
+    // {
+    //   path: "/news",
+    //   element: <ElementNewsMobile />,
+    // },
+    // {
+    //   path: "/register",
+    //   element: <ElementRegister />,
+    // },
+    {
+        path: "/news-detail/:id",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementNewsDetail.ElementNewsDetail), {}, void 0, false, {
+            fileName: "src/App.tsx",
+            lineNumber: 64,
+            columnNumber: 14
+        }, undefined)
+    },
+    // {
+    //   path: "/spielplan",
+    //   element: <ElementGamedayMobile />,
+    // },
+    // {
+    //   path: "/registration-upload",
+    //   element: <ElementRegistration />,
+    // },
+    // {
+    //   path: "/confirmation",
+    //   element: <ElementConfirmation />,
+    // },
+    // {
+    //   path: "/transfers",
+    //   element: <ElementTransfersDesktop />,
+    // },
+    // {
+    //   path: "/leaderboards",
+    //   element: <ElementLeaderboard />,
+    // },
+    // {
+    //   path: "/player-detail",
+    //   element: <ElementPlayerDetail />,
+    // },
+    // {
+    //   path: "/team-detail",
+    //   element: <ElementTeamDetail />,
+    // },
+    // {
+    //   path: "/kontakt",
+    //   element: <ElementContactMobile />,
+    // },
+    // {
+    //   path: "/impressium",
+    //   element: <ElementImpressiumMobile />,
+    // },
+    // {
+    //   path: "/login",
+    //   element: <ElementLoginMobile />,
+    // },
+    // {
+    //   path: "/terms",
+    //   element: <ElementTermsMobile />,
+    // },
+    {
+        path: "/homepage",
+        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementHomepageDesktop.ElementHomepageDesktop), {}, void 0, false, {
+            fileName: "src/App.tsx",
+            lineNumber: 112,
             columnNumber: 14
         }, undefined)
     }
@@ -27265,7 +27375,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./screens/ElementLeagueSelection":"htcWH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9xmpe":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./screens/ElementClubsDesktop":"gT5rz","./screens/ElementGameReport":"kfaX2","./screens/ElementHomepageDesktop":"8crBA","./screens/ElementLeagueSelection":"htcWH","./screens/ElementMobilenav":"l1pMF","./screens/ElementNewsDetail":"l2vnE","./screens/ElementTableMobile":"dP87C","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9xmpe":[function(require,module,exports) {
 /**
  * React Router DOM v6.28.0
  *
@@ -34502,365 +34612,163 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"htcWH":[function(require,module,exports) {
+},{}],"gT5rz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ElementLeagueSelection", ()=>(0, _elementLeagueSelection.ElementLeagueSelection));
-var _elementLeagueSelection = require("./ElementLeagueSelection");
+parcelHelpers.export(exports, "ElementClubsDesktop", ()=>(0, _elementClubsDesktop.ElementClubsDesktop));
+var _elementClubsDesktop = require("./ElementClubsDesktop");
 
-},{"./ElementLeagueSelection":"88Nup","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"88Nup":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$fcb7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"./ElementClubsDesktop":"9YuIM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YuIM":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$ec5c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$fcb7.prelude(module);
+$parcel$ReactRefreshHelpers$ec5c.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ElementLeagueSelection", ()=>ElementLeagueSelection);
+parcelHelpers.export(exports, "ElementClubsDesktop", ()=>ElementClubsDesktop);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _breakpoints = require("../../breakpoints");
-var _dropdown = require("../../components/Dropdown");
+var _clubCard = require("../../components/ClubCard");
 var _footer = require("../../components/Footer");
-var _leagueSelection = require("../../components/LeagueSelection");
-var _sponsors = require("../../components/Sponsors");
+var _pageHeader = require("../../components/PageHeader");
 var _viewDefaultWrapper = require("../../components/ViewDefaultWrapper");
-var _styleCss = require("./style.css");
 var _navigation = require("../../components/Navigation");
+var _clientController = require("../../network/ClientController");
+var _clientControllerDefault = parcelHelpers.interopDefault(_clientController);
+var _authService = require("../../network/AuthService");
+var _authServiceDefault = parcelHelpers.interopDefault(_authService);
+var _styleCss = require("./style.css");
 var _s = $RefreshSig$();
-const ElementLeagueSelection = ()=>{
+const ElementClubsDesktop = ()=>{
     _s();
     const screenWidth = (0, _breakpoints.useWindowWidth)();
+    const isMobile = screenWidth < 900;
+    const [clubs, setClubs] = (0, _react.useState)([]);
+    const [loading, setLoading] = (0, _react.useState)(true);
+    const authService = new (0, _authServiceDefault.default)();
+    const clientController = new (0, _clientControllerDefault.default)();
+    // Fetch clubs on component mount
+    (0, _react.useEffect)(()=>{
+        const fetchClubs = async ()=>{
+            const leagueCode = authService.getLeagueCode();
+            if (!leagueCode) {
+                console.error("No league code found in cookies.");
+                setLoading(false);
+                return;
+            }
+            try {
+                const clubData = await clientController.fetchLeagueClubs(leagueCode);
+                setClubs(clubData);
+            } catch (error) {
+                console.error("Error fetching club data:", error);
+            } finally{
+                setLoading(false);
+            }
+        };
+        fetchClubs();
+    }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "element-league-selection",
+        className: "element-clubs-desktop",
         style: {
-            minWidth: screenWidth < 900 ? "390px" : screenWidth >= 900 ? "900px" : undefined
+            minWidth: isMobile ? "390px" : "900px"
         },
         children: [
-            screenWidth < 900 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            isMobile ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigation.Navigation), {}, void 0, false, {
+                    fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                    lineNumber: 49,
+                    columnNumber: 21
+                }, undefined)
+            }, void 0, false) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _viewDefaultWrapper.DesktopNav), {}, void 0, false, {
+                    fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                    lineNumber: 53,
+                    columnNumber: 21
+                }, undefined)
+            }, void 0, false),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "page-content-3",
+                style: {
+                    alignItems: "center",
+                    flexDirection: "column",
+                    gap: isMobile ? "20px" : "10px",
+                    justifyContent: !isMobile ? "center" : undefined,
+                    maxWidth: isMobile ? "1200px" : undefined,
+                    padding: isMobile ? "0px 20px" : undefined
+                },
                 children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigation.Navigation), {}, void 0, false, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 28,
-                        columnNumber: 11
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pageHeader.PageHeader), {
+                        className: "instance-node-4",
+                        text: "Mannschaften"
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                        lineNumber: 67,
+                        columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "page-header-wrapper",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: "page-header-2",
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "page-header-wrapper-2",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "page-header-wrapper-3",
-                                        children: "TITLE"
-                                    }, void 0, false, {
-                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                        lineNumber: 32,
-                                        columnNumber: 17
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                        className: "page-header-wrapper-4",
-                                        children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec varius lorem, eget faucibus ex. Vivamus vehicula dui non leo laoreet luctus. Etiam congue consequat placerat."
-                                    }, void 0, false, {
-                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                        lineNumber: 34,
-                                        columnNumber: 17
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                lineNumber: 31,
-                                columnNumber: 15
-                            }, undefined)
+                        className: "club-grid",
+                        children: loading ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            children: "Loading clubs..."
                         }, void 0, false, {
-                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                            lineNumber: 30,
-                            columnNumber: 13
+                            fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                            lineNumber: 71,
+                            columnNumber: 25
+                        }, undefined) : clubs.length > 0 ? clubs.map((club)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _clubCard.ClubCard), {
+                                className: "club-card-instance",
+                                club: club
+                            }, club.id, false, {
+                                fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                                lineNumber: 74,
+                                columnNumber: 29
+                            }, undefined)) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            children: "No clubs available for this league."
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                            lineNumber: 82,
+                            columnNumber: 25
                         }, undefined)
                     }, void 0, false, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 29,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "page-content",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "leagues-wrapper",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _dropdown.Dropdown), {
-                                        className: "instance-node-2"
-                                    }, void 0, false, {
-                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                        lineNumber: 45,
-                                        columnNumber: 15
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "league-cell-list",
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _leagueSelection.LeagueSelection), {
-                                                className: "league-selection-cell"
-                                            }, void 0, false, {
-                                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                                lineNumber: 47,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _leagueSelection.LeagueSelection), {
-                                                className: "league-selection-cell"
-                                            }, void 0, false, {
-                                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                                lineNumber: 48,
-                                                columnNumber: 17
-                                            }, undefined)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                        lineNumber: 46,
-                                        columnNumber: 15
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                lineNumber: 44,
-                                columnNumber: 13
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _sponsors.Sponsors), {
-                                className: "instance-node-2",
-                                vWhite: "/img/v-white-1-1.svg"
-                            }, void 0, false, {
-                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                lineNumber: 52,
-                                columnNumber: 13
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 43,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {
-                        className: "footer-instance",
-                        footerContent: "/img/footer-content-wrapper-left-logo-8.png",
-                        footerContentClassName: "footer-2",
-                        footerContentClassNameOverride: "footer-3",
-                        href: "https://www.facebook.com/kleinfeldliga/",
-                        href1: "https://www.youtube.com/@OEKFB",
-                        href2: "https://www.instagram.com/oekfb/?hl=en",
-                        img: "/img/link-33.svg",
-                        link: "/img/link-32.svg",
-                        link1: "/img/link-34.svg",
-                        link2: "/img/link-35.svg"
-                    }, void 0, false, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 58,
-                        columnNumber: 11
+                        fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                        lineNumber: 69,
+                        columnNumber: 17
                     }, undefined)
                 ]
-            }, void 0, true),
-            screenWidth >= 900 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _viewDefaultWrapper.ViewDefaultWrapper), {
-                        className: "instance-node",
-                        img: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem1: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem10: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem11: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem12: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem13: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem14: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem15: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem16: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem2: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem3: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem4: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem5: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem6: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem7: "/img/league-row-item-content-img-1090.png",
-                        leagueRowItem8: "/img/league-row-item-content-seperator-1080.svg",
-                        leagueRowItem9: "/img/league-row-item-content-img-1090.png",
-                        mobileBurgerMenu: "/img/mobile-burger-menu-13.svg",
-                        navRowWrapper: "/img/nav-row-wrapper-content-logo-13.svg",
-                        navRowWrapper1: "/img/nav-row-wrapper-content-login-wrapper-image-6.svg",
-                        view: "default"
-                    }, void 0, false, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 76,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "div-14",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: "div-14",
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "page-header-wrapper",
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    className: "div-14",
-                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "page-header-3",
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                            className: "page-header-wrapper-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "page-header-wrapper-3",
-                                                    children: "TITLE"
-                                                }, void 0, false, {
-                                                    fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                                    lineNumber: 107,
-                                                    columnNumber: 23
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                                                    className: "page-header-wrapper-4",
-                                                    children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras nec varius lorem, eget faucibus ex. Vivamus vehicula dui non leo laoreet luctus. Etiam congue consequat placerat."
-                                                }, void 0, false, {
-                                                    fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                                    lineNumber: 109,
-                                                    columnNumber: 23
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                            lineNumber: 106,
-                                            columnNumber: 21
-                                        }, undefined)
-                                    }, void 0, false, {
-                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                        lineNumber: 105,
-                                        columnNumber: 19
-                                    }, undefined)
-                                }, void 0, false, {
-                                    fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                    lineNumber: 104,
-                                    columnNumber: 17
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                lineNumber: 103,
-                                columnNumber: 15
-                            }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                            lineNumber: 102,
-                            columnNumber: 13
-                        }, undefined)
-                    }, void 0, false, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 101,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "page-content-2",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "div-14",
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    className: "leagues-wrapper-2",
-                                    children: [
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _dropdown.Dropdown), {
-                                            className: "instance-node"
-                                        }, void 0, false, {
-                                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                            lineNumber: 125,
-                                            columnNumber: 17
-                                        }, undefined),
-                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                            className: "league-cell-list-2",
-                                            children: [
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _leagueSelection.LeagueSelection), {
-                                                    className: "league-selection-cell"
-                                                }, void 0, false, {
-                                                    fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                                    lineNumber: 127,
-                                                    columnNumber: 19
-                                                }, undefined),
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _leagueSelection.LeagueSelection), {
-                                                    className: "league-selection-cell"
-                                                }, void 0, false, {
-                                                    fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                                    lineNumber: 128,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                            lineNumber: 126,
-                                            columnNumber: 17
-                                        }, undefined)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                    lineNumber: 124,
-                                    columnNumber: 15
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                lineNumber: 123,
-                                columnNumber: 13
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "div-14",
-                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _sponsors.Sponsors), {
-                                    className: "sponsors-3",
-                                    sponsorsContainerClassName: "sponsors-instance",
-                                    vWhite: "/img/v-white-1-2.svg"
-                                }, void 0, false, {
-                                    fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                    lineNumber: 134,
-                                    columnNumber: 15
-                                }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                                lineNumber: 133,
-                                columnNumber: 13
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 122,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {
-                        className: "footer-instance",
-                        footerContent: "/img/footer-content-wrapper-left-logo-8.png",
-                        href: "https://www.facebook.com/kleinfeldliga/",
-                        href1: "https://www.youtube.com/@OEKFB",
-                        href2: "https://www.instagram.com/oekfb/?hl=en",
-                        img: "/img/link-45.svg",
-                        link: "/img/link-44.svg",
-                        link1: "/img/link-46.svg",
-                        link2: "/img/link-47.svg"
-                    }, void 0, false, {
-                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-                        lineNumber: 142,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true)
+            }, void 0, true, {
+                fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                lineNumber: 56,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
+                fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+                lineNumber: 86,
+                columnNumber: 13
+            }, undefined)
         ]
     }, void 0, true, {
-        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
-        lineNumber: 15,
-        columnNumber: 5
+        fileName: "src/screens/ElementClubsDesktop/ElementClubsDesktop.tsx",
+        lineNumber: 46,
+        columnNumber: 9
     }, undefined);
 };
-_s(ElementLeagueSelection, "zbzJdiwf5BpglrhHhFdxxSr152Y=", false, function() {
+_s(ElementClubsDesktop, "zFyJeXs6RJx0gDyoz6AQn3MBNw4=", false, function() {
     return [
         (0, _breakpoints.useWindowWidth)
     ];
 });
-_c = ElementLeagueSelection;
+_c = ElementClubsDesktop;
 var _c;
-$RefreshReg$(_c, "ElementLeagueSelection");
+$RefreshReg$(_c, "ElementClubsDesktop");
 
-  $parcel$ReactRefreshHelpers$fcb7.postlude(module);
+  $parcel$ReactRefreshHelpers$ec5c.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../breakpoints":"8VCQt","../../components/Dropdown":"9yvFB","../../components/Footer":"egaqK","../../components/LeagueSelection":"9GMUG","../../components/Sponsors":"c5dw3","../../components/ViewDefaultWrapper":"4JBXT","./style.css":"bIsa6","../../components/Navigation":"lyfSW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"8VCQt":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../breakpoints":"8VCQt","../../components/ClubCard":"38BNj","../../components/Footer":"egaqK","../../components/PageHeader":"4YQP6","../../components/ViewDefaultWrapper":"4JBXT","../../components/Navigation":"lyfSW","../../network/ClientController":"dMbvz","../../network/AuthService":"6nPiU","./style.css":"fxVZh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"8VCQt":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$a58b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -35027,121 +34935,560 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"7422ead32dcc1e6b":"786KC"}],"9yvFB":[function(require,module,exports) {
+},{"7422ead32dcc1e6b":"786KC"}],"38BNj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Dropdown", ()=>(0, _dropdown.Dropdown));
-var _dropdown = require("./Dropdown");
+parcelHelpers.export(exports, "ClubCard", ()=>(0, _clubCard.ClubCard));
+var _clubCard = require("./ClubCard");
 
-},{"./Dropdown":"kKcMp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kKcMp":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$636e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"./ClubCard":"kuHNB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kuHNB":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$e2ec = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$636e.prelude(module);
+$parcel$ReactRefreshHelpers$e2ec.prelude(module);
 
 try {
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Dropdown", ()=>Dropdown);
+parcelHelpers.export(exports, "ClubCard", ()=>ClubCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const ClubCard = ({ className, club })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `club-card ${className}`,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "club-card-content",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "image-wrapper",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                        src: club.logo,
+                        alt: club.team_name,
+                        className: "image-6"
+                    }, void 0, false, {
+                        fileName: "src/components/ClubCard/ClubCard.tsx",
+                        lineNumber: 14,
+                        columnNumber: 13
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/ClubCard/ClubCard.tsx",
+                    lineNumber: 13,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "club-card-content-2",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "club-card-content-3",
+                            children: club.team_name
+                        }, void 0, false, {
+                            fileName: "src/components/ClubCard/ClubCard.tsx",
+                            lineNumber: 18,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            className: "club-card-content-4",
+                            children: `ID: ${club.sid}`
+                        }, void 0, false, {
+                            fileName: "src/components/ClubCard/ClubCard.tsx",
+                            lineNumber: 19,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/ClubCard/ClubCard.tsx",
+                    lineNumber: 17,
+                    columnNumber: 11
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/ClubCard/ClubCard.tsx",
+            lineNumber: 12,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/ClubCard/ClubCard.tsx",
+        lineNumber: 11,
+        columnNumber: 7
+    }, undefined);
+};
+_c = ClubCard;
+var _c;
+$RefreshReg$(_c, "ClubCard");
+
+  $parcel$ReactRefreshHelpers$e2ec.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./style.css":"2CQ67","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"2CQ67":[function() {},{}],"egaqK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Footer", ()=>(0, _footer.Footer));
+var _footer = require("./Footer");
+
+},{"./Footer":"8BzfF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8BzfF":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$399d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$399d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Footer", ()=>Footer);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
 var _styleCss = require("./style.css");
-const Dropdown = ({ className, dropdownWrapperClassName, matLabelSelectAClassName, text = "Select a region", dropdownWrapperClassNameOverride, text1 = "Wien", dropdownWrapper = "/img/dropdown-wrapper-icon.svg" })=>{
+const Footer = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: `dropdown ${className}`,
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "dropdown-wrapper",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "dropdown-wrapper-2",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: `mat-label-select-a-wrapper ${dropdownWrapperClassName}`,
-                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: `mat-label-select-a ${matLabelSelectAClassName}`,
-                                children: text
+        className: "footer",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "footer-content",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "footer-content-2",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "footer-content-3",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                className: "footer-content-4",
+                                alt: "Footer Logo",
+                                src: "/img/footer-content-wrapper-left-logo-7.png"
                             }, void 0, false, {
-                                fileName: "src/components/Dropdown/Dropdown.tsx",
-                                lineNumber: 36,
-                                columnNumber: 13
+                                fileName: "src/components/Footer/Footer.tsx",
+                                lineNumber: 20,
+                                columnNumber: 15
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "frame",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "footer-content-5",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "mobile-menu-item",
+                                                to: "/homepage",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterItem, {
+                                                    label: "Der Bund"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 31,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 30,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "mobile-menu-item",
+                                                to: "/news",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterItem, {
+                                                    label: "News"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 35,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 34,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "mobile-menu-item",
+                                                to: "/kontakt",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterItem, {
+                                                    label: "Kontakt"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 39,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 38,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "mobile-menu-item",
+                                                to: "/impressum",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterItem, {
+                                                    label: "Impressum"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 43,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 42,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "mobile-menu-item",
+                                                to: "/privacy",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterItem, {
+                                                    label: "Datenschutz"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 47,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 46,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 29,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "footer-content-5",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "mobile-menu-item",
+                                                to: "/ligaordnung",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterItem, {
+                                                    label: "Ligaordnung"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 55,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 54,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "mobile-menu-item",
+                                                to: "/spielregeln",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterItem, {
+                                                    label: "Spielregeln"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 59,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 58,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterLink, {
+                                                href: "https://team.oekfb.eu",
+                                                label: "Spieler Login",
+                                                className: "text-wrapper-5"
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 62,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(FooterLink, {
+                                                href: "https://ref.oekfb.eu",
+                                                label: "Schiedsrichter Login",
+                                                className: "text-wrapper-6"
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 67,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                                className: "item",
+                                                to: "/register",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "link-3",
+                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "text-wrapper-7",
+                                                        children: "Team Registrierung"
+                                                    }, void 0, false, {
+                                                        fileName: "src/components/Footer/Footer.tsx",
+                                                        lineNumber: 74,
+                                                        columnNumber: 23
+                                                    }, undefined)
+                                                }, void 0, false, {
+                                                    fileName: "src/components/Footer/Footer.tsx",
+                                                    lineNumber: 73,
+                                                    columnNumber: 21
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 72,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 53,
+                                        columnNumber: 17
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/Footer/Footer.tsx",
+                                lineNumber: 27,
+                                columnNumber: 15
                             }, undefined)
-                        }, void 0, false, {
-                            fileName: "src/components/Dropdown/Dropdown.tsx",
-                            lineNumber: 33,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                            className: "dropdown-wrapper-3",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                    className: `dropdown-wrapper-4 ${dropdownWrapperClassNameOverride}`,
-                                    children: text1
-                                }, void 0, false, {
-                                    fileName: "src/components/Dropdown/Dropdown.tsx",
-                                    lineNumber: 42,
-                                    columnNumber: 13
-                                }, undefined),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                    className: "dropdown-wrapper-5",
-                                    alt: "Dropdown wrapper",
-                                    src: dropdownWrapper
-                                }, void 0, false, {
-                                    fileName: "src/components/Dropdown/Dropdown.tsx",
-                                    lineNumber: 48,
-                                    columnNumber: 13
-                                }, undefined)
-                            ]
-                        }, void 0, true, {
-                            fileName: "src/components/Dropdown/Dropdown.tsx",
-                            lineNumber: 41,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/Dropdown/Dropdown.tsx",
-                    lineNumber: 32,
-                    columnNumber: 9
-                }, undefined)
-            }, void 0, false, {
-                fileName: "src/components/Dropdown/Dropdown.tsx",
-                lineNumber: 31,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "dropdown-wrapper-6"
-            }, void 0, false, {
-                fileName: "src/components/Dropdown/Dropdown.tsx",
-                lineNumber: 57,
-                columnNumber: 7
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Footer/Footer.tsx",
+                        lineNumber: 18,
+                        columnNumber: 13
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "footer-content-3",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "sponsors-2",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "title",
+                                        children: "Sponsored By"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 85,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "list",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SponsorLogo, {
+                                                imgClass: "logo-2"
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 87,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SponsorLogo, {
+                                                imgClass: "logo-3"
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 88,
+                                                columnNumber: 19
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SponsorLogo, {
+                                                imgClass: "logo-4"
+                                            }, void 0, false, {
+                                                fileName: "src/components/Footer/Footer.tsx",
+                                                lineNumber: 89,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 86,
+                                        columnNumber: 17
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/Footer/Footer.tsx",
+                                lineNumber: 84,
+                                columnNumber: 15
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "bundesliga-footer",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SocialLink, {
+                                        href: "https://www.facebook.com/kleinfeldliga/",
+                                        src: "/img/link-32.svg"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 95,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SocialLink, {
+                                        href: "https://www.youtube.com/@OEKFB",
+                                        src: "/img/link-33.svg"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 99,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                        className: "link-5",
+                                        alt: "Link",
+                                        src: "/img/link-34.svg"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 103,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(SocialLink, {
+                                        href: "https://www.instagram.com/oekfb/?hl=en",
+                                        src: "/img/link-35.svg"
+                                    }, void 0, false, {
+                                        fileName: "src/components/Footer/Footer.tsx",
+                                        lineNumber: 104,
+                                        columnNumber: 17
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/Footer/Footer.tsx",
+                                lineNumber: 94,
+                                columnNumber: 15
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/Footer/Footer.tsx",
+                        lineNumber: 82,
+                        columnNumber: 13
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/Footer/Footer.tsx",
+                lineNumber: 16,
+                columnNumber: 11
             }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/Dropdown/Dropdown.tsx",
-        lineNumber: 30,
-        columnNumber: 5
+        }, void 0, false, {
+            fileName: "src/components/Footer/Footer.tsx",
+            lineNumber: 15,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Footer/Footer.tsx",
+        lineNumber: 13,
+        columnNumber: 7
     }, undefined);
 };
-_c = Dropdown;
-Dropdown.propTypes = {
-    text: (0, _propTypesDefault.default).string,
-    text1: (0, _propTypesDefault.default).string,
-    dropdownWrapper: (0, _propTypesDefault.default).string
+_c = Footer;
+/**
+ * FooterItem Component - A reusable navigation link placeholder.
+ */ const FooterItem = ({ label })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "item",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "link-2",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "text-wrapper-3",
+                children: label
+            }, void 0, false, {
+                fileName: "src/components/Footer/Footer.tsx",
+                lineNumber: 122,
+                columnNumber: 9
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/Footer/Footer.tsx",
+            lineNumber: 121,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Footer/Footer.tsx",
+        lineNumber: 120,
+        columnNumber: 5
+    }, undefined);
+_c1 = FooterItem;
+/**
+ * FooterLink Component - Renders an anchor link.
+ */ const FooterLink = ({ href, label, className })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+        href: href,
+        className: "item",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "link-2",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: className,
+                children: label
+            }, void 0, false, {
+                fileName: "src/components/Footer/Footer.tsx",
+                lineNumber: 133,
+                columnNumber: 9
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/Footer/Footer.tsx",
+            lineNumber: 132,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Footer/Footer.tsx",
+        lineNumber: 131,
+        columnNumber: 5
+    }, undefined);
+_c2 = FooterLink;
+/**
+ * SponsorLogo Component - Renders sponsor logos.
+ */ const SponsorLogo = ({ imgClass })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "item-2",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "logo-wrapper",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "logo",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: imgClass
+                }, void 0, false, {
+                    fileName: "src/components/Footer/Footer.tsx",
+                    lineNumber: 145,
+                    columnNumber: 11
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/Footer/Footer.tsx",
+                lineNumber: 144,
+                columnNumber: 9
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/Footer/Footer.tsx",
+            lineNumber: 143,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Footer/Footer.tsx",
+        lineNumber: 142,
+        columnNumber: 5
+    }, undefined);
+_c3 = SponsorLogo;
+/**
+ * SocialLink Component - Renders social media icons as links.
+ */ const SocialLink = ({ href, src })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
+        href: href,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+            className: "link-4",
+            alt: "Social Link",
+            src: src
+        }, void 0, false, {
+            fileName: "src/components/Footer/Footer.tsx",
+            lineNumber: 156,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Footer/Footer.tsx",
+        lineNumber: 155,
+        columnNumber: 5
+    }, undefined);
+_c4 = SocialLink;
+Footer.propTypes = {
+    footerContent: (0, _propTypesDefault.default).string,
+    link: (0, _propTypesDefault.default).string,
+    img: (0, _propTypesDefault.default).string,
+    link1: (0, _propTypesDefault.default).string,
+    link2: (0, _propTypesDefault.default).string,
+    href: (0, _propTypesDefault.default).string,
+    href1: (0, _propTypesDefault.default).string,
+    href2: (0, _propTypesDefault.default).string
 };
-var _c;
-$RefreshReg$(_c, "Dropdown");
+var _c, _c1, _c2, _c3, _c4;
+$RefreshReg$(_c, "Footer");
+$RefreshReg$(_c1, "FooterItem");
+$RefreshReg$(_c2, "FooterLink");
+$RefreshReg$(_c3, "SponsorLogo");
+$RefreshReg$(_c4, "SocialLink");
 
-  $parcel$ReactRefreshHelpers$636e.postlude(module);
+  $parcel$ReactRefreshHelpers$399d.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"jKhup","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","react-router-dom":"9xmpe","./style.css":"dEziC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7wKI2":[function(require,module,exports) {
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -35888,17 +36235,17 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-},{"24ba1e58d167a82c":"jZTZJ","898bc82f39d83f7c":"fqKuf"}],"jKhup":[function() {},{}],"egaqK":[function(require,module,exports) {
+},{"24ba1e58d167a82c":"jZTZJ","898bc82f39d83f7c":"fqKuf"}],"dEziC":[function() {},{}],"4YQP6":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Footer", ()=>(0, _footer.Footer));
-var _footer = require("./Footer");
+parcelHelpers.export(exports, "PageHeader", ()=>(0, _pageHeader.PageHeader));
+var _pageHeader = require("./PageHeader");
 
-},{"./Footer":"8BzfF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8BzfF":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$399d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"./PageHeader":"gwQMv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gwQMv":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$7123 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$399d.prelude(module);
+$parcel$ReactRefreshHelpers$7123.prelude(module);
 
 try {
 /*
@@ -35906,731 +36253,75 @@ We're constantly improving the code you see.
 Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
 */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Footer", ()=>Footer);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouterDom = require("react-router-dom");
-var _styleCss = require("./style.css");
-const Footer = ({ className, footerContentClassName, footerContent = "/img/footer-content-wrapper-left-logo-7.png", footerContentClassNameOverride, link = "/img/link-28.svg", img = "/img/link-29.svg", link1 = "/img/link-30.svg", link2 = "/img/link-31.svg", href, href1, href2 })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: `footer ${className}`,
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            className: `footer-content ${footerContentClassName}`,
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "footer-content-2",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "footer-content-3",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                className: "footer-content-4",
-                                alt: "Footer content",
-                                src: footerContent
-                            }, void 0, false, {
-                                fileName: "src/components/Footer/Footer.tsx",
-                                lineNumber: 43,
-                                columnNumber: 13
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "frame",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "footer-content-5",
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-3",
-                                                        children: "Der Bund"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 53,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 52,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 51,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-3",
-                                                        children: "News"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 59,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 58,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 57,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-3",
-                                                        children: "Kontakt"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 65,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 64,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 63,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-3",
-                                                        children: "Impressum"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 71,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 70,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 69,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-4",
-                                                        children: "Datenschutz"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 77,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 76,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 75,
-                                                columnNumber: 17
-                                            }, undefined)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 50,
-                                        columnNumber: 15
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "footer-content-5",
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-3",
-                                                        children: "Ligaordnung"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 85,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 84,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 83,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-3",
-                                                        children: "Spielregeln"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 91,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 90,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 89,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                                                className: "item",
-                                                href: "team.oekfb.eu",
-                                                rel: "noopener noreferrer",
-                                                target: "_blank",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-5",
-                                                        children: "Spieler Login"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 102,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 101,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 95,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                                                className: "item",
-                                                href: "ref.oekfb.eu",
-                                                rel: "noopener noreferrer",
-                                                target: "_blank",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-2",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-6",
-                                                        children: "Schiedsrichter Login"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 113,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 112,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 106,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                                                className: "item",
-                                                to: "/12u465-register-desktop",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "link-3",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "text-wrapper-7",
-                                                        children: "Team Registrierung"
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 119,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 118,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 117,
-                                                columnNumber: 17
-                                            }, undefined)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 82,
-                                        columnNumber: 15
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/Footer/Footer.tsx",
-                                lineNumber: 49,
-                                columnNumber: 13
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/Footer/Footer.tsx",
-                        lineNumber: 42,
-                        columnNumber: 11
-                    }, undefined),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: `footer-content-3 ${footerContentClassNameOverride}`,
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "sponsors-2",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "title",
-                                        children: "Sponsored By"
-                                    }, void 0, false, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 128,
-                                        columnNumber: 15
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                        className: "list",
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item-2",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "logo-wrapper",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "logo",
-                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                            className: "logo-2"
-                                                        }, void 0, false, {
-                                                            fileName: "src/components/Footer/Footer.tsx",
-                                                            lineNumber: 134,
-                                                            columnNumber: 23
-                                                        }, undefined)
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 133,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 132,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 131,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item-2",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "logo-wrapper",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "logo",
-                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                            className: "logo-3"
-                                                        }, void 0, false, {
-                                                            fileName: "src/components/Footer/Footer.tsx",
-                                                            lineNumber: 142,
-                                                            columnNumber: 23
-                                                        }, undefined)
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 141,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 140,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 139,
-                                                columnNumber: 17
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                className: "item-2",
-                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                    className: "logo-wrapper",
-                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                        className: "logo",
-                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                                            className: "logo-4"
-                                                        }, void 0, false, {
-                                                            fileName: "src/components/Footer/Footer.tsx",
-                                                            lineNumber: 150,
-                                                            columnNumber: 23
-                                                        }, undefined)
-                                                    }, void 0, false, {
-                                                        fileName: "src/components/Footer/Footer.tsx",
-                                                        lineNumber: 149,
-                                                        columnNumber: 21
-                                                    }, undefined)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/Footer/Footer.tsx",
-                                                    lineNumber: 148,
-                                                    columnNumber: 19
-                                                }, undefined)
-                                            }, void 0, false, {
-                                                fileName: "src/components/Footer/Footer.tsx",
-                                                lineNumber: 147,
-                                                columnNumber: 17
-                                            }, undefined)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 130,
-                                        columnNumber: 15
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/Footer/Footer.tsx",
-                                lineNumber: 127,
-                                columnNumber: 13
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "bundesliga-footer",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                                        href: href,
-                                        rel: "noopener noreferrer",
-                                        target: "_blank",
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                            className: "link-4",
-                                            alt: "Link",
-                                            src: link
-                                        }, void 0, false, {
-                                            fileName: "src/components/Footer/Footer.tsx",
-                                            lineNumber: 159,
-                                            columnNumber: 17
-                                        }, undefined)
-                                    }, void 0, false, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 158,
-                                        columnNumber: 15
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                                        href: href1,
-                                        rel: "noopener noreferrer",
-                                        target: "_blank",
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                            className: "link-4",
-                                            alt: "Link",
-                                            src: img
-                                        }, void 0, false, {
-                                            fileName: "src/components/Footer/Footer.tsx",
-                                            lineNumber: 163,
-                                            columnNumber: 17
-                                        }, undefined)
-                                    }, void 0, false, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 162,
-                                        columnNumber: 15
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                        className: "link-5",
-                                        alt: "Link",
-                                        src: link1
-                                    }, void 0, false, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 166,
-                                        columnNumber: 15
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                                        href: href2,
-                                        rel: "noopener noreferrer",
-                                        target: "_blank",
-                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                                            className: "link-4",
-                                            alt: "Link",
-                                            src: link2
-                                        }, void 0, false, {
-                                            fileName: "src/components/Footer/Footer.tsx",
-                                            lineNumber: 169,
-                                            columnNumber: 17
-                                        }, undefined)
-                                    }, void 0, false, {
-                                        fileName: "src/components/Footer/Footer.tsx",
-                                        lineNumber: 168,
-                                        columnNumber: 15
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/Footer/Footer.tsx",
-                                lineNumber: 157,
-                                columnNumber: 13
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/Footer/Footer.tsx",
-                        lineNumber: 126,
-                        columnNumber: 11
-                    }, undefined)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/Footer/Footer.tsx",
-                lineNumber: 41,
-                columnNumber: 9
-            }, undefined)
-        }, void 0, false, {
-            fileName: "src/components/Footer/Footer.tsx",
-            lineNumber: 40,
-            columnNumber: 7
-        }, undefined)
-    }, void 0, false, {
-        fileName: "src/components/Footer/Footer.tsx",
-        lineNumber: 39,
-        columnNumber: 5
-    }, undefined);
-};
-_c = Footer;
-Footer.propTypes = {
-    footerContent: (0, _propTypesDefault.default).string,
-    link: (0, _propTypesDefault.default).string,
-    img: (0, _propTypesDefault.default).string,
-    link1: (0, _propTypesDefault.default).string,
-    link2: (0, _propTypesDefault.default).string,
-    href: (0, _propTypesDefault.default).string,
-    href1: (0, _propTypesDefault.default).string,
-    href2: (0, _propTypesDefault.default).string
-};
-var _c;
-$RefreshReg$(_c, "Footer");
-
-  $parcel$ReactRefreshHelpers$399d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","react-router-dom":"9xmpe","./style.css":"dEziC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dEziC":[function() {},{}],"9GMUG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "LeagueSelection", ()=>(0, _leagueSelection.LeagueSelection));
-var _leagueSelection = require("./LeagueSelection");
-
-},{"./LeagueSelection":"fLhsr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fLhsr":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$0c05 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$0c05.prelude(module);
-
-try {
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "LeagueSelection", ()=>LeagueSelection);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouterDom = require("react-router-dom");
-var _styleCss = require("./style.css");
-const LeagueSelection = ({ className })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-        className: `league-selection ${className}`,
-        to: "/homepage",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "name",
-                children: "Wiener Liga 1"
-            }, void 0, false, {
-                fileName: "src/components/LeagueSelection/LeagueSelection.tsx",
-                lineNumber: 20,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "subtitle",
-                children: "14 TEAMS"
-            }, void 0, false, {
-                fileName: "src/components/LeagueSelection/LeagueSelection.tsx",
-                lineNumber: 22,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/LeagueSelection/LeagueSelection.tsx",
-        lineNumber: 16,
-        columnNumber: 5
-    }, undefined);
-};
-_c = LeagueSelection;
-var _c;
-$RefreshReg$(_c, "LeagueSelection");
-
-  $parcel$ReactRefreshHelpers$0c05.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./style.css":"7yP3e","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7yP3e":[function() {},{}],"c5dw3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Sponsors", ()=>(0, _sponsors.Sponsors));
-var _sponsors = require("./Sponsors");
-
-},{"./Sponsors":"5Lv6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5Lv6V":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$a991 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$a991.prelude(module);
-
-try {
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Sponsors", ()=>Sponsors);
+parcelHelpers.export(exports, "PageHeader", ()=>PageHeader);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _styleCss = require("./style.css");
-const Sponsors = ({ className, vWhite = "/img/v-white-1.svg", sponsorsContainerClassName })=>{
+const PageHeader = ({ className, text = "Clubs" })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: `sponsors ${className}`,
+        className: `page-header ${className}`,
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            className: `sponsors-container ${sponsorsContainerClassName}`,
+            className: "header-wrapper",
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                    className: "p",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            className: "span",
-                            children: "OFFIZIELLE "
-                        }, void 0, false, {
-                            fileName: "src/components/Sponsors/Sponsors.tsx",
-                            lineNumber: 25,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            className: "text-wrapper-2",
-                            children: "PARTNER"
-                        }, void 0, false, {
-                            fileName: "src/components/Sponsors/Sponsors.tsx",
-                            lineNumber: 27,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            className: "span",
-                            children: " DER \xd6KFB"
-                        }, void 0, false, {
-                            fileName: "src/components/Sponsors/Sponsors.tsx",
-                            lineNumber: 29,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/Sponsors/Sponsors.tsx",
-                    lineNumber: 24,
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "title-2",
+                    children: text
+                }, void 0, false, {
+                    fileName: "src/components/PageHeader/PageHeader.tsx",
+                    lineNumber: 22,
                     columnNumber: 9
                 }, undefined),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "sponsors-container-2",
-                    children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "sportsselection",
-                            alt: "Sportsselection",
-                            src: "/img/sportsselection-2zlg-subl-g-t-1.png"
-                        }, void 0, false, {
-                            fileName: "src/components/Sponsors/Sponsors.tsx",
-                            lineNumber: 33,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "image-2",
-                            alt: "Image",
-                            src: "/img/image-1-1.png"
-                        }, void 0, false, {
-                            fileName: "src/components/Sponsors/Sponsors.tsx",
-                            lineNumber: 39,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "image-3",
-                            alt: "Image",
-                            src: "/img/image-2-1.png"
-                        }, void 0, false, {
-                            fileName: "src/components/Sponsors/Sponsors.tsx",
-                            lineNumber: 41,
-                            columnNumber: 11
-                        }, undefined),
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "v-white",
-                            alt: "V white",
-                            src: vWhite
-                        }, void 0, false, {
-                            fileName: "src/components/Sponsors/Sponsors.tsx",
-                            lineNumber: 43,
-                            columnNumber: 11
-                        }, undefined)
-                    ]
-                }, void 0, true, {
-                    fileName: "src/components/Sponsors/Sponsors.tsx",
-                    lineNumber: 32,
+                    className: "subtitle-2",
+                    children: "SEASON 2024-2025"
+                }, void 0, false, {
+                    fileName: "src/components/PageHeader/PageHeader.tsx",
+                    lineNumber: 24,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
-            fileName: "src/components/Sponsors/Sponsors.tsx",
-            lineNumber: 23,
+            fileName: "src/components/PageHeader/PageHeader.tsx",
+            lineNumber: 21,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
-        fileName: "src/components/Sponsors/Sponsors.tsx",
-        lineNumber: 22,
+        fileName: "src/components/PageHeader/PageHeader.tsx",
+        lineNumber: 20,
         columnNumber: 5
     }, undefined);
 };
-_c = Sponsors;
-Sponsors.propTypes = {
-    vWhite: (0, _propTypesDefault.default).string
+_c = PageHeader;
+PageHeader.propTypes = {
+    text: (0, _propTypesDefault.default).string
 };
 var _c;
-$RefreshReg$(_c, "Sponsors");
+$RefreshReg$(_c, "PageHeader");
 
-  $parcel$ReactRefreshHelpers$a991.postlude(module);
+  $parcel$ReactRefreshHelpers$7123.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"5WO9c","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5WO9c":[function() {},{}],"4JBXT":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"gjfr2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gjfr2":[function() {},{}],"4JBXT":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ViewDefaultWrapper", ()=>(0, _viewDefaultWrapper.ViewDefaultWrapper));
-var _viewDefaultWrapper = require("./ViewDefaultWrapper");
+parcelHelpers.export(exports, "DesktopNav", ()=>(0, _desktopNav.DesktopNav));
+var _desktopNav = require("./DesktopNav");
 
-},{"./ViewDefaultWrapper":"iThfI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iThfI":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$340a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"./DesktopNav":"1SQcP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1SQcP":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$46de = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$340a.prelude(module);
+$parcel$ReactRefreshHelpers$46de.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ViewDefaultWrapper", ()=>ViewDefaultWrapper);
+parcelHelpers.export(exports, "DesktopNav", ()=>DesktopNav);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
@@ -36638,9 +36329,16 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
 var _styleCss = require("./style.css");
+var _authService = require("../../network/AuthService");
+var _authServiceDefault = parcelHelpers.interopDefault(_authService);
+var _s = $RefreshSig$();
 // Reusable LeagueRowItem Component
-const LeagueRowItem = ({ img, text, separator })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "league-row-item-6",
+const LeagueRowItem = ({ img, text, separator, isActive, onClick })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `league-row-item-6 ${isActive ? "active" : ""}`,
+        onClick: onClick,
+        style: {
+            cursor: "pointer"
+        },
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "league-row-item-wrapper",
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36654,22 +36352,22 @@ const LeagueRowItem = ({ img, text, separator })=>/*#__PURE__*/ (0, _jsxDevRunti
                                 alt: "League row item",
                                 src: img
                             }, void 0, false, {
-                                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                lineNumber: 12,
+                                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                lineNumber: 17,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "league-row-item-9",
                                 children: text
                             }, void 0, false, {
-                                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                lineNumber: 13,
+                                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                lineNumber: 18,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
-                        fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                        lineNumber: 11,
+                        fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                        lineNumber: 16,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -36677,116 +36375,125 @@ const LeagueRowItem = ({ img, text, separator })=>/*#__PURE__*/ (0, _jsxDevRunti
                         alt: "Separator",
                         src: separator
                     }, void 0, false, {
-                        fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                        lineNumber: 15,
+                        fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                        lineNumber: 20,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
-                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                lineNumber: 10,
+                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                lineNumber: 15,
                 columnNumber: 13
             }, undefined)
         }, void 0, false, {
-            fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-            lineNumber: 9,
+            fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+            lineNumber: 14,
             columnNumber: 9
         }, undefined)
     }, void 0, false, {
-        fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-        lineNumber: 8,
+        fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+        lineNumber: 9,
         columnNumber: 5
     }, undefined);
 _c = LeagueRowItem;
 LeagueRowItem.propTypes = {
     img: (0, _propTypesDefault.default).string.isRequired,
     text: (0, _propTypesDefault.default).string.isRequired,
-    separator: (0, _propTypesDefault.default).string.isRequired
+    separator: (0, _propTypesDefault.default).string.isRequired,
+    isActive: (0, _propTypesDefault.default).bool
 };
-const ViewDefaultWrapper = ({ view = "default", className = "", navRowWrapper = "/img/nav-row-wrapper-content-logo-9.svg", navRowWrapper1 = "/img/nav-row-wrapper-content-login-wrapper-image-4.svg", mobileBurgerMenu1 = "/img/mobile-burger-menu-10.svg", to = "/" })=>{
+const DesktopNav = ({ view = "default", className = "", navRowWrapper = "/img/nav-row-wrapper-content-logo-9.svg", navRowWrapper1 = "/img/nav-row-wrapper-content-login-wrapper-image-4.svg", mobileBurgerMenu1 = "/img/mobile-burger-menu-10.svg", to = "/" })=>{
+    _s();
+    const [activeLeague, setActiveLeague] = (0, _react.useState)(null);
+    const authService = new (0, _authServiceDefault.default)();
+    const navigate = (0, _reactRouterDom.useNavigate)(); // Initialize the navigate function
     // League Rows Data
     const leagueRows = [
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "W1",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "2. Wiener Liga A",
+            code: "W2A",
+            id: "80B164B6-4015-4D95-A432-D85CBAD5AF8B"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "G1",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Wiener Liga",
+            code: "W1",
+            id: "B236BAAD-404C-4451-9C30-122CBD9EB0DA"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "W2A",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "2. Wiener Liga B",
+            code: "W2B",
+            id: "F6813EF5-BF80-4A2D-B9B3-3C5845A9CC98"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "W2B",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "3. Wiener Liga A",
+            code: "W3A",
+            id: "69A15306-4F1E-4A5B-AE64-5487B7B99CDD"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "G2",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "3. Wiener Liga B",
+            code: "W3B",
+            id: "77F04A92-7E91-4C65-9E96-0FA1E1033805"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "W3A",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "4. Wiener Liga A",
+            code: "W4A",
+            id: "F58269FD-DE67-4E5D-BBD2-780877555F2B"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "W3B",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "4. Wiener Liga B",
+            code: "W4B",
+            id: "29FFA358-A32B-4F60-904B-D66B118E1661"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "W4A",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Linz",
+            code: "L1",
+            id: "D506E56C-3877-4581-90F0-26D144EFBE83"
         },
         {
-            img: "/img/league-row-item-content-img-108.png",
-            text: "W4B",
-            separator: "/img/league-row-item-content-seperator-108.svg"
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Graz",
+            code: "G1",
+            id: "E171419D-C82E-4620-B691-B0D7BFEFB154"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Salzburg",
+            code: "SBZ",
+            id: "4C0521AB-B28B-4C5B-A147-E6BA50042348"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Innsbruck",
+            code: "INS",
+            id: "AD2C1309-7F78-4E31-9FFC-957D1A38A43E"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "2. Liga Innsbruck",
+            code: "INS2",
+            id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8"
         }
     ];
-    // Navigation Links
-    const navLinks = [
-        {
-            label: "Startseite",
-            to: "/02u46-homepage-desktop"
-        },
-        {
-            label: "Clubs",
-            to: "#"
-        },
-        {
-            label: "Tabelle",
-            to: "#"
-        },
-        {
-            label: "Spielplan",
-            to: "#"
-        },
-        {
-            label: "Leaderboards",
-            to: "#"
-        },
-        {
-            label: "News",
-            to: "#"
-        },
-        {
-            label: "Bund",
-            to: "#"
-        },
-        {
-            label: "Kontakt",
-            to: "#"
-        }
-    ];
+    // Fetch active league from cookie on mount
+    (0, _react.useEffect)(()=>{
+        const savedLeagueCode = authService.getLeagueCode(); // Fetch league code
+        if (savedLeagueCode) setActiveLeague(savedLeagueCode);
+    }, []);
+    const handleLeagueClick = (code, id)=>{
+        authService.setLeagueData(code, id); // Save data to cookies
+        console.log("PRESS OCCUR and REGISTERING PRESS");
+        if (window.location.pathname === "/homepage") // Force reload if already on /homepage
+        window.location.reload();
+        else navigate("/homepage"); // Normal navigation
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: `view-default-wrapper ${view} ${className}`,
         children: [
@@ -36794,23 +36501,28 @@ const ViewDefaultWrapper = ({ view = "default", className = "", navRowWrapper = 
                 className: "league-rows-2",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "leauge-row-wrapper-2",
+                    style: {
+                        cursor: "pointer"
+                    },
                     children: leagueRows.map((row, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(LeagueRowItem, {
                             img: row.img,
-                            text: row.text,
-                            separator: row.separator
+                            text: row.code,
+                            separator: "/img/league-row-item-content-seperator-90.svg",
+                            isActive: row.code === activeLeague,
+                            onClick: ()=>handleLeagueClick(row.code, row.id)
                         }, index, false, {
-                            fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                            lineNumber: 67,
+                            fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                            lineNumber: 86,
                             columnNumber: 25
                         }, undefined))
                 }, void 0, false, {
-                    fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                    lineNumber: 65,
+                    fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                    lineNumber: 84,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
-                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                lineNumber: 64,
+                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                lineNumber: 83,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36818,13 +36530,20 @@ const ViewDefaultWrapper = ({ view = "default", className = "", navRowWrapper = 
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "nav-row-wrapper-5",
                     children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "nav-row-wrapper-6",
-                            alt: "Logo",
-                            src: navRowWrapper
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: "/",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                className: "nav-row-wrapper-6",
+                                alt: "Logo",
+                                src: navRowWrapper
+                            }, void 0, false, {
+                                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                lineNumber: 102,
+                                columnNumber: 25
+                            }, undefined)
                         }, void 0, false, {
-                            fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                            lineNumber: 80,
+                            fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                            lineNumber: 101,
                             columnNumber: 21
                         }, undefined),
                         view === "default" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -36833,7 +36552,40 @@ const ViewDefaultWrapper = ({ view = "default", className = "", navRowWrapper = 
                                     className: "nav-row-wrapper-7",
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                         className: "nav-row-wrapper-8",
-                                        children: navLinks.map((link, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                                        children: [
+                                            {
+                                                label: "Startseite",
+                                                to: "/homepage"
+                                            },
+                                            {
+                                                label: "Teams",
+                                                to: "/teams"
+                                            },
+                                            {
+                                                label: "Tabelle",
+                                                to: "/tabelle"
+                                            },
+                                            {
+                                                label: "Spielplan",
+                                                to: "/spielplan"
+                                            },
+                                            {
+                                                label: "Leaderboards",
+                                                to: "/leaderboards"
+                                            },
+                                            {
+                                                label: "News",
+                                                to: "/news"
+                                            },
+                                            {
+                                                label: "Bund",
+                                                to: "/bund"
+                                            },
+                                            {
+                                                label: "Kontakt",
+                                                to: "/kontakt"
+                                            }
+                                        ].map((link, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                                                 className: "item-3",
                                                 to: link.to,
                                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36842,28 +36594,28 @@ const ViewDefaultWrapper = ({ view = "default", className = "", navRowWrapper = 
                                                         className: "text-wrapper-8",
                                                         children: link.label
                                                     }, void 0, false, {
-                                                        fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                                        lineNumber: 89,
+                                                        fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                                        lineNumber: 122,
                                                         columnNumber: 49
                                                     }, undefined)
                                                 }, void 0, false, {
-                                                    fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                                    lineNumber: 88,
+                                                    fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                                    lineNumber: 121,
                                                     columnNumber: 45
                                                 }, undefined)
                                             }, index, false, {
-                                                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                                lineNumber: 87,
+                                                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                                lineNumber: 120,
                                                 columnNumber: 41
                                             }, undefined))
                                     }, void 0, false, {
-                                        fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                        lineNumber: 85,
+                                        fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                        lineNumber: 109,
                                         columnNumber: 33
                                     }, undefined)
                                 }, void 0, false, {
-                                    fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                    lineNumber: 84,
+                                    fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                    lineNumber: 108,
                                     columnNumber: 29
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -36876,27 +36628,27 @@ const ViewDefaultWrapper = ({ view = "default", className = "", navRowWrapper = 
                                                 alt: "Login Icon",
                                                 src: navRowWrapper1
                                             }, void 0, false, {
-                                                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                                lineNumber: 97,
+                                                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                                lineNumber: 130,
                                                 columnNumber: 37
                                             }, undefined),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                                 className: "text-wrapper-10",
                                                 children: "Team Login"
                                             }, void 0, false, {
-                                                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                                lineNumber: 102,
+                                                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                                lineNumber: 135,
                                                 columnNumber: 37
                                             }, undefined)
                                         ]
                                     }, void 0, true, {
-                                        fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                        lineNumber: 96,
+                                        fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                        lineNumber: 129,
                                         columnNumber: 33
                                     }, undefined)
                                 }, void 0, false, {
-                                    fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                    lineNumber: 95,
+                                    fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                    lineNumber: 128,
                                     columnNumber: 29
                                 }, undefined)
                             ]
@@ -36908,35 +36660,40 @@ const ViewDefaultWrapper = ({ view = "default", className = "", navRowWrapper = 
                                 alt: "Mobile Burger Menu",
                                 src: mobileBurgerMenu1
                             }, void 0, false, {
-                                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                                lineNumber: 111,
+                                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                                lineNumber: 144,
                                 columnNumber: 29
                             }, undefined)
                         }, void 0, false, {
-                            fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                            lineNumber: 110,
+                            fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                            lineNumber: 143,
                             columnNumber: 25
                         }, undefined)
                     ]
                 }, void 0, true, {
-                    fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                    lineNumber: 79,
+                    fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                    lineNumber: 100,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
-                fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-                lineNumber: 78,
+                fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+                lineNumber: 99,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
-        fileName: "src/components/ViewDefaultWrapper/ViewDefaultWrapper.tsx",
-        lineNumber: 62,
+        fileName: "src/components/ViewDefaultWrapper/DesktopNav.tsx",
+        lineNumber: 81,
         columnNumber: 9
     }, undefined);
 };
-_c1 = ViewDefaultWrapper;
-ViewDefaultWrapper.propTypes = {
+_s(DesktopNav, "x6JIRbkAZut/8v9Bmfd6xBfXrCs=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c1 = DesktopNav;
+DesktopNav.propTypes = {
     view: (0, _propTypesDefault.default).oneOf([
         "mobile",
         "default"
@@ -36949,14 +36706,145 @@ ViewDefaultWrapper.propTypes = {
 };
 var _c, _c1;
 $RefreshReg$(_c, "LeagueRowItem");
-$RefreshReg$(_c1, "ViewDefaultWrapper");
+$RefreshReg$(_c1, "DesktopNav");
 
-  $parcel$ReactRefreshHelpers$340a.postlude(module);
+  $parcel$ReactRefreshHelpers$46de.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","react-router-dom":"9xmpe","./style.css":"7Up6Q","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7Up6Q":[function() {},{}],"bIsa6":[function() {},{}],"lyfSW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","react-router-dom":"9xmpe","./style.css":"7Up6Q","../../network/AuthService":"6nPiU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7Up6Q":[function() {},{}],"6nPiU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class AuthService {
+    constructor(){
+        // this.baseURL = 'https://api.oekfb.eu/';
+        this.baseURL = "http://localhost:8080"; // Uncomment for local development
+    }
+    /**
+     * Log in a user with the given email and password.
+     * @param {string} email - The user's email.
+     * @param {string} password - The user's password.
+     * @returns {Object} - An object indicating success or failure and any relevant data.
+     */ async login(email, password) {
+        const url = `${this.baseURL}/users/login`;
+        const base64Credentials = btoa(`${email}:${password}`);
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Basic ${base64Credentials}`
+                },
+                credentials: "include"
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Login response data:", data);
+                const token = data.token;
+                if (!token) {
+                    console.error("Token is undefined in the response.");
+                    return {
+                        success: false,
+                        message: "Token is missing from the response."
+                    };
+                }
+                const userId = data.user.id;
+                if (userId) // Return user data without setting cookies directly
+                return {
+                    success: true,
+                    user: data.user,
+                    token: token
+                };
+                else return {
+                    success: false,
+                    message: "Failed to fetch user information."
+                };
+            } else {
+                const errorData = await response.json();
+                return {
+                    success: false,
+                    message: errorData.message || "Login failed"
+                };
+            }
+        } catch (error) {
+            console.error("Error logging in:", error);
+            return {
+                success: false,
+                message: "An error occurred while logging in"
+            };
+        }
+    }
+    /**
+     * Set a cookie with specified key and value.
+     * @param {string} key - The name of the cookie.
+     * @param {string} value - The value of the cookie.
+     */ setCookie(key, value) {
+        const secureAttribute = window.location.protocol === "https:" ? "; secure" : "";
+        const cookieOptions = `path=/; max-age=${604800}; samesite=strict${secureAttribute}`;
+        document.cookie = `${key}=${value}; ${cookieOptions}`;
+    }
+    /**
+     * Retrieve the value of a cookie by name.
+     * @param {string} name - The name of the cookie.
+     * @returns {string|null} - The value of the cookie, or null if not found.
+     */ getCookie(name) {
+        const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+        if (match) return match[2];
+        return null;
+    }
+    /**
+     * Set the league code and league ID in cookies.
+     * @param {string} leagueCode - The league code to set.
+     * @param {string} leagueID - The league ID to set.
+     */ setLeagueData(leagueCode, leagueID) {
+        this.setCookie("leagueCode", leagueCode);
+        this.setCookie("leagueID", leagueID);
+    }
+    /**
+     * Get the league code stored in cookies.
+     * @returns {string|null} - The league code, or null if not found.
+     */ getLeagueCode() {
+        return this.getCookie("leagueCode");
+    }
+    /**
+     * Get the league ID stored in cookies.
+     * @returns {string|null} - The league ID, or null if not found.
+     */ getLeagueID() {
+        return this.getCookie("leagueID");
+    }
+    /**
+     * Log out the user by clearing authentication cookies and league data.
+     */ logoutUser() {
+        document.cookie = "authToken=; path=/; max-age=0; secure; samesite=strict";
+        document.cookie = "adminID=; path=/; max-age=0; secure; samesite=strict";
+        document.cookie = "leagueCode=; path=/; max-age=0; secure; samesite=strict";
+        document.cookie = "leagueID=; path=/; max-age=0; secure; samesite=strict";
+    }
+    /**
+     * Check if the user is authenticated.
+     * @returns {boolean} - True if authenticated, false otherwise.
+     */ isAuthenticated() {
+        const adminID = this.getCookie("adminID");
+        const authToken = this.getCookie("authToken");
+        return !!(adminID && authToken);
+    }
+    /**
+     * Get the user ID stored in cookies.
+     * @returns {string|null} - The user ID, or null if not found.
+     */ getTUserID() {
+        return this.getCookie("adminID");
+    }
+    /**
+     * Get the authentication token stored in cookies.
+     * @returns {string|null} - The auth token, or null if not found.
+     */ getAuthToken() {
+        return this.getCookie("authToken");
+    }
+}
+exports.default = AuthService;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lyfSW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Navigation", ()=>(0, _navigation.Navigation));
@@ -36979,89 +36867,136 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _styleCss = require("./style.css");
 var _elementMobilenav = require("../../screens/ElementMobilenav");
+var _authService = require("../../network/AuthService");
+var _authServiceDefault = parcelHelpers.interopDefault(_authService);
+var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
 const Navigation = ({ className = "", navRowWrapper = "/img/nav-row-wrapper-content-logo-7.svg", mobileBurgerMenu = "/img/mobile-burger-menu-7.svg" })=>{
     _s();
     const [isMobile, setIsMobile] = (0, _react.useState)(window.innerWidth <= 800);
     const [isDrawerOpen, setIsDrawerOpen] = (0, _react.useState)(false);
+    const [activeLeague, setActiveLeague] = (0, _react.useState)(null); // State to track active league
+    const navigate = (0, _reactRouterDom.useNavigate)(); // Initialize the navigate function
+    const authService = new (0, _authServiceDefault.default)();
+    // League data
+    const leagueData = [
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "2. Wiener Liga A",
+            code: "W2A",
+            id: "80B164B6-4015-4D95-A432-D85CBAD5AF8B"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Wiener Liga",
+            code: "W1",
+            id: "B236BAAD-404C-4451-9C30-122CBD9EB0DA"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "2. Wiener Liga B",
+            code: "W2B",
+            id: "F6813EF5-BF80-4A2D-B9B3-3C5845A9CC98"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "3. Wiener Liga A",
+            code: "W3A",
+            id: "69A15306-4F1E-4A5B-AE64-5487B7B99CDD"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "3. Wiener Liga B",
+            code: "W3B",
+            id: "77F04A92-7E91-4C65-9E96-0FA1E1033805"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "4. Wiener Liga A",
+            code: "W4A",
+            id: "F58269FD-DE67-4E5D-BBD2-780877555F2B"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "4. Wiener Liga B",
+            code: "W4B",
+            id: "29FFA358-A32B-4F60-904B-D66B118E1661"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Linz",
+            code: "L1",
+            id: "D506E56C-3877-4581-90F0-26D144EFBE83"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Graz",
+            code: "G1",
+            id: "E171419D-C82E-4620-B691-B0D7BFEFB154"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Salzburg",
+            code: "SBZ",
+            id: "4C0521AB-B28B-4C5B-A147-E6BA50042348"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "1. Liga Innsbruck",
+            code: "INS",
+            id: "AD2C1309-7F78-4E31-9FFC-957D1A38A43E"
+        },
+        {
+            img: "/img/league-row-item-content-img-90.png",
+            text: "2. Liga Innsbruck",
+            code: "INS2",
+            id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8"
+        }
+    ];
+    // On component mount, load the active league from cookie
+    (0, _react.useEffect)(()=>{
+        const leagueCode = authService.getLeagueCode(); // Fetch league code from cookie
+        if (leagueCode) setActiveLeague(leagueCode);
+    }, []);
     // Handle screen resizing
     (0, _react.useEffect)(()=>{
         const handleResize = ()=>setIsMobile(window.innerWidth <= 800);
         window.addEventListener("resize", handleResize);
         return ()=>window.removeEventListener("resize", handleResize);
     }, []);
-    // Array for league row items
-    const leagueRows = [
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "W1",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "G1",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "W2A",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "W2B",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "G2",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "W3A",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "W3B",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "W4A",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        },
-        {
-            img: "/img/league-row-item-content-img-90.png",
-            text: "W4B",
-            separator: "/img/league-row-item-content-seperator-90.svg"
-        }
-    ];
+    // Handle league row click
+    const handleLeagueClick = (code, id)=>{
+        authService.setLeagueData(code, id); // Save data to cookies
+        if (window.location.pathname === "/homepage") // Force reload if already on /homepage
+        window.location.reload();
+        else navigate("/homepage"); // Normal navigation
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: `navigation-desktop ${className}`,
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "league-rows",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "leauge-row-wrapper",
-                    children: leagueRows.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(LeagueRow, {
+                    className: "league-row-wrapper",
+                    children: leagueData.map((item, index)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(LeagueRow, {
                             img: item.img,
-                            text: item.text,
-                            separator: item.separator
+                            text: item.code,
+                            separator: "/img/league-row-item-content-seperator-90.svg",
+                            onClick: ()=>handleLeagueClick(item.code, item.id),
+                            isActive: item.code === activeLeague
                         }, index, false, {
                             fileName: "src/components/Navigation/Navigation.tsx",
-                            lineNumber: 42,
+                            lineNumber: 69,
                             columnNumber: 25
                         }, undefined))
                 }, void 0, false, {
                     fileName: "src/components/Navigation/Navigation.tsx",
-                    lineNumber: 40,
+                    lineNumber: 67,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Navigation/Navigation.tsx",
-                lineNumber: 39,
+                lineNumber: 66,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37069,13 +37004,20 @@ const Navigation = ({ className = "", navRowWrapper = "/img/nav-row-wrapper-cont
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "nav-row-wrapper-2",
                     children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "nav-row-logo",
-                            alt: "Nav row wrapper",
-                            src: navRowWrapper
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                            to: "/",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                className: "nav-row-logo",
+                                alt: "Nav row wrapper",
+                                src: navRowWrapper
+                            }, void 0, false, {
+                                fileName: "src/components/Navigation/Navigation.tsx",
+                                lineNumber: 85,
+                                columnNumber: 25
+                            }, undefined)
                         }, void 0, false, {
                             fileName: "src/components/Navigation/Navigation.tsx",
-                            lineNumber: 55,
+                            lineNumber: 84,
                             columnNumber: 21
                         }, undefined),
                         isMobile ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -37085,25 +37027,25 @@ const Navigation = ({ className = "", navRowWrapper = "/img/nav-row-wrapper-cont
                             onClick: ()=>setIsDrawerOpen(true)
                         }, void 0, false, {
                             fileName: "src/components/Navigation/Navigation.tsx",
-                            lineNumber: 62,
+                            lineNumber: 88,
                             columnNumber: 25
                         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             className: "nav-login-button",
                             children: "Login"
                         }, void 0, false, {
                             fileName: "src/components/Navigation/Navigation.tsx",
-                            lineNumber: 69,
+                            lineNumber: 95,
                             columnNumber: 25
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Navigation/Navigation.tsx",
-                    lineNumber: 54,
+                    lineNumber: 83,
                     columnNumber: 17
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Navigation/Navigation.tsx",
-                lineNumber: 53,
+                lineNumber: 82,
                 columnNumber: 13
             }, undefined),
             isDrawerOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37113,7 +37055,7 @@ const Navigation = ({ className = "", navRowWrapper = "/img/nav-row-wrapper-cont
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _elementMobilenav.ElementMobilenav), {}, void 0, false, {
                             fileName: "src/components/Navigation/Navigation.tsx",
-                            lineNumber: 78,
+                            lineNumber: 104,
                             columnNumber: 25
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -37123,28 +37065,32 @@ const Navigation = ({ className = "", navRowWrapper = "/img/nav-row-wrapper-cont
                             onClick: ()=>setIsDrawerOpen(false)
                         }, void 0, false, {
                             fileName: "src/components/Navigation/Navigation.tsx",
-                            lineNumber: 79,
+                            lineNumber: 105,
                             columnNumber: 25
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/Navigation/Navigation.tsx",
-                    lineNumber: 77,
+                    lineNumber: 103,
                     columnNumber: 21
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/Navigation/Navigation.tsx",
-                lineNumber: 76,
+                lineNumber: 102,
                 columnNumber: 17
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/Navigation/Navigation.tsx",
-        lineNumber: 37,
+        lineNumber: 64,
         columnNumber: 9
     }, undefined);
 };
-_s(Navigation, "xsCiNf2h5PJ4Vgu9iyTReNLCt1U=");
+_s(Navigation, "rru1kgyItTTrPGf00IqEX9wdsMk=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
 _c = Navigation;
 Navigation.propTypes = {
     className: (0, _propTypesDefault.default).string,
@@ -37152,8 +37098,12 @@ Navigation.propTypes = {
     mobileBurgerMenu: (0, _propTypesDefault.default).string
 };
 // Reusable LeagueRow Component
-const LeagueRow = ({ img, text, separator })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "league-row-item",
+const LeagueRow = ({ img, text, separator, onClick, isActive })=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `league-row-item ${isActive ? "active" : ""}`,
+        onClick: onClick,
+        style: {
+            cursor: "pointer"
+        },
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "link",
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37168,7 +37118,7 @@ const LeagueRow = ({ img, text, separator })=>/*#__PURE__*/ (0, _jsxDevRuntime.j
                                 src: img
                             }, void 0, false, {
                                 fileName: "src/components/Navigation/Navigation.tsx",
-                                lineNumber: 104,
+                                lineNumber: 134,
                                 columnNumber: 21
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37176,13 +37126,13 @@ const LeagueRow = ({ img, text, separator })=>/*#__PURE__*/ (0, _jsxDevRuntime.j
                                 children: text
                             }, void 0, false, {
                                 fileName: "src/components/Navigation/Navigation.tsx",
-                                lineNumber: 105,
+                                lineNumber: 135,
                                 columnNumber: 21
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/Navigation/Navigation.tsx",
-                        lineNumber: 103,
+                        lineNumber: 133,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -37191,30 +37141,32 @@ const LeagueRow = ({ img, text, separator })=>/*#__PURE__*/ (0, _jsxDevRuntime.j
                         src: separator
                     }, void 0, false, {
                         fileName: "src/components/Navigation/Navigation.tsx",
-                        lineNumber: 107,
+                        lineNumber: 137,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/Navigation/Navigation.tsx",
-                lineNumber: 102,
+                lineNumber: 132,
                 columnNumber: 13
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/Navigation/Navigation.tsx",
-            lineNumber: 101,
+            lineNumber: 131,
             columnNumber: 9
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/Navigation/Navigation.tsx",
-        lineNumber: 100,
+        lineNumber: 126,
         columnNumber: 5
     }, undefined);
 _c1 = LeagueRow;
 LeagueRow.propTypes = {
     img: (0, _propTypesDefault.default).string.isRequired,
     text: (0, _propTypesDefault.default).string.isRequired,
-    separator: (0, _propTypesDefault.default).string.isRequired
+    separator: (0, _propTypesDefault.default).string.isRequired,
+    onClick: (0, _propTypesDefault.default).func.isRequired,
+    isActive: (0, _propTypesDefault.default).bool.isRequired
 };
 var _c, _c1;
 $RefreshReg$(_c, "Navigation");
@@ -37225,7 +37177,7 @@ $RefreshReg$(_c1, "LeagueRow");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","./style.css":"f3w5c","../../screens/ElementMobilenav":"l1pMF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"f3w5c":[function() {},{}],"l1pMF":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","./style.css":"f3w5c","../../screens/ElementMobilenav":"l1pMF","../../network/AuthService":"6nPiU","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"f3w5c":[function() {},{}],"l1pMF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ElementMobilenav", ()=>(0, _elementMobilenav.ElementMobilenav));
@@ -37287,8 +37239,9 @@ const ElementMobilenav = ()=>{
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "mobile-menu-items",
                     children: [
-                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             className: "mobile-menu-item",
+                            to: "/homepage",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "mobile-menu-item-2",
                                 children: "Startseite"
@@ -37304,10 +37257,10 @@ const ElementMobilenav = ()=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             className: "mobile-menu-item",
-                            to: "/03u46-clubs-desktop-1",
+                            to: "/teams",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "mobile-menu-item-2",
-                                children: "Clubs"
+                                children: "Teams"
                             }, void 0, false, {
                                 fileName: "src/screens/ElementMobilenav/ElementMobilenav.tsx",
                                 lineNumber: 23,
@@ -37320,7 +37273,7 @@ const ElementMobilenav = ()=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             className: "mobile-menu-item",
-                            to: "/04u46-table-mobile",
+                            to: "/tabelle",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "mobile-menu-item-2",
                                 children: "Tabelle"
@@ -37336,7 +37289,7 @@ const ElementMobilenav = ()=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             className: "mobile-menu-item",
-                            to: "/07u46-gameday-mobile",
+                            to: "/spielplan",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "mobile-menu-item-2",
                                 children: "Spielplan"
@@ -37352,7 +37305,7 @@ const ElementMobilenav = ()=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             className: "mobile-menu-item",
-                            to: "/17u46-leaderboard-mobile",
+                            to: "/leaderboards",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "mobile-menu-item-2",
                                 children: "Leaderboards"
@@ -37368,7 +37321,7 @@ const ElementMobilenav = ()=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             className: "mobile-menu-item",
-                            to: "/05u46-news-mobile",
+                            to: "/news",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "mobile-menu-item-2",
                                 children: "News"
@@ -37399,7 +37352,7 @@ const ElementMobilenav = ()=>{
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                             className: "mobile-menu-item-wrapper",
-                            to: "/08u46-contact-mobile",
+                            to: "/kontakt",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                                 className: "mobile-menu-item-2",
                                 children: "Kontakt"
@@ -37469,6 +37422,4472 @@ $RefreshReg$(_c, "ElementMobilenav");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./style.css":"grbtV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"grbtV":[function() {},{}]},["94b1M","1xC6H","4aBH6"], "4aBH6", "parcelRequire34c4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./style.css":"grbtV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"grbtV":[function() {},{}],"dMbvz":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _apiService = require("./ApiService");
+var _apiServiceDefault = parcelHelpers.interopDefault(_apiService);
+/**
+ * ClientController class to interact with the Client API endpoints.
+ */ class ClientController {
+    constructor(){
+        this.apiService = new (0, _apiServiceDefault.default)();
+    }
+    /**
+     * Fetch the homepage data for a specific league.
+     * GET /home/league/:code
+     * @param {string} code - League code.
+     * @returns {Promise<Object>} Homepage data.
+     */ async fetchHomepageData(code) {
+        return this.apiService.get(`webClient/home/league/${code}`);
+    }
+    /**
+     * Fetch the league selection.
+     * GET /selection
+     * @returns {Promise<Object[]>} List of leagues.
+     */ async fetchLeagueSelection() {
+        return this.apiService.get(`webClient/selection`);
+    }
+    /**
+     * Fetch the clubs of a specific league.
+     * GET /clubs/league/:code
+     * @param {string} code - League code.
+     * @returns {Promise<Object[]>} List of clubs.
+     */ async fetchLeagueClubs(code) {
+        return this.apiService.get(`webClient/clubs/league/${code}`);
+    }
+    /**
+     * Fetch details of a specific club.
+     * GET /clubs/detail/:id
+     * @param {string} id - Club ID.
+     * @returns {Promise<Object>} Club details.
+     */ async fetchClubDetail(id) {
+        return this.apiService.get(`webClient/clubs/detail/${id}`);
+    }
+    /**
+     * Fetch the league table.
+     * GET /table/league/:code
+     * @param {string} code - League code.
+     * @returns {Promise<Object[]>} Table data.
+     */ async fetchTable(code) {
+        return this.apiService.get(`webClient/table/league/${code}`);
+    }
+    /**
+     * Fetch news for a specific league.
+     * GET /news/league/:code
+     * @param {string} code - League code.
+     * @returns {Promise<Object[]>} List of news items.
+     */ async fetchLeagueNews(code) {
+        return this.apiService.get(`webClient/news/league/${code}`);
+    }
+    /**
+     * Fetch details of a specific news item.
+     * GET /news/detail/:id
+     * @param {string} id - News item ID.
+     * @returns {Promise<Object>} News item details.
+     */ async fetchNewsDetail(id) {
+        return this.apiService.get(`webClient/news/detail/${id}`);
+    }
+    /**
+     * Fetch matches for the first season in a league.
+     * GET /matches/league/:code
+     * @param {string} code - League code.
+     * @returns {Promise<Object[]>} List of matches.
+     */ async fetchFirstSeasonMatches(code) {
+        return this.apiService.get(`webClient/matches/league/${code}`);
+    }
+    /**
+     * Fetch details of a specific match.
+     * GET /match/detail/:id
+     * @param {string} id - Match ID.
+     * @returns {Promise<Object>} Match details.
+     */ async fetchMatchDetail(id) {
+        return this.apiService.get(`webClient/match/detail/${id}`);
+    }
+    /**
+     * Fetch details of a specific player.
+     * GET /player/detail/:id
+     * @param {string} id - Player ID.
+     * @returns {Promise<Object>} Player details.
+     */ async fetchPlayerDetail(id) {
+        return this.apiService.get(`webClient/player/detail/${id}`);
+    }
+    /**
+     * Fetch the goal leaderboard for a specific league.
+     * GET /leaderboard/:id/goal
+     * @param {string} id - League ID.
+     * @returns {Promise<Object[]>} Goal leaderboard data.
+     */ async fetchGoalLeaderBoard(id) {
+        return this.apiService.get(`webClient/leaderboard/${id}/goal`);
+    }
+    /**
+     * Fetch the red card leaderboard for a specific league.
+     * GET /leaderboard/:id/redCard
+     * @param {string} id - League ID.
+     * @returns {Promise<Object[]>} Red card leaderboard data.
+     */ async fetchRedCardLeaderBoard(id) {
+        return this.apiService.get(`webClient/leaderboard/${id}/redCard`);
+    }
+    /**
+     * Fetch the yellow card leaderboard for a specific league.
+     * GET /leaderboard/:id/yellowCard
+     * @param {string} id - League ID.
+     * @returns {Promise<Object[]>} Yellow card leaderboard data.
+     */ async fetchYellowCardLeaderBoard(id) {
+        return this.apiService.get(`webClient/leaderboard/${id}/yellowCard`);
+    }
+    /**
+     * Fetch blocked players for a specific league.
+     * GET /blocked/league/:code
+     * @param {string} code - League code.
+     * @returns {Promise<Object[]>} List of blocked players.
+     */ async fetchBlockedPlayers(code) {
+        return this.apiService.get(`webClient/blocked/league/${code}`);
+    }
+}
+exports.default = ClientController;
+
+},{"./ApiService":"iLFBd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iLFBd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+class ApiService {
+    constructor(){
+        // this.baseURL = "https://api.oekfb.eu";
+        this.baseURL = "http://localhost:8080";
+    }
+    async request(method, endpoint, body = null, headers = {}) {
+        const url = `${this.baseURL}/${endpoint}`;
+        const options = {
+            method,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+                ...headers
+            },
+            credentials: "include"
+        };
+        if (body) options.body = JSON.stringify(body);
+        // Debugging log to print the request details
+        console.log(`Request Method: ${method}`);
+        console.log(`Request URL: ${url}`);
+        if (body) console.log("Request Body:", JSON.stringify(body, null, 2));
+        console.log("Request Headers:", JSON.stringify(options.headers, null, 2));
+        try {
+            const response = await fetch(url, options);
+            const text = await response.text();
+            if (response.ok) try {
+                const jsonResponse = JSON.parse(text);
+                console.log("Response:", JSON.stringify(jsonResponse, null, 2));
+                return jsonResponse;
+            } catch (e) {
+                console.log("Response:", text);
+                return text;
+            }
+            else {
+                const errorData = JSON.parse(text);
+                console.log("Response Error:", JSON.stringify(errorData, null, 2));
+                throw new Error(errorData.message || "Request failed");
+            }
+        } catch (error) {
+            console.error(`Error with ${method} request to ${endpoint}:`, error);
+            throw error;
+        }
+    }
+    async get(endpoint, headers = {}) {
+        console.log(`GET Request to: ${endpoint}`);
+        const response = await this.request("GET", endpoint, null, headers);
+        console.log("Response:", JSON.stringify(response, null, 2));
+        return response;
+    }
+    async post(endpoint, body, headers = {}) {
+        console.log(`POST Request to: ${endpoint}`);
+        console.log("Request Body:", JSON.stringify(body, null, 2));
+        const response = await this.request("POST", endpoint, body, headers);
+        console.log("Response:", JSON.stringify(response, null, 2));
+        return response;
+    }
+    async patch(endpoint, body, headers = {}) {
+        console.log(`PATCH Request to: ${endpoint}`);
+        console.log("Request Body:", JSON.stringify(body, null, 2));
+        const response = await this.request("PATCH", endpoint, body, headers);
+        console.log("Response:", JSON.stringify(response, null, 2));
+        return response;
+    }
+    async delete(endpoint, headers = {}) {
+        console.log(`DELETE Request to: ${endpoint}`);
+        const response = await this.request("DELETE", endpoint, null, headers);
+        console.log("Response:", JSON.stringify(response, null, 2));
+        return response;
+    }
+}
+exports.default = ApiService;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fxVZh":[function() {},{}],"kfaX2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementGameReport", ()=>(0, _elementGameReport.ElementGameReport));
+var _elementGameReport = require("./ElementGameReport");
+
+},{"./ElementGameReport":"j4f1v","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"j4f1v":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$7bf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$7bf5.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementGameReport", ()=>ElementGameReport);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _breakpoints = require("../../breakpoints");
+var _reactRouterDom = require("react-router-dom");
+var _divWrapper = require("../../components/DivWrapper");
+var _eventRow = require("../../components/EventRow");
+var _footer = require("../../components/Footer");
+var _navigation = require("../../components/Navigation");
+var _teamDetailSquadWrapper = require("../../components/TeamDetailSquadWrapper");
+var _styleCss = require("./style.css");
+var _clientController = require("../../network/ClientController");
+var _clientControllerDefault = parcelHelpers.interopDefault(_clientController);
+var _s = $RefreshSig$();
+const ElementGameReport = ()=>{
+    _s();
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const { id } = (0, _reactRouterDom.useParams)(); // Get the match ID from the URL
+    const screenWidth = (0, _breakpoints.useWindowWidth)();
+    const isMobile = screenWidth < 900;
+    const clientController = new (0, _clientControllerDefault.default)();
+    const [gameData, setGameData] = (0, _react.useState)(null);
+    const [loading, setLoading] = (0, _react.useState)(true);
+    (0, _react.useEffect)(()=>{
+        const fetchGameData = async ()=>{
+            if (!id) {
+                console.error("No match ID found in the URL.");
+                setLoading(false);
+                return;
+            }
+            try {
+                const matchDetail = await clientController.fetchMatchDetail(id); // Fetch match details using ID
+                setGameData(matchDetail);
+            } catch (error) {
+                console.error("Error fetching Match details:", error);
+            } finally{
+                setLoading(false);
+            }
+        };
+        fetchGameData();
+    }, [
+        id
+    ]);
+    if (loading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "Loading..."
+    }, void 0, false, {
+        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+        lineNumber: 44,
+        columnNumber: 12
+    }, undefined);
+    if (!gameData) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "No game data available."
+    }, void 0, false, {
+        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+        lineNumber: 48,
+        columnNumber: 12
+    }, undefined);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "element-game-report",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigation.Navigation), {}, void 0, false, {
+                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                lineNumber: 54,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "game-report-wrapper",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "game-report-wrapper-2",
+                    style: {
+                        paddingTop: "20px"
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "game-report-middle",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "away-team-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "club-name",
+                                            children: gameData.home_blanket.name
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 60,
+                                            columnNumber: 15
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "club-img-2",
+                                            style: {
+                                                backgroundImage: `url(${gameData.home_blanket.logo})`,
+                                                backgroundPosition: "50% 50%",
+                                                backgroundSize: "cover",
+                                                height: "80px",
+                                                width: "80px"
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 62,
+                                            columnNumber: 15
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                    lineNumber: 59,
+                                    columnNumber: 13
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "score-wrapper",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "margin",
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "background-2",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "container-5",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "container-6"
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                            lineNumber: 77,
+                                                            columnNumber: 21
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "container-7",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-106",
+                                                                children: gameData.score.home
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                                lineNumber: 81,
+                                                                columnNumber: 23
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                            lineNumber: 80,
+                                                            columnNumber: 21
+                                                        }, undefined)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 76,
+                                                    columnNumber: 19
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                lineNumber: 75,
+                                                columnNumber: 17
+                                            }, undefined)
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 74,
+                                            columnNumber: 15
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "margin",
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "background-3",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "container-5",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "container-8"
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                            lineNumber: 90,
+                                                            columnNumber: 21
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "container-7",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-108",
+                                                                children: gameData.score.away
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                                lineNumber: 95,
+                                                                columnNumber: 23
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                            lineNumber: 94,
+                                                            columnNumber: 21
+                                                        }, undefined)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 89,
+                                                    columnNumber: 19
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                lineNumber: 88,
+                                                columnNumber: 17
+                                            }, undefined)
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 87,
+                                            columnNumber: 15
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                    lineNumber: 73,
+                                    columnNumber: 13
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "away-team-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "club-img-2",
+                                            style: {
+                                                backgroundImage: `url(${gameData.away_blanket.logo})`,
+                                                backgroundPosition: "50% 50%",
+                                                backgroundSize: "cover",
+                                                height: "80px",
+                                                width: "80px"
+                                            }
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 103,
+                                            columnNumber: 15
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "club-name",
+                                            children: gameData.away_blanket.name
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 113,
+                                            columnNumber: 15
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                    lineNumber: 102,
+                                    columnNumber: 13
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                            lineNumber: 58,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "game-report-bottom",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "game-report-match",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "divider"
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                        lineNumber: 119,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "game-setting-wrapper",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "referee-wrapper",
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "referee-name",
+                                                        children: gameData.referee.name
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                        lineNumber: 123,
+                                                        columnNumber: 19
+                                                    }, undefined),
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                                        className: "img-3",
+                                                        alt: "Referee icon",
+                                                        src: "/img/referee-icon-7.svg"
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                        lineNumber: 125,
+                                                        columnNumber: 19
+                                                    }, undefined)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                lineNumber: 122,
+                                                columnNumber: 17
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "stadium-wrapper",
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "stadium-img",
+                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "dfl-image",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "DFL-STA-b-png"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                                lineNumber: 135,
+                                                                columnNumber: 23
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                            lineNumber: 134,
+                                                            columnNumber: 21
+                                                        }, undefined)
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                        lineNumber: 133,
+                                                        columnNumber: 19
+                                                    }, undefined),
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "stadium-text",
+                                                        children: gameData.details.location
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                        lineNumber: 139,
+                                                        columnNumber: 19
+                                                    }, undefined)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                lineNumber: 132,
+                                                columnNumber: 17
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                        lineNumber: 121,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "divider"
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                        lineNumber: 143,
+                                        columnNumber: 15
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "game-report-bottom",
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "game-report-match",
+                                            children: gameData.events.map((ev)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _eventRow.EventRow), {
+                                                    className: "design-component-instance-node-2",
+                                                    event: ev,
+                                                    homeID: ev.home,
+                                                    awayID: ev.away
+                                                }, ev.id, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 148,
+                                                    columnNumber: 23
+                                                }, undefined))
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 146,
+                                            columnNumber: 17
+                                        }, undefined)
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                        lineNumber: 145,
+                                        columnNumber: 15
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                lineNumber: 118,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                            lineNumber: 117,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                    lineNumber: 57,
+                    columnNumber: 9
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                lineNumber: 56,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "team-detail-squad-17",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "team-detail-team-5",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "team-detail-squad-18",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "container-9",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "team-detail-squad-19",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _teamDetailSquadWrapper.TeamDetailSquadWrapper), {
+                                            className: "design-component-instance-node-2",
+                                            clubImgClassName: "team-detail-squad-header"
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 168,
+                                            columnNumber: 17
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "team-detail-squad-20",
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 173,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 181,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 189,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 197,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 205,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 213,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 221,
+                                                    columnNumber: 19
+                                                }, undefined)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 172,
+                                            columnNumber: 17
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                    lineNumber: 167,
+                                    columnNumber: 15
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                lineNumber: 166,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                            lineNumber: 165,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "team-detail-squad-18",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "container-9",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "team-detail-squad-19",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _teamDetailSquadWrapper.TeamDetailSquadWrapper), {
+                                            className: "design-component-instance-node-2",
+                                            clubImgClassName: "team-detail-squad-header"
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 237,
+                                            columnNumber: 17
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "team-detail-squad-20",
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 242,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 250,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 258,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 266,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 274,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 282,
+                                                    columnNumber: 19
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _divWrapper.DivWrapper), {
+                                                    className: "design-component-instance-node-2",
+                                                    flagiconClassName: "team-detail-squad-22",
+                                                    flagiconClassNameOverride: "team-detail-squad-23",
+                                                    frameClassName: "team-detail-squad-instance",
+                                                    frameClassNameOverride: "team-detail-squad-21",
+                                                    teamDetailSquadClassName: "team-detail-squad-cell-instance"
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                                    lineNumber: 290,
+                                                    columnNumber: 19
+                                                }, undefined)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                            lineNumber: 241,
+                                            columnNumber: 17
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                    lineNumber: 236,
+                                    columnNumber: 15
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                                lineNumber: 235,
+                                columnNumber: 13
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                            lineNumber: 234,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                    lineNumber: 164,
+                    columnNumber: 9
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                lineNumber: 163,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
+                fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+                lineNumber: 305,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/screens/ElementGameReport/ElementGameReport.tsx",
+        lineNumber: 52,
+        columnNumber: 5
+    }, undefined);
+};
+_s(ElementGameReport, "8CYpe4y58o2fpFGvvORRjRaaqv8=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate),
+        (0, _reactRouterDom.useParams),
+        (0, _breakpoints.useWindowWidth)
+    ];
+});
+_c = ElementGameReport;
+var _c;
+$RefreshReg$(_c, "ElementGameReport");
+
+  $parcel$ReactRefreshHelpers$7bf5.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../breakpoints":"8VCQt","react-router-dom":"9xmpe","../../components/DivWrapper":"1PFxC","../../components/EventRow":"cukmj","../../components/Footer":"egaqK","../../components/Navigation":"lyfSW","../../components/TeamDetailSquadWrapper":"3fynU","./style.css":"eHrlm","../../network/ClientController":"dMbvz","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1PFxC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DivWrapper", ()=>(0, _divWrapper.DivWrapper));
+var _divWrapper = require("./DivWrapper");
+
+},{"./DivWrapper":"lxEzE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lxEzE":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$c58a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$c58a.prelude(module);
+
+try {
+/*
+We're constantly improving the code you see. 
+Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "DivWrapper", ()=>DivWrapper);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const DivWrapper = ({ className, frameClassName, teamDetailSquadClassName, frameClassNameOverride, flagiconClassName, flagiconClassNameOverride })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `div-wrapper ${className}`,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "team-detail-squad-4",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "team-detail-squad-5",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: `frame-3 ${frameClassName}`,
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: `team-detail-squad-6 ${teamDetailSquadClassName}`
+                            }, void 0, false, {
+                                fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                lineNumber: 31,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "team-detail-squad-7",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "team-detail-squad-8",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "team-detail-squad-9",
+                                            children: "Patrik"
+                                        }, void 0, false, {
+                                            fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                            lineNumber: 37,
+                                            columnNumber: 17
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "team-detail-squad-10",
+                                            children: "Kikosaschvili"
+                                        }, void 0, false, {
+                                            fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                            lineNumber: 39,
+                                            columnNumber: 17
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                    lineNumber: 36,
+                                    columnNumber: 15
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                lineNumber: 35,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                        lineNumber: 30,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: `frame-4 ${frameClassNameOverride}`,
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "nationality-flags-wrapper",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "nationality-flags-3",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: `flagicon-3 ${flagiconClassName}`
+                                        }, void 0, false, {
+                                            fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                            lineNumber: 47,
+                                            columnNumber: 17
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: `flagicon-4 ${flagiconClassNameOverride}`
+                                        }, void 0, false, {
+                                            fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                            lineNumber: 49,
+                                            columnNumber: 17
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                    lineNumber: 46,
+                                    columnNumber: 15
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                lineNumber: 45,
+                                columnNumber: 13
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "team-detail-squad-7",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "team-detail-squad-11",
+                                    children: "18"
+                                }, void 0, false, {
+                                    fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                    lineNumber: 54,
+                                    columnNumber: 15
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                                lineNumber: 53,
+                                columnNumber: 13
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                        lineNumber: 44,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/DivWrapper/DivWrapper.tsx",
+                lineNumber: 29,
+                columnNumber: 9
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/DivWrapper/DivWrapper.tsx",
+            lineNumber: 28,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/DivWrapper/DivWrapper.tsx",
+        lineNumber: 27,
+        columnNumber: 5
+    }, undefined);
+};
+_c = DivWrapper;
+var _c;
+$RefreshReg$(_c, "DivWrapper");
+
+  $parcel$ReactRefreshHelpers$c58a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./style.css":"fuiHb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fuiHb":[function() {},{}],"cukmj":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "EventRow", ()=>(0, _eventRow.EventRow));
+var _eventRow = require("./EventRow");
+
+},{"./EventRow":"1861K","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1861K":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$c16a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$c16a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "EventRow", ()=>EventRow);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const EventRow = ({ event, homeID, awayID, className, eventCardPlayerClassName, eventCardTeamImgClassName, eventCardLastNameClassName, eventCardPlayerClassNameOverride, eventCardTeamImgClassNameOverride, eventCardLastNameClassNameOverride, eventCardNameClassName, eventCardNameClassNameOverride })=>{
+    const typeMap = {
+        goal: {
+            home: "goal-home",
+            away: "goal-away"
+        },
+        yellowCard: {
+            home: "yellow-home",
+            away: "yellow-away"
+        },
+        redCard: {
+            home: "red-home",
+            away: "red-away"
+        },
+        yellowRedCard: {
+            home: "yellowred-home",
+            away: "yellowred-away"
+        }
+    };
+    const redCard = "/img/redCard.svg";
+    const yellowCard = "/img/yellowCard.svg";
+    const yellowredCard = "/img/yellowRedCard.svg";
+    const goal = "/img/goal.svg";
+    const property1 = typeMap[event.type] && typeMap[event.type][event.assign] ? typeMap[event.type][event.assign] : "goal-home";
+    let eventTypeImg = goal;
+    if (event.type === "redCard") eventTypeImg = redCard;
+    else if (event.type === "yellowCard") eventTypeImg = yellowCard;
+    else if (event.type === "yellowRedCard") eventTypeImg = yellowredCard;
+    const nameParts = event.name.split(" ");
+    const firstName = nameParts[0] || "";
+    const lastName = nameParts.slice(1).join(" ") || "";
+    const showHomeSide = [
+        "goal-home",
+        "red-home",
+        "yellow-home",
+        "yellowred-home"
+    ].includes(property1);
+    const showAwaySide = [
+        "goal-away",
+        "red-away",
+        "yellow-away",
+        "yellowred-away"
+    ].includes(property1);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `event-row ${className}`,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "event-card-bottom",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "playerdata-home",
+                    children: showHomeSide && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "event-card-container",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "player-data-wrapper",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: `player-data ${property1}`,
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "event-card-data",
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "event-card-data-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: `event-card-player ${eventCardPlayerClassName}`,
+                                                    style: {
+                                                        backgroundImage: `url(${event.image})`
+                                                    }
+                                                }, void 0, false, {
+                                                    fileName: "src/components/EventRow/EventRow.tsx",
+                                                    lineNumber: 106,
+                                                    columnNumber: 27
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "event-card-team",
+                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: `event-card-team-img ${eventCardTeamImgClassName}`
+                                                    }, void 0, false, {
+                                                        fileName: "src/components/EventRow/EventRow.tsx",
+                                                        lineNumber: 111,
+                                                        columnNumber: 29
+                                                    }, undefined)
+                                                }, void 0, false, {
+                                                    fileName: "src/components/EventRow/EventRow.tsx",
+                                                    lineNumber: 110,
+                                                    columnNumber: 27
+                                                }, undefined)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/components/EventRow/EventRow.tsx",
+                                            lineNumber: 105,
+                                            columnNumber: 25
+                                        }, undefined)
+                                    }, void 0, false, {
+                                        fileName: "src/components/EventRow/EventRow.tsx",
+                                        lineNumber: 104,
+                                        columnNumber: 23
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: `event-card-name ${eventCardNameClassNameOverride}`,
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "event-card-first",
+                                                children: firstName
+                                            }, void 0, false, {
+                                                fileName: "src/components/EventRow/EventRow.tsx",
+                                                lineNumber: 116,
+                                                columnNumber: 25
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: `event-card-last-name ${eventCardLastNameClassName}`,
+                                                children: lastName
+                                            }, void 0, false, {
+                                                fileName: "src/components/EventRow/EventRow.tsx",
+                                                lineNumber: 117,
+                                                columnNumber: 25
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/EventRow/EventRow.tsx",
+                                        lineNumber: 115,
+                                        columnNumber: 23
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/EventRow/EventRow.tsx",
+                                lineNumber: 103,
+                                columnNumber: 21
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/EventRow/EventRow.tsx",
+                            lineNumber: 102,
+                            columnNumber: 19
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/EventRow/EventRow.tsx",
+                        lineNumber: 101,
+                        columnNumber: 17
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/EventRow/EventRow.tsx",
+                    lineNumber: 99,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "event-card-score",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "event-card-minute",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "event-card-minute-2",
+                                children: [
+                                    event.minute,
+                                    "'"
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/EventRow/EventRow.tsx",
+                                lineNumber: 129,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/EventRow/EventRow.tsx",
+                            lineNumber: 128,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "event-card-type-img",
+                            alt: "Event card type img",
+                            src: eventTypeImg
+                        }, void 0, false, {
+                            fileName: "src/components/EventRow/EventRow.tsx",
+                            lineNumber: 131,
+                            columnNumber: 13
+                        }, undefined),
+                        event.type === "goal" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "event-card-score-2",
+                            children: [
+                                property1 === "goal-home" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                    children: "1 - 0"
+                                }, void 0, false),
+                                property1 === "goal-away" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                                    children: "1 - 1"
+                                }, void 0, false)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/EventRow/EventRow.tsx",
+                            lineNumber: 134,
+                            columnNumber: 17
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/EventRow/EventRow.tsx",
+                    lineNumber: 127,
+                    columnNumber: 11
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "playerdata-away",
+                    children: showAwaySide && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "event-card-bottom-wrapper",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "event-card-bottom-2",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "player-data-2",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "event-card-data",
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "event-card-data-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: `event-card-player ${eventCardPlayerClassNameOverride}`,
+                                                    style: {
+                                                        backgroundImage: `url(${event.image})`
+                                                    }
+                                                }, void 0, false, {
+                                                    fileName: "src/components/EventRow/EventRow.tsx",
+                                                    lineNumber: 148,
+                                                    columnNumber: 27
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "event-card-team",
+                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: `event-card-team-img ${eventCardTeamImgClassNameOverride}`
+                                                    }, void 0, false, {
+                                                        fileName: "src/components/EventRow/EventRow.tsx",
+                                                        lineNumber: 153,
+                                                        columnNumber: 29
+                                                    }, undefined)
+                                                }, void 0, false, {
+                                                    fileName: "src/components/EventRow/EventRow.tsx",
+                                                    lineNumber: 152,
+                                                    columnNumber: 27
+                                                }, undefined)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/components/EventRow/EventRow.tsx",
+                                            lineNumber: 147,
+                                            columnNumber: 25
+                                        }, undefined)
+                                    }, void 0, false, {
+                                        fileName: "src/components/EventRow/EventRow.tsx",
+                                        lineNumber: 146,
+                                        columnNumber: 23
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: `event-card-name-2 property-1-0-${property1} ${eventCardNameClassName}`,
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "event-card-first",
+                                                children: firstName
+                                            }, void 0, false, {
+                                                fileName: "src/components/EventRow/EventRow.tsx",
+                                                lineNumber: 160,
+                                                columnNumber: 25
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: `event-card-last-name ${eventCardLastNameClassNameOverride}`,
+                                                children: lastName
+                                            }, void 0, false, {
+                                                fileName: "src/components/EventRow/EventRow.tsx",
+                                                lineNumber: 161,
+                                                columnNumber: 25
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/EventRow/EventRow.tsx",
+                                        lineNumber: 157,
+                                        columnNumber: 23
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/EventRow/EventRow.tsx",
+                                lineNumber: 145,
+                                columnNumber: 21
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/EventRow/EventRow.tsx",
+                            lineNumber: 144,
+                            columnNumber: 19
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/EventRow/EventRow.tsx",
+                        lineNumber: 143,
+                        columnNumber: 17
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/EventRow/EventRow.tsx",
+                    lineNumber: 141,
+                    columnNumber: 11
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/EventRow/EventRow.tsx",
+            lineNumber: 98,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/EventRow/EventRow.tsx",
+        lineNumber: 97,
+        columnNumber: 7
+    }, undefined);
+};
+_c = EventRow;
+EventRow.propTypes = {
+    event: (0, _propTypesDefault.default).shape({
+        own_goal: (0, _propTypesDefault.default).bool,
+        type: (0, _propTypesDefault.default).oneOf([
+            "goal",
+            "redCard",
+            "yellowCard",
+            "yellowRedCard"
+        ]).isRequired,
+        minute: (0, _propTypesDefault.default).number.isRequired,
+        id: (0, _propTypesDefault.default).string.isRequired,
+        assign: (0, _propTypesDefault.default).oneOf([
+            "home",
+            "away"
+        ]).isRequired,
+        name: (0, _propTypesDefault.default).string.isRequired,
+        player: (0, _propTypesDefault.default).shape({
+            id: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
+        match: (0, _propTypesDefault.default).shape({
+            id: (0, _propTypesDefault.default).string.isRequired
+        }).isRequired,
+        number: (0, _propTypesDefault.default).string.isRequired,
+        image: (0, _propTypesDefault.default).string.isRequired,
+        own_goal: (0, _propTypesDefault.default).bool
+    }).isRequired
+};
+var _c;
+$RefreshReg$(_c, "EventRow");
+
+  $parcel$ReactRefreshHelpers$c16a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"etbbF","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"etbbF":[function() {},{}],"3fynU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TeamDetailSquadWrapper", ()=>(0, _teamDetailSquadWrapper.TeamDetailSquadWrapper));
+var _teamDetailSquadWrapper = require("./TeamDetailSquadWrapper");
+
+},{"./TeamDetailSquadWrapper":"gwdYt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gwdYt":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$a762 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$a762.prelude(module);
+
+try {
+/*
+We're constantly improving the code you see. 
+Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "TeamDetailSquadWrapper", ()=>TeamDetailSquadWrapper);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const TeamDetailSquadWrapper = ({ className, clubImgClassName })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `team-detail-squad-wrapper ${className}`,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "team-detail-team",
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "team-detail-team-wrapper",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "team-detail-team-2",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: `club-img ${clubImgClassName}`
+                        }, void 0, false, {
+                            fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+                            lineNumber: 23,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "team-detail-team-3",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "team-detail-team-4",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "team-detail-squad-2",
+                                        children: "Aufstellung"
+                                    }, void 0, false, {
+                                        fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+                                        lineNumber: 27,
+                                        columnNumber: 17
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "team-detail-squad-3",
+                                        children: "FC Bayern M\xfcnchen"
+                                    }, void 0, false, {
+                                        fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+                                        lineNumber: 29,
+                                        columnNumber: 17
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+                                lineNumber: 26,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+                            lineNumber: 25,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+                    lineNumber: 22,
+                    columnNumber: 11
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+                lineNumber: 21,
+                columnNumber: 9
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+            lineNumber: 20,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/TeamDetailSquadWrapper/TeamDetailSquadWrapper.tsx",
+        lineNumber: 19,
+        columnNumber: 5
+    }, undefined);
+};
+_c = TeamDetailSquadWrapper;
+var _c;
+$RefreshReg$(_c, "TeamDetailSquadWrapper");
+
+  $parcel$ReactRefreshHelpers$a762.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./style.css":"6se43","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6se43":[function() {},{}],"eHrlm":[function() {},{}],"8crBA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementHomepageDesktop", ()=>(0, _elementHomepageDesktop.ElementHomepageDesktop));
+var _elementHomepageDesktop = require("./ElementHomepageDesktop");
+
+},{"./ElementHomepageDesktop":"1fQPH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1fQPH":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$389c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$389c.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementHomepageDesktop", ()=>ElementHomepageDesktop);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _viewDefaultWrapper = require("../../components/ViewDefaultWrapper");
+var _navigation = require("../../components/Navigation");
+var _hero = require("../../components/Hero");
+var _matchupCell = require("../../components/MatchupCell");
+var _newsArticle = require("../../components/NewsArticle");
+var _sponsors = require("../../components/Sponsors");
+var _footer = require("../../components/Footer");
+var _loading = require("../Loading/Loading");
+var _breakpoints = require("../../breakpoints");
+var _clientController = require("../../network/ClientController");
+var _clientControllerDefault = parcelHelpers.interopDefault(_clientController);
+var _authService = require("../../network/AuthService");
+var _authServiceDefault = parcelHelpers.interopDefault(_authService);
+var _styleCss = require("./style.css");
+var _clubCell = require("../../components/ClubCell");
+var _reactRouterDom = require("react-router-dom");
+var _partners = require("../../components/Partners/Partners");
+var _s = $RefreshSig$();
+const ElementHomepageDesktop = ()=>{
+    _s();
+    const screenWidth = (0, _breakpoints.useWindowWidth)();
+    const clientController = new (0, _clientControllerDefault.default)();
+    const authService = new (0, _authServiceDefault.default)();
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const [homepageData, setHomepageData] = (0, _react.useState)(null);
+    const [loading, setLoading] = (0, _react.useState)(true);
+    (0, _react.useEffect)(()=>{
+        const fetchData = async ()=>{
+            const leagueCode = authService.getLeagueCode();
+            if (!leagueCode) {
+                console.error("No league code found in cookies.");
+                setLoading(false);
+                return;
+            }
+            try {
+                const response = await clientController.fetchHomepageData(leagueCode);
+                setHomepageData(response);
+            } catch (error) {
+                console.error("Error fetching homepage data:", error);
+            } finally{
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+    const isMobile = screenWidth < 800;
+    if (loading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loading.Loading), {
+        message: "Loading homepage data..."
+    }, void 0, false, {
+        fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+        lineNumber: 53,
+        columnNumber: 12
+    }, undefined);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "element-homepage-desktop",
+        style: {
+            minWidth: isMobile ? "390px" : "900px"
+        },
+        children: [
+            isMobile ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigation.Navigation), {}, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 64,
+                columnNumber: 21
+            }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _viewDefaultWrapper.DesktopNav), {}, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 64,
+                columnNumber: 38
+            }, undefined),
+            homepageData?.upcoming?.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "div-17",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "matchup-row-list",
+                    children: homepageData.upcoming.sort((a, b)=>new Date(a.details.date).getTime() - new Date(b.details.date).getTime()).map((matchup)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _matchupCell.MatchupCell), {
+                            className: "matchup-cell-2",
+                            matchup: matchup,
+                            state: "fixture-w-top"
+                        }, matchup.id, false, {
+                            fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                            lineNumber: 77,
+                            columnNumber: 25
+                        }, undefined))
+                }, void 0, false, {
+                    fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                    lineNumber: 69,
+                    columnNumber: 15
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 68,
+                columnNumber: 13
+            }, undefined),
+            homepageData?.data?.sliderdata?.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _hero.Hero), {
+                className: "hero-instance",
+                title: homepageData.data.sliderdata[0].title,
+                description: homepageData.data.sliderdata[0].description,
+                image: homepageData.data.sliderdata[0].image
+            }, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 90,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _sponsors.Sponsors), {
+                className: "design-component-instance-node",
+                vWhite: "/img/v-white-1-9.svg"
+            }, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 99,
+                columnNumber: 9
+            }, undefined),
+            homepageData?.teams?.length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "div-17",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "club-carousel-header",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "club-carousel-title",
+                                children: "CLUBS"
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                                lineNumber: 105,
+                                columnNumber: 17
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "club-carousel-action",
+                                style: {
+                                    cursor: "pointer"
+                                },
+                                onClick: ()=>navigate("/teams"),
+                                children: "ALLE MANNSCHAFTEN"
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                                lineNumber: 106,
+                                columnNumber: 17
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                        lineNumber: 104,
+                        columnNumber: 15
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "club-carousel-list",
+                        children: homepageData.teams.map((team)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _clubCell.ClubCell), {
+                                team: team
+                            }, team.id, false, {
+                                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                                lineNumber: 116,
+                                columnNumber: 21
+                            }, undefined))
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                        lineNumber: 114,
+                        columnNumber: 15
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 103,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _partners.Partners), {
+                className: "design-component-instance-node",
+                vWhite: "/img/v-white-1-9.svg"
+            }, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 123,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "news-7",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "news-container-6",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "page-content-23",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "page-content-24",
+                                children: "NEWS UND SPIELBERICHTE"
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                                lineNumber: 129,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                            lineNumber: 128,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "news-container-grid-7",
+                            children: homepageData?.news?.map((newsItem)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _newsArticle.NewsArticle), {
+                                    title: newsItem.title,
+                                    image: newsItem.image,
+                                    text: newsItem.text,
+                                    id: newsItem.id
+                                }, newsItem.id, false, {
+                                    fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                                    lineNumber: 133,
+                                    columnNumber: 19
+                                }, undefined))
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                            lineNumber: 131,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                    lineNumber: 127,
+                    columnNumber: 11
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 126,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
+                fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+                lineNumber: 146,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/screens/ElementHomepageDesktop/ElementHomepageDesktop.tsx",
+        lineNumber: 57,
+        columnNumber: 7
+    }, undefined);
+};
+_s(ElementHomepageDesktop, "cD/rvM1hLdCNB8teucvy+e/B2wQ=", false, function() {
+    return [
+        (0, _breakpoints.useWindowWidth),
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c = ElementHomepageDesktop;
+var _c;
+$RefreshReg$(_c, "ElementHomepageDesktop");
+
+  $parcel$ReactRefreshHelpers$389c.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../components/ViewDefaultWrapper":"4JBXT","../../components/Navigation":"lyfSW","../../components/Hero":"6gpFM","../../components/MatchupCell":"29ocw","../../components/NewsArticle":"97T1h","../../components/Sponsors":"c5dw3","../../components/Footer":"egaqK","../Loading/Loading":"b2iR0","../../breakpoints":"8VCQt","../../network/ClientController":"dMbvz","../../network/AuthService":"6nPiU","./style.css":"iedDb","../../components/ClubCell":"5hY7X","react-router-dom":"9xmpe","../../components/Partners/Partners":"5Ra80","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6gpFM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Hero", ()=>(0, _hero.Hero));
+var _hero = require("./Hero");
+
+},{"./Hero":"80Gyp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"80Gyp":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$b6e3 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$b6e3.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Hero", ()=>Hero);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const Hero = ({ className, title, description, image })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `hero ${className}`,
+        style: {
+            backgroundImage: `url(${image})`
+        },
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "overlay",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "subheader",
+                    children: description
+                }, void 0, false, {
+                    fileName: "src/components/Hero/Hero.tsx",
+                    lineNumber: 15,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "header-2",
+                    children: title
+                }, void 0, false, {
+                    fileName: "src/components/Hero/Hero.tsx",
+                    lineNumber: 16,
+                    columnNumber: 17
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/Hero/Hero.tsx",
+            lineNumber: 14,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Hero/Hero.tsx",
+        lineNumber: 13,
+        columnNumber: 9
+    }, undefined);
+};
+_c = Hero;
+var _c;
+$RefreshReg$(_c, "Hero");
+
+  $parcel$ReactRefreshHelpers$b6e3.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./style.css":"a0Zze","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"a0Zze":[function() {},{}],"29ocw":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MatchupCell", ()=>(0, _matchupCell.MatchupCell));
+var _matchupCell = require("./MatchupCell");
+
+},{"./MatchupCell":"cmsql","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cmsql":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$6e9e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$6e9e.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MatchupCell", ()=>MatchupCell);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _styleCss = require("./style.css");
+const fallbackLogo = "/img/fallback-logo.png";
+const MatchupCell = ({ matchup, state, className })=>{
+    console.log("Debug - Matchup:", matchup);
+    const formattedDate = matchup?.details?.date ? new Date(matchup.details.date).toLocaleString("de-DE", {
+        day: "2-digit",
+        month: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+    }) : "N/A";
+    const backgroundColorClass = matchup?.status === "pending" ? "state-gray" : [
+        "first",
+        "second",
+        "halftime"
+    ].includes(matchup?.status || "") ? "state-red" : "";
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `matchup-cell ${className || ""}`,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "matchup-cell-top",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: `line ${state}`
+                    }, void 0, false, {
+                        fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                        lineNumber: 57,
+                        columnNumber: 11
+                    }, undefined),
+                    [
+                        "fixture-w-top",
+                        "live-w-top"
+                    ].includes(state) && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "txt-overlay",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "date-txt",
+                            children: formattedDate
+                        }, void 0, false, {
+                            fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                            lineNumber: 60,
+                            columnNumber: 17
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                        lineNumber: 59,
+                        columnNumber: 15
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                lineNumber: 56,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "matchup-cell-bottom",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "matchup-cell-bottom-2",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "link-9",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "matchup-cell-bottom-wrapper",
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "logo",
+                                        style: {
+                                            backgroundImage: `url(${matchup?.home_blanket?.logo || fallbackLogo})`
+                                        }
+                                    }, void 0, false, {
+                                        fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                        lineNumber: 69,
+                                        columnNumber: 17
+                                    }, undefined)
+                                }, void 0, false, {
+                                    fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                    lineNumber: 68,
+                                    columnNumber: 15
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "matchup-cell-bottom-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: `matchup-cell-bottom-6 state-${state}`,
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "matchup-cell-bottom-7",
+                                                children: matchup?.score?.home ?? 0
+                                            }, void 0, false, {
+                                                fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                                lineNumber: 79,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        }, void 0, false, {
+                                            fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                            lineNumber: 78,
+                                            columnNumber: 17
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: `matchup-cell-bottom-8 state-1-${state}`,
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "matchup-cell-bottom-9",
+                                                children: matchup?.score?.away ?? 0
+                                            }, void 0, false, {
+                                                fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                                lineNumber: 82,
+                                                columnNumber: 19
+                                            }, undefined)
+                                        }, void 0, false, {
+                                            fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                            lineNumber: 81,
+                                            columnNumber: 17
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                    lineNumber: 77,
+                                    columnNumber: 15
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "matchup-cell-bottom-wrapper",
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                        src: matchup?.away_blanket?.logo || fallbackLogo,
+                                        alt: matchup?.away_blanket?.name || "Away Team",
+                                        className: "team-logo"
+                                    }, void 0, false, {
+                                        fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                        lineNumber: 87,
+                                        columnNumber: 17
+                                    }, undefined)
+                                }, void 0, false, {
+                                    fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                    lineNumber: 86,
+                                    columnNumber: 15
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                            lineNumber: 67,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: `background ${backgroundColorClass}`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "container",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "vorschau",
+                                    children: matchup?.status === "pending" ? "Vorschau" : `Live - ${formattedDate}`
+                                }, void 0, false, {
+                                    fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                    lineNumber: 97,
+                                    columnNumber: 17
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                                lineNumber: 96,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                            lineNumber: 95,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                    lineNumber: 66,
+                    columnNumber: 11
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/MatchupCell/MatchupCell.tsx",
+                lineNumber: 65,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/MatchupCell/MatchupCell.tsx",
+        lineNumber: 55,
+        columnNumber: 7
+    }, undefined);
+};
+_c = MatchupCell;
+MatchupCell.propTypes = {
+    matchup: (0, _propTypesDefault.default).shape({
+        id: (0, _propTypesDefault.default).string,
+        home_blanket: (0, _propTypesDefault.default).shape({
+            id: (0, _propTypesDefault.default).string,
+            name: (0, _propTypesDefault.default).string,
+            logo: (0, _propTypesDefault.default).string
+        }),
+        away_blanket: (0, _propTypesDefault.default).shape({
+            id: (0, _propTypesDefault.default).string,
+            name: (0, _propTypesDefault.default).string,
+            logo: (0, _propTypesDefault.default).string
+        }),
+        status: (0, _propTypesDefault.default).string,
+        details: (0, _propTypesDefault.default).shape({
+            location: (0, _propTypesDefault.default).string,
+            date: (0, _propTypesDefault.default).string,
+            gameday: (0, _propTypesDefault.default).number
+        }),
+        score: (0, _propTypesDefault.default).shape({
+            home: (0, _propTypesDefault.default).number,
+            away: (0, _propTypesDefault.default).number
+        })
+    }),
+    state: (0, _propTypesDefault.default).oneOf([
+        "fixture-w-top",
+        "fixture-no-top",
+        "live-top",
+        "live-w-top"
+    ]).isRequired,
+    className: (0, _propTypesDefault.default).string
+};
+var _c;
+$RefreshReg$(_c, "MatchupCell");
+
+  $parcel$ReactRefreshHelpers$6e9e.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","./style.css":"bzodv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bzodv":[function() {},{}],"97T1h":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "NewsArticle", ()=>(0, _newsArticle.NewsArticle));
+var _newsArticle = require("./NewsArticle");
+
+},{"./NewsArticle":"gGxFZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gGxFZ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$0859 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$0859.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "NewsArticle", ()=>NewsArticle);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _styleCss = require("./style.css");
+var _s = $RefreshSig$();
+const NewsArticle = ({ className, title, image, text, id })=>{
+    _s();
+    const navigate = (0, _reactRouterDom.useNavigate)(); // Initialize useNavigate hook
+    const handleNavigate = ()=>{
+        navigate(`/news-detail/${id}`); // Navigate to /news-detail/{id}
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `news-article ${className || ""}`,
+        onClick: handleNavigate,
+        style: {
+            cursor: "pointer"
+        },
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "div-2",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    src: image,
+                    alt: title,
+                    className: "news-article-img"
+                }, void 0, false, {
+                    fileName: "src/components/NewsArticle/NewsArticle.tsx",
+                    lineNumber: 27,
+                    columnNumber: 17
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "div-3",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "title-3",
+                            children: title
+                        }, void 0, false, {
+                            fileName: "src/components/NewsArticle/NewsArticle.tsx",
+                            lineNumber: 30,
+                            columnNumber: 21
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                            className: "subtitle-3",
+                            children: text
+                        }, void 0, false, {
+                            fileName: "src/components/NewsArticle/NewsArticle.tsx",
+                            lineNumber: 31,
+                            columnNumber: 21
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/NewsArticle/NewsArticle.tsx",
+                    lineNumber: 29,
+                    columnNumber: 17
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/NewsArticle/NewsArticle.tsx",
+            lineNumber: 26,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/NewsArticle/NewsArticle.tsx",
+        lineNumber: 21,
+        columnNumber: 9
+    }, undefined);
+};
+_s(NewsArticle, "CzcTeTziyjMsSrAVmHuCCb6+Bfg=", false, function() {
+    return [
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c = NewsArticle;
+var _c;
+$RefreshReg$(_c, "NewsArticle");
+
+  $parcel$ReactRefreshHelpers$0859.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./style.css":"eNmTe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eNmTe":[function() {},{}],"c5dw3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Sponsors", ()=>(0, _sponsors.Sponsors));
+var _sponsors = require("./Sponsors");
+
+},{"./Sponsors":"5Lv6V","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5Lv6V":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$a991 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$a991.prelude(module);
+
+try {
+/*
+We're constantly improving the code you see. 
+Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Sponsors", ()=>Sponsors);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const Sponsors = ({ className, vWhite = "/img/v-white-1.svg", sponsorsContainerClassName })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `sponsors ${className}`,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: `sponsors-container ${sponsorsContainerClassName}`,
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "p",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "span",
+                            children: "OFFIZIELLE "
+                        }, void 0, false, {
+                            fileName: "src/components/Sponsors/Sponsors.tsx",
+                            lineNumber: 25,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "text-wrapper-2",
+                            children: "SPONSOREN"
+                        }, void 0, false, {
+                            fileName: "src/components/Sponsors/Sponsors.tsx",
+                            lineNumber: 27,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "span",
+                            children: " DES \xd6KFB"
+                        }, void 0, false, {
+                            fileName: "src/components/Sponsors/Sponsors.tsx",
+                            lineNumber: 29,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Sponsors/Sponsors.tsx",
+                    lineNumber: 24,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "sponsors-container-2",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "sponsor",
+                            alt: "Image",
+                            src: "https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo-500x281.png"
+                        }, void 0, false, {
+                            fileName: "src/components/Sponsors/Sponsors.tsx",
+                            lineNumber: 33,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "sponsorc",
+                            alt: "Image",
+                            src: "https://egt-digital.com/wp-content/uploads/2024/07/aircash-900x720-1.png"
+                        }, void 0, false, {
+                            fileName: "src/components/Sponsors/Sponsors.tsx",
+                            lineNumber: 35,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "sponsor",
+                            alt: "Image",
+                            src: "https://kaddur.at/cdn/shop/files/Bildschirmfoto_2024-06-05_um_16.03.49.png?v=1717596335&width=500"
+                        }, void 0, false, {
+                            fileName: "src/components/Sponsors/Sponsors.tsx",
+                            lineNumber: 37,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Sponsors/Sponsors.tsx",
+                    lineNumber: 32,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/Sponsors/Sponsors.tsx",
+            lineNumber: 23,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Sponsors/Sponsors.tsx",
+        lineNumber: 22,
+        columnNumber: 5
+    }, undefined);
+};
+_c = Sponsors;
+Sponsors.propTypes = {
+    vWhite: (0, _propTypesDefault.default).string
+};
+var _c;
+$RefreshReg$(_c, "Sponsors");
+
+  $parcel$ReactRefreshHelpers$a991.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"5WO9c","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5WO9c":[function() {},{}],"b2iR0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$977a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$977a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Loading", ()=>Loading);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const Loading = ({ message = "Loading..." })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "loading-container",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+            className: "loading-text",
+            children: message
+        }, void 0, false, {
+            fileName: "src/screens/Loading/Loading.tsx",
+            lineNumber: 11,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/screens/Loading/Loading.tsx",
+        lineNumber: 10,
+        columnNumber: 9
+    }, undefined);
+};
+_c = Loading;
+var _c;
+$RefreshReg$(_c, "Loading");
+
+  $parcel$ReactRefreshHelpers$977a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./style.css":"ixXEC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ixXEC":[function() {},{}],"iedDb":[function() {},{}],"5hY7X":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ClubCell", ()=>(0, _clubCell.ClubCell));
+var _clubCell = require("./ClubCell");
+
+},{"./ClubCell":"JXw0O","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"JXw0O":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$b095 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$b095.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ClubCell", ()=>ClubCell);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const ClubCell = ({ team, imgContainerClassName = "" })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "club-cell",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                className: `img-container ${imgContainerClassName}`,
+                alt: team.team_name,
+                src: team.logo
+            }, void 0, false, {
+                fileName: "src/components/ClubCell/ClubCell.tsx",
+                lineNumber: 16,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "text-container",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "club-cell-name",
+                    children: team.team_name
+                }, void 0, false, {
+                    fileName: "src/components/ClubCell/ClubCell.tsx",
+                    lineNumber: 22,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/ClubCell/ClubCell.tsx",
+                lineNumber: 21,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/ClubCell/ClubCell.tsx",
+        lineNumber: 15,
+        columnNumber: 9
+    }, undefined);
+};
+_c = ClubCell;
+ClubCell.propTypes = {
+    team: (0, _propTypesDefault.default).shape({
+        logo: (0, _propTypesDefault.default).string.isRequired,
+        team_name: (0, _propTypesDefault.default).string.isRequired
+    }).isRequired
+};
+var _c;
+$RefreshReg$(_c, "ClubCell");
+
+  $parcel$ReactRefreshHelpers$b095.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"dC7wL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dC7wL":[function() {},{}],"5Ra80":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$b057 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$b057.prelude(module);
+
+try {
+/*
+We're constantly improving the code you see. 
+Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
+*/ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Partners", ()=>Partners);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const Partners = ({ className, vWhite = "/img/v-white-1.svg", sponsorsContainerClassName })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `sponsors ${className}`,
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: `sponsors-container ${sponsorsContainerClassName}`,
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                    className: "p",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "span",
+                            children: "OFFIZIELLE "
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 25,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "text-wrapper-2",
+                            children: "PARTNER"
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 27,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "span",
+                            children: " DES \xd6KFB"
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 29,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Partners/Partners.tsx",
+                    lineNumber: 24,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "sponsors-container-2",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "sportsselection",
+                            Ron: true,
+                            alt: "Sportsselection",
+                            src: "/img/sportsselection-2zlg-subl-g-t-1.png"
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 33,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "image-2",
+                            alt: "Image",
+                            src: "/img/image-1-1.png"
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 39,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "image-3",
+                            alt: "Image",
+                            src: "/img/image-2-1.png"
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 41,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "image-4",
+                            alt: "Image",
+                            src: "/img/wmfLogo.png"
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 43,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "v-white",
+                            alt: "V white",
+                            src: vWhite
+                        }, void 0, false, {
+                            fileName: "src/components/Partners/Partners.tsx",
+                            lineNumber: 45,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Partners/Partners.tsx",
+                    lineNumber: 32,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/Partners/Partners.tsx",
+            lineNumber: 23,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/Partners/Partners.tsx",
+        lineNumber: 22,
+        columnNumber: 5
+    }, undefined);
+};
+_c = Partners;
+Partners.propTypes = {
+    vWhite: (0, _propTypesDefault.default).string
+};
+var _c;
+$RefreshReg$(_c, "Partners");
+
+  $parcel$ReactRefreshHelpers$b057.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"6X8sq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"6X8sq":[function() {},{}],"htcWH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementLeagueSelection", ()=>(0, _elementLeagueSelection.ElementLeagueSelection));
+var _elementLeagueSelection = require("./ElementLeagueSelection");
+
+},{"./ElementLeagueSelection":"88Nup","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"88Nup":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$fcb7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$fcb7.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementLeagueSelection", ()=>ElementLeagueSelection);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _breakpoints = require("../../breakpoints");
+var _dropdown = require("../../components/Dropdown");
+var _footer = require("../../components/Footer");
+var _leagueSelection = require("../../components/LeagueSelection");
+var _sponsors = require("../../components/Sponsors");
+var _viewDefaultWrapper = require("../../components/ViewDefaultWrapper");
+var _styleCss = require("./style.css");
+var _navigation = require("../../components/Navigation");
+var _clientController = require("../../network/ClientController");
+var _clientControllerDefault = parcelHelpers.interopDefault(_clientController);
+var _authService = require("../../network/AuthService");
+var _authServiceDefault = parcelHelpers.interopDefault(_authService);
+var _reactRouterDom = require("react-router-dom");
+var _s = $RefreshSig$();
+const ElementLeagueSelection = ()=>{
+    _s();
+    const screenWidth = (0, _breakpoints.useWindowWidth)();
+    const clientController = new (0, _clientControllerDefault.default)();
+    const authService = new (0, _authServiceDefault.default)(); // Initialize AuthService
+    // States for leagues and selected state
+    const [allLeagues, setAllLeagues] = (0, _react.useState)([]);
+    const [filteredLeagues, setFilteredLeagues] = (0, _react.useState)([]);
+    const [selectedState, setSelectedState] = (0, _react.useState)("wien"); // Default selected state
+    const navigate = (0, _reactRouterDom.useNavigate)(); // Initialize the navigate function
+    // Austrian states for the dropdown
+    const austrianStates = [
+        {
+            name: "Wien",
+            value: "wien"
+        },
+        {
+            name: "Nieder\xf6sterreich",
+            value: "niederoesterreich"
+        },
+        {
+            name: "Ober\xf6sterreich",
+            value: "oberoesterreich"
+        },
+        {
+            name: "Steiermark",
+            value: "steiermark"
+        },
+        {
+            name: "K\xe4rnten",
+            value: "kaernten"
+        },
+        {
+            name: "Salzburg",
+            value: "salzburg"
+        },
+        {
+            name: "Tirol",
+            value: "tirol"
+        },
+        {
+            name: "Vorarlberg",
+            value: "vorarlberg"
+        },
+        {
+            name: "Burgenland",
+            value: "burgenland"
+        }
+    ];
+    // Fetch all leagues on mount
+    (0, _react.useEffect)(()=>{
+        const fetchLeagues = async ()=>{
+            try {
+                const data = await clientController.fetchLeagueSelection();
+                // Filter out unwanted leagues
+                const validLeagues = data.filter((league)=>league.name !== "Mannschaft aus der Liga ausgetreten");
+                setAllLeagues(validLeagues);
+                // Set filtered leagues for "wien"
+                setFilteredLeagues(validLeagues.filter((league)=>league.state === "wien"));
+            } catch (error) {
+                console.error("Error fetching leagues:", error);
+            }
+        };
+        fetchLeagues();
+    }, []);
+    // Handle dropdown selection change
+    const handleStateChange = (state)=>{
+        setSelectedState(state);
+        const filtered = allLeagues.filter((league)=>league.state === state);
+        setFilteredLeagues(filtered);
+    };
+    // Handle LeagueSelection click and set cookie
+    const handleLeagueSelect = (league)=>{
+        authService.setLeagueData(league.code, league.id);
+        console.log(`League selected: Code = ${league.code}, ID = ${league.id}`);
+        // Navigate to the homepage
+        navigate("/homepage");
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "element-league-selection",
+        style: {
+            minWidth: screenWidth < 900 ? "390px" : screenWidth >= 900 ? "900px" : undefined
+        },
+        children: [
+            screenWidth < 900 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigation.Navigation), {}, void 0, false, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 87,
+                        columnNumber: 21
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "page-header-wrapper",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "page-header-2",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "page-header-wrapper-2",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "page-header-wrapper-3",
+                                        children: "Ligen Auswahl"
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 91,
+                                        columnNumber: 33
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                        className: "page-header-wrapper-4",
+                                        children: "W\xe4hlen Sie ein Bundesland aus, um die Ligen anzuzeigen."
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 92,
+                                        columnNumber: 33
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                lineNumber: 90,
+                                columnNumber: 29
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                            lineNumber: 89,
+                            columnNumber: 25
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 88,
+                        columnNumber: 21
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "page-content",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "leagues-wrapper",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _dropdown.Dropdown), {
+                                        className: "instance-node-2",
+                                        options: austrianStates,
+                                        displayKey: "name",
+                                        valueKey: "value",
+                                        text: "Bundesland ausw\xe4hlen",
+                                        placeholder: "W\xe4hlen Sie ein Bundesland",
+                                        onChange: handleStateChange,
+                                        defaultValue: "wien"
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 101,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "league-cell-list",
+                                        children: filteredLeagues.length > 0 ? filteredLeagues.map((league)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _leagueSelection.LeagueSelection), {
+                                                className: "league-selection-cell",
+                                                name: league.name,
+                                                teams: league.teamcount,
+                                                onClick: ()=>handleLeagueSelect(league)
+                                            }, league.id, false, {
+                                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                                lineNumber: 114,
+                                                columnNumber: 41
+                                            }, undefined)) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                            className: "no-results-text",
+                                            children: "Aktuell haben wir keine Liga in diesem Bundesland."
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                            lineNumber: 123,
+                                            columnNumber: 37
+                                        }, undefined)
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 111,
+                                        columnNumber: 29
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                lineNumber: 100,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _sponsors.Sponsors), {
+                                className: "instance-node-2",
+                                vWhite: "/img/v-white-1-1.svg"
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                lineNumber: 130,
+                                columnNumber: 25
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 99,
+                        columnNumber: 21
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {
+                        className: "footer-instance",
+                        footerContent: "/img/footer-content-wrapper-left-logo-8.png",
+                        href: "https://www.facebook.com/kleinfeldliga/",
+                        href1: "https://www.youtube.com/@OEKFB",
+                        href2: "https://www.instagram.com/oekfb/?hl=en",
+                        img: "/img/link-33.svg",
+                        link: "/img/link-32.svg",
+                        link1: "/img/link-34.svg",
+                        link2: "/img/link-35.svg"
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 133,
+                        columnNumber: 21
+                    }, undefined)
+                ]
+            }, void 0, true),
+            screenWidth >= 900 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _viewDefaultWrapper.DesktopNav), {
+                        className: "instance-node",
+                        img: "/img/league-row-item-content-seperator-1080.svg",
+                        leagueRowItem: "/img/league-row-item-content-img-1090.png",
+                        view: "default"
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 149,
+                        columnNumber: 21
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "page-header-wrapper",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "page-header-2",
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "page-header-wrapper-2",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "page-header-wrapper-3",
+                                        children: "Ligen Auswahl"
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 159,
+                                        columnNumber: 33
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                        className: "page-header-wrapper-4",
+                                        children: "W\xe4hlen Sie ein Bundesland aus, um die Ligen anzuzeigen."
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 160,
+                                        columnNumber: 33
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                lineNumber: 158,
+                                columnNumber: 29
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                            lineNumber: 157,
+                            columnNumber: 25
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 156,
+                        columnNumber: 21
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "page-content-2",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "leagues-wrapper-2",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _dropdown.Dropdown), {
+                                        className: "instance-node",
+                                        options: austrianStates,
+                                        displayKey: "name",
+                                        valueKey: "value",
+                                        text: "Bundesland ausw\xe4hlen",
+                                        placeholder: "W\xe4hlen Sie ein Bundesland",
+                                        onChange: handleStateChange,
+                                        defaultValue: "wien"
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 169,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "league-cell-list-2",
+                                        children: filteredLeagues.length > 0 ? filteredLeagues.map((league)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _leagueSelection.LeagueSelection), {
+                                                className: "league-selection-cell",
+                                                name: league.name,
+                                                teams: league.teamcount,
+                                                onClick: ()=>handleLeagueSelect(league)
+                                            }, league.id, false, {
+                                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                                lineNumber: 182,
+                                                columnNumber: 41
+                                            }, undefined)) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                            className: "no-results-text",
+                                            children: "Aktuell haben wir keine Liga in diesem Bundesland."
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                            lineNumber: 191,
+                                            columnNumber: 37
+                                        }, undefined)
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                        lineNumber: 179,
+                                        columnNumber: 29
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                lineNumber: 168,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _sponsors.Sponsors), {
+                                className: "sponsors-3",
+                                vWhite: "/img/v-white-1-2.svg"
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                                lineNumber: 198,
+                                columnNumber: 25
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 167,
+                        columnNumber: 21
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
+                        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+                        lineNumber: 201,
+                        columnNumber: 21
+                    }, undefined)
+                ]
+            }, void 0, true)
+        ]
+    }, void 0, true, {
+        fileName: "src/screens/ElementLeagueSelection/ElementLeagueSelection.tsx",
+        lineNumber: 79,
+        columnNumber: 9
+    }, undefined);
+};
+_s(ElementLeagueSelection, "yv3O0g/pq/NfKlS7ekWa9ypqqPM=", false, function() {
+    return [
+        (0, _breakpoints.useWindowWidth),
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c = ElementLeagueSelection;
+var _c;
+$RefreshReg$(_c, "ElementLeagueSelection");
+
+  $parcel$ReactRefreshHelpers$fcb7.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../breakpoints":"8VCQt","../../components/Dropdown":"9yvFB","../../components/Footer":"egaqK","../../components/LeagueSelection":"9GMUG","../../components/Sponsors":"c5dw3","../../components/ViewDefaultWrapper":"4JBXT","./style.css":"bIsa6","../../components/Navigation":"lyfSW","../../network/ClientController":"dMbvz","../../network/AuthService":"6nPiU","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9yvFB":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Dropdown", ()=>(0, _dropdown.Dropdown));
+var _dropdown = require("./Dropdown");
+
+},{"./Dropdown":"kKcMp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kKcMp":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$636e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$636e.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Dropdown", ()=>Dropdown);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+var _s = $RefreshSig$();
+const Dropdown = ({ className, dropdownWrapperClassName, matLabelSelectAClassName, text = "Select a region", dropdownWrapperClassNameOverride, placeholder = "Choose an option", options = [], displayKey, valueKey, onChange })=>{
+    _s();
+    const [isOpen, setIsOpen] = (0, _react.useState)(false); // Toggle dropdown
+    const [selectedValue, setSelectedValue] = (0, _react.useState)(null);
+    const toggleDropdown = ()=>setIsOpen((prev)=>!prev);
+    const handleSelect = (value)=>{
+        setSelectedValue(value);
+        setIsOpen(false);
+        onChange(value);
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `dropdown ${className}`,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "dropdown-wrapper",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "dropdown-wrapper-2",
+                    children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: `mat-label-select-a-wrapper ${dropdownWrapperClassName}`,
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: `mat-label-select-a ${matLabelSelectAClassName}`,
+                                children: text
+                            }, void 0, false, {
+                                fileName: "src/components/Dropdown/Dropdown.tsx",
+                                lineNumber: 48,
+                                columnNumber: 15
+                            }, undefined)
+                        }, void 0, false, {
+                            fileName: "src/components/Dropdown/Dropdown.tsx",
+                            lineNumber: 45,
+                            columnNumber: 13
+                        }, undefined),
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "dropdown-wrapper-3",
+                            onClick: toggleDropdown,
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: `dropdown-wrapper-4 ${dropdownWrapperClassNameOverride}`,
+                                    children: selectedValue ? options.find((opt)=>opt[valueKey] === selectedValue)?.[displayKey] : placeholder
+                                }, void 0, false, {
+                                    fileName: "src/components/Dropdown/Dropdown.tsx",
+                                    lineNumber: 55,
+                                    columnNumber: 15
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                    className: "dropdown-wrapper-5",
+                                    alt: "Dropdown wrapper",
+                                    src: "/img/dropdown-wrapper-icon.svg"
+                                }, void 0, false, {
+                                    fileName: "src/components/Dropdown/Dropdown.tsx",
+                                    lineNumber: 62,
+                                    columnNumber: 15
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/Dropdown/Dropdown.tsx",
+                            lineNumber: 54,
+                            columnNumber: 13
+                        }, undefined)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/Dropdown/Dropdown.tsx",
+                    lineNumber: 44,
+                    columnNumber: 11
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/Dropdown/Dropdown.tsx",
+                lineNumber: 43,
+                columnNumber: 9
+            }, undefined),
+            isOpen && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "dropdown-wrapper-6",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("ul", {
+                    className: "dropdown-options",
+                    children: options.map((option)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("li", {
+                            onClick: ()=>handleSelect(option[valueKey]),
+                            className: "dropdown-option-item",
+                            children: option[displayKey]
+                        }, option.id || option[valueKey], false, {
+                            fileName: "src/components/Dropdown/Dropdown.tsx",
+                            lineNumber: 76,
+                            columnNumber: 21
+                        }, undefined))
+                }, void 0, false, {
+                    fileName: "src/components/Dropdown/Dropdown.tsx",
+                    lineNumber: 74,
+                    columnNumber: 15
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/Dropdown/Dropdown.tsx",
+                lineNumber: 73,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/Dropdown/Dropdown.tsx",
+        lineNumber: 42,
+        columnNumber: 7
+    }, undefined);
+};
+_s(Dropdown, "LH18nnOdoxH72IFS/lGOcZB91dw=");
+_c = Dropdown;
+Dropdown.propTypes = {
+    text: (0, _propTypesDefault.default).string,
+    placeholder: (0, _propTypesDefault.default).string,
+    options: (0, _propTypesDefault.default).array.isRequired,
+    displayKey: (0, _propTypesDefault.default).string.isRequired,
+    valueKey: (0, _propTypesDefault.default).string.isRequired,
+    onChange: (0, _propTypesDefault.default).func.isRequired
+};
+Dropdown.defaultProps = {
+    options: []
+};
+var _c;
+$RefreshReg$(_c, "Dropdown");
+
+  $parcel$ReactRefreshHelpers$636e.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","prop-types":"7wKI2","react":"21dqq","./style.css":"jKhup","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jKhup":[function() {},{}],"9GMUG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LeagueSelection", ()=>(0, _leagueSelection.LeagueSelection));
+var _leagueSelection = require("./LeagueSelection");
+
+},{"./LeagueSelection":"fLhsr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fLhsr":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$0c05 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$0c05.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LeagueSelection", ()=>LeagueSelection);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _styleCss = require("./style.css");
+const LeagueSelection = ({ className, name, teams, onClick })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: `league-selection ${className}`,
+        onClick: onClick,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "name",
+                children: name
+            }, void 0, false, {
+                fileName: "src/components/LeagueSelection/LeagueSelection.tsx",
+                lineNumber: 20,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "subtitle",
+                children: [
+                    teams,
+                    " TEAMS"
+                ]
+            }, void 0, true, {
+                fileName: "src/components/LeagueSelection/LeagueSelection.tsx",
+                lineNumber: 21,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/LeagueSelection/LeagueSelection.tsx",
+        lineNumber: 19,
+        columnNumber: 9
+    }, undefined);
+};
+_c = LeagueSelection;
+var _c;
+$RefreshReg$(_c, "LeagueSelection");
+
+  $parcel$ReactRefreshHelpers$0c05.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./style.css":"7yP3e","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7yP3e":[function() {},{}],"bIsa6":[function() {},{}],"l2vnE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementNewsDetail", ()=>(0, _elementNewsDetail.ElementNewsDetail));
+var _elementNewsDetail = require("./ElementNewsDetail");
+
+},{"./ElementNewsDetail":"f2pVh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f2pVh":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$6601 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$6601.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementNewsDetail", ()=>ElementNewsDetail);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _breakpoints = require("../../breakpoints");
+var _viewDefaultWrapper = require("../../components/ViewDefaultWrapper");
+var _navigation = require("../../components/Navigation");
+var _footer = require("../../components/Footer");
+var _clientController = require("../../network/ClientController");
+var _clientControllerDefault = parcelHelpers.interopDefault(_clientController);
+var _authService = require("../../network/AuthService");
+var _authServiceDefault = parcelHelpers.interopDefault(_authService);
+var _styleCss = require("./style.css");
+var _s = $RefreshSig$();
+const ElementNewsDetail = ()=>{
+    _s();
+    const screenWidth = (0, _breakpoints.useWindowWidth)();
+    const navigate = (0, _reactRouterDom.useNavigate)();
+    const { id } = (0, _reactRouterDom.useParams)(); // Get 'id' from URL parameters
+    const clientController = new (0, _clientControllerDefault.default)();
+    const authService = new (0, _authServiceDefault.default)();
+    const [newsDetail, setNewsDetail] = (0, _react.useState)(null);
+    const [loading, setLoading] = (0, _react.useState)(true);
+    (0, _react.useEffect)(()=>{
+        const fetchNewsDetail = async ()=>{
+            const leagueCode = authService.getLeagueCode();
+            if (!leagueCode) {
+                console.error("No league code found in cookies.");
+                setLoading(false);
+                return;
+            }
+            try {
+                const response = await clientController.fetchNewsDetail(id);
+                setNewsDetail(response);
+            } catch (error) {
+                console.error("Error fetching news details:", error);
+            } finally{
+                setLoading(false);
+            }
+        };
+        fetchNewsDetail();
+    }, [
+        id
+    ]);
+    if (loading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "Loading news details..."
+    }, void 0, false, {
+        fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+        lineNumber: 45,
+        columnNumber: 16
+    }, undefined);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "element-news-detail",
+        style: {
+            minWidth: screenWidth < 900 ? "390px" : "900px"
+        },
+        children: [
+            screenWidth < 900 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigation.Navigation), {}, void 0, false, {
+                fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                lineNumber: 56,
+                columnNumber: 34
+            }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _viewDefaultWrapper.DesktopNav), {}, void 0, false, {
+                fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                lineNumber: 56,
+                columnNumber: 50
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "content-frame-2",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "news-detail-2",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "news-detail-wrapper",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "news-detail-content",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "news-detail-content-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "news-detail-content-3",
+                                            children: [
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "news-detail-content-4",
+                                                    children: newsDetail.tag
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                                    lineNumber: 64,
+                                                    columnNumber: 37
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                    className: "news-detail-content-5",
+                                                    children: newsDetail.title
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                                    lineNumber: 66,
+                                                    columnNumber: 37
+                                                }, undefined),
+                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "news-detail-content-6",
+                                                    children: newsDetail?.date
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                                    lineNumber: 70,
+                                                    columnNumber: 37
+                                                }, undefined)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                            lineNumber: 63,
+                                            columnNumber: 33
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "hero-img",
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "image-12"
+                                            }, void 0, false, {
+                                                fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                                lineNumber: 76,
+                                                columnNumber: 37
+                                            }, undefined)
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                            lineNumber: 75,
+                                            columnNumber: 33
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                    lineNumber: 62,
+                                    columnNumber: 29
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                lineNumber: 61,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "news-detail-content-wrapper",
+                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "news-detail-content-7",
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                        className: "news-detail-content-8",
+                                        children: newsDetail?.text
+                                    }, void 0, false, {
+                                        fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                        lineNumber: 83,
+                                        columnNumber: 33
+                                    }, undefined)
+                                }, void 0, false, {
+                                    fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                    lineNumber: 82,
+                                    columnNumber: 29
+                                }, undefined)
+                            }, void 0, false, {
+                                fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                                lineNumber: 81,
+                                columnNumber: 25
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                        lineNumber: 60,
+                        columnNumber: 21
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                    lineNumber: 59,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                lineNumber: 58,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
+                fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+                lineNumber: 93,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/screens/ElementNewsDetail/ElementNewsDetail.tsx",
+        lineNumber: 49,
+        columnNumber: 9
+    }, undefined);
+};
+_s(ElementNewsDetail, "/spjnDZmqpwIsP28mGjKCr6oRa4=", false, function() {
+    return [
+        (0, _breakpoints.useWindowWidth),
+        (0, _reactRouterDom.useNavigate),
+        (0, _reactRouterDom.useParams)
+    ];
+});
+_c = ElementNewsDetail;
+var _c;
+$RefreshReg$(_c, "ElementNewsDetail");
+
+  $parcel$ReactRefreshHelpers$6601.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","../../breakpoints":"8VCQt","../../components/ViewDefaultWrapper":"4JBXT","../../components/Navigation":"lyfSW","../../components/Footer":"egaqK","../../network/ClientController":"dMbvz","../../network/AuthService":"6nPiU","./style.css":"9jan9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9jan9":[function() {},{}],"dP87C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementTableMobile", ()=>(0, _elementTableMobile.ElementTableMobile));
+var _elementTableMobile = require("./ElementTableMobile");
+
+},{"./ElementTableMobile":"fsEUY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fsEUY":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$26e4 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$26e4.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementTableMobile", ()=>ElementTableMobile);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _breakpoints = require("../../breakpoints");
+var _footer = require("../../components/Footer");
+var _pageHeader = require("../../components/PageHeader");
+var _viewDefaultWrapper = require("../../components/ViewDefaultWrapper");
+var _styleCss = require("./style.css");
+var _navigation = require("../../components/Navigation");
+var _clientController = require("../../network/ClientController");
+var _clientControllerDefault = parcelHelpers.interopDefault(_clientController);
+var _authService = require("../../network/AuthService");
+var _authServiceDefault = parcelHelpers.interopDefault(_authService);
+var _s = $RefreshSig$();
+const ElementTableMobile = ()=>{
+    _s();
+    const screenWidth = (0, _breakpoints.useWindowWidth)();
+    const isMobile = screenWidth < 900;
+    const authService = new (0, _authServiceDefault.default)();
+    const clientController = new (0, _clientControllerDefault.default)();
+    const [table, setTable] = (0, _react.useState)([]);
+    const [loading, setLoading] = (0, _react.useState)(true);
+    (0, _react.useEffect)(()=>{
+        const fetchTable = async ()=>{
+            const leagueCode = authService.getLeagueCode();
+            if (!leagueCode) {
+                console.error("No league code found in cookies.");
+                setLoading(false);
+                return;
+            }
+            try {
+                const tableData = await clientController.fetchTable(leagueCode);
+                setTable(tableData);
+            } catch (error) {
+                console.error("Error fetching table data:", error);
+            } finally{
+                setLoading(false);
+            }
+        };
+        fetchTable();
+    }, []);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "element-table-mobile",
+        style: {
+            minWidth: isMobile ? "390px" : "900px"
+        },
+        children: isMobile ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navigation.Navigation), {}, void 0, false, {
+                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                    lineNumber: 48,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "league-table",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "league-table-wrapper",
+                        style: {
+                            paddingTop: "30px",
+                            paddingBottom: "30px"
+                        },
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "league-table-2",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pageHeader.PageHeader), {
+                                    className: "instance-node-5",
+                                    text: "Tabelle"
+                                }, void 0, false, {
+                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                    lineNumber: 52,
+                                    columnNumber: 33
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "container-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "div-wrapper-2",
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "table",
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("header", {
+                                                        className: "row-wrapper",
+                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "row",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "filler",
+                                                                    style: {
+                                                                        minWidth: "140px"
+                                                                    },
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-25"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 59,
+                                                                        columnNumber: 57
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 58,
+                                                                    columnNumber: 53
+                                                                }, undefined),
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "cell",
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-25",
+                                                                        children: "M"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 62,
+                                                                        columnNumber: 57
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 61,
+                                                                    columnNumber: 53
+                                                                }, undefined),
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "cell-2",
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-26",
+                                                                        children: "W"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 65,
+                                                                        columnNumber: 57
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 64,
+                                                                    columnNumber: 53
+                                                                }, undefined),
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "cell-3",
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-27",
+                                                                        children: "D"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 68,
+                                                                        columnNumber: 57
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 67,
+                                                                    columnNumber: 53
+                                                                }, undefined),
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "cell-4",
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-28",
+                                                                        children: "L"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 71,
+                                                                        columnNumber: 57
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 70,
+                                                                    columnNumber: 53
+                                                                }, undefined),
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "cell-5",
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-29",
+                                                                        children: "G"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 74,
+                                                                        columnNumber: 57
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 73,
+                                                                    columnNumber: 53
+                                                                }, undefined),
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "cell-6",
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-30",
+                                                                        children: "P"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 77,
+                                                                        columnNumber: 57
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 76,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 57,
+                                                            columnNumber: 49
+                                                        }, undefined)
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 56,
+                                                        columnNumber: 45
+                                                    }, undefined),
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "body",
+                                                        children: loading ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            children: "Loading..."
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 84,
+                                                            columnNumber: 53
+                                                        }, undefined) : table.map((team)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "row-2",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data"
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 88,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data-2",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "text-wrapper-31",
+                                                                            children: team.ranking
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 90,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 89,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                                                        className: "data-3",
+                                                                        alt: team.name,
+                                                                        src: team.image
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 94,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "container-wrapper",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "container-3",
+                                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                                className: "text-wrapper-32",
+                                                                                children: team.shortName || team.name
+                                                                            }, void 0, false, {
+                                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                                lineNumber: 101,
+                                                                                columnNumber: 69
+                                                                            }, undefined)
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 100,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 99,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data-4",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "text-wrapper-33",
+                                                                            children: team.wins + team.draws + team.losses
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 107,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 106,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data-5",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "text-wrapper-34",
+                                                                            children: team.wins
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 112,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 111,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data-6",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "text-wrapper-34",
+                                                                            children: team.draws
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 115,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 114,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data-7",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "text-wrapper-34",
+                                                                            children: team.losses
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 118,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 117,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data-8",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "text-wrapper-35",
+                                                                            children: [
+                                                                                team.scored,
+                                                                                ":",
+                                                                                team.against
+                                                                            ]
+                                                                        }, void 0, true, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 121,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 120,
+                                                                        columnNumber: 61
+                                                                    }, undefined),
+                                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "data-9",
+                                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                            className: "text-wrapper-36",
+                                                                            children: team.points
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 126,
+                                                                            columnNumber: 65
+                                                                        }, undefined)
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 125,
+                                                                        columnNumber: 61
+                                                                    }, undefined)
+                                                                ]
+                                                            }, team.id, true, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 87,
+                                                                columnNumber: 57
+                                                            }, undefined))
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 82,
+                                                        columnNumber: 45
+                                                    }, undefined)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                lineNumber: 55,
+                                                columnNumber: 41
+                                            }, undefined)
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                            lineNumber: 54,
+                                            columnNumber: 37
+                                        }, undefined),
+                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                            className: "table-legend",
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "list-2",
+                                                children: [
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "legend-wrapper",
+                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "legend",
+                                                            children: "LEGEND"
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 138,
+                                                            columnNumber: 49
+                                                        }, undefined)
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 137,
+                                                        columnNumber: 45
+                                                    }, undefined),
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "overlap",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "item-4",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                                    className: "m-matches",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-49",
+                                                                            children: "M "
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 144,
+                                                                            columnNumber: 57
+                                                                        }, undefined),
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-50",
+                                                                            children: "Matches"
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 145,
+                                                                            columnNumber: 57
+                                                                        }, undefined)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 143,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 142,
+                                                                columnNumber: 49
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "item-5",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                                    className: "goal-difference",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-49",
+                                                                            children: "+/- "
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 151,
+                                                                            columnNumber: 57
+                                                                        }, undefined),
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-50",
+                                                                            children: "Goal Difference"
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 152,
+                                                                            columnNumber: 57
+                                                                        }, undefined)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 150,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 149,
+                                                                columnNumber: 49
+                                                            }, undefined)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 141,
+                                                        columnNumber: 45
+                                                    }, undefined),
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "overlap-group",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "item-4",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                                    className: "w-won",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-49",
+                                                                            children: "W "
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 160,
+                                                                            columnNumber: 57
+                                                                        }, undefined),
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-50",
+                                                                            children: "Won"
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 161,
+                                                                            columnNumber: 57
+                                                                        }, undefined)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 159,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 158,
+                                                                columnNumber: 49
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "item-5",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                                    className: "p-points",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-49",
+                                                                            children: "P "
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 167,
+                                                                            columnNumber: 57
+                                                                        }, undefined),
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-50",
+                                                                            children: "Points"
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 168,
+                                                                            columnNumber: 57
+                                                                        }, undefined)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 166,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 165,
+                                                                columnNumber: 49
+                                                            }, undefined)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 157,
+                                                        columnNumber: 45
+                                                    }, undefined),
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "overlap-group-2",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "item-4",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                                    className: "d-draw",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-49",
+                                                                            children: "D "
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 176,
+                                                                            columnNumber: 57
+                                                                        }, undefined),
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-50",
+                                                                            children: "Draw"
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 177,
+                                                                            columnNumber: 57
+                                                                        }, undefined)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 175,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 174,
+                                                                columnNumber: 49
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "item-5",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                                    className: "g-goals",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-49",
+                                                                            children: "G "
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 183,
+                                                                            columnNumber: 57
+                                                                        }, undefined),
+                                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                            className: "text-wrapper-50",
+                                                                            children: "Goals"
+                                                                        }, void 0, false, {
+                                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                            lineNumber: 184,
+                                                                            columnNumber: 57
+                                                                        }, undefined)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 182,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 181,
+                                                                columnNumber: 49
+                                                            }, undefined)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 173,
+                                                        columnNumber: 45
+                                                    }, undefined),
+                                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "l-lost-wrapper",
+                                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                                                            className: "l-lost",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                    className: "text-wrapper-49",
+                                                                    children: "L "
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 191,
+                                                                    columnNumber: 53
+                                                                }, undefined),
+                                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                                                    className: "text-wrapper-50",
+                                                                    children: "Lost"
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 192,
+                                                                    columnNumber: 53
+                                                                }, undefined)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 190,
+                                                            columnNumber: 49
+                                                        }, undefined)
+                                                    }, void 0, false, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 189,
+                                                        columnNumber: 45
+                                                    }, undefined)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                lineNumber: 136,
+                                                columnNumber: 41
+                                            }, undefined)
+                                        }, void 0, false, {
+                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                            lineNumber: 135,
+                                            columnNumber: 37
+                                        }, undefined)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                    lineNumber: 53,
+                                    columnNumber: 33
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                            lineNumber: 51,
+                            columnNumber: 29
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                        lineNumber: 50,
+                        columnNumber: 25
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                    lineNumber: 49,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {
+                    className: "footer-7",
+                    footerContent: "/img/footer-content-wrapper-left-logo-13.png",
+                    footerContentClassNameOverride: "footer-8",
+                    href: "https://www.facebook.com/kleinfeldliga/",
+                    href1: "https://www.youtube.com/@OEKFB",
+                    href2: "https://www.instagram.com/oekfb/?hl=en",
+                    img: "/img/link-54.svg",
+                    link: "/img/link-52.svg",
+                    link1: "/img/link-55.svg",
+                    link2: "/img/link-56.svg"
+                }, void 0, false, {
+                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                    lineNumber: 202,
+                    columnNumber: 21
+                }, undefined)
+            ]
+        }, void 0, true) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _viewDefaultWrapper.DesktopNav), {}, void 0, false, {
+                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                    lineNumber: 217,
+                    columnNumber: 21
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                    className: "content-frame",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "page-content-wrapper",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                            className: "page-content-5",
+                            children: [
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pageHeader.PageHeader), {
+                                    className: "instance-node-5",
+                                    text: "Table"
+                                }, void 0, false, {
+                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                    lineNumber: 221,
+                                    columnNumber: 33
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                    className: "div-wrapper-2",
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "league-table-content",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "row-wrapper",
+                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    className: "row-4",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "cell-7",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-51",
+                                                                children: "Matches"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 227,
+                                                                columnNumber: 53
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 226,
+                                                            columnNumber: 49
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "cell-8",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-26",
+                                                                children: "W"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 230,
+                                                                columnNumber: 53
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 229,
+                                                            columnNumber: 49
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "cell-9",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-27",
+                                                                children: "D"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 233,
+                                                                columnNumber: 53
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 232,
+                                                            columnNumber: 49
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "cell-10",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-28",
+                                                                children: "L"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 236,
+                                                                columnNumber: 53
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 235,
+                                                            columnNumber: 49
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "cell-11",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-52",
+                                                                children: "Tore"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 239,
+                                                                columnNumber: 53
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 238,
+                                                            columnNumber: 49
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "cell-12",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-53",
+                                                                children: "+/-"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 242,
+                                                                columnNumber: 53
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 241,
+                                                            columnNumber: 49
+                                                        }, undefined),
+                                                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                            className: "cell-13",
+                                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "text-wrapper-54",
+                                                                children: "Punkte"
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 245,
+                                                                columnNumber: 53
+                                                            }, undefined)
+                                                        }, void 0, false, {
+                                                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                            lineNumber: 244,
+                                                            columnNumber: 49
+                                                        }, undefined)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                    lineNumber: 225,
+                                                    columnNumber: 45
+                                                }, undefined)
+                                            }, void 0, false, {
+                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                lineNumber: 224,
+                                                columnNumber: 41
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                className: "league-table-cells",
+                                                children: loading ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                    children: "Loading..."
+                                                }, void 0, false, {
+                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                    lineNumber: 251,
+                                                    columnNumber: 49
+                                                }, undefined) : table.map((team)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                        className: "row-5",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-20",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-55",
+                                                                    children: team.ranking
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 256,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 255,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-30",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                                                                    className: "mask-group",
+                                                                    alt: team.name,
+                                                                    src: team.image
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 261,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 260,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-22",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "container-4",
+                                                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                        className: "text-wrapper-56",
+                                                                        children: team.name
+                                                                    }, void 0, false, {
+                                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                        lineNumber: 269,
+                                                                        columnNumber: 65
+                                                                    }, undefined)
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 268,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 267,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-23",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-57",
+                                                                    children: team.wins + team.draws + team.losses
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 275,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 274,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-24",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-58",
+                                                                    children: team.wins
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 280,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 279,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-25",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-58",
+                                                                    children: team.draws
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 285,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 284,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-26",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-59",
+                                                                    children: team.losses
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 290,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 289,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-27",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-60",
+                                                                    children: [
+                                                                        team.scored,
+                                                                        ":",
+                                                                        team.against
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 295,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 294,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-28",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-61",
+                                                                    children: team.difference > 0 ? `+${team.difference}` : team.difference
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 300,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 299,
+                                                                columnNumber: 57
+                                                            }, undefined),
+                                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                className: "data-29",
+                                                                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                                                    className: "text-wrapper-62",
+                                                                    children: team.points
+                                                                }, void 0, false, {
+                                                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                    lineNumber: 307,
+                                                                    columnNumber: 61
+                                                                }, undefined)
+                                                            }, void 0, false, {
+                                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                                lineNumber: 306,
+                                                                columnNumber: 57
+                                                            }, undefined)
+                                                        ]
+                                                    }, team.id, true, {
+                                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                        lineNumber: 254,
+                                                        columnNumber: 53
+                                                    }, undefined))
+                                            }, void 0, false, {
+                                                fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                                lineNumber: 249,
+                                                columnNumber: 41
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                        lineNumber: 223,
+                                        columnNumber: 37
+                                    }, undefined)
+                                }, void 0, false, {
+                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                    lineNumber: 222,
+                                    columnNumber: 33
+                                }, undefined),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _footer.Footer), {}, void 0, false, {
+                                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                                    lineNumber: 317,
+                                    columnNumber: 33
+                                }, undefined)
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                            lineNumber: 220,
+                            columnNumber: 29
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                        lineNumber: 219,
+                        columnNumber: 25
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+                    lineNumber: 218,
+                    columnNumber: 21
+                }, undefined)
+            ]
+        }, void 0, true)
+    }, void 0, false, {
+        fileName: "src/screens/ElementTableMobile/ElementTableMobile.tsx",
+        lineNumber: 42,
+        columnNumber: 9
+    }, undefined);
+};
+_s(ElementTableMobile, "sF5BXfenuVzTtUXaWD0Zz/bJkDg=", false, function() {
+    return [
+        (0, _breakpoints.useWindowWidth)
+    ];
+});
+_c = ElementTableMobile;
+var _c;
+$RefreshReg$(_c, "ElementTableMobile");
+
+  $parcel$ReactRefreshHelpers$26e4.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../breakpoints":"8VCQt","../../components/Footer":"egaqK","../../components/PageHeader":"4YQP6","../../components/ViewDefaultWrapper":"4JBXT","./style.css":"2ufd5","../../components/Navigation":"lyfSW","../../network/ClientController":"dMbvz","../../network/AuthService":"6nPiU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"2ufd5":[function() {},{}]},["94b1M","1xC6H","4aBH6"], "4aBH6", "parcelRequire34c4")
 
 //# sourceMappingURL=index.2d3ace14.js.map
