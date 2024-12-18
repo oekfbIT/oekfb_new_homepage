@@ -8,14 +8,13 @@
 }
 
 .element-game-report .design-component-instance-node-2 {
-  align-self: stretch !important;
+  /*align-self: stretch !important;*/
   flex: 0 0 auto !important;
   width: 100% !important;
 }
 
 .element-game-report .game-report-wrapper {
   align-items: flex-start;
-  align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
@@ -183,7 +182,6 @@
 }
 
 .element-game-report .club-img-2 {
-  background-image: url(../../../static/img/club-img-3.png);
   background-position: 50% 50%;
   background-size: cover;
   height: 80px;
@@ -357,7 +355,6 @@
 
 .element-game-report .game-report-bottom {
   align-items: flex-start;
-  align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
@@ -500,7 +497,6 @@
 
 .element-game-report .team-detail-squad-17 {
   align-items: flex-start;
-  align-self: stretch;
   display: flex;
   flex: 0 0 auto;
   justify-content: space-around;

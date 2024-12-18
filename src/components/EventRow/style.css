@@ -22,7 +22,16 @@
   width: 100%;
 }
 
-.event-row .div-12 {
+.event-row .playerdata-home {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  position: relative;
+}
+.event-row .playerdata-away {
   align-items: flex-start;
   display: flex;
   flex: 1;
@@ -135,6 +144,7 @@
   position: relative;
   white-space: nowrap;
   width: fit-content;
+  padding-right: 3px;
 }
 
 .event-row .event-card-last-name {

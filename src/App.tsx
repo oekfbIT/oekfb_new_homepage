@@ -107,10 +107,10 @@ const router = createBrowserRouter([
     path: "/homepage",
     element: <ElementHomepageDesktop />,
   },
-  // {
-  //   path: "/game-report",
-  //   element: <ElementGameReport />,
-  // },
+  {
+    path: "/game-report/:id",
+    element: <ElementGameReport />,
+  },
 ]);
 
 export const App = () => {

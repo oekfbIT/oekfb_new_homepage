@@ -47,9 +47,9 @@ export const ElementTableMobile = (): JSX.Element => {
                 <>
                     <Navigation />
                     <div className="league-table">
-                        <div className="league-table-wrapper">
+                        <div className="league-table-wrapper" style={{paddingTop: "30px", paddingBottom: "30px"}}>
                             <div className="league-table-2">
-                                <PageHeader className="instance-node-5" text="Table" />
+                                <PageHeader className="instance-node-5" text="Tabelle" />
                                 <div className="container-2">
                                     <div className="div-wrapper-2">
                                         <div className="table">
