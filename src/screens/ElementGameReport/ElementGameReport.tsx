@@ -73,7 +73,7 @@ export const ElementGameReport = (): JSX.Element => {
           <div className="game-report-wrapper-2" style={{ paddingTop: "20px" }}>
             <div className="game-report-middle">
               <div className="away-team-2">
-                <div className="club-name">{gameData.home_blanket.name}</div>
+                <div className="club-name">{gameData.home_blanket?.name}</div>
                 <div
                     className="club-img-2"
                     style={{
@@ -92,7 +92,7 @@ export const ElementGameReport = (): JSX.Element => {
                     <div className="container-5">
                       <div className="container-6"></div>
                       <div className="container-7">
-                        <div className="text-wrapper-106">{gameData.score.home}</div>
+                        <div className="text-wrapper-106">{gameData.score?.home}</div>
                       </div>
                     </div>
                   </div>
@@ -103,7 +103,7 @@ export const ElementGameReport = (): JSX.Element => {
                     <div className="container-5">
                       <div className="container-8"></div>
                       <div className="container-7">
-                        <div className="text-wrapper-108">{gameData.score.away}</div>
+                        <div className="text-wrapper-108">{gameData.score?.away}</div>
                       </div>
                     </div>
                   </div>
@@ -114,14 +114,14 @@ export const ElementGameReport = (): JSX.Element => {
                 <div
                     className="club-img-2"
                     style={{
-                      backgroundImage: `url(${gameData.away_blanket.logo})`,
+                      backgroundImage: `url(${gameData.away_blanket?.logo})`,
                       backgroundPosition: "50% 50%",
                       backgroundSize: "cover",
                       height: "80px",
                       width: "80px",
                     }}
                 />
-                <div className="club-name">{gameData.away_blanket.name}</div>
+                <div className="club-name">{gameData.away_blanket?.name}</div>
               </div>
             </div>
 
@@ -131,7 +131,7 @@ export const ElementGameReport = (): JSX.Element => {
 
                 <div className="game-setting-wrapper">
                   <div className="referee-wrapper">
-                    <div className="referee-name">{gameData.referee.name}</div>
+                    <div className="referee-name">{gameData.referee?.name}</div>
                     <img className="img-3" alt="Referee icon" src="/img/referee-icon-7.svg" />
                   </div>
 

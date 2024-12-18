@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import "./style.css";
+import {useNavigate} from "react-router-dom";
 
 interface Props {
     team: {
@@ -11,6 +12,8 @@ interface Props {
 }
 
 export const ClubCell = ({ team, imgContainerClassName = "" }: Props): JSX.Element => {
+    const navigate = useNavigate();
+
     return (
         <div className="club-cell">
             <img

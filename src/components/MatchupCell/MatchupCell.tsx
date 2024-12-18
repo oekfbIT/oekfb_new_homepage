@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./style.css";
+import {useNavigate} from "react-router-dom";
 
 interface Team {
   id?: string;
@@ -33,6 +34,8 @@ interface Props {
 const fallbackLogo = "/img/fallback-logo.png";
 
 export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element => {
+  const navigate = useNavigate();
+
   console.log("Debug - Matchup:", matchup);
 
   const formattedDate = matchup?.details?.date
@@ -94,7 +97,8 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
 
             <div className={`background ${backgroundColorClass}`}>
               <div className="container">
-                <div className="vorschau">
+                <div className="vorschau"
+                     onClick={() => navigate(`/match/${matchup.id}`)}>
                   {matchup?.status === "pending" ? "Vorschau" : `Live - ${formattedDate}`}
                 </div>
               </div>
