@@ -8,7 +8,6 @@ coverage/
 .parcel-cache/
 lib/
 .vscode/
-/dist/
 .idea/
 *.min.js
 # Logs
