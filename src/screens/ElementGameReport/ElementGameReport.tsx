@@ -148,21 +148,40 @@ export const ElementGameReport = (): JSX.Element => {
 
                 <div className="game-setting-wrapper">
                   <div className="referee-wrapper">
-                    <div className="referee-name">{gameData.referee?.name}</div>
-                    <img className="img-3" alt="Referee icon" src="/img/referee-icon-7.svg" />
+                    <div className="referee-name">
+                      {gameData.referee?.name?.trim() ? gameData.referee?.name : "Schiedrichter Nicht Zugewiesen"}
+                    </div>
+                    <img className="img-3" alt="Referee icon" src="/img/referee-icon-7.svg"/>
+                  </div>
+
+                  <div className="setting-wrapper">
+                    <div className="setting-date">
+                      {gameData.details?.date
+                          ? new Date(gameData.details.date).toLocaleDateString("de-DE", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            hour12: false,
+                          }).replace(",", " -") // Format and replace separator
+                          : "Datum nicht Zugewiesen"}
+                    </div>
                   </div>
 
                   <div className="stadium-wrapper">
                     <div className="stadium-img">
                       <div className="dfl-image">
-                        <div className="DFL-STA-b-png" />
+                        <div className="DFL-STA-b-png"/>
                       </div>
                     </div>
-                    <div className="stadium-text">{gameData.details?.location}</div>
+                    <div className="stadium-text">
+                      {gameData.details?.location?.trim() ? gameData.details.location : "Nicht Zugewiesen"}
+                    </div>
                   </div>
                 </div>
 
-                <div className="divider" />
+                <div className="divider"/>
 
                 <div className="game-report-bottom">
                   <div className="game-report-match">

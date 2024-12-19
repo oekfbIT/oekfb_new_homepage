@@ -30,7 +30,8 @@
 
 .team-detail-squad-wrapper .team-detail-team-2 {
   align-items: center;
-  background-color: #ffffff;
+  background-color: black;
+  color: white;
   box-shadow: 0px 2px 8px #000e140d;
   display: flex;
   flex: 1;
@@ -55,7 +56,7 @@
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
-  padding: 0px 0px 0px 10px;
+  padding: 0px 0px 0px 0px;
   position: relative;
 }
 
@@ -71,7 +72,6 @@
 }
 
 .team-detail-squad-wrapper .team-detail-squad-2 {
-  color: var(--themeouter-space);
   font-family: var(--theme-inter-bold-15-63-font-family);
   font-size: var(--theme-inter-bold-15-63-font-size);
   font-style: var(--theme-inter-bold-15-63-font-style);
@@ -85,7 +85,6 @@
 }
 
 .team-detail-squad-wrapper .team-detail-squad-3 {
-  color: var(--themeouter-space);
   font-family: var(--theme-inter-regular-15-63-font-family);
   font-size: var(--theme-inter-regular-15-63-font-size);
   font-style: var(--theme-inter-regular-15-63-font-style);
