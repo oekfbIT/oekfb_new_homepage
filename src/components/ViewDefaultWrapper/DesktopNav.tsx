@@ -69,11 +69,11 @@ export const DesktopNav = ({
         authService.setLeagueData(code, id); // Save data to cookies
         console.log("PRESS OCCUR and REGISTERING PRESS");
 
-        if (window.location.pathname === "/homepage") {
+        if (window.location.pathname === "/liga") {
             // Force reload if already on /homepage
             window.location.reload();
         } else {
-            navigate("/homepage"); // Normal navigation
+            navigate("/liga"); // Normal navigation
         }
     };
 
