@@ -30,18 +30,35 @@ export const ElementGameReport = (): JSX.Element => {
       try {
         const matchDetail = await clientController.fetchMatchDetail(id);
 
-        // Process events to set assign value
+        // Initialize scores
+        let homeScore = 0;
+        let awayScore = 0;
+
+        // Process events to set assign value and calculate dynamic score
         const updatedEvents = matchDetail.events.map((event: any) => {
           const homePlayers = matchDetail.home_blanket?.players.map((p: any) => p.id);
           const awayPlayers = matchDetail.away_blanket?.players.map((p: any) => p.id);
 
+          // Determine the assign value
+          let assign = null;
           if (homePlayers.includes(event.player?.id)) {
-            return { ...event, assign: "home" };
+            assign = "home";
+          } else if (awayPlayers.includes(event.player?.id)) {
+            assign = "away";
           }
-          if (awayPlayers.includes(event.player?.id)) {
-            return { ...event, assign: "away" };
+
+          // Update score dynamically for goals
+          let scoreAtTime = `${homeScore} - ${awayScore}`;
+          if (event.type === "goal") {
+            if (assign === "home") {
+              homeScore++;
+            } else if (assign === "away") {
+              awayScore++;
+            }
+            scoreAtTime = `${homeScore} - ${awayScore}`;
           }
-          return { ...event, assign: null }; // Default if not found
+
+          return { ...event, assign, scoreAtTime };
         });
 
         setGameData({

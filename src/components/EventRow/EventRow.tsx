@@ -132,8 +132,7 @@ export const EventRow = ({
 
             {event.type === "goal" && (
                 <div className="event-card-score-2">
-                  {property1 === "goal-home" && <>1 - 0</>}
-                  {property1 === "goal-away" && <>1 - 1</>}
+                  {event.type === "goal" && <div className="event-card-score-2">{event.scoreAtTime}</div>}
                 </div>
             )}
           </div>
