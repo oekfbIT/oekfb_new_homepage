@@ -45,7 +45,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
     if (["first", "second"].includes(status)) return "Live";
     if (status === "abgebrochen") return "Abgebrochen";
     if (status === "cancelled") return "Abgesagt";
-    return "Upcoming";
+    return "Vorschau";
   };
 
   // Navigate to match detail page
