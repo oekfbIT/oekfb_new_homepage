@@ -177,7 +177,7 @@ export const ElementGameReport = (): JSX.Element => {
                       teamLogo={gameData.home_blanket?.logo}
                   />
                   <div className="team-detail-squad-20">
-                    {gameData.away_blanket?.players.map((player: any) => (
+                    {gameData.home_blanket?.players.map((player: any) => (
                         <BlankettCell
                             key={player.id} // Ensure each key is unique
                             className="design-component-instance-node-2"
@@ -188,6 +188,7 @@ export const ElementGameReport = (): JSX.Element => {
                             teamDetailSquadClassName="team-detail-squad-cell-instance"
                             playerName={player.name}
                             playerImage={player.image}
+                            playerNumber={player.number}
                         />
                     ))}
                   </div>
@@ -205,7 +206,7 @@ export const ElementGameReport = (): JSX.Element => {
                       teamLogo={gameData.away_blanket?.logo}
                   />
                   <div className="team-detail-squad-20">
-                    {gameData.home_blanket?.players.map((player: any) => (
+                    {gameData.away_blanket?.players.map((player: any) => (
                         <BlankettCell
                             key={player.id} // Ensure each key is unique
                             className="design-component-instance-node-2"
@@ -216,6 +217,7 @@ export const ElementGameReport = (): JSX.Element => {
                             teamDetailSquadClassName="team-detail-squad-cell-instance"
                             playerName={player.name}
                             playerImage={player.image}
+                            playerNumber={player.number}
                         />
                     ))}
                   </div>

@@ -148,3 +148,9 @@
   white-space: nowrap;
   width: fit-content;
 }
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px; /* Match your placeholder's radius */
+  background-color: #ccc; /* Optional fallback color */
+}
