@@ -97,8 +97,6 @@ export const ElementGameReport = (): JSX.Element => {
                       backgroundImage: `url(${gameData.home_blanket?.logo})`,
                       backgroundPosition: "50% 50%",
                       backgroundSize: "cover",
-                      height: "80px",
-                      width: "80px",
                     }}
                 />
               </div>
@@ -133,9 +131,7 @@ export const ElementGameReport = (): JSX.Element => {
                     style={{
                       backgroundImage: `url(${gameData.away_blanket?.logo})`,
                       backgroundPosition: "50% 50%",
-                      backgroundSize: "cover",
-                      height: "80px",
-                      width: "80px",
+                      backgroundSize: "contain",
                     }}
                 />
                 <div className="club-name">{gameData.away_blanket?.name}</div>

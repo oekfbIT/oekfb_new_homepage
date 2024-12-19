@@ -165,7 +165,7 @@
   margin-left: -9.50px;
   margin-right: -9.50px;
   max-width: 100%;
-  min-width: 340px;
+  /*min-width: 340px;*/
   position: relative;
 }
 
@@ -173,7 +173,7 @@
   color: var(--themeswamp);
   flex: 1;
   font-family: var(--theme-inter-bold-25-9-font-family);
-  font-size: var(--theme-inter-bold-25-9-font-size);
+  font-size: 44px;
   font-style: var(--theme-inter-bold-25-9-font-style);
   font-weight: var(--theme-inter-bold-25-9-font-weight);
   letter-spacing: var(--theme-inter-bold-25-9-letter-spacing);
@@ -188,6 +188,44 @@
   max-width: 80px;
   position: relative;
   width: 80px;
+}
+
+.element-game-report .club-img-2 {
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 80px;
+  max-width: 80px;
+  position: relative;
+  width: 80px;
+}
+
+/* For screens under 500px */
+@media (max-width: 500px) {
+  .element-game-report .club-img-2 {
+    height: 40px; /* Adjusted height */
+    width: 40px; /* Adjusted width */
+    background-size: contain; /* Optional: Change background size */
+  }
+
+  .element-game-report .stadium-wrapper {
+    flex-direction: column-reverse;
+    gap: 1px;
+  }
+
+  .element-game-report .club-name {
+    font-size: 24px;
+  }
+
+  .element-game-report .text-wrapper-108 {
+    font-size: 16px;
+  }
+
+  .element-game-report .referee-wrapper {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .element-game-report .text-wrapper-106 {}
 }
 
 .element-game-report .score-wrapper {
@@ -339,7 +377,7 @@
 .element-game-report .text-wrapper-108 {
   color: var(--themewhite);
   font-family: var(--theme-inter-bold-44-font-family);
-  font-size: var(--theme-inter-bold-44-font-size);
+  font-size: 44px;
   font-style: var(--theme-inter-bold-44-font-style);
   font-weight: var(--theme-inter-bold-44-font-weight);
   letter-spacing: var(--theme-inter-bold-44-letter-spacing);
@@ -402,14 +440,12 @@
   display: flex;
   flex: 1;
   flex-grow: 1;
-  gap: 10px;
   justify-content: flex-end;
   padding: 4px 0px;
   position: relative;
 }
 
 .element-game-report .referee-name {
-  align-self: stretch;
   color: var(--themeouter-space);
   font-family: var(--theme-inter-regular-11-25-font-family);
   font-size: var(--theme-inter-regular-11-25-font-size);
@@ -435,17 +471,16 @@
 }
 
 .setting-date {
-  align-self: stretch;
   color: var(--themeouter-space);
+  text-align: center;
   font-family: var(--theme-inter-regular-11-25-font-family);
   font-size: 14px;
   font-style: var(--theme-inter-regular-11-25-font-style);
   font-weight: var(--theme-inter-regular-11-25-font-weight);
   letter-spacing: var(--theme-inter-regular-11-25-letter-spacing);
-  line-height: var(--theme-inter-regular-11-25-line-height);
   margin-top: -1.00px;
   position: relative;
-  text-align: right;
+  text-align: center;
 
 }
 
@@ -456,7 +491,6 @@
   display: flex;
   flex: 1;
   flex-grow: 1;
-  gap: 10px;
   padding: 4px 0px;
   position: relative;
 }
@@ -491,14 +525,13 @@
 }
 
 .element-game-report .stadium-text {
-  align-self: stretch;
   color: var(--themeouter-space);
   flex: 1;
   font-family: "Inter", Helvetica;
   font-size: 11.4px;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 40px;
+  line-height: 18px;
   margin-top: -1.00px;
   position: relative;
   text-decoration: underline;
