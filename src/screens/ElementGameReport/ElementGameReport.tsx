@@ -207,6 +207,7 @@ export const ElementGameReport = (): JSX.Element => {
                       clubImgClassName="team-detail-squad-header"
                       teamName={gameData.home_blanket?.name}
                       teamLogo={gameData.home_blanket?.logo}
+                      assign="home"
                   />
                   <div className="team-detail-squad-20">
                     {gameData.home_blanket?.players && gameData.home_blanket.players.length > 0 ? (
@@ -242,6 +243,7 @@ export const ElementGameReport = (): JSX.Element => {
                       clubImgClassName="team-detail-squad-header"
                       teamName={gameData.away_blanket?.name}
                       teamLogo={gameData.away_blanket?.logo}
+                      
                   />
                   <div className="team-detail-squad-20">
                     {gameData.away_blanket?.players && gameData.away_blanket.players.length > 0 ? (

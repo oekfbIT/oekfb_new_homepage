@@ -173,7 +173,7 @@
   color: var(--themeswamp);
   flex: 1;
   font-family: var(--theme-inter-bold-25-9-font-family);
-  font-size: 44px;
+  font-size: 24px;
   font-style: var(--theme-inter-bold-25-9-font-style);
   font-weight: var(--theme-inter-bold-25-9-font-weight);
   letter-spacing: var(--theme-inter-bold-25-9-letter-spacing);
@@ -250,7 +250,8 @@
 }
 
 .element-game-report .background-2 {
-  background-color: var(--themetorch-red);
+  background-color: black;
+  /*background-color: var(--themetorch-red);*/
   height: 80px;
   position: relative;
   width: 72px;
