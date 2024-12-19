@@ -29,8 +29,8 @@ export const App = () => {
       <HashRouter>
         <Routes>
           {/* Specific Routes */}
-          <Route path="/liga" element={<ElementHomepageDesktop />} /> {/* Changed from /homepage */}
-          <Route path="/" element={<ElementLeagueSelection />} />
+            <Route path="/" element={<ElementLeagueSelection />} />
+            <Route path="/liga" element={<ElementHomepageDesktop />} /> {/* Changed from /homepage */}
           <Route path="/mobilenav" element={<ElementMobilenav />} />
           <Route path="/match/:id" element={<ElementGameReport />} />
           {/*

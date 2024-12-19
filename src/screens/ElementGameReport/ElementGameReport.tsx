@@ -177,62 +177,19 @@ export const ElementGameReport = (): JSX.Element => {
                       teamLogo={gameData.home_blanket?.logo}
                   />
                   <div className="team-detail-squad-20">
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
+                    {gameData.away_blanket?.players.map((player: any) => (
+                        <BlankettCell
+                            key={player.id} // Ensure each key is unique
+                            className="design-component-instance-node-2"
+                            flagiconClassName="team-detail-squad-22"
+                            flagiconClassNameOverride="team-detail-squad-23"
+                            frameClassName="team-detail-squad-instance"
+                            frameClassNameOverride="team-detail-squad-21"
+                            teamDetailSquadClassName="team-detail-squad-cell-instance"
+                            playerName={player.name}
+                            playerImage={player.image}
+                        />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -248,62 +205,19 @@ export const ElementGameReport = (): JSX.Element => {
                       teamLogo={gameData.away_blanket?.logo}
                   />
                   <div className="team-detail-squad-20">
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
-                    <BlankettCell
-                        className="design-component-instance-node-2"
-                        flagiconClassName="team-detail-squad-22"
-                        flagiconClassNameOverride="team-detail-squad-23"
-                        frameClassName="team-detail-squad-instance"
-                        frameClassNameOverride="team-detail-squad-21"
-                        teamDetailSquadClassName="team-detail-squad-cell-instance"
-                    />
+                    {gameData.home_blanket?.players.map((player: any) => (
+                        <BlankettCell
+                            key={player.id} // Ensure each key is unique
+                            className="design-component-instance-node-2"
+                            flagiconClassName="team-detail-squad-22"
+                            flagiconClassNameOverride="team-detail-squad-23"
+                            frameClassName="team-detail-squad-instance"
+                            frameClassNameOverride="team-detail-squad-21"
+                            teamDetailSquadClassName="team-detail-squad-cell-instance"
+                            playerName={player.name}
+                            playerImage={player.image}
+                        />
+                    ))}
                   </div>
                 </div>
               </div>
@@ -311,7 +225,7 @@ export const ElementGameReport = (): JSX.Element => {
           </div>
         </div>
 
-        <Footer />
+        <Footer/>
       </div>
   );
 };
