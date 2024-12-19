@@ -1,8 +1,8 @@
-import { DivWrapper } from ".";
+import { BlankettCell } from ".";
 
 export default {
   title: "Components/DivWrapper",
-  component: DivWrapper,
+  component: BlankettCell,
 };
 
 export const Default = {

@@ -218,7 +218,7 @@ export const ElementTableMobile = (): JSX.Element => {
                     <div className="content-frame">
                         <div className="page-content-wrapper">
                             <div className="page-content-5">
-                                <PageHeader className="instance-node-5" text="Table" />
+                                <PageHeader className="instance-node-5" text="Tabelle" />
                                 <div className="div-wrapper-2">
                                     <div className="league-table-content">
                                         <div className="row-wrapper">

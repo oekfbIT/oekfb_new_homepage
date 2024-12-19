@@ -24,10 +24,6 @@ import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 
 const router = createBrowserRouter([
   {
-    path: "/*",
-    element: <ElementLeagueSelection />,
-  },
-  {
     path: "/league-selection",
     element: <ElementLeagueSelection />,
   },
@@ -110,6 +106,10 @@ const router = createBrowserRouter([
   {
     path: "/homepage",
     element: <ElementHomepageDesktop />,
+  },
+  {
+    path: "/*",
+    element: <ElementLeagueSelection />,
   }
 ]);
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { useNavigate, useParams } from "react-router-dom";
-import { DivWrapper } from "../../components/DivWrapper";
+import { BlankettCell } from "../../components/DivWrapper";
 import { EventRow } from "../../components/EventRow";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
@@ -32,8 +32,8 @@ export const ElementGameReport = (): JSX.Element => {
 
         // Process events to set assign value
         const updatedEvents = matchDetail.events.map((event: any) => {
-          const homePlayers = matchDetail.home_blanket.players.map((p: any) => p.id);
-          const awayPlayers = matchDetail.away_blanket.players.map((p: any) => p.id);
+          const homePlayers = matchDetail.home_blanket?.players.map((p: any) => p.id);
+          const awayPlayers = matchDetail.away_blanket?.players.map((p: any) => p.id);
 
           if (homePlayers.includes(event.player?.id)) {
             return { ...event, assign: "home" };
@@ -77,7 +77,7 @@ export const ElementGameReport = (): JSX.Element => {
                 <div
                     className="club-img-2"
                     style={{
-                      backgroundImage: `url(${gameData.home_blanket.logo})`,
+                      backgroundImage: `url(${gameData.home_blanket?.logo})`,
                       backgroundPosition: "50% 50%",
                       backgroundSize: "cover",
                       height: "80px",
@@ -141,7 +141,7 @@ export const ElementGameReport = (): JSX.Element => {
                         <div className="DFL-STA-b-png" />
                       </div>
                     </div>
-                    <div className="stadium-text">{gameData.details.location}</div>
+                    <div className="stadium-text">{gameData.details?.location}</div>
                   </div>
                 </div>
 
@@ -173,9 +173,11 @@ export const ElementGameReport = (): JSX.Element => {
                   <TeamDetailSquadWrapper
                       className="design-component-instance-node-2"
                       clubImgClassName="team-detail-squad-header"
+                      teamName={gameData.home_blanket?.name}
+                      teamLogo={gameData.home_blanket?.logo}
                   />
                   <div className="team-detail-squad-20">
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -183,7 +185,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -191,7 +193,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -199,7 +201,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -207,7 +209,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -215,7 +217,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -223,7 +225,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -242,9 +244,11 @@ export const ElementGameReport = (): JSX.Element => {
                   <TeamDetailSquadWrapper
                       className="design-component-instance-node-2"
                       clubImgClassName="team-detail-squad-header"
+                      teamName={gameData.away_blanket?.name}
+                      teamLogo={gameData.away_blanket?.logo}
                   />
                   <div className="team-detail-squad-20">
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -252,7 +256,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -260,7 +264,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -268,7 +272,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -276,7 +280,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -284,7 +288,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -292,7 +296,7 @@ export const ElementGameReport = (): JSX.Element => {
                         frameClassNameOverride="team-detail-squad-21"
                         teamDetailSquadClassName="team-detail-squad-cell-instance"
                     />
-                    <DivWrapper
+                    <BlankettCell
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"

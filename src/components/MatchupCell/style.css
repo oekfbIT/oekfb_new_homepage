@@ -59,6 +59,7 @@
   gap: 5.86px;
   position: relative;
   width: 100%;
+  cursor: pointer;
 }
 
 .matchup-cell .matchup-cell-bottom-2 {
@@ -80,7 +81,7 @@
   display: flex;
   height: 44px;
   justify-content: center;
-  padding: 4.5px 0px;
+  padding: 4.5px 10px;
   position: relative;
   width: 100%;
 }
