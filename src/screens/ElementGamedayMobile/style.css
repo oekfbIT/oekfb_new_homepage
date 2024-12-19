@@ -185,12 +185,12 @@
   max-width: 1200px;
   padding: 0px 32px 60px;
   position: relative;
-  width: 900px;
+  width: 100%;
 }
 
 .element-gameday-mobile .page-header-4 {
   flex: 0 0 auto !important;
-  width: 836px !important;
+  width: 100% !important;
 }
 
 .element-gameday-mobile .gamedays {

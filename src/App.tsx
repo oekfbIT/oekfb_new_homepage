@@ -33,11 +33,12 @@ export const App = () => {
             <Route path="/liga" element={<ElementHomepageDesktop />} /> {/* Changed from /homepage */}
           <Route path="/mobilenav" element={<ElementMobilenav />} />
           <Route path="/match/:id" element={<ElementGameReport />} />
+            <Route path="/spielplan" element={<ElementGamedayMobile />} />
           {/*
         <Route path="/sperren" element={<ElementSperrenDesktop />} />
         <Route path="/news" element={<ElementNewsMobile />} />
         <Route path="/register" element={<ElementRegister />} />
-        <Route path="/spielplan" element={<ElementGamedayMobile />} />
+
         <Route path="/registration-upload" element={<ElementRegistration />} />
         <Route path="/confirmation" element={<ElementConfirmation />} />
         <Route path="/transfers" element={<ElementTransfersDesktop />} />

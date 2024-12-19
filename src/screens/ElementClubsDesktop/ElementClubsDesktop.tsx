@@ -13,7 +13,7 @@ export const ElementClubsDesktop = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const isMobile = screenWidth < 900;
 
-    const [clubs, setClubs] = useState([]);
+    const [matches, setMatches] = useState([]);
     const [loading, setLoading] = useState(true);
 
     const authService = new AuthService();
@@ -21,7 +21,7 @@ export const ElementClubsDesktop = (): JSX.Element => {
 
     // Fetch clubs on component mount
     useEffect(() => {
-        const fetchClubs = async () => {
+        const fetchMatches = async () => {
             const leagueCode = authService.getLeagueCode();
             if (!leagueCode) {
                 console.error("No league code found in cookies.");
@@ -30,8 +30,8 @@ export const ElementClubsDesktop = (): JSX.Element => {
             }
 
             try {
-                const clubData = await clientController.fetchLeagueClubs(leagueCode);
-                setClubs(clubData);
+                const clubData = await clientController.fetchFirstSeasonMatches(leagueCode);
+                setMatches(clubData);
             } catch (error) {
                 console.error("Error fetching club data:", error);
             } finally {
@@ -39,7 +39,7 @@ export const ElementClubsDesktop = (): JSX.Element => {
             }
         };
 
-        fetchClubs();
+        fetchMatches();
     }, []);
 
     return (
