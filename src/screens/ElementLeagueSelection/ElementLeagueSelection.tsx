@@ -71,7 +71,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
         console.log(`League selected: Code = ${league.code}, ID = ${league.id}`);
 
         // Navigate to the homepage
-        navigate("/homepage");
+        navigate("/liga");
 
     };
 

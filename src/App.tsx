@@ -1,5 +1,7 @@
 import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
+
+// Importing all screen components
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
 import { ElementConfirmation } from "./screens/ElementConfirmation";
 import { ElementContactMobile } from "./screens/ElementContactMobile";
@@ -22,97 +24,38 @@ import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTermsMobile } from "./screens/ElementTermsMobile";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 
-const router = createBrowserRouter([
-  {
-    path: "/league-selection",
-    element: <ElementLeagueSelection />,
-  },
-  {
-    path: "/mobilenav",
-    element: <ElementMobilenav />,
-  },
-  {
-    path: "/match/:id",
-    element: <ElementGameReport />,
-  },
-  // {
-  //   path: "/sperren",
-  //   element: <ElementSperrenDesktop />,
-  // },
-  {
-    path: "/teams",
-    element: <ElementClubsDesktop />,
-  },
-  {
-    path: "/tabelle",
-    element: <ElementTableMobile />,
-  },
-  // {
-  //   path: "/news",
-  //   element: <ElementNewsMobile />,
-  // },
-  // {
-  //   path: "/register",
-  //   element: <ElementRegister />,
-  // },
-  {
-    path: "/news-detail/:id",
-    element: <ElementNewsDetail />,
-  },
-  // {
-  //   path: "/spielplan",
-  //   element: <ElementGamedayMobile />,
-  // },
-  // {
-  //   path: "/registration-upload",
-  //   element: <ElementRegistration />,
-  // },
-  // {
-  //   path: "/confirmation",
-  //   element: <ElementConfirmation />,
-  // },
-  // {
-  //   path: "/transfers",
-  //   element: <ElementTransfersDesktop />,
-  // },
-  // {
-  //   path: "/leaderboards",
-  //   element: <ElementLeaderboard />,
-  // },
-  // {
-  //   path: "/player-detail",
-  //   element: <ElementPlayerDetail />,
-  // },
-  // {
-  //   path: "/team-detail",
-  //   element: <ElementTeamDetail />,
-  // },
-  // {
-  //   path: "/kontakt",
-  //   element: <ElementContactMobile />,
-  // },
-  // {
-  //   path: "/impressium",
-  //   element: <ElementImpressiumMobile />,
-  // },
-  // {
-  //   path: "/login",
-  //   element: <ElementLoginMobile />,
-  // },
-  // {
-  //   path: "/terms",
-  //   element: <ElementTermsMobile />,
-  // },
-  {
-    path: "/homepage",
-    element: <ElementHomepageDesktop />,
-  },
-  {
-    path: "/*",
-    element: <ElementLeagueSelection />,
-  }
-]);
-
 export const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+      <HashRouter>
+        <Routes>
+          {/* Specific Routes */}
+          <Route path="/" element={<ElementHomepageDesktop />} /> {/* Changed from /homepage */}
+          <Route path="/league-selection" element={<ElementLeagueSelection />} />
+          <Route path="/mobilenav" element={<ElementMobilenav />} />
+          <Route path="/match/:id" element={<ElementGameReport />} />
+          {/*
+        <Route path="/sperren" element={<ElementSperrenDesktop />} />
+        <Route path="/news" element={<ElementNewsMobile />} />
+        <Route path="/register" element={<ElementRegister />} />
+        <Route path="/spielplan" element={<ElementGamedayMobile />} />
+        <Route path="/registration-upload" element={<ElementRegistration />} />
+        <Route path="/confirmation" element={<ElementConfirmation />} />
+        <Route path="/transfers" element={<ElementTransfersDesktop />} />
+        <Route path="/leaderboards" element={<ElementLeaderboard />} />
+        <Route path="/player-detail" element={<ElementPlayerDetail />} />
+        <Route path="/team-detail" element={<ElementTeamDetail />} />
+        <Route path="/kontakt" element={<ElementContactMobile />} />
+        <Route path="/impressium" element={<ElementImpressiumMobile />} />
+        <Route path="/login" element={<ElementLoginMobile />} />
+        <Route path="/terms" element={<ElementTermsMobile />} />
+        */}
+          <Route path="/teams" element={<ElementClubsDesktop />} />
+          <Route path="/tabelle" element={<ElementTableMobile />} />
+          <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
+
+          {/* Fallback Route */}
+          <Route path="*" element={<ElementLeagueSelection />} />
+        </Routes>
+      </HashRouter>
+  );
 };
