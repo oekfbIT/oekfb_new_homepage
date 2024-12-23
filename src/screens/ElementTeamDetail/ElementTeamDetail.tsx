@@ -80,7 +80,6 @@ export const ElementTeamDetail = (): JSX.Element => {
                         {teamData?.club?.players?.map((player: any) => (
                             <div
                                 key={player.id}
-                                onClick={() => navigate(`/player-detail/${player.id}`)}
                                 style={{cursor: "pointer"}} // Add pointer cursor for visual feedback
                             >
                                 <TeamDetailSquad player={player}/>
