@@ -839,9 +839,24 @@
 
 .team-squad {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-template-columns: 1fr; /* Default to 1 column */
   width: 100%;
   max-width: 1200px;
+  gap: 3px; /* Adjust spacing between items */
+}
+
+@media (min-width: 600px) {
+  /* Tablet view: 2 columns */
+  .team-squad {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop view: 3 columns */
+  .team-squad {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .flagicon {

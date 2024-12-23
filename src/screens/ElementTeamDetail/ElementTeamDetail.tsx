@@ -12,9 +12,11 @@ import "./style.css";
 import { useNavigate, useParams } from "react-router-dom";
 import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import {DesktopNav} from "../../components/ViewDefaultWrapper";
 
 export const ElementTeamDetail = (): JSX.Element => {
     const screenWidth = useWindowWidth();
+    const isMobile = screenWidth < 900;
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -56,10 +58,9 @@ export const ElementTeamDetail = (): JSX.Element => {
             className="element-team-detail"
             style={{
                 minWidth: screenWidth < 1200 ? "390px" : "1200px",
-                overflow: screenWidth < 1200 ? "hidden" : undefined,
             }}
         >
-            <Navigation />
+            {isMobile ? <Navigation /> : <DesktopNav />}
 
             <div className="team-detail-top">
                 {teamData?.club ? (
@@ -71,31 +72,37 @@ export const ElementTeamDetail = (): JSX.Element => {
 
             <div className="page-content">
                 {/* Squad Section */}
-                <section>
+                <section style={{width: "-webkit-fill-available"}}>
                     <h2 className="secTitle">
                         {teamData?.club?.team_name} SQUAD
                     </h2>
                     <div className="team-squad">
                         {teamData?.club?.players?.map((player: any) => (
-                            <TeamDetailSquad key={player.id} player={player} />
+                            <div
+                                key={player.id}
+                                onClick={() => navigate(`/player-detail/${player.id}`)}
+                                style={{cursor: "pointer"}} // Add pointer cursor for visual feedback
+                            >
+                                <TeamDetailSquad player={player}/>
+                            </div>
                         ))}
                     </div>
                 </section>
 
                 {/* Stats Section with a for-loop */}
-                <section>
+                <section style={{width: "-webkit-fill-available"}}>
                     <h2 className="secTitle">
                         {teamData?.club?.team_name} STATS
                     </h2>
-                    <div className="stats-grid">
+                    <div className="stats-grid" style={{ justifyItems: "center"}}>
                         {teamStats.map(([statKey, statValue]) => (
-                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
+                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell"/>
                         ))}
                     </div>
                 </section>
 
                 {/* Fixtures Section */}
-                <section>
+                <section style={{width: "-webkit-fill-available"}}>
                     <h2 className="secTitle">FIXTURES & RESULTS</h2>
                     <div>
                         {teamData?.upcoming?.map((match: any) => (
@@ -109,7 +116,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                 </section>
 
                 {/* News Section */}
-                <section>
+                <section style={{width: "-webkit-fill-available"}}>
                     <h2 className="secTitle">NEWS & SPIELBERICHTE</h2>
                     <div className="news-wrapper">
                         <div className="news-grid">
@@ -127,7 +134,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                 </section>
             </div>
 
-            <Footer />
+            <Footer/>
         </div>
     );
 };
