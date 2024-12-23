@@ -845,6 +845,28 @@
   gap: 3px; /* Adjust spacing between items */
 }
 
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to 1 column for mobile */
+  width: 100%;
+  max-width: 1200px;
+  gap: 5px; /* Adjust spacing between items */
+}
+
+@media (min-width: 600px) {
+  /* Tablet view: 2 columns */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Desktop view: 3 columns */
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 @media (min-width: 600px) {
   /* Tablet view: 2 columns */
   .team-squad {

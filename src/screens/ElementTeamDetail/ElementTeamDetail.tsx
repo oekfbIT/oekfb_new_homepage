@@ -101,7 +101,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                 </section>
 
                 {/* Fixtures Section */}
-                <section style={{width: "-webkit-fill-available"}}>
+                <section style={{width: "-webkit-fill-available",justifyItems: "center" }}>
                     <h2 className="secTitle">FIXTURES & RESULTS</h2>
                     <div>
                         {teamData?.upcoming?.map((match: any) => (

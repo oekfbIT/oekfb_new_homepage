@@ -84,7 +84,6 @@ export const ElementGamedayMobile = (): JSX.Element => {
     return (
         <div
             className="element-gameday-mobile"
-            style={{ minWidth: isMobile ? "390px" : "900px" }}
         >
             {isMobile ? <Navigation /> : <DesktopNav />}
 
@@ -131,7 +130,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
                                                 <p className="gameday-header-date">
                           <span className="text-wrapper-91">
                             {new Date(fixture.details.date).toLocaleDateString(
-                                "en-US",
+                                "de-DE",
                                 { weekday: "long" }
                             )}
                           </span>
