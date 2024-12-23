@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./style.css";
 
 interface Event {
@@ -48,6 +49,8 @@ export const EventRow = ({
                            eventCardNameClassName,
                            eventCardNameClassNameOverride,
                          }: Props): JSX.Element => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const typeMap: Record<string, Record<string, string>> = {
     goal: {
       home: "goal-home",
@@ -93,6 +96,14 @@ export const EventRow = ({
   const showHomeSide = ["goal-home", "red-home", "yellow-home", "yellowred-home"].includes(property1);
   const showAwaySide = ["goal-away", "red-away", "yellow-away", "yellowred-away"].includes(property1);
 
+  const navigateToPlayerDetail = () => {
+    if (event.player?.id) {
+      navigate(`/player-detail/${event.player.id}`);
+    } else {
+      console.error("Player ID is undefined");
+    }
+  };
+
   return (
       <div className={`event-row ${className}`}>
         <div className="event-card-bottom">
@@ -105,7 +116,8 @@ export const EventRow = ({
                         <div className="event-card-data-2">
                           <div
                               className={`event-card-player ${eventCardPlayerClassName}`}
-                              style={{ backgroundImage: `url(${event.image})` }}
+                              style={{ backgroundImage: `url(${event.image})`, cursor: "pointer" }}
+                              onClick={navigateToPlayerDetail} // Navigate on image click
                           />
                           <div className="event-card-team">
                             <div className={`event-card-team-img ${eventCardTeamImgClassName}`} />
@@ -113,8 +125,18 @@ export const EventRow = ({
                         </div>
                       </div>
                       <div className={`event-card-name ${eventCardNameClassNameOverride}`}>
-                        <div className="event-card-first">{firstName}</div>
-                        <div className={`event-card-last-name ${eventCardLastNameClassName}`}>
+                        <div
+                            className="event-card-first"
+                            style={{ cursor: "pointer" }}
+                            onClick={navigateToPlayerDetail} // Navigate on name click
+                        >
+                          {firstName}
+                        </div>
+                        <div
+                            className={`event-card-last-name ${eventCardLastNameClassName}`}
+                            style={{ cursor: "pointer" }}
+                            onClick={navigateToPlayerDetail} // Navigate on name click
+                        >
                           {lastName}
                         </div>
                       </div>
@@ -129,12 +151,6 @@ export const EventRow = ({
               <div className="event-card-minute-2">{event.minute}&#39;</div>
             </div>
             <img className="event-card-type-img" alt="Event card type img" src={eventTypeImg} />
-
-            {event.type === "goal" && (
-                <div className="event-card-score-2">
-                  {event.type === "goal" && <div className="event-card-score-2">{event.scoreAtTime}</div>}
-                </div>
-            )}
           </div>
 
           <div className="playerdata-away">
@@ -146,7 +162,8 @@ export const EventRow = ({
                         <div className="event-card-data-2">
                           <div
                               className={`event-card-player ${eventCardPlayerClassNameOverride}`}
-                              style={{ backgroundImage: `url(${event.image})` }}
+                              style={{ backgroundImage: `url(${event.image})`, cursor: "pointer" }}
+                              onClick={navigateToPlayerDetail} // Navigate on image click
                           />
                           <div className="event-card-team">
                             <div className={`event-card-team-img ${eventCardTeamImgClassNameOverride}`} />
@@ -156,9 +173,17 @@ export const EventRow = ({
                       <div
                           className={`event-card-name-2 property-1-0-${property1} ${eventCardNameClassName}`}
                       >
-                        <div className="event-card-first">{firstName}</div>
+                        <div
+                            className="event-card-first"
+                            style={{ cursor: "pointer" }}
+                            onClick={navigateToPlayerDetail} // Navigate on name click
+                        >
+                          {firstName}
+                        </div>
                         <div
                             className={`event-card-last-name ${eventCardLastNameClassNameOverride}`}
+                            style={{ cursor: "pointer" }}
+                            onClick={navigateToPlayerDetail} // Navigate on name click
                         >
                           {lastName}
                         </div>
@@ -189,6 +214,5 @@ EventRow.propTypes = {
     }).isRequired,
     number: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    own_goal: PropTypes.bool,
   }).isRequired,
 };

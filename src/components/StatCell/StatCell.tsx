@@ -18,11 +18,16 @@ enum StatKeyMap {
     draws = "Unentschieden",
     total_red_cards = "Rote Karten",
     wins = "Siege",
+    yellow_red_crd = "Gelb-Rote Karten",
+    goals_scored = "Erzielte Tore",
+    red_cards = "Rote Karten",
+    matches_played = "Spiele",
+    yellow_cards = "Gelbe Karten",
 }
 
 // Helper function to format stat keys
 const formatStatKey = (key: string): string => {
-    return StatKeyMap[key as keyof typeof StatKeyMap] || key.replace(/_/g, " "); // Fallback to replace underscores with spaces
+    return StatKeyMap[key as keyof typeof StatKeyMap] ?? key.replace(/_/g, " ");
 };
 
 export const StatCell = ({ className, statKey, statValue }: Props): JSX.Element => {

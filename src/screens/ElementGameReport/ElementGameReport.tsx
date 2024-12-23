@@ -223,6 +223,7 @@ export const ElementGameReport = (): JSX.Element => {
                                 playerName={player.name}
                                 playerImage={player.image}
                                 playerNumber={player.number}
+                                playerId={player.id}
                             />
                         ))
                     ) : (
@@ -259,6 +260,7 @@ export const ElementGameReport = (): JSX.Element => {
                                 playerName={player.name}
                                 playerImage={player.image}
                                 playerNumber={player.number}
+                                playerId={player.id}
                             />
                         ))
                     ) : (

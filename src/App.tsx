@@ -35,6 +35,7 @@ export const App = () => {
             <Route path="/match/:id" element={<ElementGameReport />} />
             <Route path="/spielplan" element={<ElementGamedayMobile />} />
             <Route path="/team-detail/:id" element={<ElementTeamDetail />} />
+            <Route path="/player-detail/:id" element={<ElementPlayerDetail />} />
             {/*
         <Route path="/sperren" element={<ElementSperrenDesktop />} />
         <Route path="/news" element={<ElementNewsMobile />} />
