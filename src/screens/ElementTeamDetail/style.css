@@ -68,7 +68,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 390px;
+  width: 100%;
 }
 
 .element-team-detail .team-detail-header {
@@ -189,6 +189,7 @@
   flex-direction: column;
   position: relative;
   width: 100%;
+  justify-content: center;
 }
 
 .element-team-detail .team-detail-3 {
@@ -197,14 +198,15 @@
   background-color: #ffffff;
   display: flex;
   gap: 15px;
-  height: 64px;
   padding: 0px 0px 0px 16px;
   position: relative;
   width: 100%;
+  justify-content: center;
+
 }
 
 .element-team-detail .team-detail-4 {
-  color: #000000;
+  color: #919191;
   font-family: "Inter", Helvetica;
   font-size: 13.8px;
   font-weight: 700;

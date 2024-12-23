@@ -73,18 +73,23 @@ export const ElementTeamDetail = (): JSX.Element => {
             <div className="page-content">
                 {/* Squad Section */}
                 <section style={{width: "-webkit-fill-available"}}>
-                    <h2 className="secTitle">
-                        {teamData?.club?.team_name} SQUAD
-                    </h2>
+                    <h2 className="secTitle">{teamData?.club?.team_name} SQUAD</h2>
                     <div className="team-squad">
-                        {teamData?.club?.players?.map((player: any) => (
-                            <div
-                                key={player.id}
-                                style={{cursor: "pointer"}} // Add pointer cursor for visual feedback
-                            >
-                                <TeamDetailSquad player={player}/>
-                            </div>
-                        ))}
+                        {teamData?.club?.players
+                            ?.filter(
+                                (player: any) => player.eligibility === "Spielberechtigt" || player.eligibility === "Gesperrt"
+                            ) // Filter out players with other eligibility statuses
+                            .sort((a: any, b: any) => {
+                                // Sort by eligibility: "Spielberechtigt" first, then "Gesperrt"
+                                if (a.eligibility === "Spielberechtigt" && b.eligibility !== "Spielberechtigt") return -1;
+                                if (a.eligibility !== "Spielberechtigt" && b.eligibility === "Spielberechtigt") return 1;
+                                return 0; // Keep original order otherwise
+                            })
+                            .map((player: any) => (
+                                <div key={player.id} style={{cursor: "pointer"}}>
+                                    <TeamDetailSquad player={player}/>
+                                </div>
+                            ))}
                     </div>
                 </section>
 
@@ -93,7 +98,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                     <h2 className="secTitle">
                         {teamData?.club?.team_name} STATS
                     </h2>
-                    <div className="stats-grid" style={{ justifyItems: "center"}}>
+                    <div className="stats-grid" style={{justifyItems: "center"}}>
                         {teamStats.map(([statKey, statValue]) => (
                             <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell"/>
                         ))}
@@ -101,9 +106,9 @@ export const ElementTeamDetail = (): JSX.Element => {
                 </section>
 
                 {/* Fixtures Section */}
-                <section style={{width: "-webkit-fill-available",justifyItems: "center" }}>
+                <section style={{width: "-webkit-fill-available", justifyItems: "center"}}>
                     <h2 className="secTitle">FIXTURES & RESULTS</h2>
-                    <div>
+                    <div style={{width: "100%"}}>
                         {teamData?.upcoming?.map((match: any) => (
                             <FixtureDataCell
                                 key={match.id}

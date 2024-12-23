@@ -55,7 +55,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
 
   return (
       <div className={`fixture-data-cell state-${state}`}>
-        <div className="fixture-data">
+        <div className="fixture-data" style={{maxWidth: "100%"}}>
           {/* Home Team */}
           <div className="home-team">
             <div className="gameday-livescore justRight">
@@ -85,7 +85,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
               alt="Stadium image"
               src={state === "mobile" ? "/img/stadium-image-1.svg" : "/img/stadium-image.svg"}
           />
-          <div className="stadium-location">{details.location || "Unknown Stadium"}</div>
+          <div className="stadium-location">{details.location || "Unbekanntes Stadium"}</div>
         </div>
 
         {/* Button Section */}

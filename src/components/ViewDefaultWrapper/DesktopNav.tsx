@@ -45,8 +45,8 @@ export const DesktopNav = ({
 
     // League Rows Data
     const leagueRows = [
-        { img: "/img/league-row-item-content-img-90.png", text: "2. Wiener Liga A", code: "W2A", id: "80B164B6-4015-4D95-A432-D85CBAD5AF8B" },
         { img: "/img/league-row-item-content-img-90.png", text: "1. Wiener Liga", code: "W1", id: "B236BAAD-404C-4451-9C30-122CBD9EB0DA" },
+        { img: "/img/league-row-item-content-img-90.png", text: "2. Wiener Liga A", code: "W2A", id: "80B164B6-4015-4D95-A432-D85CBAD5AF8B" },
         { img: "/img/league-row-item-content-img-90.png", text: "2. Wiener Liga B", code: "W2B", id: "F6813EF5-BF80-4A2D-B9B3-3C5845A9CC98" },
         { img: "/img/league-row-item-content-img-90.png", text: "3. Wiener Liga A", code: "W3A", id: "69A15306-4F1E-4A5B-AE64-5487B7B99CDD" },
         { img: "/img/league-row-item-content-img-90.png", text: "3. Wiener Liga B", code: "W3B", id: "77F04A92-7E91-4C65-9E96-0FA1E1033805" },

@@ -40,6 +40,7 @@
   gap: 5px 5px;
   padding: 8px 10px;
   position: relative;
+  margin-right: 5px;
 }
 
 .team-detail-squad-wrapper .club-img {
@@ -49,6 +50,9 @@
   max-width: 80px;
   position: relative;
   width: 50px;
+  background-color: white;
+  padding: 3px;
+  margin-right: 10px;
 }
 
 .team-detail-squad-wrapper .team-detail-team-3 {

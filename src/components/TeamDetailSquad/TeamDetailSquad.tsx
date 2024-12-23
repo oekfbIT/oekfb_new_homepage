@@ -11,6 +11,7 @@ interface Player {
   sid: string;
   image: string;
   eligibility: string;
+  birthday: string;
 }
 
 interface Props {
@@ -84,7 +85,9 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
               </div>
               <div className="div-11">
                 <div className="text-wrapper-22">SID: {player.sid}</div>
+                <div className="text-wrapper-22">Jahrgang: {player.birthday}</div>
               </div>
+
             </div>
 
             <div className="nationality-flags" style={{ gap: "5px", position: "relative" }}>

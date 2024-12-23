@@ -68,6 +68,7 @@
   width: 25px;
   height: 25px;
   margin-right: 10px;
+  margin-left: 10px;
 }
 
 .fixture-data-cell .schedule-container {
@@ -86,7 +87,7 @@
 
 .fixture-data-cell .time-string {
   color: #37003c;
-  font-family: "Arial-Regular", Helvetica;
+  font-family: "Inter", Helvetica;
   font-size: 15.2px;
   font-weight: 400;
   height: 24px;
@@ -135,6 +136,18 @@
   position: relative;
 }
 
+.staium-wrapper {
+  width: 200px;
+}
+@media (max-width: 500px) {
+  .staium-wrapper {
+    justify-content: center;
+  }
+}
+  .justRight
+  { flex-direction: row-reverse}
+
+
 .fixture-data-cell .stadium-image {
   height: 13.75px;
   position: relative;
@@ -160,6 +173,7 @@
   flex: 0 0 auto;
   gap: 16px;
   position: relative;
+  cursor: pointer;
 }
 
 .fixture-data-cell .fixture-btn {
@@ -174,11 +188,12 @@
   justify-content: center;
   padding: 10px 20px;
   position: relative;
+  cursor: pointer;
 }
 
 .fixture-data-cell .btn-txt {
   color: #37003c;
-  font-family: "Arial-Regular", Helvetica;
+  font-family: "Inter", Helvetica;
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0;
@@ -193,13 +208,15 @@
   flex-direction: column;
   gap: 10px;
   padding: 8px 0px;
-  width: 326px;
+  margin: 10px;
+  align-items: center;
 }
 
 .fixture-data-cell.state-desktop {
   justify-content: space-between;
   padding: 8px 32px;
   width: 100%;
+  margin: 10px 0px;
   align-items: center;
 }
 
@@ -219,7 +236,7 @@
 .fixture-data-cell.state-desktop .home-team {
   display: inline-flex;
   flex: 0 0 auto;
-  width: 185px;
+  width: 205px;
 }
 
 .fixture-data-cell.state-mobile .gameday-livescore-2 {

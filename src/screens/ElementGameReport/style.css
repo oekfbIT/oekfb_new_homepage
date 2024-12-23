@@ -457,6 +457,7 @@
   margin-top: -1.00px;
   position: relative;
   text-align: right;
+  margin-right: 5px;
 }
 
 .setting-wrapper {
@@ -638,7 +639,6 @@
   width: 50px;
   height: 50px;
   border-radius: 50%; /* Match your placeholder's radius */
-  background-color: #ccc; /* Optional fallback color */
   object-fit: contain;
 }
 
