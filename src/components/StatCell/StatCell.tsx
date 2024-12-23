@@ -1,25 +1,42 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
-
 import React from "react";
 import "./style.css";
 
 interface Props {
-  className: any;
+    className?: string;
+    statKey: string;
+    statValue: string | number;
 }
 
-export const StatCell = ({ className }: Props): JSX.Element => {
-  return (
-    <div className={`stat-cell ${className}`}>
-      <div className="stat-cell-key">
-        <div className="stat-cell-key-text">Duels won</div>
-      </div>
+// Define an enum for properly formatted German stat keys
+enum StatKeyMap {
+    total_against = "Gegentore",
+    total_yellow_cards = "Gelbe Karten",
+    total_scored = "Erzielte Tore",
+    goal_difference = "Tordifferenz",
+    total_points = "Punkte",
+    losses = "Niederlagen",
+    draws = "Unentschieden",
+    total_red_cards = "Rote Karten",
+    wins = "Siege",
+}
 
-      <div className="stat-cell-value">
-        <div className="stat-cell-value-text">198</div>
-      </div>
-    </div>
-  );
+// Helper function to format stat keys
+const formatStatKey = (key: string): string => {
+    return StatKeyMap[key as keyof typeof StatKeyMap] || key.replace(/_/g, " "); // Fallback to replace underscores with spaces
+};
+
+export const StatCell = ({ className, statKey, statValue }: Props): JSX.Element => {
+    const formattedKey = formatStatKey(statKey);
+
+    return (
+        <div className={`stat-cell ${className}`}>
+            <div className="stat-cell-key">
+                <div className="stat-cell-key-text">{formattedKey}</div>
+            </div>
+
+            <div className="stat-cell-value">
+                <div className="stat-cell-value-text">{statValue}</div>
+            </div>
+        </div>
+    );
 };

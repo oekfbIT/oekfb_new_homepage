@@ -6,6 +6,11 @@
   position: relative;
 }
 
+.page-content {
+  max-width: 1200px;
+  justify-items: center;
+}
+
 .element-team-detail .instance-node-12 {
   align-self: stretch !important;
   flex: 0 0 auto !important;
@@ -54,7 +59,6 @@
 
 .element-team-detail .team-detail-top {
   align-self: stretch;
-  height: 617px;
   position: relative;
   width: 100%;
 }
@@ -803,4 +807,45 @@
   justify-content: center;
   position: relative;
   width: 100%;
+}
+
+.news-wrapper {
+  max-width: 1200px;
+  margin: 0 auto; /* Center the wrapper */
+  padding: 0 16px; /* Add some padding for smaller screens */
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default to 3 columns */
+  gap: 20px; /* Space between items */
+  justify-content: center; /* Center the grid within the wrapper */
+  padding: 20px 0px;
+}
+
+@media (max-width: 768px) {
+  .news-grid {
+    grid-template-columns: 1fr; /* Switch to 1 column for smaller screens */
+  }
+}
+
+.secTitle {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.team-squad {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  width: 100%;
+  max-width: 1200px;
+}
+
+.flagicon {
+  width: 32px;
+  height: 20px;
+  object-fit: cover;
 }

@@ -31,10 +31,11 @@ export const App = () => {
           {/* Specific Routes */}
             <Route path="/" element={<ElementLeagueSelection />} />
             <Route path="/liga" element={<ElementHomepageDesktop />} /> {/* Changed from /homepage */}
-          <Route path="/mobilenav" element={<ElementMobilenav />} />
-          <Route path="/match/:id" element={<ElementGameReport />} />
+            <Route path="/mobilenav" element={<ElementMobilenav />} />
+            <Route path="/match/:id" element={<ElementGameReport />} />
             <Route path="/spielplan" element={<ElementGamedayMobile />} />
-          {/*
+            <Route path="/team-detail/:id" element={<ElementTeamDetail />} />
+            {/*
         <Route path="/sperren" element={<ElementSperrenDesktop />} />
         <Route path="/news" element={<ElementNewsMobile />} />
         <Route path="/register" element={<ElementRegister />} />
@@ -44,7 +45,6 @@ export const App = () => {
         <Route path="/transfers" element={<ElementTransfersDesktop />} />
         <Route path="/leaderboards" element={<ElementLeaderboard />} />
         <Route path="/player-detail" element={<ElementPlayerDetail />} />
-        <Route path="/team-detail" element={<ElementTeamDetail />} />
         <Route path="/kontakt" element={<ElementContactMobile />} />
         <Route path="/impressium" element={<ElementImpressiumMobile />} />
         <Route path="/login" element={<ElementLoginMobile />} />

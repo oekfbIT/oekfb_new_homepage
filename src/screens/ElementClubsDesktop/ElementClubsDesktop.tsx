@@ -30,7 +30,7 @@ export const ElementClubsDesktop = (): JSX.Element => {
             }
 
             try {
-                const clubData = await clientController.fetchFirstSeasonMatches(leagueCode);
+                const clubData = await clientController.fetchLeagueClubs(leagueCode);
                 setMatches(clubData);
             } catch (error) {
                 console.error("Error fetching club data:", error);
@@ -64,26 +64,26 @@ export const ElementClubsDesktop = (): JSX.Element => {
                     padding: isMobile ? "0px 20px" : undefined,
                 }}
             >
-                <PageHeader className="instance-node-4" text="Mannschaften" />
+                <PageHeader className="instance-node-4" text="Mannschaften"/>
 
                 <div className="club-grid">
                     {loading ? (
                         <p>Loading clubs...</p>
-                    ) : clubs.length > 0 ? (
-                        clubs.map((club) => (
+                    ) : matches.length > 0 ? (
+                        matches.map((club) => (
                             <ClubCard
                                 key={club.id}
                                 className="club-card-instance"
                                 club={club}
-
                             />
                         ))
                     ) : (
                         <p>No clubs available for this league.</p>
                     )}
                 </div>
+
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 };

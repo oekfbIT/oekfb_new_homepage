@@ -106,14 +106,14 @@ export const ElementHomepageDesktop = (): JSX.Element => {
                 <div
                     className="club-carousel-action"
                     style={{cursor: "pointer"}}
-                    onClick={() => navigate("/teams")} // Wrap navigate in an arrow function
+                    onClick={() => navigate("/teams")}
                 >
                   ALLE MANNSCHAFTEN
                 </div>
               </div>
               <div className="club-carousel-list">
                 {homepageData.teams.map((team: any) => (
-                    <ClubCell key={team.id} team={team} />
+                    <ClubCell key={team.id}  team={team} />
                 ))}
               </div>
             </div>

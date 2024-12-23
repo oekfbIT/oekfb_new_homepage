@@ -1,16 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { ActionButton } from "../../components/ActionButton";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
 import { Footer } from "../../components/Footer";
-import { Navigation } from "../../components/Navigation"; // Unified component
+import { Navigation } from "../../components/Navigation";
 import { NewsArticle } from "../../components/NewsArticle";
 import { StatCell } from "../../components/StatCell";
 import { TeamDetailSquad } from "../../components/TeamDetailSquad";
+import { TeamHeader } from "../../components/TeamHeader";
 import "./style.css";
+import { useNavigate, useParams } from "react-router-dom";
+import ClientController from "../../network/ClientController";
+import AuthService from "../../network/AuthService";
 
 export const ElementTeamDetail = (): JSX.Element => {
     const screenWidth = useWindowWidth();
+    const navigate = useNavigate();
+    const { id } = useParams();
+
+    const clientController = new ClientController();
+    const authService = new AuthService();
+
+    const [teamData, setTeamData] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchTeamDetail = async () => {
+            const leagueCode = authService.getLeagueCode();
+            if (!leagueCode) {
+                console.error("No league code found in cookies.");
+                setLoading(false);
+                return;
+            }
+
+            try {
+                const response = await clientController.fetchClubDetail(id);
+                setTeamData(response);
+            } catch (error) {
+                console.error("Error fetching team detail:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTeamDetail();
+    }, [id]);
+
+    // Turn the teamData?.club?.stats object into an array so we can map over it
+    const teamStats = teamData?.club?.stats
+        ? Object.entries(teamData.club.stats)
+        : [];
 
     return (
         <div
@@ -20,70 +59,74 @@ export const ElementTeamDetail = (): JSX.Element => {
                 overflow: screenWidth < 1200 ? "hidden" : undefined,
             }}
         >
-            {/* Unified Navigation Component */}
             <Navigation />
 
-            {/* Page Content */}
             <div className="team-detail-top">
-                <div className="team-detail">
-                    <div className="team-detail-header">
-                        <img
-                            className="team-logo"
-                            alt="FC Bayern München"
-                            src="/img/image-9.png"
-                        />
-                        <div>
-                            <h1>FC Bayern München</h1>
-                            <p>Allianz Arena</p>
-                        </div>
-                    </div>
-                    <div className="team-detail-nav">
-                        <button>SQUAD</button>
-                        <button>TABLE</button>
-                        <button>FIXTURES & RESULTS</button>
-                        <button>STATS</button>
-                        <button>NEWS & VIDEOS</button>
-                    </div>
-                </div>
+                {teamData?.club ? (
+                    <TeamHeader team={teamData.club} />
+                ) : (
+                    <div>No team data available</div>
+                )}
             </div>
 
             <div className="page-content">
                 {/* Squad Section */}
                 <section>
-                    <h2>FC BAYERN MÜNCHEN SQUAD</h2>
+                    <h2 className="secTitle">
+                        {teamData?.club?.team_name} SQUAD
+                    </h2>
                     <div className="team-squad">
-                        <TeamDetailSquad property1="image" />
-                        <TeamDetailSquad property1="no-image" />
+                        {teamData?.club?.players?.map((player: any) => (
+                            <TeamDetailSquad key={player.id} player={player} />
+                        ))}
                     </div>
                 </section>
 
-                {/* Stats Section */}
+                {/* Stats Section with a for-loop */}
                 <section>
-                    <h2>FC BAYERN MÜNCHEN STATS</h2>
+                    <h2 className="secTitle">
+                        {teamData?.club?.team_name} STATS
+                    </h2>
                     <div className="stats-grid">
-                        <StatCell />
-                        <StatCell />
-                        <StatCell />
+                        {teamStats.map(([statKey, statValue]) => (
+                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
+                        ))}
                     </div>
                 </section>
 
                 {/* Fixtures Section */}
                 <section>
-                    <h2>FIXTURES & RESULTS</h2>
-                    <FixtureDataCell state="mobile" />
+                    <h2 className="secTitle">FIXTURES & RESULTS</h2>
+                    <div>
+                        {teamData?.upcoming?.map((match: any) => (
+                            <FixtureDataCell
+                                key={match.id}
+                                match={match}
+                                state={screenWidth < 600 ? "mobile" : "desktop"}
+                            />
+                        ))}
+                    </div>
                 </section>
 
                 {/* News Section */}
                 <section>
-                    <h2>NEWS & SPIELBERICHTE</h2>
-                    <div className="news-grid">
-                        <NewsArticle />
-                        <NewsArticle />
+                    <h2 className="secTitle">NEWS & SPIELBERICHTE</h2>
+                    <div className="news-wrapper">
+                        <div className="news-grid">
+                            {teamData?.news?.map((newsItem: any) => (
+                                <NewsArticle
+                                    key={newsItem.id}
+                                    id={newsItem.id}
+                                    title={newsItem.title}
+                                    image={newsItem.image}
+                                    text={newsItem.text}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </section>
             </div>
 
-            {/* Footer */}
             <Footer />
         </div>
     );

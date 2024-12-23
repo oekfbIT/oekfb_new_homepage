@@ -2,10 +2,8 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 72px;
   padding: 4px;
   position: relative;
-  width: 360px;
 }
 
 .team-detail-squad .team-detail-squad-wrapper-2 {
@@ -15,6 +13,7 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  width: 100%;
 }
 
 .team-detail-squad .div-10 {
@@ -34,10 +33,10 @@
 .team-detail-squad .image-11 {
   background-position: 50% 50%;
   background-size: cover;
-  height: 48px;
   position: relative;
-  width: 48px;
+  object-fit: contain;
 }
+
 
 .team-detail-squad .team-detail-squad-wrapper-3 {
   align-items: flex-start;
@@ -79,12 +78,28 @@
   gap: 4px;
   position: relative;
   width: 100%;
+  flex-direction: column;
 }
 
 .team-detail-squad .text-wrapper-22 {
   color: var(--themeouter-space);
   font-family: var(--theme-inter-regular-15-63-font-family);
   font-size: var(--theme-inter-regular-15-63-font-size);
+  font-style: var(--theme-inter-regular-15-63-font-style);
+  font-weight: bolder;
+  letter-spacing: var(--theme-inter-regular-15-63-letter-spacing);
+  line-height: var(--theme-inter-regular-15-63-line-height);
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+  max-width: 200px;
+}
+
+.team-detail-squad .text-wrapper-22 {
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-15-63-font-family);
+  font-size: 14px;
   font-style: var(--theme-inter-regular-15-63-font-style);
   font-weight: var(--theme-inter-regular-15-63-font-weight);
   letter-spacing: var(--theme-inter-regular-15-63-letter-spacing);
@@ -107,6 +122,7 @@
   position: relative;
   white-space: nowrap;
   width: fit-content;
+  overflow: hidden;
 }
 
 .team-detail-squad .nationality-flags {
@@ -126,7 +142,7 @@
 }
 
 .team-detail-squad .flagicon {
-  background-image: url(../../../static/img/flagicon-1.png);
+  /*background-image: url(../../../static/img/flagicon-1.png);*/
   background-position: 50% 50%;
   background-size: cover;
   border: 1px solid;
@@ -134,7 +150,20 @@
   height: 16px;
   position: relative;
   width: 20.66px;
+  object-fit: contain;
 }
+
+.team-detail-squad .flagicon-no {
+  /*background-image: url(../../../static/img/flagicon-1.png);*/
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 16px;
+  position: relative;
+  width: 20.66px;
+  object-fit: contain;
+}
+
+
 
 .team-detail-squad .flagicon-2 {
   background-image: url(../../../static/img/flagicon-2.png);
@@ -155,12 +184,4 @@
 
 .team-detail-squad .image {
   width: 352px;
-}
-
-.team-detail-squad .team-detail-squad-wrapper-2.no-image .image-11 {
-  background-image: url(../../../static/img/team-detail-squad-cell-img.png);
-}
-
-.team-detail-squad .team-detail-squad-wrapper-2.image .image-11 {
-  background-image: url(../../../static/img/image-8.png);
 }
