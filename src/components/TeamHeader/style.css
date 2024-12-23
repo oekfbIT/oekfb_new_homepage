@@ -189,6 +189,7 @@
 
 .team-detail-scroll {
   display: flex;
+  max-width: 100%;
   gap: 15px; /* Space between items */
   overflow-x: auto; /* Enable horizontal scrolling */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
