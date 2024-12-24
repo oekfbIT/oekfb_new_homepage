@@ -242,7 +242,7 @@ export const ElementPlayerDetail = () => {
                         {screenWidth < 768 ? (
                             <>
                                 <img className="player-detail-6" alt="Player" src={playerData?.image} />
-                                {/*<img className="player-detail-4" alt="Club logo" src={playerData?.team?.logo} />*/}
+                                <img className="player-detail-4" alt="Club logo" src={playerData?.team?.logo} />
                             </>
                         ) : (
                             <>

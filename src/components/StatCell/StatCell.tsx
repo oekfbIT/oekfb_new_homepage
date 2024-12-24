@@ -21,7 +21,7 @@ enum StatKeyMap {
     yellow_red_crd = "Gelb-Rote Karten",
     goals_scored = "Erzielte Tore",
     red_cards = "Rote Karten",
-    matches_played = "Spiele",
+    matches_played = "Gespielte Spiele",
     yellow_cards = "Gelbe Karten",
 }
 

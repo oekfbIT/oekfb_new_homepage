@@ -53,7 +53,7 @@
   align-self: stretch;
   display: flex;
   flex: 0 0 auto;
-  gap: 24px;
+  gap: 5px;
   max-width: 1140px;
   padding: 0px 0px 60px;
   position: relative;
@@ -127,7 +127,7 @@
   flex-wrap: wrap;
   gap: 0px 0px;
   max-width: 600px;
-  padding: 0px 0px 30px;
+  padding: 0 30px 30px;
   position: relative;
 }
 
@@ -275,7 +275,17 @@
   height: 70px;
   object-fit: cover;
   position: absolute;
-  top: -10px; /* Moves the element 10px up */
+  top: 30px;
+  left: 100px;
+}
+
+@media (max-width: 768px) {
+
+  .element-player-detail .player-detail-4 {
+    left: 50px;
+    z-index: 1;
+  }
+
 }
 
 .element-player-detail .player-detail-5 {
