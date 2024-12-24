@@ -1,36 +1,52 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import AuthService from "../../network/AuthService";
 
-// Reusable LeagueRowItem Component
-const LeagueRowItem = ({ img, text, separator, isActive, onClick }) => (
-    <div
-        className={`league-row-item-6 ${isActive ? "active" : ""}`}
-        onClick={onClick} // Attach onClick handler here
-        style={{ cursor: "pointer" }} // Ensure pointer cursor on hover
+// A Link-wrapping league row
+const LeagueRowItem = ({
+                           img,
+                           text,
+                           separator,
+                           isActive,
+                           code,
+                           id,
+                           handleLeagueClick
+                       }) => (
+    <Link
+        to="/liga"
+        onClick={() => handleLeagueClick(code, id)}
+        reloadDocument
+        style={{ textDecoration: "none", color: "inherit" }}
     >
-        <div className="league-row-item-wrapper">
-            <div className="league-row-item-7">
-                <div className="content-2">
-                    <img className="league-row-item-8" alt="League row item" src={img} />
-                    <div className="league-row-item-9">{text}</div>
+        <div
+            className={`league-row-item-6 ${isActive ? "active" : ""}`}
+            style={{ cursor: "pointer" }}
+        >
+            <div className="league-row-item-wrapper">
+                <div className="league-row-item-7">
+                    <div className="content-2">
+                        <img className="league-row-item-8" alt="League row item" src={img} />
+                        <div className="league-row-item-9">{text}</div>
+                    </div>
+                    <img className="league-row-item-10" alt="Separator" src={separator} />
                 </div>
-                <img className="league-row-item-10" alt="Separator" src={separator} />
             </div>
         </div>
-    </div>
+    </Link>
 );
 
 LeagueRowItem.propTypes = {
     img: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     separator: PropTypes.string.isRequired,
-    isActive: PropTypes.bool
+    isActive: PropTypes.bool,
+    code: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    handleLeagueClick: PropTypes.func.isRequired,
 };
 
-// Main Component
 export const DesktopNav = ({
                                view = "default",
                                className = "",
@@ -41,7 +57,7 @@ export const DesktopNav = ({
                            }) => {
     const [activeLeague, setActiveLeague] = useState(null);
     const authService = new AuthService();
-    const navigate = useNavigate(); // Initialize the navigate function
+    const navigate = useNavigate();
 
     // League Rows Data
     const leagueRows = [
@@ -61,14 +77,14 @@ export const DesktopNav = ({
 
     // Fetch active league from cookie on mount
     useEffect(() => {
-        const savedLeagueCode = authService.getLeagueCode(); // Fetch league code
+        const savedLeagueCode = authService.getLeagueCode();
         if (savedLeagueCode) setActiveLeague(savedLeagueCode);
     }, []);
 
+    // If the user is already on #/liga or the site’s #/liga, reload
     const handleLeagueClick = (code, id) => {
         authService.setLeagueData(code, id);
 
-        // Check both the hash and the full URL
         if (
             window.location.hash === "#/liga" ||
             window.location.href === "https://oekfb.eu/#/liga"
@@ -83,15 +99,17 @@ export const DesktopNav = ({
         <div className={`view-default-wrapper ${view} ${className}`}>
             {/* League Rows */}
             <div className="league-rows-2">
-                <div className="leauge-row-wrapper-2" style={{cursor: "pointer"}}>
-                    {leagueRows.map((row, index) => (
+                <div className="leauge-row-wrapper-2" style={{ cursor: "pointer" }}>
+                    {leagueRows.map((row) => (
                         <LeagueRowItem
-                            key={index}
+                            key={row.id}
+                            code={row.code}
+                            id={row.id}
                             img={row.img}
                             text={row.code}
                             separator="/img/league-row-item-content-seperator-90.svg"
-                            isActive={row.code === activeLeague} // Apply active class if matches
-                            onClick={() => handleLeagueClick(row.code, row.id)} // Set cookie on click
+                            isActive={row.code === activeLeague}
+                            handleLeagueClick={handleLeagueClick}
                         />
                     ))}
                 </div>
@@ -101,9 +119,8 @@ export const DesktopNav = ({
             <div className="nav-row-wrapper-4">
                 <div className="nav-row-wrapper-5">
                     <Link to="/">
-                        <img className="nav-row-wrapper-6" alt="Logo" src={navRowWrapper}/>
+                        <img className="nav-row-wrapper-6" alt="Logo" src={navRowWrapper} />
                     </Link>
-
 
                     {view === "default" && (
                         <>

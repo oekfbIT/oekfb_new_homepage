@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./style.css";
 import { ElementMobilenav } from "../../screens/ElementMobilenav";
 import AuthService from "../../network/AuthService";
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Navigation = ({
                                className = "",
@@ -12,10 +12,10 @@ export const Navigation = ({
                            }) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-    const [activeLeague, setActiveLeague] = useState(null); // State to track active league
-    const navigate = useNavigate(); // Initialize the navigate function
+    const [activeLeague, setActiveLeague] = useState(null);
 
     const authService = new AuthService();
+    const navigate = useNavigate();
 
     // League data
     const leagueData = [
@@ -33,26 +33,24 @@ export const Navigation = ({
         { img: "/img/league-row-item-content-img-90.png", text: "2. Liga Innsbruck", code: "INS2", id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8" },
     ];
 
-    // On component mount, load the active league from cookie
+    // On mount, load active league from cookie
     useEffect(() => {
-        const leagueCode = authService.getLeagueCode(); // Fetch league code from cookie
-        if (leagueCode) {
-            setActiveLeague(leagueCode);
-        }
+        const leagueCode = authService.getLeagueCode();
+        if (leagueCode) setActiveLeague(leagueCode);
     }, []);
 
-    // Handle screen resizing
+    // Listen for window resizing
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 800);
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Handle league row click
+    // Update the cookie, then either reload or navigate
     const handleLeagueClick = (code, id) => {
         authService.setLeagueData(code, id);
 
-        // Check both the hash and the full URL
+        // Check for #/liga or exact URL
         if (
             window.location.hash === "#/liga" ||
             window.location.href === "https://oekfb.eu/#/liga"
@@ -68,15 +66,21 @@ export const Navigation = ({
             {/* League Rows */}
             <div className="league-rows">
                 <div className="league-row-wrapper">
-                    {leagueData.map((item, index) => (
-                        <LeagueRow
-                            key={index}
-                            img={item.img}
-                            text={item.code}
-                            separator="/img/league-row-item-content-seperator-90.svg"
-                            onClick={() => handleLeagueClick(item.code, item.id)} // Set cookie on click
-                            isActive={item.code === activeLeague} // Check if this item is active
-                        />
+                    {leagueData.map((item) => (
+                        <Link
+                            key={item.id}
+                            to="/liga"
+                            onClick={() => handleLeagueClick(item.code, item.id)}
+                            reloadDocument
+                            style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                            <LeagueRow
+                                img={item.img}
+                                text={item.code}
+                                separator="/img/league-row-item-content-seperator-90.svg"
+                                isActive={item.code === activeLeague}
+                            />
+                        </Link>
                     ))}
                 </div>
             </div>
@@ -92,7 +96,7 @@ export const Navigation = ({
                             className="mobile-burger-menu"
                             alt="Mobile Burger Menu"
                             src={mobileBurgerMenu}
-                            onClick={() => setIsDrawerOpen(true)} // Open Drawer
+                            onClick={() => setIsDrawerOpen(true)}
                         />
                     ) : (
                         <div className="nav-login-button">Login</div>
@@ -109,7 +113,7 @@ export const Navigation = ({
                             className="close-button"
                             alt="Close"
                             src="/img/close.svg"
-                            onClick={() => setIsDrawerOpen(false)} // Close Drawer
+                            onClick={() => setIsDrawerOpen(false)}
                         />
                     </div>
                 </div>
@@ -124,11 +128,10 @@ Navigation.propTypes = {
     mobileBurgerMenu: PropTypes.string,
 };
 
-// Reusable LeagueRow Component
-const LeagueRow = ({ img, text, separator, onClick, isActive }) => (
+// A pure presentational row; no onClick here because the Link wraps it above
+const LeagueRow = ({ img, text, separator, isActive }) => (
     <div
-        className={`league-row-item ${isActive ? "active" : ""}`} // Add active class dynamically
-        onClick={onClick}
+        className={`league-row-item ${isActive ? "active" : ""}`}
         style={{ cursor: "pointer" }}
     >
         <div className="link">
@@ -147,8 +150,5 @@ LeagueRow.propTypes = {
     img: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     separator: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired,
     isActive: PropTypes.bool.isRequired,
 };
-
-
