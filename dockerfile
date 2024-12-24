@@ -7,6 +7,8 @@ WORKDIR /usr/src/app
 # Copy package.json and package-lock.json (or yarn.lock) to the container working directory
 COPY package*.json ./
 
+RUN rm -rf .parcel-cache
+
 # Install project dependencies using npm
 RUN npm install
 
