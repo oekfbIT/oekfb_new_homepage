@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   coreapp:
-    container_name: homepage
+    container_name: newHomepage
     build: .
     ports:
       - "4000:4000"
