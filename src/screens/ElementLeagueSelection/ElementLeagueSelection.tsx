@@ -130,9 +130,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
                         <Sponsors className="instance-node-2" vWhite="/img/v-white-1-1.svg" />
                         {/* Partners */}
-
-                        <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
-
+                        
                     </div>
 
                     <Footer
