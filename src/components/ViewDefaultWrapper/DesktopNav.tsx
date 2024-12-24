@@ -66,10 +66,14 @@ export const DesktopNav = ({
     }, []);
 
     const handleLeagueClick = (code, id) => {
-        authService.setLeagueData(code, id); // Save data to cookies
-        console.log("PRESS OCCUR and REGISTERING PRESS");
-        navigate("/liga");
+        authService.setLeagueData(code, id);
 
+        // With HashRouter, the path is actually in window.location.hash
+        if (window.location.hash === "#/liga") {
+            window.location.reload();
+        } else {
+            navigate("/liga");
+        }
     };
 
     return (

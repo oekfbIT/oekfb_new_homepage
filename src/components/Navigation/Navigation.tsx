@@ -50,13 +50,13 @@ export const Navigation = ({
 
     // Handle league row click
     const handleLeagueClick = (code, id) => {
-        authService.setLeagueData(code, id); // Save data to cookies
+        authService.setLeagueData(code, id);
 
-        if (window.location.pathname === "/liga") {
-            // Force reload if already on /homepage
+        // With HashRouter, the path is actually in window.location.hash
+        if (window.location.hash === "#/liga") {
             window.location.reload();
         } else {
-            navigate("/liga"); // Normal navigation
+            navigate("/liga");
         }
     };
 
