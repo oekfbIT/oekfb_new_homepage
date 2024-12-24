@@ -10,7 +10,7 @@ COPY package*.json ./
 RUN rm -rf .parcel-cache
 
 # Install project dependencies using npm
-RUN npm install
+RUN npm install --omit=dev
 
 # Copy the rest of the application code
 COPY . .
