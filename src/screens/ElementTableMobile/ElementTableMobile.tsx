@@ -7,6 +7,7 @@ import "./style.css";
 import { Navigation } from "../../components/Navigation";
 import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import {useNavigate} from "react-router-dom";
 
 export const ElementTableMobile = (): JSX.Element => {
     const screenWidth = useWindowWidth();
@@ -15,6 +16,7 @@ export const ElementTableMobile = (): JSX.Element => {
     const clientController = new ClientController();
     const [table, setTable] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate(); // Initialize the navigate function
 
     useEffect(() => {
         const fetchTable = async () => {
@@ -262,6 +264,7 @@ export const ElementTableMobile = (): JSX.Element => {
                                                                 className="mask-group"
                                                                 alt={team.name}
                                                                 src={team.image}
+                                                                onClick={navigate(`/team-detail/${team.id}}`)}
                                                             />
                                                         </div>
                                                         <div className="data-22">
