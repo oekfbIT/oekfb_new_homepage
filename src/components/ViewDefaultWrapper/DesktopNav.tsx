@@ -68,8 +68,11 @@ export const DesktopNav = ({
     const handleLeagueClick = (code, id) => {
         authService.setLeagueData(code, id);
 
-        // With HashRouter, the path is actually in window.location.hash
-        if (window.location.hash === "#/liga") {
+        // Check both the hash and the full URL
+        if (
+            window.location.hash === "#/liga" ||
+            window.location.href === "https://oekfb.eu/#/liga"
+        ) {
             window.location.reload();
         } else {
             navigate("/liga");
