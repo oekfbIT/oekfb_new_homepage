@@ -49,15 +49,18 @@ export const Navigation = ({
     // Update the cookie, then either reload or navigate
     const handleLeagueClick = (code, id) => {
         authService.setLeagueData(code, id);
+        console.log("pressed")
+        console.log(window.location.hash)
 
         // Check for #/liga or exact URL
         if (
             window.location.hash === "#/liga" ||
             window.location.href === "https://oekfb.eu/#/liga"
         ) {
-            window.location.reload();
+            // window.location.reload();
         } else {
-            navigate("/liga");
+            console.log("pressed")
+            // navigate("/liga");
         }
     };
 
@@ -69,7 +72,7 @@ export const Navigation = ({
                     {leagueData.map((item) => (
                         <Link
                             key={item.id}
-                            to="/liga"
+                            // to="/liga"
                             onClick={() => handleLeagueClick(item.code, item.id)}
                             reloadDocument
                             style={{ textDecoration: "none", color: "inherit" }}
