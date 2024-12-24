@@ -10,6 +10,7 @@ import { Navigation } from "../../components/Navigation";
 import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
 import { useNavigate } from "react-router-dom";
+import {Partners} from "../../components/Partners/Partners";
 
 export const ElementLeagueSelection = (): JSX.Element => {
     const screenWidth = useWindowWidth();
@@ -128,6 +129,10 @@ export const ElementLeagueSelection = (): JSX.Element => {
                         </div>
 
                         <Sponsors className="instance-node-2" vWhite="/img/v-white-1-1.svg" />
+                        {/* Partners */}
+
+                        <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
+
                     </div>
 
                     <Footer
@@ -196,8 +201,13 @@ export const ElementLeagueSelection = (): JSX.Element => {
                         </div>
 
                         <Sponsors className="sponsors-3" vWhite="/img/v-white-1-2.svg"/>
-                    </div>
 
+                        <div style={{width: "100%", maxWidth: "900px", paddingBottom: "30px"}}>
+                            <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg"/>
+                        </div>
+
+
+                    </div>
                     <Footer/>
                 </>
             )}

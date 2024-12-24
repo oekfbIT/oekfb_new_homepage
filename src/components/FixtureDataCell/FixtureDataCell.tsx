@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 interface Match {
-  id: string; // Add match ID here
+  id: string;
   home_blanket: {
     name: string;
     logo: string;
@@ -33,12 +33,10 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
   const { id, home_blanket, away_blanket, details, status } = match;
   const navigate = useNavigate(); // React Router hook for navigation
 
-  // Format time to "HH:mm" using native JavaScript
   const formattedTime = details.date
       ? new Date(details.date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
       : "TBD";
 
-  // Determine button text based on match status
   const getStatusText = (status: string) => {
     if (status === "Pending") return "Vorschau";
     if (["done", "submitted", "completed"].includes(status)) return "Spielbericht";
@@ -48,19 +46,33 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
     return "Vorschau";
   };
 
-  // Navigate to match detail page
   const handleButtonClick = () => {
     navigate(`/match/${id}`);
   };
 
+  const handleTeamClick = (teamId: string) => {
+    navigate(`/team-detail/${teamId}`);
+  };
+
   return (
       <div className={`fixture-data-cell state-${state}`}>
-        <div className="fixture-data" style={{maxWidth: "100%"}}>
+        <div className="fixture-data" style={{ maxWidth: "100%" }}>
           {/* Home Team */}
-          <div className="home-team">
+          <div
+              style={{cursor: "pointer"}}
+              className="home-team clickable"
+              onClick={() => handleTeamClick(home_blanket.id)}
+          >
             <div className="gameday-livescore justRight">
-              <img src={home_blanket.logo} alt={home_blanket.name} className="gameday-livescore-3" />
-              <div className="gameday-livescore-2 justRight">{home_blanket.name}</div>
+              <img
+                  src={home_blanket.logo}
+                  alt={home_blanket.name}
+                  className="gameday-livescore-3"
+              />
+              <div className="gameday-livescore-2 justRight"
+                   style={{cursor: "pointer"}}>
+                {home_blanket.name}
+              </div>
             </div>
           </div>
 
@@ -70,20 +82,31 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
           </div>
 
           {/* Away Team */}
-          <div className="away-team">
+          <div
+              className="away-team clickable"
+              onClick={() => handleTeamClick(away_blanket.id)}
+          >
             <div className="gameday-livescore">
-              <img src={away_blanket.logo} alt={away_blanket.name} className="gameday-livescore-3" />
+              <img
+                  src={away_blanket.logo}
+                  alt={away_blanket.name}
+                  className="gameday-livescore-3"
+              />
               <div className="gameday-livescore-5">{away_blanket.name}</div>
             </div>
           </div>
         </div>
 
         {/* Stadium Section */}
-        <div className="staium-wrapper">
+        <div className="stadium-wrapper">
           <img
               className="stadium-image"
               alt="Stadium image"
-              src={state === "mobile" ? "/img/stadium-image-1.svg" : "/img/stadium-image.svg"}
+              src={
+                state === "mobile"
+                    ? "/img/stadium-image-1.svg"
+                    : "/img/stadium-image.svg"
+              }
           />
           <div className="stadium-location">{details.location || "Unbekanntes Stadium"}</div>
         </div>
@@ -100,7 +123,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
 
 FixtureDataCell.propTypes = {
   match: PropTypes.shape({
-    id: PropTypes.string.isRequired, // Match ID
+    id: PropTypes.string.isRequired,
     home_blanket: PropTypes.shape({
       name: PropTypes.string.isRequired,
       logo: PropTypes.string.isRequired,

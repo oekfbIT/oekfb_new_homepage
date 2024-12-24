@@ -84,9 +84,15 @@ export const Footer = (): JSX.Element => {
               <div className="sponsors-2">
                 <div className="title">Sponsored By</div>
                 <div className="list">
-                  <SponsorLogo imgClass="logo-2" />
-                  <SponsorLogo imgClass="logo-3" />
-                  <SponsorLogo imgClass="logo-4" />
+                  <a href="https://kaddur.at/" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
+                    <SponsorLogo imgClass="logo-2"/>
+                  </a>
+                  <a href="https://at.coca-colahellenic.com/de" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
+                    <SponsorLogo imgClass="logo-3"/>
+                  </a>
+                  <a href="https://aircash.eu/de/" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
+                    <SponsorLogo imgClass="logo-4"/>
+                  </a>
                 </div>
               </div>
 
