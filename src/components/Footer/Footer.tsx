@@ -106,7 +106,6 @@ export const Footer = (): JSX.Element => {
                     href="https://www.youtube.com/@OEKFB"
                     src="/img/link-33.svg"
                 />
-                <img className="link-5" alt="Link" src="/img/link-34.svg" />
                 <SocialLink
                     href="https://www.instagram.com/oekfb/?hl=en"
                     src="/img/link-35.svg"

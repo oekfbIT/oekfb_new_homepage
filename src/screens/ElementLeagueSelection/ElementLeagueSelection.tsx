@@ -202,11 +202,6 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
                         <Sponsors className="sponsors-3" vWhite="/img/v-white-1-2.svg"/>
 
-                        <div style={{width: "100%", maxWidth: "900px", paddingBottom: "30px"}}>
-                            <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg"/>
-                        </div>
-
-
                     </div>
                     <Footer/>
                 </>
