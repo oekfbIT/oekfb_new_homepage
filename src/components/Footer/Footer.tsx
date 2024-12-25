@@ -43,8 +43,12 @@ export const Footer = (): JSX.Element => {
                     <FooterItem label="Impressum" />
                   </Link>
 
-                  <Link className="mobile-menu-item" to="/privacy">
-                    <FooterItem label="Datenschutz" />
+                  {/*<Link className="mobile-menu-item" to="/privacy">*/}
+                  {/*  <FooterItem label="Datenschutz" />*/}
+                  {/*</Link>*/}
+
+                  <Link className="mobile-menu-item" to="/strafsenat">
+                    <FooterItem label="Strafsenat" />
                   </Link>
 
                 </div>

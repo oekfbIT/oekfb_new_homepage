@@ -133,7 +133,6 @@
 }
 
 .element-leaderboard .single-stat-cells {
-  align-items: flex-start;
   align-self: stretch;
   display: flex;
   flex: 0 0 auto;

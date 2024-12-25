@@ -133,6 +133,7 @@ export const DesktopNav = ({
                                         { label: "Spielplan", to: "/spielplan" },
                                         { label: "Leaderboards", to: "/leaderboards" },
                                         { label: "News", to: "/news" },
+                                        { label: "Strafsenat", to: "/strafsenat" },
                                         { label: "Bund", to: "/bund" },
                                         { label: "Kontakt", to: "/kontakt" },
                                     ].map((link, index) => (
