@@ -8,6 +8,15 @@ import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
 import "./style.css";
 
+// Define the type for news detail
+interface NewsDetail {
+    tag: string;
+    title: string;
+    date: string;
+    image: string;
+    text: string;
+}
+
 export const ElementNewsDetail = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const navigate = useNavigate();
@@ -16,14 +25,16 @@ export const ElementNewsDetail = (): JSX.Element => {
     const clientController = new ClientController();
     const authService = new AuthService();
 
-    const [newsDetail, setNewsDetail] = useState<any>(null);
+    const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchNewsDetail = async () => {
             const leagueCode = authService.getLeagueCode();
             if (!leagueCode) {
                 console.error("No league code found in cookies.");
+                setError("Unable to load news details. League code is missing.");
                 setLoading(false);
                 return;
             }
@@ -31,8 +42,9 @@ export const ElementNewsDetail = (): JSX.Element => {
             try {
                 const response = await clientController.fetchNewsDetail(id);
                 setNewsDetail(response);
-            } catch (error) {
-                console.error("Error fetching news details:", error);
+            } catch (err) {
+                console.error("Error fetching news details:", err);
+                setError("Failed to load news details. Please try again later.");
             } finally {
                 setLoading(false);
             }
@@ -45,6 +57,14 @@ export const ElementNewsDetail = (): JSX.Element => {
         return <div>Loading news details...</div>;
     }
 
+    if (error) {
+        return <div className="error-message">{error}</div>;
+    }
+
+    if (!newsDetail) {
+        return <div className="error-message">News details not available.</div>;
+    }
+
     return (
         <div
             className="element-news-detail"
@@ -53,7 +73,7 @@ export const ElementNewsDetail = (): JSX.Element => {
             }}
         >
             {/* Conditional Navigation */}
-            {screenWidth < 900 ? <Navigation/> : <DesktopNav/>}
+            {screenWidth < 900 ? <Navigation /> : <DesktopNav />}
 
             <div className="content-frame-2">
                 <div className="news-detail-2">
@@ -61,19 +81,26 @@ export const ElementNewsDetail = (): JSX.Element => {
                         <div className="news-detail-content">
                             <div className="news-detail-content-2">
                                 <div className="news-detail-content-3">
-                                    <div className="news-detail-content-4">{newsDetail.tag}</div>
+                                    <div className="news-detail-content-4">
+                                        {newsDetail.tag || "No Tag"}
+                                    </div>
 
                                     <p className="news-detail-content-5">
-                                        {newsDetail.title}
+                                        {newsDetail.title || "Untitled"}
                                     </p>
 
                                     <div className="news-detail-content-6">
-                                        {newsDetail?.date}
+                                        {newsDetail.date || "No Date"}
                                     </div>
                                 </div>
 
                                 <div className="hero-img">
-                                    <div className="image-12"/>
+                                    <div
+                                        className="image-12"
+                                        style={{
+                                            backgroundImage: `url(${newsDetail.image || ""})`,
+                                        }}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -81,7 +108,7 @@ export const ElementNewsDetail = (): JSX.Element => {
                         <div className="news-detail-content-wrapper">
                             <div className="news-detail-content-7">
                                 <p className="news-detail-content-8">
-                                    {newsDetail?.text}
+                                    {newsDetail.text || "No content available."}
                                 </p>
                             </div>
                         </div>
@@ -90,7 +117,7 @@ export const ElementNewsDetail = (): JSX.Element => {
             </div>
 
             {/* Footer */}
-            <Footer/>
+            <Footer />
         </div>
     );
 };

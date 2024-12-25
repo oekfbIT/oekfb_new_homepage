@@ -104,9 +104,9 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           <ActionCell
               className="custom-class"
               title="Strafsenat Urteile"
-              subtitle="Keep track of all five early kick-offs prior to Bayern taking on Kiel later this evening."
+              subtitle="Liste der Strafsenat Entscheidungen werden wöchentlich gepostet."
               imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROMeAU1ZwwAFhvAaeD-s8jtsP16Wkw9YSQRA&s"
-              linkTo="/20u46-sperren-desktop"
+              linkTo="/strafsenat"
           />
           <div>
             {/* Embed YouTube Shorts */}

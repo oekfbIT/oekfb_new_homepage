@@ -68,6 +68,16 @@ class ClientController {
     }
 
     /**
+     * Fetch news for a specific league.
+     * GET /news/league/:code
+     * @param {string} code - League code.
+     * @returns {Promise<Object[]>} List of news items.
+     */
+    async fetchStrafsenatNews() {
+        return this.apiService.get(`/news/strafsenat?per=250`);
+    }
+
+    /**
      * Fetch details of a specific news item.
      * GET /news/detail/:id
      * @param {string} id - News item ID.

@@ -1,0 +1,1 @@
+export { Strafsenat } from "./Strafsenat";

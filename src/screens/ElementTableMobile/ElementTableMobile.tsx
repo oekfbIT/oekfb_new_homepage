@@ -264,11 +264,11 @@ export const ElementTableMobile = (): JSX.Element => {
                                                                 className="mask-group"
                                                                 alt={team.name}
                                                                 src={team.image}
-                                                                onClick={navigate(`/team-detail/${team.id}}`)}
+                                                                onClick={() => navigate(`/team-detail/${team.id}`)}
                                                             />
                                                         </div>
                                                         <div className="data-22">
-                                                            <div className="container-4">
+                                                        <div className="container-4">
                                                                 <div className="text-wrapper-56">
                                                                     {team.name}
                                                                 </div>

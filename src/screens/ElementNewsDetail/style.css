@@ -124,11 +124,12 @@
 .element-news-detail .image-12 {
   align-self: stretch;
   background-image: url(../../../static/img/image-6.png);
-  background-position: 50% 50%;
+  background-position: 00% 50%;
   background-size: cover;
   height: 641px;
   position: relative;
   width: 100%;
+  object-fit: contain;
 }
 
 .element-news-detail .news-detail-content-wrapper {
