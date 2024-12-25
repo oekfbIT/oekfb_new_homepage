@@ -23,6 +23,7 @@ import { ElementTableMobile } from "./screens/ElementTableMobile";
 import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTermsMobile } from "./screens/ElementTermsMobile";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
+import {Strafsenat} from "./screens/Strafsenat";
 
 export const App = () => {
   return (
@@ -37,12 +38,14 @@ export const App = () => {
             <Route path="/team-detail/:id" element={<ElementTeamDetail />} />
             <Route path="/player-detail/:id" element={<ElementPlayerDetail />} />
             <Route path="/news" element={<ElementNewsMobile />} />
+            <Route path="/strafsenat" element={<Strafsenat />} />
 
             <Route path="/leaderboards" element={<ElementLeaderboard />} />
             <Route path="/kontakt" element={<ElementContactMobile />} />
+            <Route path="/sperren" element={<ElementSperrenDesktop />} />
+
             {/*
-        <Route path="/sperren" element={<ElementSperrenDesktop />} />
-        <Route path="/news" element={<ElementNewsMobile />} />
+        <Route path="/news" element={<Strafsenat />} />
         <Route path="/register" element={<ElementRegister />} />
 
         <Route path="/registration-upload" element={<ElementRegistration />} />
