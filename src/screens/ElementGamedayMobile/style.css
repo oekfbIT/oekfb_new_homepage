@@ -92,6 +92,7 @@
   font-weight: var(--theme-inter-bold-13-89-font-weight);
   letter-spacing: var(--theme-inter-bold-13-89-letter-spacing);
   line-height: var(--theme-inter-bold-13-89-line-height);
+  padding-right: 5px;
 }
 
 .element-gameday-mobile .text-wrapper-92 {

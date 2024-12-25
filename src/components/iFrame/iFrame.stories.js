@@ -1,8 +1,8 @@
-import { ActionCell } from ".";
+import { IFrame } from ".";
 
 export default {
   title: "Components/IFrame",
-  component: ActionCell,
+  component: IFrame,
 };
 
 export const Default = {

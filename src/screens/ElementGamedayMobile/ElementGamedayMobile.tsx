@@ -128,7 +128,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
                                         <div className="gameday">
                                             <div className="gameday-header">
                                                 <p className="gameday-header-date">
-                          <span className="text-wrapper-91">
+                          <span className="text-wrapper-91" style={{paddingRight: "5px"}}>
                             {new Date(fixture.details.date).toLocaleDateString(
                                 "de-DE",
                                 { weekday: "long" }
@@ -136,7 +136,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
                           </span>
                                                     <span className="text-wrapper-92">
                             {new Date(fixture.details.date).toLocaleDateString(
-                                "en-US",
+                                "de-DE",
                                 { day: "2-digit", month: "long" }
                             )}
                           </span>

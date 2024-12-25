@@ -15,6 +15,8 @@ import "./style.css";
 import { ClubCell } from "../../components/ClubCell";
 import {useNavigate} from "react-router-dom";
 import {Partners} from "../../components/Partners/Partners";
+import {ActionCell} from "../../components/ActionCell";
+import {IFrame} from "../../components/iFrame";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -61,7 +63,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           }}
       >
         {/* Conditional Navigation */}
-        {isMobile ? <Navigation /> : <DesktopNav />}
+        {isMobile ? <Navigation/> : <DesktopNav/>}
 
         {/* Matchup Row */}
         {homepageData?.upcoming?.length > 0 && (
@@ -96,7 +98,28 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         )}
 
         {/* Sponsors */}
-        <Sponsors className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
+        <Sponsors className="design-component-instance-node" vWhite="/img/v-white-1-9.svg"/>
+        {/* Action Cells */}
+        <div className="action-cell-2">
+          <ActionCell
+              className="custom-class"
+              title="Strafsenat Urteile"
+              subtitle="Keep track of all five early kick-offs prior to Bayern taking on Kiel later this evening."
+              imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROMeAU1ZwwAFhvAaeD-s8jtsP16Wkw9YSQRA&s"
+              linkTo="/20u46-sperren-desktop"
+          />
+          <div style={{ width: "50%" }}>
+            {/* Embed YouTube Shorts */}
+            <IFrame
+                className="custom-class"
+                title="YouTube Shorts Video"
+                subtitle="Watch this short clip on YouTube."
+                youtubeUrl="https://www.youtube.com/embed/iRcBALi98p4"
+                linkTo="#"
+            />
+          </div>
+        </div>
+
 
         {/* Team Carousel */}
         {homepageData?.teams?.length > 0 && (
@@ -113,14 +136,14 @@ export const ElementHomepageDesktop = (): JSX.Element => {
               </div>
               <div className="club-carousel-list">
                 {homepageData.teams.map((team: any) => (
-                    <ClubCell key={team.id}  team={team} />
+                    <ClubCell key={team.id} team={team}/>
                 ))}
               </div>
             </div>
         )}
 
         {/* Partners */}
-        <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
+        <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg"/>
 
         {/* News Section */}
         <div className="news-7">
@@ -143,7 +166,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         </div>
 
         {/* Footer */}
-        <Footer />
+        <Footer/>
       </div>
   );
 };

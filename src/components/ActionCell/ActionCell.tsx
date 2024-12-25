@@ -1,40 +1,40 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
-
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
 interface Props {
-  className: any;
-  text: string;
+  className?: string;
+  title: string;
+  subtitle: string;
+  imageUrl: string;
+  linkTo: string;
 }
 
 export const ActionCell = ({
-  className,
-  text = "Strafsenat Urteile",
-}: Props): JSX.Element => {
+                             className = "",
+                             title,
+                             subtitle,
+                             imageUrl,
+                             linkTo = "#",
+                           }: Props): JSX.Element => {
   return (
-    <Link className={`action-cell ${className}`} to="/20u46-sperren-desktop">
-      <img className="image-wrapper-2" alt="Image wrapper" />
+      <Link className={`action-cell ${className}`} to={linkTo}>
+        <img className="image-wrapper-2" src={imageUrl} alt={title} />
 
-      <div className="textwrapper">
-        <div className="title-4">{text}</div>
+        <div className="textwrapper">
+          <div className="title-4">{title}</div>
 
-        <p className="subtitle-4">
-          Keep track of all five early kick-offs prior to Bayern taking on Kiel
-          later
-          <br />
-          this evening.
-        </p>
-      </div>
-    </Link>
+          <p className="subtitle-4">{subtitle}</p>
+        </div>
+      </Link>
   );
 };
 
 ActionCell.propTypes = {
-  text: PropTypes.string,
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  linkTo: PropTypes.string,
 };

@@ -159,6 +159,7 @@
   max-width: 1200px;
   position: relative;
   width: 100%;
+  max-width: 390px;
 }
 
 .element-homepage-desktop .action-cell-instance {
