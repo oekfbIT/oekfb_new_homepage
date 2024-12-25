@@ -59,7 +59,8 @@
   flex-direction: column;
   height: 484px;
   position: relative;
-  width: 457px;
+  width: 100%;
+  max-width: 390px;
 }
 
 .action-cell .iframe-wrapper {
@@ -85,7 +86,6 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  height: 171px;
   padding: 15px 10px;
   position: relative;
   width: 100%;

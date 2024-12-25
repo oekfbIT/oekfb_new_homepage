@@ -108,14 +108,14 @@ export const ElementHomepageDesktop = (): JSX.Element => {
               imageUrl="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROMeAU1ZwwAFhvAaeD-s8jtsP16Wkw9YSQRA&s"
               linkTo="/20u46-sperren-desktop"
           />
-          <div style={{ width: "50%" }}>
+          <div>
             {/* Embed YouTube Shorts */}
             <IFrame
                 className="custom-class"
-                title="YouTube Shorts Video"
-                subtitle="Watch this short clip on YouTube."
+                title="Wir streamen spiele Live jeden Sonntag!"
+                subtitle="Folgt unseren YouTube channel um immer die beste aktion zu sehen."
                 youtubeUrl="https://www.youtube.com/embed/iRcBALi98p4"
-                linkTo="#"
+                linkTo="https://www.youtube.com/embed/iRcBALi98p4"
             />
           </div>
         </div>
