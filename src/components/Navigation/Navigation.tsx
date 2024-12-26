@@ -46,21 +46,16 @@ export const Navigation = ({
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Update the cookie, then either reload or navigate
     const handleLeagueClick = (code, id) => {
         authService.setLeagueData(code, id);
-        console.log("pressed")
-        console.log(window.location.hash)
 
-        // Check for #/liga or exact URL
         if (
             window.location.hash === "#/liga" ||
             window.location.href === "https://oekfb.eu/#/liga"
         ) {
-            // window.location.reload();
+            window.location.reload();
         } else {
-            console.log("pressed")
-            // navigate("/liga");
+            navigate("/liga");
         }
     };
 
@@ -70,20 +65,17 @@ export const Navigation = ({
             <div className="league-rows">
                 <div className="league-row-wrapper">
                     {leagueData.map((item) => (
-                        <Link
-                            key={item.id}
-                            // to="/liga"
-                            onClick={() => handleLeagueClick(item.code, item.id)}
-                            reloadDocument
-                            style={{ textDecoration: "none", color: "inherit" }}
-                        >
                             <LeagueRow
                                 img={item.img}
                                 text={item.code}
                                 separator="/img/league-row-item-content-seperator-90.svg"
                                 isActive={item.code === activeLeague}
+                                handleLeagueClick={handleLeagueClick}
+                                code={item.code}
+                                id={item.id}
+
+
                             />
-                        </Link>
                     ))}
                 </div>
             </div>
@@ -132,21 +124,28 @@ Navigation.propTypes = {
 };
 
 // A pure presentational row; no onClick here because the Link wraps it above
-const LeagueRow = ({ img, text, separator, isActive }) => (
-    <div
-        className={`league-row-item ${isActive ? "active" : ""}`}
-        style={{ cursor: "pointer" }}
+const LeagueRow = ({ img, text, separator, isActive, code, id, handleLeagueClick }) => (
+    <Link
+        to="/liga"
+        onClick={() => handleLeagueClick(code, id)}
+        reloadDocument
+        style={{ textDecoration: "none", color: "inherit" }}
     >
-        <div className="link">
-            <div className="div">
-                <div className="content">
-                    <img className="img" alt="League row item" src={img} />
-                    <div className="text-wrapper">{text}</div>
+        <div
+            className={`league-row-item ${isActive ? "active" : ""}`}
+            style={{cursor: "pointer"}}
+        >
+            <div className="link">
+                <div className="div">
+                    <div className="content">
+                        <img className="img" alt="League row item" src={img}/>
+                        <div className="text-wrapper">{text}</div>
+                    </div>
+                    <img className="league-row-item-2" alt="League row separator" src={separator}/>
                 </div>
-                <img className="league-row-item-2" alt="League row separator" src={separator} />
             </div>
         </div>
-    </div>
+    </Link>
 );
 
 LeagueRow.propTypes = {

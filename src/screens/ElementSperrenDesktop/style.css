@@ -113,3 +113,17 @@
   align-self: stretch !important;
   width: 100% !important;
 }
+
+
+
+.subtitle-2 {
+  color: var(--themeswamp);
+  font-family: var(--theme-inter-bold-15-75-upper-font-family);
+  font-size: var(--theme-inter-bold-15-75-upper-font-size);
+  font-style: var(--theme-inter-bold-15-75-upper-font-style);
+  font-weight: var(--theme-inter-bold-15-75-upper-font-weight);
+  letter-spacing: var(--theme-inter-bold-15-75-upper-letter-spacing);
+  line-height: var(--theme-inter-bold-15-75-upper-line-height);
+  align-self: stretch;
+  position: relative;
+}

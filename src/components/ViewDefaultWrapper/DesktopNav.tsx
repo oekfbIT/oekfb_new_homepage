@@ -4,49 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import "./style.css";
 import AuthService from "../../network/AuthService";
 
-// A Link-wrapping league row
-const LeagueRowItem = ({
-                           img,
-                           text,
-                           separator,
-                           isActive,
-                           code,
-                           id,
-                           handleLeagueClick
-                       }) => (
-    <Link
-        to="/liga"
-        onClick={() => handleLeagueClick(code, id)}
-        reloadDocument
-        style={{ textDecoration: "none", color: "inherit" }}
-    >
-        <div
-            className={`league-row-item-6 ${isActive ? "active" : ""}`}
-            style={{ cursor: "pointer" }}
-        >
-            <div className="league-row-item-wrapper">
-                <div className="league-row-item-7">
-                    <div className="content-2">
-                        <img className="league-row-item-8" alt="League row item" src={img} />
-                        <div className="league-row-item-9">{text}</div>
-                    </div>
-                    <img className="league-row-item-10" alt="Separator" src={separator} />
-                </div>
-            </div>
-        </div>
-    </Link>
-);
-
-LeagueRowItem.propTypes = {
-    img: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    separator: PropTypes.string.isRequired,
-    isActive: PropTypes.bool,
-    code: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    handleLeagueClick: PropTypes.func.isRequired,
-};
-
 export const DesktopNav = ({
                                view = "default",
                                className = "",
@@ -134,6 +91,7 @@ export const DesktopNav = ({
                                         { label: "Leaderboards", to: "/leaderboards" },
                                         { label: "News", to: "/news" },
                                         { label: "Strafsenat", to: "/strafsenat" },
+                                        { label: "Sperren", to: "/sperren" },
                                         { label: "Bund", to: "/bund" },
                                         { label: "Kontakt", to: "/kontakt" },
                                     ].map((link, index) => (
@@ -181,4 +139,48 @@ DesktopNav.propTypes = {
     navRowWrapper1: PropTypes.string,
     mobileBurgerMenu1: PropTypes.string,
     to: PropTypes.string,
+};
+
+
+// A Link-wrapping league row
+const LeagueRowItem = ({
+                           img,
+                           text,
+                           separator,
+                           isActive,
+                           code,
+                           id,
+                           handleLeagueClick
+                       }) => (
+    <Link
+        to="/liga"
+        onClick={() => handleLeagueClick(code, id)}
+        reloadDocument
+        style={{ textDecoration: "none", color: "inherit" }}
+    >
+        <div
+            className={`league-row-item-6 ${isActive ? "active" : ""}`}
+            style={{ cursor: "pointer" }}
+        >
+            <div className="league-row-item-wrapper">
+                <div className="league-row-item-7">
+                    <div className="content-2">
+                        <img className="league-row-item-8" alt="League row item" src={img} />
+                        <div className="league-row-item-9">{text}</div>
+                    </div>
+                    <img className="league-row-item-10" alt="Separator" src={separator} />
+                </div>
+            </div>
+        </div>
+    </Link>
+);
+
+LeagueRowItem.propTypes = {
+    img: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    separator: PropTypes.string.isRequired,
+    isActive: PropTypes.bool,
+    code: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    handleLeagueClick: PropTypes.func.isRequired,
 };

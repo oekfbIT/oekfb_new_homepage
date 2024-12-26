@@ -54,9 +54,9 @@ export const ElementSperrenDesktop = (): JSX.Element => {
                 <div className="single-stat-cells">
                     {loading ? (
                         <p>Loading...</p>
-                    ) : (
+                    ) : players && players.length > 0 ? (
                         players.map((player, index) => (
-                            <div key={index} className="player-container" s>
+                            <div key={index} className="player-container">
                                 <SingleTransferCell
                                     className="single-transfer-cell-instance"
                                     property1={isMobile ? "mobile" : "desktop"}
@@ -71,6 +71,8 @@ export const ElementSperrenDesktop = (): JSX.Element => {
                                 />
                             </div>
                         ))
+                    ) : (
+                        <p className={"subtitle-2"} >Aktuell gibt es keine gesperrten Spieler in dieser Liga</p>
                     )}
                 </div>
             </div>
