@@ -2,7 +2,8 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 752px;
+  /*height: 752px;*/
+  height: 100%;
   justify-content: flex-end;
   max-width: 1200px;
   position: relative;
