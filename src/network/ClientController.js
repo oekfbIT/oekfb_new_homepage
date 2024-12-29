@@ -156,6 +156,38 @@ class ClientController {
     async fetchBlockedPlayers(code) {
         return this.apiService.get(`webClient/blocked/league/${code}`);
     }
+
+    /**
+     * Fetch A Transfer Request Data.
+     * GET /transfers/:id
+     * @param {string} id - Transfer ID.
+     * @returns {Promise<Object>} Transfer details.
+     */
+    async fetchTransfer(id) {
+        return this.apiService.get(`transfers/${id}`);
+    }
+
+    /**
+     * Confirm A Transfer Request.
+     * GET /transfers/confirm/:id
+     * @param {string} id - Transfer ID.
+     * @returns {Promise<Object>} Transfer details.
+     * */
+    async confirmTransfer(id) {
+        return this.apiService.get(`transfers/confirm/${id}`);
+    }
+
+    /**
+     * Decline A Transfer Request.
+     * GET /transfers/reject/:id
+     * @param {string} id - Transfer ID.
+     * @returns {Promise<Object>} Transfer details.
+     * */
+    async rejectTransfer(id) {
+        return this.apiService.get(`transfers/reject/${id}`);
+    }
+
+
 }
 
 export default ClientController;

@@ -1,25 +1,24 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
-
 import React from "react";
 import "./style.css";
 
-interface Props {
-  className: any;
-  actionButtonClassName: any;
+interface ActionButtonProps {
+    className?: string;
+    actionButtonClassName?: string;
+    title: string;
+    onClick: () => void;
 }
 
 export const ActionButton = ({
-  className,
-  actionButtonClassName,
-}: Props): JSX.Element => {
-  return (
-    <div className={`action-button ${className}`}>
-      <div className={`button-title-wrapper ${actionButtonClassName}`}>
-        <div className="button-title">TITLE</div>
-      </div>
-    </div>
-  );
+                                 className = "",
+                                 actionButtonClassName = "",
+                                 title,
+                                 onClick,
+                             }: ActionButtonProps): JSX.Element => {
+    return (
+        <div className={`action-button ${className}`} onClick={onClick}>
+            <div className={`button-title-wrapper ${actionButtonClassName}`}>
+                <div className="button-title">{title}</div>
+            </div>
+        </div>
+    );
 };

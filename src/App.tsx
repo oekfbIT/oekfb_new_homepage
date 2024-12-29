@@ -24,6 +24,7 @@ import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTermsMobile } from "./screens/ElementTermsMobile";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 import {Strafsenat} from "./screens/Strafsenat";
+import {ElementTransfer} from "./screens/ElementTransfer";
 
 export const App = () => {
   return (
@@ -43,6 +44,7 @@ export const App = () => {
             <Route path="/leaderboards" element={<ElementLeaderboard />} />
             <Route path="/kontakt" element={<ElementContactMobile />} />
             <Route path="/sperren" element={<ElementSperrenDesktop />} />
+            <Route path="/confirm/transfer/:id" element={<ElementTransfer />} />
 
             {/*
         <Route path="/news" element={<Strafsenat />} />

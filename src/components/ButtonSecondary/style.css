@@ -1,0 +1,36 @@
+.button-secondary {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: center;
+  position: relative;
+  width: 490px;
+}
+
+.button-secondary .authentication-form-6 {
+  align-items: flex-start;
+  border: 1px solid;
+  border-color: var(--themeswamp);
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  justify-content: center;
+  min-height: 48px;
+  padding: 8.5px 17px 9px;
+  position: relative;
+}
+
+.button-secondary .authentication-form-7 {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica;
+  font-size: 11.7px;
+  font-weight: 700;
+  letter-spacing: 1.00px;
+  line-height: 30px;
+  margin-top: -1.00px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}

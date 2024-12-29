@@ -1,0 +1,76 @@
+.input-field {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0px 0px;
+  justify-content: center;
+  position: relative;
+  width: 490px;
+}
+
+.input-field .authentication-form {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+}
+
+.input-field .authentication-form-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.input-field .authentication-form-2 {
+  align-items: center;
+  align-self: stretch;
+  background-color: var(--themewild-sand);
+  border-radius: 4px 4px 0px 0px;
+  display: flex;
+  height: 48px;
+  overflow: hidden;
+  padding: 0px 16px;
+  position: relative;
+  width: 100%;
+}
+
+.input-field .authentication-form-3 {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 1px;
+  min-height: 30px;
+  padding: 2px 0px;
+  position: relative;
+}
+
+.input-field .authentication-form-4 {
+  color: var(--themeblack-60);
+  font-family: "Inter", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.29px;
+  line-height: normal;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.input-field .authentication-form-5 {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-color: var(--themeblack-42);
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 47px;
+  width: 490px;
+}
