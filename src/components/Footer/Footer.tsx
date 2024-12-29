@@ -43,9 +43,9 @@ export const Footer = (): JSX.Element => {
                     <FooterItem label="Impressum" />
                   </Link>
 
-                  {/*<Link className="mobile-menu-item" to="/privacy">*/}
-                  {/*  <FooterItem label="Datenschutz" />*/}
-                  {/*</Link>*/}
+                  <Link className="mobile-menu-item" to="/transfers">
+                    <FooterItem label="Transfer Liste" />
+                  </Link>
 
                   <Link className="mobile-menu-item" to="/strafsenat">
                     <FooterItem label="Strafsenat" />

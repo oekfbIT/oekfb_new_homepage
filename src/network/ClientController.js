@@ -28,6 +28,15 @@ class ClientController {
     }
 
     /**
+     * Fetch the tranfers.
+     * GET webClient/transfers
+     * @returns {Promise<Object[]>} List of transfers.
+     */
+    async fetchTransferList() {
+        return this.apiService.get(`webClient/transfers`);
+    }
+
+    /**
      * Fetch the clubs of a specific league.
      * GET /clubs/league/:code
      * @param {string} code - League code.

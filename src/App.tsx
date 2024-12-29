@@ -25,6 +25,7 @@ import { ElementTermsMobile } from "./screens/ElementTermsMobile";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 import {Strafsenat} from "./screens/Strafsenat";
 import {ElementTransfer} from "./screens/ElementTransfer";
+import {ElementTransfers} from "./screens/ElementTransfers";
 
 export const App = () => {
   return (
@@ -44,6 +45,7 @@ export const App = () => {
             <Route path="/leaderboards" element={<ElementLeaderboard />} />
             <Route path="/kontakt" element={<ElementContactMobile />} />
             <Route path="/sperren" element={<ElementSperrenDesktop />} />
+            <Route path="/transfers" element={<ElementTransfersDesktop />} />
             <Route path="/confirm/transfer/:id" element={<ElementTransfer />} />
 
             {/*
@@ -53,7 +55,6 @@ export const App = () => {
         <Route path="/registration-upload" element={<ElementRegistration />} />
         <Route path="/confirmation" element={<ElementConfirmation />} />
         <Route path="/transfers" element={<ElementTransfersDesktop />} />
-        <Route path="/leaderboards" element={<ElementLeaderboard />} />
         <Route path="/player-detail" element={<ElementPlayerDetail />} />
         <Route path="/kontakt" element={<ElementContactMobile />} />
         <Route path="/impressium" element={<ElementImpressiumMobile />} />
