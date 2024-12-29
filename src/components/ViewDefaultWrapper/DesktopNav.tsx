@@ -84,16 +84,16 @@ export const DesktopNav = ({
                             <div className="nav-row-wrapper-7">
                                 <div className="nav-row-wrapper-8">
                                     {[
-                                        { label: "Startseite", to: "/homepage" },
-                                        { label: "Teams", to: "/teams" },
-                                        { label: "Tabelle", to: "/tabelle" },
-                                        { label: "Spielplan", to: "/spielplan" },
-                                        { label: "Leaderboards", to: "/leaderboards" },
-                                        { label: "News", to: "/news" },
-                                        { label: "Strafsenat", to: "/strafsenat" },
-                                        { label: "Sperren", to: "/sperren" },
-                                        { label: "Bund", to: "/bund" },
-                                        { label: "Kontakt", to: "/kontakt" },
+                                        {label: "Startseite", to: "/homepage"},
+                                        {label: "Teams", to: "/teams"},
+                                        {label: "Tabelle", to: "/tabelle"},
+                                        {label: "Spielplan", to: "/spielplan"},
+                                        {label: "Leaderboards", to: "/leaderboards"},
+                                        {label: "News", to: "/news"},
+                                        {label: "Strafsenat", to: "/strafsenat"},
+                                        {label: "Sperren", to: "/sperren"},
+                                        {label: "Bund", to: "/bund"},
+                                        {label: "Kontakt", to: "/kontakt"},
                                     ].map((link, index) => (
                                         <Link key={index} className="item-3" to={link.to}>
                                             <div className="link-6">
@@ -103,7 +103,11 @@ export const DesktopNav = ({
                                     ))}
                                 </div>
                             </div>
-                            <div className="nav-row-wrapper-9">
+                            <div
+                                className="nav-row-wrapper-9"
+                                onClick={() => window.location.href = 'https://team.oekfb.eu'}
+                                style={{cursor: 'pointer'}} // Add a pointer cursor to indicate it's clickable
+                            >
                                 <div className="nav-row-wrapper-10">
                                     <img
                                         className="nav-row-wrapper-11"

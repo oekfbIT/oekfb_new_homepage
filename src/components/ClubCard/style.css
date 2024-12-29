@@ -7,7 +7,7 @@
   height: 104px;
   justify-content: center;
   position: relative;
-  width: 360px;
+  max-width: 360px;
 }
 
 .club-card .club-card-content {

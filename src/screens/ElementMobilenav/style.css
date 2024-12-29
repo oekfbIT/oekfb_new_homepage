@@ -107,7 +107,6 @@
   display: flex;
   flex: 0 0 auto;
   gap: 8px;
-  justify-content: center;
   padding: 20px 32px;
   position: relative;
   width: 100%;

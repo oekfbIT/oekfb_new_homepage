@@ -57,17 +57,17 @@ export const ElementMobilenav = (): JSX.Element => {
         </div>
 
         <a
-          className="mobile-menu-login"
-          href="team.oekfb.eu"
-          rel="noopener noreferrer"
-          target="_blank"
+            className="mobile-menu-login"
+            href="https://team.oekfb.eu"
+            rel="noopener noreferrer"
+            target="_blank"
         >
           <div className="text-wrapper-24">Team Login</div>
 
           <img
-            className="dfl-simple-icon-user"
-            alt="Dfl simple icon user"
-            src="/img/dfl-simple-icon-user-loggedout-svg.svg"
+              className="dfl-simple-icon-user"
+              alt="Dfl simple icon user"
+              src="/img/dfl-simple-icon-user-loggedout-svg.svg"
           />
         </a>
       </div>
