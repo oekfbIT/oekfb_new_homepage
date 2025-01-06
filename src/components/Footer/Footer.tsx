@@ -65,7 +65,7 @@ export const Footer = (): JSX.Element => {
 
                   <FooterLink
                       href="https://team.oekfb.eu"
-                      label="Spieler Login"
+                      label="Team Login"
                       className="text-wrapper-5"
                   />
                   <FooterLink
@@ -75,7 +75,7 @@ export const Footer = (): JSX.Element => {
                   />
                   <Link className="item" to="/register">
                     <div className="link-3">
-                      <div className="text-wrapper-7">Team Registrierung</div>
+                      <div className="text-wrapper-7">Team Neuanmeldungen</div>
                     </div>
                   </Link>
                 </div>

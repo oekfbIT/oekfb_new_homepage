@@ -47,10 +47,10 @@ export const App = () => {
             <Route path="/sperren" element={<ElementSperrenDesktop />} />
             <Route path="/transfers" element={<ElementTransfersDesktop />} />
             <Route path="/confirm/transfer/:id" element={<ElementTransfer />} />
+            <Route path="/register" element={<ElementRegister />} />
 
             {/*
         <Route path="/news" element={<Strafsenat />} />
-        <Route path="/register" element={<ElementRegister />} />
 
         <Route path="/registration-upload" element={<ElementRegistration />} />
         <Route path="/confirmation" element={<ElementConfirmation />} />

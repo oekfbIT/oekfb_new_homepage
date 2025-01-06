@@ -28,7 +28,7 @@ class ClientController {
     }
 
     /**
-     * Fetch the tranfers.
+     * Fetch the transfers.
      * GET webClient/transfers
      * @returns {Promise<Object[]>} List of transfers.
      */
@@ -77,10 +77,9 @@ class ClientController {
     }
 
     /**
-     * Fetch news for a specific league.
-     * GET /news/league/:code
-     * @param {string} code - League code.
-     * @returns {Promise<Object[]>} List of news items.
+     * Fetch news for the Strafsenat.
+     * GET /news/strafsenat?per=250
+     * @returns {Promise<Object[]>} List of Strafsenat news items.
      */
     async fetchStrafsenatNews() {
         return this.apiService.get(`/news/strafsenat?per=250`);
@@ -181,7 +180,7 @@ class ClientController {
      * GET /transfers/confirm/:id
      * @param {string} id - Transfer ID.
      * @returns {Promise<Object>} Transfer details.
-     * */
+     */
     async confirmTransfer(id) {
         return this.apiService.get(`transfers/confirm/${id}`);
     }
@@ -191,12 +190,41 @@ class ClientController {
      * GET /transfers/reject/:id
      * @param {string} id - Transfer ID.
      * @returns {Promise<Object>} Transfer details.
-     * */
+     */
     async rejectTransfer(id) {
         return this.apiService.get(`transfers/reject/${id}`);
     }
 
-
+    /**
+     * Register a new user.
+     * POST /registrations/register
+     *
+     * @param {Object} registrationData - Registration data.
+     * @param {Object} registrationData.primaryContact - Primary contact information.
+     * @param {string} registrationData.primaryContact.first - First name.
+     * @param {string} registrationData.primaryContact.last - Last name.
+     * @param {string} registrationData.primaryContact.phone - Phone number.
+     * @param {string} registrationData.primaryContact.email - Email address.
+     * @param {string} registrationData.primaryContact.identification - Identification.
+     * @param {Object} registrationData.secondaryContact - Secondary contact information.
+     * @param {string} registrationData.secondaryContact.first - First name.
+     * @param {string} registrationData.secondaryContact.last - Last name.
+     * @param {string} registrationData.secondaryContact.phone - Phone number.
+     * @param {string} registrationData.secondaryContact.email - Email address.
+     * @param {string} registrationData.secondaryContact.identification - Identification.
+     * @param {string} registrationData.teamName - Team name.
+     * @param {string} registrationData.verein - Verein.
+     * @param {string} registrationData.bundesland - Bundesland.
+     * @param {string} registrationData.type - Type (e.g., "privat").
+     * @param {boolean} registrationData.acceptedAGB - Whether the AGB terms are accepted.
+     * @param {string} registrationData.referCode - Referral code.
+     * @param {string} registrationData.initial_password - Initial password.
+     *
+     * @returns {Promise<Object>} Registration response.
+     */
+    async register(registrationData) {
+        return this.apiService.post(`registrations/register`, registrationData);
+    }
 }
 
 export default ClientController;
