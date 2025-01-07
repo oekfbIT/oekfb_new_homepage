@@ -1,0 +1,1 @@
+export { ParagraphWrapper } from "./ParagraphWrapper";

@@ -250,7 +250,7 @@ export const ElementRegister = (): JSX.Element => {
   ];
 
   const vereinOptions = [
-    { label: "Privat", value: "Telefonnummer" },
+    { label: "Privat", value: "privat" },
     { label: "Exestierender Verein", value: "verein" }
   ];
 

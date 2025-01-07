@@ -136,12 +136,17 @@
   position: relative;
 }
 
-.staium-wrapper {
+.stadium-wrapper {
   width: 200px;
+  justify-items: center;
 }
 @media (max-width: 500px) {
-  .staium-wrapper {
-    justify-content: center;
+  .stadium-wrapper {
+    justify-items: center;
+  }
+
+  .element-gameday-mobile .livescore-2 {
+    gap: 0px;
   }
 }
   .justRight
@@ -265,4 +270,37 @@
 .fixture-data-cell.state-desktop .gameday-livescore-5 {
   text-align: right;
   white-space: nowrap;
+}
+
+
+
+
+.fixture-data-cell .score-container {
+  align-items: center;
+  border: 1px solid;
+  border-color: #ebe5eb;
+  border-radius: 4px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  align-content: center;
+  padding: 4px 4px;
+  position: relative;
+  margin: 0px 10px;
+}
+
+.fixture-data-cell .score-string {
+  color: #37003c;
+  font-family: "Inter", Helvetica;
+  font-size: 15.2px;
+  font-weight: 400;
+  height: 24px;
+  letter-spacing: 0;
+  line-height: 32px;
+  margin-top: -1.00px;
+  position: relative;
+  white-space: nowrap;
+  padding: 0px 10px;
+  text-align: center;
 }

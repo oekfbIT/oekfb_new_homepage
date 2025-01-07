@@ -37,6 +37,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
       ? new Date(details.date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
       : "TBD";
 
+  const formattedScore = `${match.score.home ?? 0}:${match.score.away ?? 0}`;
   const getStatusText = (status: string) => {
     if (status === "Pending") return "Vorschau";
     if (["done", "submitted", "completed"].includes(status)) return "Spielbericht";
@@ -56,7 +57,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
 
   return (
       <div className={`fixture-data-cell state-${state}`}>
-        <div className="fixture-data" style={{ maxWidth: "100%" }}>
+        <div className="fixture-data" style={{ maxWidth: "100%", paddingRight: "15px" }}>
           {/* Home Team */}
           <div
               style={{cursor: "pointer"}}
@@ -76,11 +77,10 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
             </div>
           </div>
 
-          {/* Match Time */}
-          <div className="schedule-container">
-            <div className="time-string">{formattedTime}</div>
+          {/* formattedScore */}
+          <div className="score-container">
+            <div className="score-string">{formattedScore}</div>
           </div>
-
           {/* Away Team */}
           <div
               className="away-team clickable"
@@ -109,6 +109,11 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
               }
           />
           <div className="stadium-location">{details.location || "Unbekanntes Stadium"}</div>
+        </div>
+
+        {/* Match Time */}
+        <div className="schedule-container">
+          <div className="time-string">{formattedTime}</div>
         </div>
 
         {/* Button Section */}

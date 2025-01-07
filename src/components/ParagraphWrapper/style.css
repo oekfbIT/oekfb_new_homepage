@@ -1,0 +1,44 @@
+.paragraph-wrapper {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+  position: relative;
+  width: 100%;
+}
+
+.paragraph-wrapper .div-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+.paragraph-wrapper .text-wrapper-2 {
+  align-self: stretch;
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-bold-16-font-family);
+  font-size: var(--theme-inter-bold-16-font-size);
+  font-style: var(--theme-inter-bold-16-font-style);
+  font-weight: var(--theme-inter-bold-16-font-weight);
+  letter-spacing: var(--theme-inter-bold-16-letter-spacing);
+  line-height: var(--theme-inter-bold-16-line-height);
+  margin-top: -1.00px;
+  position: relative;
+}
+
+.paragraph-wrapper .p {
+  align-self: stretch;
+  color: var(--themeouter-space);
+  font-family: var(--theme-inter-regular-15-13-font-family);
+  font-size: var(--theme-inter-regular-15-13-font-size);
+  font-style: var(--theme-inter-regular-15-13-font-style);
+  font-weight: var(--theme-inter-regular-15-13-font-weight);
+  letter-spacing: var(--theme-inter-regular-15-13-letter-spacing);
+  line-height: var(--theme-inter-regular-15-13-line-height);
+  margin-top: -1.00px;
+  position: relative;
+}
