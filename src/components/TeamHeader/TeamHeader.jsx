@@ -47,19 +47,19 @@ export const TeamHeader = ({
             </div>
           </div>
 
-          <div className="team-detail-wrapper">
-            <div className="team-detail-2">
-              <div className="team-detail-scroll">
-                <div className="team-detail-3">SQUAD</div>
-                <div className="team-detail-4">TABLE</div>
-                <div className="team-detail-4">FIXTURES &amp; RESULTS</div>
-                <div className="team-detail-4">STATS</div>
-                <div className={`team-detail-4 ${teamDetailClassNameOverride}`}>
-                  NEWS &amp; VIDEOS
-                </div>
-              </div>
-            </div>
-          </div>
+          {/*<div className="team-detail-wrapper">*/}
+          {/*  <div className="team-detail-2">*/}
+          {/*    <div className="team-detail-scroll">*/}
+          {/*      <div className="team-detail-3">SQUAD</div>*/}
+          {/*      <div className="team-detail-4">TABLE</div>*/}
+          {/*      <div className="team-detail-4">FIXTURES &amp; RESULTS</div>*/}
+          {/*      <div className="team-detail-4">STATS</div>*/}
+          {/*      <div className={`team-detail-4 ${teamDetailClassNameOverride}`}>*/}
+          {/*        NEWS &amp; VIDEOS*/}
+          {/*      </div>*/}
+          {/*    </div>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </div>
   );
