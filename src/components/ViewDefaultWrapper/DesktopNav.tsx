@@ -88,7 +88,7 @@ export const DesktopNav = ({
                                         {label: "Teams", to: "/teams"},
                                         {label: "Tabelle", to: "/tabelle"},
                                         {label: "Spielplan", to: "/spielplan"},
-                                        {label: "Leaderboards", to: "/leaderboards"},
+                                        {label: "Torschützen", to: "/leaderboards"},
                                         {label: "News", to: "/news"},
                                         {label: "Strafsenat", to: "/strafsenat"},
                                         {label: "Sperren", to: "/sperren"},

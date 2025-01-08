@@ -84,6 +84,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
           {/* Away Team */}
           <div
               className="away-team clickable"
+              style={{cursor: "pointer"}}
               onClick={() => handleTeamClick(away_blanket.id)}
           >
             <div className="gameday-livescore">
