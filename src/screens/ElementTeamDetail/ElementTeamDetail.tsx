@@ -24,6 +24,7 @@ export const ElementTeamDetail = (): JSX.Element => {
     const authService = new AuthService();
 
     const [teamData, setTeamData] = useState<any>(null);
+    const [news, setNews] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -38,6 +39,13 @@ export const ElementTeamDetail = (): JSX.Element => {
             try {
                 const response = await clientController.fetchClubDetail(id);
                 setTeamData(response);
+
+                const uniqueNews = teamData?.news
+                    ?.filter((item, index, self) =>
+                        index === self.findIndex((n) => n.id === item.id)
+                    );
+
+                setNews(uniqueNews);
             } catch (error) {
                 console.error("Error fetching team detail:", error);
             } finally {
@@ -124,7 +132,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                     <h2 className="secTitle">NEWS & SPIELBERICHTE</h2>
                     <div className="news-wrapper">
                         <div className="news-grid">
-                            {teamData?.news?.map((newsItem: any) => (
+                            {news?.map((newsItem: any) => (
                                 <NewsArticle
                                     key={newsItem.id}
                                     id={newsItem.id}
