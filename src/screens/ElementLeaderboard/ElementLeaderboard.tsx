@@ -66,6 +66,11 @@ export const ElementLeaderboard = (): JSX.Element => {
                     key={index}
                     className={`${screenWidth < 900 ? "class-11" : "class-12"}`}
                     title={`${index + 1}. Platz - ${player.count} Tore`} // Use template string to dynamically create title
+                    team={{
+                      image: player.teamimg,
+                      name: player.team_name,
+                      id: player.team_id
+                    }}
                     player={{
                       image: player.image,
                       number: player.number,
@@ -89,6 +94,11 @@ export const ElementLeaderboard = (): JSX.Element => {
                               ? "desktop"
                               : undefined
                     }
+                    team={{
+                      image: player.teamimg,
+                      name: player.team_name,
+                      id: player.team_id
+                    }}
                     player={{
                       image: player.image,
                       number: player.number,

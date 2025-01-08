@@ -4,6 +4,11 @@ import "./style.css";
 interface Props {
   className?: string;
   title: string;
+  team: {
+    image: string;
+    name: string;
+    id: string;
+  };
   player: {
     image: string;
     number: string;
@@ -12,7 +17,7 @@ interface Props {
   };
 }
 
-export const LeaderboardHighligh = ({ className = "", title, player }: Props): JSX.Element => {
+export const LeaderboardHighligh = ({ className = "", title, player, team }: Props): JSX.Element => {
   return (
       <div className={`leaderboard-highligh ${className}`}>
         <div className="background-shadow-wrapper">
@@ -32,6 +37,12 @@ export const LeaderboardHighligh = ({ className = "", title, player }: Props): J
             <div className="div-5">
               <div className="div-6">
                 <div className="div-7" />
+                {/*TEAM IMG */}
+                <img
+                    alt={`${team.name} detail`}
+                    src={team.image}
+                    style={{width: "30px"}}
+                />
 
                 <div className="div-8">
                   <div className="div-9">{player.number}</div>

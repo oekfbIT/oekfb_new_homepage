@@ -66,12 +66,20 @@
   top: 29px;
 }
 
+.leaderboard-highligh .team-detail {
+  align-self: stretch;
+  height: 25px;
+  position: relative;
+  width: 100%;
+}
+
 .leaderboard-highligh .player-detail {
   align-self: stretch;
   height: 147px;
   position: relative;
   width: 100%;
 }
+
 
 .leaderboard-highligh .div-5 {
   align-items: flex-end;
@@ -92,7 +100,7 @@
 }
 
 .leaderboard-highligh .div-7 {
-  height: 50px;
+  height: 25px;
   width: 50px;
   position: relative;
 }
