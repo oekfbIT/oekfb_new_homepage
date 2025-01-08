@@ -44,9 +44,9 @@ export const LeaderboardHighligh = ({ className = "", title, player }: Props): J
                 </div>
               </div>
 
-              <div className="leaderboard-highligh-wrapper">
-                <div className="text-wrapper-18">{player.score}</div>
-              </div>
+              {/*<div className="leaderboard-highligh-wrapper">*/}
+              {/*  <div className="text-wrapper-18">{player.score}</div>*/}
+              {/*</div>*/}
             </div>
           </div>
         </div>

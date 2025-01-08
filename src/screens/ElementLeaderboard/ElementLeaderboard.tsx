@@ -58,14 +58,14 @@ export const ElementLeaderboard = (): JSX.Element => {
         )}
 
         <div className="page-control-4">
-          <PageHeader className="instance-node-10" text="Leaderboards" />
+          <PageHeader className="instance-node-10" text="Torschützenkönig" />
 
           <div className="leaderboard-highligh-2">
             {players.slice(0, 3).map((player, index) => (
                 <LeaderboardHighligh
                     key={index}
-                    className={`${screenWidth < 900 && "class-11"} ${screenWidth >= 900 && "class-12"}`}
-                    title="Goals"
+                    className={`${screenWidth < 900 ? "class-11" : "class-12"}`}
+                    title={`${index + 1}. Platz - ${player.count} Tore`} // Use template string to dynamically create title
                     player={{
                       image: player.image,
                       number: player.number,
@@ -75,6 +75,7 @@ export const ElementLeaderboard = (): JSX.Element => {
                 />
             ))}
           </div>
+
 
           <div className="single-stat-cells">
             {players.slice(3).map((player, index) => (
