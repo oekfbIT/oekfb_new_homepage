@@ -313,7 +313,7 @@
   width: 100%;
 }
 
-@media (max-width: 390px) {
+@media (max-width: 430px) {
   .element-homepage-desktop .action-cell-2 {
     grid-template-columns: 1fr; /* Single column on small screens */
   }

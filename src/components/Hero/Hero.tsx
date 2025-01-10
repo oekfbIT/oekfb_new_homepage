@@ -17,7 +17,7 @@ export const Hero = ({ className, title, description, image }: Props): JSX.Eleme
             backgroundPosition: "top left", /* Align to top-left */
             width: "100%", /* or a specific width */
             // minHeight: "430px",
-            aspectRatio: "4 / 3", // Aspect ratio for mobile
+            aspectRatio: "1 / 1",
 
         }}>
             <div className="overlay">
