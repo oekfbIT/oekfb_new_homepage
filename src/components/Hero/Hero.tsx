@@ -10,17 +10,9 @@ interface Props {
 
 export const Hero = ({ className, title, description, image }: Props): JSX.Element => {
     return (
-        <div className={`hero ${className}`} style={{
-            backgroundImage: `url(${image})`,
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat", /* Prevent tiling */
-            backgroundPosition: "top left", /* Align to top-left */
-            width: "100%", /* or a specific width */
-            // minHeight: "430px",
-            aspectRatio: "1 / 1",
-
-        }}>
-            <div className="overlay">
+        <div className={`hero ${className}`}>
+            <img src={image} alt={title} className="hero-image" />
+            <div className="content" style={{textAlign: "left"}}>
                 <p className="subheader">{description}</p>
                 <div className="header-2">{title}</div>
             </div>

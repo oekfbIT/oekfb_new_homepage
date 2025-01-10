@@ -102,17 +102,6 @@ export const ElementLeagueSelection = (): JSX.Element => {
             <>
                 {isMobile ? <Navigation /> : <DesktopNav />}
 
-                <div className="page-header-wrapper">
-                    <div className="page-header-2">
-                        <div className="page-header-wrapper-2">
-                            <div className="page-header-wrapper-3">Ligen Auswahl</div>
-                            <p className="page-header-wrapper-4">
-                                Wählen Sie ein Bundesland aus, um die Ligen anzuzeigen.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
                 {/* Loading Indicator */}
                 {isLoading ? (
                     <p className="loading-text">Daten Laden...</p>
