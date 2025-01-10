@@ -57,10 +57,10 @@
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 484px;
+  /*height: 700px;*/
   position: relative;
   width: 100%;
-  max-width: 390px;
+  /*max-width: 50%;*/
 }
 
 .action-cell .iframe-wrapper {
@@ -114,4 +114,8 @@
   letter-spacing: var(--theme-inter-regular-15-13-letter-spacing);
   line-height: var(--theme-inter-regular-15-13-line-height);
   position: relative;
+}
+
+.youtube-iframe {
+  width: 10%;
 }

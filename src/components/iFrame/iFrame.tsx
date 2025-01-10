@@ -19,7 +19,7 @@ export const IFrame = ({
                            linkTo = "#",
                        }: Props): JSX.Element => {
     return (
-        <Link className={`action-cell ${className}`} to={linkTo}>
+        <Link className={`action-cell ${className}`} to={linkTo} style={{width: "100%"}}>
             <div className="iframe-wrapper">
                 <iframe
                     className="youtube-iframe"

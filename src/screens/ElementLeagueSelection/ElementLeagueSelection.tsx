@@ -10,18 +10,25 @@ import { Navigation } from "../../components/Navigation";
 import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
 import { useNavigate } from "react-router-dom";
-import {Partners} from "../../components/Partners/Partners";
+import { Partners } from "../../components/Partners/Partners";
+import { Hero } from "../../components/Hero";
+import {ActionCell} from "../../components/ActionCell";
+import {IFrame} from "../../components/iFrame";
+import {NewsArticle} from "../../components/NewsArticle";
 
 export const ElementLeagueSelection = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const clientController = new ClientController();
     const authService = new AuthService(); // Initialize AuthService
+    const isMobile = screenWidth < 800;
 
     // States for leagues and selected state
     const [allLeagues, setAllLeagues] = useState<any[]>([]);
     const [filteredLeagues, setFilteredLeagues] = useState<any[]>([]);
+    const [homepageData, setHomepageData] = useState<any>(null);
     const [selectedState, setSelectedState] = useState<string>("wien"); // Default selected state
     const navigate = useNavigate(); // Initialize the navigate function
+    const [isLoading, setIsLoading] = useState<boolean>(true); // Loading state
 
     // Austrian states for the dropdown
     const austrianStates = [
@@ -40,7 +47,17 @@ export const ElementLeagueSelection = (): JSX.Element => {
     useEffect(() => {
         const fetchLeagues = async () => {
             try {
-                const data = await clientController.fetchLeagueSelection();
+                setIsLoading(true); // Start loading
+
+                // Fetch both league data and homepage data concurrently
+                const [data, noneData] = await Promise.all([
+                    clientController.fetchLeagueSelection(),
+                    clientController.fetchHomepageData("NONE"),
+                ]);
+
+                console.log("Fetched Homepage Data: ", noneData); // Log data directly after fetch
+
+                setHomepageData(noneData); // Set homepage data for Hero
 
                 // Filter out unwanted leagues
                 const validLeagues = data.filter(
@@ -48,11 +65,11 @@ export const ElementLeagueSelection = (): JSX.Element => {
                 );
 
                 setAllLeagues(validLeagues);
-
-                // Set filtered leagues for "wien"
                 setFilteredLeagues(validLeagues.filter((league) => league.state === "wien"));
             } catch (error) {
                 console.error("Error fetching leagues:", error);
+            } finally {
+                setIsLoading(false); // End loading
             }
         };
 
@@ -73,7 +90,6 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
         // Navigate to the homepage
         navigate("/liga");
-
     };
 
     return (
@@ -83,127 +99,112 @@ export const ElementLeagueSelection = (): JSX.Element => {
                 minWidth: screenWidth < 900 ? "390px" : screenWidth >= 900 ? "900px" : undefined,
             }}
         >
-            {screenWidth < 900 && (
-                <>
-                    <Navigation />
-                    <div className="page-header-wrapper">
-                        <div className="page-header-2">
-                            <div className="page-header-wrapper-2">
-                                <div className="page-header-wrapper-3">Ligen Auswahl</div>
-                                <p className="page-header-wrapper-4">
-                                    Wählen Sie ein Bundesland aus, um die Ligen anzuzeigen.
-                                </p>
-                            </div>
+            <>
+                {isMobile ? <Navigation /> : <DesktopNav />}
+
+                <div className="page-header-wrapper">
+                    <div className="page-header-2">
+                        <div className="page-header-wrapper-2">
+                            <div className="page-header-wrapper-3">Ligen Auswahl</div>
+                            <p className="page-header-wrapper-4">
+                                Wählen Sie ein Bundesland aus, um die Ligen anzuzeigen.
+                            </p>
                         </div>
                     </div>
+                </div>
 
-                    <div className="page-content">
-                        <div className="leagues-wrapper">
-                            <Dropdown
-                                className="instance-node-2"
-                                options={austrianStates}
-                                displayKey="name"
-                                valueKey="value"
-                                text="Bundesland auswählen"
-                                placeholder="Wählen Sie ein Bundesland"
-                                onChange={handleStateChange}
-                                defaultValue="wien"
+                {/* Loading Indicator */}
+                {isLoading ? (
+                    <p className="loading-text">Daten Laden...</p>
+                ) : (
+                    <>
+                        {/* Hero Section */}
+                        {homepageData?.data?.sliderdata?.length > 0 ? (
+                            <Hero
+                                className="hero-instance"
+                                title={homepageData.data.sliderdata[0].title || "Kein Titel verfügbar"}
+                                description={homepageData.data.sliderdata[0].description || "Keine Beschreibung verfügbar"}
+                                image={homepageData.data.sliderdata[0].image || "/default-image.jpg"}
                             />
-                            <div className="league-cell-list">
-                                {filteredLeagues.length > 0 ? (
-                                    filteredLeagues.map((league) => (
-                                        <LeagueSelection
-                                            key={league.id}
-                                            className="league-selection-cell"
-                                            name={league.name}
-                                            teams={league.teamcount}
-                                            onClick={() => handleLeagueSelect(league)} // Set cookie on click
-                                        />
-                                    ))
-                                ) : (
-                                    <p className="no-results-text">
-                                        Aktuell haben wir keine Liga in diesem Bundesland.
-                                    </p>
-                                )}
+                        ) : (
+                            <p className="no-hero-text">Keine Daten für den Hero-Bereich verfügbar.</p>
+                        )}
+
+                        <div className="page-content">
+                            <div className="leagues-wrapper">
+                                <Dropdown
+                                    className="instance-node-2"
+                                    options={austrianStates}
+                                    displayKey="name"
+                                    valueKey="value"
+                                    text="Bundesland auswählen"
+                                    placeholder="Wählen Sie ein Bundesland"
+                                    onChange={handleStateChange}
+                                    defaultValue="wien"
+                                />
+                                <div className="league-cell-list">
+                                    {filteredLeagues.length > 0 ? (
+                                        filteredLeagues.map((league) => (
+                                            <LeagueSelection
+                                                key={league.id || `league-${league.code}`}
+                                                className="league-selection-cell"
+                                                name={league.name || "Unbekannte Liga"}
+                                                teams={league.teamcount || 0}
+                                                onClick={() => handleLeagueSelect(league)}
+                                            />
+                                        ))
+                                    ) : (
+                                        <p className="no-results-text">
+                                            Aktuell haben wir keine Liga in diesem Bundesland.
+                                        </p>
+                                    )}
+                                </div>
                             </div>
-                        </div>
 
-                        <Sponsors className="instance-node-2" vWhite="/img/v-white-1-1.svg" />
-                        {/* Partners */}
-
-                    </div>
-
-                    <Footer
-                        className="footer-instance"
-                        footerContent="/img/footer-content-wrapper-left-logo-8.png"
-                        href="https://www.facebook.com/kleinfeldliga/"
-                        href1="https://www.youtube.com/@OEKFB"
-                        href2="https://www.instagram.com/oekfb/?hl=en"
-                        img="/img/link-33.svg"
-                        link="/img/link-32.svg"
-                        link1="/img/link-34.svg"
-                        link2="/img/link-35.svg"
-                    />
-                </>
-            )}
-
-            {screenWidth >= 900 && (
-                <>
-                    <DesktopNav
-                        className="instance-node"
-                        img="/img/league-row-item-content-seperator-1080.svg"
-                        leagueRowItem="/img/league-row-item-content-img-1090.png"
-                        view="default"
-                    />
-
-                    <div className="page-header-wrapper">
-                        <div className="page-header-2">
-                            <div className="page-header-wrapper-2">
-                                <div className="page-header-wrapper-3">Ligen Auswahl</div>
-                                <p className="page-header-wrapper-4">
-                                    Wählen Sie ein Bundesland aus, um die Ligen anzuzeigen.
-                                </p>
+                            <div style={{justifyContent:  "center", width: "100%", padding: "20px"}}>
+                                <IFrame
+                                    className="custom-class"
+                                    title="Wir streamen spiele Live jeden Sonntag!"
+                                    subtitle="Folgt unseren YouTube channel um immer die beste aktion zu sehen."
+                                    youtubeUrl="https://www.youtube.com/embed/iRcBALi98p4"
+                                    linkTo="https://www.youtube.com/embed/iRcBALi98p4"
+                                />
                             </div>
-                        </div>
-                    </div>
 
-                    <div className="page-content-2">
-                        <div className="leagues-wrapper-2">
-                            <Dropdown
-                                className="instance-node"
-                                options={austrianStates}
-                                displayKey="name"
-                                valueKey="value"
-                                text="Bundesland auswählen"
-                                placeholder="Wählen Sie ein Bundesland"
-                                onChange={handleStateChange}
-                                defaultValue="wien"
-                            />
-                            <div className="league-cell-list-2">
-                                {filteredLeagues.length > 0 ? (
-                                    filteredLeagues.map((league) => (
-                                        <LeagueSelection
-                                            key={league.id}
-                                            className="league-selection-cell"
-                                            name={league.name}
-                                            teams={league.teamcount}
-                                            onClick={() => handleLeagueSelect(league)} // Set cookie on click
-                                        />
-                                    ))
-                                ) : (
-                                    <p className="no-results-text">
-                                        Aktuell haben wir keine Liga in diesem Bundesland.
-                                    </p>
-                                )}
+                            <Sponsors className="instance-node-2" vWhite="/img/v-white-1-1.svg" />
+                            {/* Action Cells */}
+                            <div style={{paddingBottom: "40px"}}></div>
+
+                            {/* News Section */}
+                            <div className="news-7">
+                                <div className="news-container-6">
+                                    <div className="page-content-23">
+                                        <div className="page-content-24">NEWS</div>
+                                    </div>
+                                    <div className="news-container-grid-7">
+                                        {homepageData?.news?.map((newsItem: any) => (
+                                            <NewsArticle
+                                                key={newsItem.id}
+                                                title={newsItem.title}
+                                                image={newsItem.image}
+                                                text={newsItem.text}
+                                                id={newsItem.id}
+                                            />
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
+
+                            {/* Action Cells */}
+                            <div style={{paddingBottom: "40px"}}></div>
+
+                            <Partners className="partners-section" />
                         </div>
-
-                        <Sponsors className="sponsors-3" vWhite="/img/v-white-1-2.svg"/>
-
-                    </div>
-                    <Footer/>
-                </>
-            )}
+                    </>
+                )}
+                <Footer />
+            </>
         </div>
     );
 };
+
