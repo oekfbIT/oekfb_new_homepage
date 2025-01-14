@@ -27,7 +27,7 @@ export const Footer = (): JSX.Element => {
               <div className="frame">
                 {/* Column 1 */}
                 <div className="footer-content-5">
-                  <Link className="mobile-menu-item" to="/liga">
+                  <Link className="mobile-menu-item" to="/bund">
                     <FooterItem label="Der Bund" />
                   </Link>
 

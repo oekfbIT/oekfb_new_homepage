@@ -28,14 +28,3 @@ export const ParagraphWrapper = ({ className = "", title, content }: Props): JSX
     );
 };
 
-
-        // <div className={`paragraph-wrapper ${className}`}>
-        //     <div className="div-wrapper">
-        //         <div className="text-wrapper-2">{title}</div>
-        //     </div>
-        //
-        //     <div className="div-wrapper">
-        //         <p className="p">{content}</p>
-        //     </div>
-        // </div>
-

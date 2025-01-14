@@ -2,48 +2,21 @@ import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
-import { Sponsors } from "../../components/Sponsors";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
+import { Sponsors } from "../../components/Sponsors";
 import "./style.css";
 
 export const ElementContactMobile = (): JSX.Element => {
-  const screenWidth = useWindowWidth();
+    const screenWidth = useWindowWidth();
+    const isMobile = screenWidth < 900;
 
   return (
     <div
       className="element-contact-mobile"
-      style={{
-        minWidth:
-          screenWidth < 900
-            ? "390px"
-            : screenWidth >= 900
-              ? "900px"
-              : undefined,
-      }}
     >
-          <Navigation
-            className="instance-node-13"
-            img="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem="/img/league-row-item-content-img-1090.png"
-            leagueRowItem1="/img/league-row-item-content-img-1090.png"
-            leagueRowItem10="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem11="/img/league-row-item-content-img-1090.png"
-            leagueRowItem12="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem13="/img/league-row-item-content-img-1090.png"
-            leagueRowItem14="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem15="/img/league-row-item-content-img-1090.png"
-            leagueRowItem16="/img/league-row-item-content-seperator-1104.png"
-            leagueRowItem2="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem3="/img/league-row-item-content-img-1090.png"
-            leagueRowItem4="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem5="/img/league-row-item-content-img-1090.png"
-            leagueRowItem6="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem7="/img/league-row-item-content-img-1090.png"
-            leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
-            leagueRowItem9="/img/league-row-item-content-img-1090.png"
-            mobileBurgerMenu="/img/mobile-burger-menu-37.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
-          />
+        {isMobile ? <Navigation /> : <DesktopNav />}
+
+
           <div className="page-content-19">
             <div className="contact">
               <div className="contact-header">
