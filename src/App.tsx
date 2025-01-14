@@ -28,6 +28,7 @@ import {ElementTransfer} from "./screens/ElementTransfer";
 import {ElementTransfers} from "./screens/ElementTransfers";
 import {ElementLigaordnung} from "./screens/ElementLigaordnung";
 import {ElementRegeln} from "./screens/ElementRegeln";
+import {ElementBund} from "./screens/ElementBund";
 
 export const App = () => {
   return (
@@ -52,6 +53,7 @@ export const App = () => {
             <Route path="/register" element={<ElementRegister />} />
             <Route path="/ligaordnung" element={<ElementLigaordnung />} />
             <Route path="/spielregeln" element={<ElementRegeln />} />
+            <Route path="/bund" element={<ElementBund />} />
 
             {/*
         <Route path="/news" element={<Strafsenat />} />
