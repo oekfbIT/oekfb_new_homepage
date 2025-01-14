@@ -18,7 +18,7 @@ export const ElementBund = (): JSX.Element => {
                 <div className="page-content">
                     <div className="terms">
                         <div className="terms-header-wrapper">
-                            <p className="title-3">Under Bund</p>
+                            <p className="title-3">Unser Bund</p>
                             <div className="div-wrapper-2">
                                 <p className="text-wrapper-13">
                                     Erfahre mehr über useren Bund und die Vision des
