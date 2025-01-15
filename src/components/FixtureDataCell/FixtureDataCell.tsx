@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-import { DateTime } from "luxon";
-
+const { DateTime } = require("luxon");
 interface Match {
   id: string;
   home_blanket: {
