@@ -13,19 +13,27 @@ import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
 import "./style.css";
 import { ClubCell } from "../../components/ClubCell";
-import {useNavigate} from "react-router-dom";
-import {Partners} from "../../components/Partners/Partners";
-import {ActionCell} from "../../components/ActionCell";
-import {IFrame} from "../../components/iFrame";
+import { useNavigate } from "react-router-dom";
+import { Partners } from "../../components/Partners/Partners";
+import { ActionCell } from "../../components/ActionCell";
+import { IFrame } from "../../components/iFrame";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const clientController = new ClientController();
   const authService = new AuthService();
-
   const navigate = useNavigate();
   const [homepageData, setHomepageData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+
+  const getEmbedUrl = (url: string) => {
+    try {
+      const videoId = new URL(url).searchParams.get("v");
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : "";
+    } catch {
+      return "";
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,7 +71,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           }}
       >
         {/* Conditional Navigation */}
-        {isMobile ? <Navigation/> : <DesktopNav/>}
+        {isMobile ? <Navigation /> : <DesktopNav />}
 
         {/* Matchup Row */}
         {homepageData?.upcoming?.length > 0 && (
@@ -98,7 +106,8 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         )}
 
         {/* Sponsors */}
-        <Sponsors className="design-component-instance-node" vWhite="/img/v-white-1-9.svg"/>
+        <Sponsors className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
+
         {/* Action Cells */}
         <div className="action-cell-2">
           <ActionCell
@@ -112,14 +121,13 @@ export const ElementHomepageDesktop = (): JSX.Element => {
             {/* Embed YouTube Shorts */}
             <IFrame
                 className="custom-class"
-                title="Wir streamen spiele Live jeden Sonntag!"
-                subtitle="Folgt unseren YouTube channel um immer die beste aktion zu sehen."
-                youtubeUrl="https://www.youtube.com/embed/iRcBALi98p4"
-                linkTo="https://www.youtube.com/embed/iRcBALi98p4"
+                title="Wir streamen Spiele Live jeden Sonntag!"
+                subtitle="Folgt unseren YouTube-Kanal, um immer die beste Aktion zu sehen."
+                youtubeUrl={getEmbedUrl(homepageData?.league?.youtube || "")}
+                linkTo={homepageData?.league?.youtube || "#"}
             />
           </div>
         </div>
-
 
         {/* Team Carousel */}
         {homepageData?.teams?.length > 0 && (
@@ -128,7 +136,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
                 <div className="club-carousel-title">CLUBS</div>
                 <div
                     className="club-carousel-action"
-                    style={{cursor: "pointer"}}
+                    style={{ cursor: "pointer" }}
                     onClick={() => navigate("/teams")}
                 >
                   ALLE MANNSCHAFTEN
@@ -136,14 +144,14 @@ export const ElementHomepageDesktop = (): JSX.Element => {
               </div>
               <div className="club-carousel-list">
                 {homepageData.teams.map((team: any) => (
-                    <ClubCell key={team.id} team={team}/>
+                    <ClubCell key={team.id} team={team} />
                 ))}
               </div>
             </div>
         )}
 
         {/* Partners */}
-        <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg"/>
+        <Partners className="design-component-instance-node" vWhite="/img/v-white-1-9.svg" />
 
         {/* News Section */}
         <div className="news-7">
@@ -166,7 +174,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         </div>
 
         {/* Footer */}
-        <Footer/>
+        <Footer />
       </div>
   );
 };
