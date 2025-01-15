@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+import { DateTime } from "luxon";
 
 interface Match {
   id: string;
@@ -30,22 +31,12 @@ interface Props {
 }
 
 export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
-  const { id, home_blanket, away_blanket, details, status } = match;
-  const navigate = useNavigate(); // React Router hook for navigation
+  const { id, home_blanket, away_blanket, details, score, status } = match;
+  const navigate = useNavigate();
 
-  const formattedTime = details.date
-      ? new Date(details.date).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
-      : "TBD";
-
-  const formattedScore = `${match.score.home ?? 0}:${match.score.away ?? 0}`;
-  const getStatusText = (status: string) => {
-    if (status === "Pending") return "Vorschau";
-    if (["done", "submitted", "completed"].includes(status)) return "Spielbericht";
-    if (["first", "second"].includes(status)) return "Live";
-    if (status === "abgebrochen") return "Abgebrochen";
-    if (status === "cancelled") return "Abgesagt";
-    return "Vorschau";
-  };
+  // Format using Luxon
+  const formattedTime = DateTime.fromISO(details.date, { zone: "gmt" })
+      .toFormat("HH:mm");
 
   const handleButtonClick = () => {
     navigate(`/match/${id}`);
@@ -58,35 +49,24 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
   return (
       <div className={`fixture-data-cell state-${state}`}>
         <div className="fixture-data" style={{ maxWidth: "100%", paddingRight: "15px" }}>
-          {/* Home Team */}
-          <div
-              style={{cursor: "pointer"}}
-              className="home-team clickable"
-              onClick={() => handleTeamClick(home_blanket.id)}
-          >
+          <div className="home-team clickable" style={{ cursor: "pointer" }} onClick={() => handleTeamClick(home_blanket.id)}>
             <div className="gameday-livescore justRight">
               <img
                   src={home_blanket.logo}
                   alt={home_blanket.name}
                   className="gameday-livescore-3"
               />
-              <div className="gameday-livescore-2 justRight"
-                   style={{cursor: "pointer"}}>
+              <div className="gameday-livescore-2 justRight">
                 {home_blanket.name}
               </div>
             </div>
           </div>
 
-          {/* formattedScore */}
           <div className="score-container">
-            <div className="score-string">{formattedScore}</div>
+            <div className="score-string">{`${score.home}:${score.away}`}</div>
           </div>
-          {/* Away Team */}
-          <div
-              className="away-team clickable"
-              style={{cursor: "pointer"}}
-              onClick={() => handleTeamClick(away_blanket.id)}
-          >
+
+          <div className="away-team clickable" style={{ cursor: "pointer" }} onClick={() => handleTeamClick(away_blanket.id)}>
             <div className="gameday-livescore">
               <img
                   src={away_blanket.logo}
@@ -98,29 +78,22 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
           </div>
         </div>
 
-        {/* Stadium Section */}
         <div className="stadium-wrapper">
           <img
               className="stadium-image"
               alt="Stadium image"
-              src={
-                state === "mobile"
-                    ? "/img/stadium-image-1.svg"
-                    : "/img/stadium-image.svg"
-              }
+              src={state === "mobile" ? "/img/stadium-image-1.svg" : "/img/stadium-image.svg"}
           />
           <div className="stadium-location">{details.location || "Unbekanntes Stadium"}</div>
         </div>
 
-        {/* Match Time */}
         <div className="schedule-container">
           <div className="time-string">{formattedTime}</div>
         </div>
 
-        {/* Button Section */}
         <div className="fixture-btn-wrapper">
           <button className="fixture-btn" onClick={handleButtonClick}>
-            <div className="btn-txt">{getStatusText(status)}</div>
+            <div className="btn-txt">{status === "cancelled" ? "Abgesagt" : "Details"}</div>
           </button>
         </div>
       </div>

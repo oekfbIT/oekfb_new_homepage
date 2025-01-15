@@ -22,7 +22,6 @@ export const ElementGamedayMobile = (): JSX.Element => {
     const authService = new AuthService();
     const clientController = new ClientController();
 
-    // Fetch clubs on component mount
     useEffect(() => {
         const fetchClubs = async () => {
             const leagueCode = authService.getLeagueCode();
@@ -35,7 +34,6 @@ export const ElementGamedayMobile = (): JSX.Element => {
             try {
                 const clubData = await clientController.fetchFirstSeasonMatches(leagueCode);
 
-                // Filter out invalid dates
                 const validClubData = clubData.filter((item: any) => {
                     const date = new Date(item.details?.date);
                     return item.details?.date && !isNaN(date.getTime());
@@ -43,13 +41,9 @@ export const ElementGamedayMobile = (): JSX.Element => {
 
                 setClubs(validClubData);
 
-                // Extract unique game days
-                const gamedays = Array.from(
-                    new Set(validClubData.map((item: any) => item.details.gameday))
-                ).sort((a, b) => a - b);
+                const gamedays = Array.from(new Set(validClubData.map((item: any) => item.details.gameday))).sort((a, b) => a - b);
                 setUniqueGamedays(gamedays);
 
-                // Find the closest gameday to the current date
                 const today = new Date();
                 let closestGameday = gamedays[0];
                 let smallestDifference = Infinity;
@@ -64,7 +58,6 @@ export const ElementGamedayMobile = (): JSX.Element => {
                     }
                 });
 
-                // Set the closest gameday as the default
                 setSelectedGameday(closestGameday);
             } catch (error) {
                 console.error("Error fetching club data:", error);
@@ -76,27 +69,20 @@ export const ElementGamedayMobile = (): JSX.Element => {
         fetchClubs();
     }, []);
 
-    // Filter fixtures by selected gameday
     const filteredClubs = clubs.filter(
         (club: any) => club.details.gameday === selectedGameday
     );
 
     return (
-        <div
-            className="element-gameday-mobile"
-        >
+        <div className="element-gameday-mobile">
             {isMobile ? <Navigation /> : <DesktopNav />}
 
             <div className="page-frame-2">
                 <div className="livescore-2">
                     <div className="page-frame-2">
-                        <PageHeader
-                            className="page-header-4"
-                            text="Spielplan"
-                        />
+                        <PageHeader className="page-header-4" text="Spielplan" />
                     </div>
 
-                    {/* Dropdown for selecting game day */}
                     <div className="page-frame-2">
                         <Dropdown
                             className="instance-node-7"
@@ -117,7 +103,6 @@ export const ElementGamedayMobile = (): JSX.Element => {
                         />
                     </div>
 
-                    {/* Render filtered fixtures */}
                     <div className="page-frame-2">
                         {loading ? (
                             <p>Loading...</p>
@@ -125,41 +110,10 @@ export const ElementGamedayMobile = (): JSX.Element => {
                             <div className="gamedays">
                                 {filteredClubs.map((fixture: any) => (
                                     <div key={fixture.id} className="livescore-header">
-                                        <div className="gameday">
-                                            <div className="gameday-header">
-                                                <p className="gameday-header-date">
-                          <span className="text-wrapper-91" style={{paddingRight: "5px"}}>
-                            {new Date(fixture.details.date).toLocaleDateString(
-                                "de-DE",
-                                { weekday: "long" }
-                            )}
-                          </span>
-                                                    <span className="text-wrapper-92">
-                            {new Date(fixture.details.date).toLocaleDateString(
-                                "de-DE",
-                                { day: "2-digit", month: "long" }
-                            )}
-                          </span>
-                                                </p>
-                                                <p className="gameday-header-time">
-                          <span className="text-wrapper-93">
-                            {new Date(fixture.details.date).toLocaleTimeString(
-                                [],
-                                { hour: "2-digit", minute: "2-digit" }
-                            )}
-                          </span>
-
-                                                </p>
-                                            </div>
-
-                                            {/* Fixture Data */}
-                                            <FixtureDataCell
-                                                className="instance-node-7"
-                                                state={isMobile ? "mobile" : "desktop"}
-                                                img={fixture.away_blanket.logo}
-                                                match={fixture}
-                                            />
-                                        </div>
+                                        <FixtureDataCell
+                                            match={fixture}
+                                            state={isMobile ? "mobile" : "desktop"}
+                                        />
                                     </div>
                                 ))}
                             </div>
