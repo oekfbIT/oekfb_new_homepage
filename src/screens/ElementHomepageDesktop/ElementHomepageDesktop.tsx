@@ -123,7 +123,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
                 className="custom-class"
                 title="Wir streamen Spiele Live jeden Sonntag!"
                 subtitle="Folgt unseren YouTube-Kanal, um immer die beste Aktion zu sehen."
-                youtubeUrl={getEmbedUrl(homepageData?.league?.youtube || "")}
+                youtubeUrl={homepageData?.league?.youtube || ""}
                 linkTo={homepageData?.league?.youtube || "#"}
             />
           </div>

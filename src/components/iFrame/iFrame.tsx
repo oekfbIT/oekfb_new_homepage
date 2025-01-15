@@ -11,6 +11,30 @@ interface Props {
     linkTo: string;
 }
 
+// Function to convert YouTube URL to embed URL
+const getEmbedUrl = (url: string): string => {
+    try {
+        const parsedUrl = new URL(url);
+
+        // Handle shorts URL
+        if (parsedUrl.pathname.includes("/shorts/")) {
+            const videoId = parsedUrl.pathname.split("/shorts/")[1];
+            return `https://www.youtube.com/embed/${videoId}`;
+        }
+
+        // Handle standard YouTube URL
+        const videoId = parsedUrl.searchParams.get("v");
+        if (videoId) {
+            return `https://www.youtube.com/embed/${videoId}`;
+        }
+
+        return url; // Return original URL if no valid video ID is found
+    } catch (error) {
+        console.error("Invalid YouTube URL:", error);
+        return "";
+    }
+};
+
 export const IFrame = ({
                            className = "",
                            title,
@@ -19,11 +43,11 @@ export const IFrame = ({
                            linkTo = "#",
                        }: Props): JSX.Element => {
     return (
-        <Link className={`action-cell ${className}`} to={linkTo} style={{width: "100%"}}>
+        <Link className={`action-cell ${className}`} to={linkTo} style={{ width: "100%" }}>
             <div className="iframe-wrapper">
                 <iframe
                     className="youtube-iframe"
-                    src={youtubeUrl}
+                    src={getEmbedUrl(youtubeUrl)}
                     title={title}
                     frameBorder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
