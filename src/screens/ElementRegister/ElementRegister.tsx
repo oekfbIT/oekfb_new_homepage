@@ -257,7 +257,7 @@ export const ElementRegister = (): JSX.Element => {
   return (
       <div
           className="element-register"
-          // style={{ minWidth: isMobile ? "390px" : "900px" }}
+          style={{ overflow: "hidden", minWidth: isMobile ? "366px" : "900px"}}
       >
         {isMobile ? <Navigation /> : <DesktopNav />}
 

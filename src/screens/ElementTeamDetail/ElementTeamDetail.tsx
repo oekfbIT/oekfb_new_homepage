@@ -12,7 +12,7 @@ import "./style.css";
 import { useNavigate, useParams } from "react-router-dom";
 import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
-import {DesktopNav} from "../../components/ViewDefaultWrapper";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 
 export const ElementTeamDetail = (): JSX.Element => {
     const screenWidth = useWindowWidth();
@@ -40,7 +40,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                 const response = await clientController.fetchClubDetail(id);
                 setTeamData(response);
 
-                const uniqueNews = teamData?.news
+                const uniqueNews = response?.news
                     ?.filter((item, index, self) =>
                         index === self.findIndex((n) => n.id === item.id)
                     );
@@ -61,6 +61,14 @@ export const ElementTeamDetail = (): JSX.Element => {
         ? Object.entries(teamData.club.stats)
         : [];
 
+    if (loading) {
+        return (
+            <div className="loading-screen">
+                <h2>Laden...</h2>
+            </div>
+        );
+    }
+
     return (
         <div
             className="element-team-detail"
@@ -80,7 +88,7 @@ export const ElementTeamDetail = (): JSX.Element => {
 
             <div className="page-content">
                 {/* Squad Section */}
-                <section style={{width: "-webkit-fill-available"}}>
+                <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">{teamData?.club?.team_name} SQUAD</h2>
                     <div className="team-squad">
                         {teamData?.club?.players
@@ -94,29 +102,29 @@ export const ElementTeamDetail = (): JSX.Element => {
                                 return 0; // Keep original order otherwise
                             })
                             .map((player: any) => (
-                                <div key={player.id} style={{cursor: "pointer"}}>
-                                    <TeamDetailSquad player={player}/>
+                                <div key={player.id} style={{ cursor: "pointer" }}>
+                                    <TeamDetailSquad player={player} />
                                 </div>
                             ))}
                     </div>
                 </section>
 
                 {/* Stats Section with a for-loop */}
-                <section style={{width: "-webkit-fill-available"}}>
+                <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">
                         {teamData?.club?.team_name} STATS
                     </h2>
-                    <div className="stats-grid" style={{justifyItems: "center"}}>
+                    <div className="stats-grid" style={{ justifyItems: "center" }}>
                         {teamStats.map(([statKey, statValue]) => (
-                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell"/>
+                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
                         ))}
                     </div>
                 </section>
 
                 {/* Fixtures Section */}
-                <section style={{width: "-webkit-fill-available", justifyItems: "center"}}>
+                <section style={{ width: "-webkit-fill-available", justifyItems: "center" }}>
                     <h2 className="secTitle">FIXTURES & RESULTS</h2>
-                    <div style={{width: "100%"}}>
+                    <div style={{ width: "100%" }}>
                         {teamData?.upcoming?.map((match: any) => (
                             <FixtureDataCell
                                 key={match.id}
@@ -128,7 +136,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                 </section>
 
                 {/* News Section */}
-                <section style={{width: "-webkit-fill-available"}}>
+                <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">NEWS & SPIELBERICHTE</h2>
                     <div className="news-wrapper">
                         <div className="news-grid">
@@ -146,7 +154,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                 </section>
             </div>
 
-            <Footer/>
+            <Footer />
         </div>
     );
 };
