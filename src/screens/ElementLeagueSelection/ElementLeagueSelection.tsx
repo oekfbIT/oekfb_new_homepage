@@ -155,8 +155,8 @@ export const ElementLeagueSelection = (): JSX.Element => {
                                     className="custom-class"
                                     title="Wir streamen spiele Live jeden Sonntag!"
                                     subtitle="Folgt unseren YouTube channel um immer die beste aktion zu sehen."
-                                    youtubeUrl="https://www.youtube.com/embed/iRcBALi98p4"
-                                    linkTo="https://www.youtube.com/embed/iRcBALi98p4"
+                                    youtubeUrl={homepageData?.league?.youtube || ""}
+                                    linkTo={homepageData?.league?.youtube || "#"}
                                 />
                             </div>
 

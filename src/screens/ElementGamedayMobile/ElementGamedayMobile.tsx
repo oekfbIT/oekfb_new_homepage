@@ -110,7 +110,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
                             options={uniqueGamedays.map(({ gameday, date }) => ({
                                 id: gameday,
                                 value: gameday,
-                                label: `Spieltag ${gameday} - ${date}`, // Include date in the label
+                                label: `Spieltag ${gameday} - ${date}`,
                             }))}
                             displayKey="label"
                             valueKey="value"
