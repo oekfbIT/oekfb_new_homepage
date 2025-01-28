@@ -41,11 +41,26 @@ export const ElementGamedayMobile = (): JSX.Element => {
 
                 setClubs(validClubData);
 
-                const gamedays = Array.from(new Set(validClubData.map((item: any) => item.details.gameday))).sort((a, b) => a - b);
-                setUniqueGamedays(gamedays);
+                const gamedayMap = new Map<number, string>(); // Map to store gameday and its earliest date
+                validClubData.forEach((item: any) => {
+                    const gameday = item.details.gameday;
+                    const date = new Date(item.details.date);
+                    const formattedDate = `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1)
+                        .toString()
+                        .padStart(2, "0")}.${date.getFullYear()}`;
+                    if (!gamedayMap.has(gameday) || date < new Date(gamedayMap.get(gameday)!)) {
+                        gamedayMap.set(gameday, formattedDate);
+                    }
+                });
+
+                const gamedaysWithDates = Array.from(gamedayMap.entries())
+                    .map(([gameday, date]) => ({ gameday, date }))
+                    .sort((a, b) => a.gameday - b.gameday); // Sort by gameday
+
+                setUniqueGamedays(gamedaysWithDates);
 
                 const today = new Date();
-                let closestGameday = gamedays[0];
+                let closestGameday = gamedaysWithDates[0]?.gameday;
                 let smallestDifference = Infinity;
 
                 validClubData.forEach((item: any) => {
@@ -92,10 +107,10 @@ export const ElementGamedayMobile = (): JSX.Element => {
                             matLabelSelectAClassName="dropdown-2"
                             text="Spieltag"
                             placeholder="Spieltag"
-                            options={uniqueGamedays.map((day) => ({
-                                id: day,
-                                value: day,
-                                label: `Spieltag ${day}`,
+                            options={uniqueGamedays.map(({ gameday, date }) => ({
+                                id: gameday,
+                                value: gameday,
+                                label: `Spieltag ${gameday} - ${date}`, // Include date in the label
                             }))}
                             displayKey="label"
                             valueKey="value"
