@@ -258,7 +258,7 @@ export const ElementPlayerDetail = () => {
             <div className="page-content" style={{ padding: "20px 0px" }}>
                 {/* Stats Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
-                    <h2 className="secTitle">{playerData?.name || "Player"} STATS</h2>
+                    <h2 className="secTitle">{playerData?.name || "Player"} Statistiken</h2>
                     <div className="stats-grid" style={{ justifyItems: "center" }}>
                         {playerStats.map(([statKey, statValue]) => (
                             <StatCell key={statKey} statKey={statKey} statValue={statValue} />
@@ -268,7 +268,7 @@ export const ElementPlayerDetail = () => {
 
                 {/* Fixtures Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
-                    <h2 className="secTitle">FIXTURES & RESULTS</h2>
+                    <h2 className="secTitle">Spiele & Ergebnisse</h2>
                     <div style={{ width: "100%" }}>
                         {upcoming?.map((match) => (
                             <FixtureDataCell

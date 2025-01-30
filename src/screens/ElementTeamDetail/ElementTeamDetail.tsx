@@ -89,7 +89,7 @@ export const ElementTeamDetail = (): JSX.Element => {
             <div className="page-content">
                 {/* Squad Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
-                    <h2 className="secTitle">{teamData?.club?.team_name} SQUAD</h2>
+                    <h2 className="secTitle">{teamData?.club?.team_name} - Kader</h2>
                     <div className="team-squad">
                         {teamData?.club?.players
                             ?.filter(
@@ -112,7 +112,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                 {/* Stats Section with a for-loop */}
                 <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">
-                        {teamData?.club?.team_name} STATS
+                        {teamData?.club?.team_name} Statistiken
                     </h2>
                     <div className="stats-grid" style={{ justifyItems: "center" }}>
                         {teamStats.map(([statKey, statValue]) => (
@@ -123,7 +123,7 @@ export const ElementTeamDetail = (): JSX.Element => {
 
                 {/* Fixtures Section */}
                 <section style={{ width: "-webkit-fill-available", justifyItems: "center" }}>
-                    <h2 className="secTitle">FIXTURES & RESULTS</h2>
+                    <h2 className="secTitle">Spiele & Ergebnisse</h2>
                     <div style={{ width: "100%" }}>
                         {teamData?.upcoming?.map((match: any) => (
                             <FixtureDataCell
@@ -137,7 +137,7 @@ export const ElementTeamDetail = (): JSX.Element => {
 
                 {/* News Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
-                    <h2 className="secTitle">NEWS & SPIELBERICHTE</h2>
+                    <h2 className="secTitle">News & Spielberichte</h2>
                     <div className="news-wrapper">
                         <div className="news-grid">
                             {news?.map((newsItem: any) => (

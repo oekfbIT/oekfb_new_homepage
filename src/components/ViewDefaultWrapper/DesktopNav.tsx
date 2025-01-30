@@ -92,8 +92,8 @@ export const DesktopNav = ({
                                         {label: "News", to: "/news"},
                                         {label: "Strafsenat", to: "/strafsenat"},
                                         {label: "Sperren", to: "/sperren"},
-                                        {label: "Bund", to: "/bund"},
-                                        {label: "Kontakt", to: "/kontakt"},
+                                        // {label: "Bund", to: "/bund"},
+                                        // {label: "Kontakt", to: "/kontakt"},
                                     ].map((link, index) => (
                                         <Link key={index} className="item-3" to={link.to}>
                                             <div className="link-6">
