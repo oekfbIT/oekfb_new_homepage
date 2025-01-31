@@ -29,8 +29,8 @@ export const Navigation = ({
         { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Linz", code: "L1", id: "D506E56C-3877-4581-90F0-26D144EFBE83" },
         { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Graz", code: "G1", id: "E171419D-C82E-4620-B691-B0D7BFEFB154" },
         { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Salzburg", code: "SBZ", id: "4C0521AB-B28B-4C5B-A147-E6BA50042348" },
-        { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Innsbruck", code: "INS", id: "AD2C1309-7F78-4E31-9FFC-957D1A38A43E" },
-        { img: "/img/league-row-item-content-img-90.png", text: "2. Liga Innsbruck", code: "INS2", id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8" },
+        { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Innsbruck", code: "IBK", id: "AD2C1309-7F78-4E31-9FFC-957D1A38A43E" },
+        { img: "/img/league-row-item-content-img-90.png", text: "2. Liga Innsbruck", code: "IBK2", id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8" },
     ];
 
     // On mount, load active league from cookie

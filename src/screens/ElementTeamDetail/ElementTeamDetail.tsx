@@ -89,7 +89,7 @@ export const ElementTeamDetail = (): JSX.Element => {
             <div className="page-content">
                 {/* Squad Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
-                    <h2 className="secTitle">{teamData?.club?.team_name} - Kader</h2>
+                    <h2 className="secTitle">{teamData?.club?.team_name} Kader</h2>
                     <div className="team-squad">
                         {teamData?.club?.players
                             ?.filter(
