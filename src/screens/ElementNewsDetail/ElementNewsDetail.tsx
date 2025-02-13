@@ -8,7 +8,6 @@ import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
 import "./style.css";
 
-// Define the type for news detail
 interface NewsDetail {
     tag: string;
     title: string;
@@ -20,7 +19,7 @@ interface NewsDetail {
 export const ElementNewsDetail = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const navigate = useNavigate();
-    const { id } = useParams(); // Get 'id' from URL parameters
+    const { id } = useParams();
 
     const clientController = new ClientController();
     const authService = new AuthService();
@@ -72,7 +71,6 @@ export const ElementNewsDetail = (): JSX.Element => {
                 minWidth: screenWidth < 900 ? "390px" : "900px",
             }}
         >
-            {/* Conditional Navigation */}
             {screenWidth < 900 ? <Navigation /> : <DesktopNav />}
 
             <div className="content-frame-2">
@@ -107,16 +105,17 @@ export const ElementNewsDetail = (): JSX.Element => {
 
                         <div className="news-detail-content-wrapper">
                             <div className="news-detail-content-7">
-                                <p className="news-detail-content-8">
-                                    {newsDetail.text || "No content available."}
-                                </p>
+                                {/* Render Rich Text Properly */}
+                                <div
+                                    className="news-detail-content-8"
+                                    dangerouslySetInnerHTML={{ __html: newsDetail.text || "No content available." }}
+                                />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Footer */}
             <Footer />
         </div>
     );

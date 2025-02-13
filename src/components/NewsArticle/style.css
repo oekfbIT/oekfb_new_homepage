@@ -88,3 +88,26 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.subtitle-3 {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Show max 3 lines */
+  -webkit-box-orient: vertical;
+}
+
+.subtitle-3 strong {
+  font-weight: bold;
+}
+
+.subtitle-3 u {
+  text-decoration: underline;
+}
+
+.subtitle-3 em {
+  font-style: italic;
+}
