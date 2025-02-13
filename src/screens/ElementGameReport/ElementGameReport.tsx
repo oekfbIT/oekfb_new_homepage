@@ -83,6 +83,13 @@ export const ElementGameReport = (): JSX.Element => {
     return <div>No game data available.</div>;
   }
 
+  const formatMatchTime = (dateString: string) => {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return "Ungültiges Datum";
+
+    return date.toISOString().substring(11, 16); // Extract HH:mm in UTC
+  };
+
   return (
       <div className="element-game-report">
         <Navigation />
@@ -153,14 +160,11 @@ export const ElementGameReport = (): JSX.Element => {
                   <div className="setting-wrapper">
                     <div className="setting-date">
                       {gameData.details?.date
-                          ? new Date(gameData.details.date).toLocaleDateString("de-DE", {
+                          ? `${new Date(gameData.details.date).toLocaleDateString("de-DE", {
                             day: "2-digit",
                             month: "2-digit",
                             year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                            hour12: false,
-                          }).replace(",", " -") // Format and replace separator
+                          })} - ${formatMatchTime(gameData.details.date)}`
                           : "Datum nicht Zugewiesen"}
                     </div>
                   </div>
