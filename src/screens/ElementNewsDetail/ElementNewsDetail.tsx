@@ -88,7 +88,9 @@ export const ElementNewsDetail = (): JSX.Element => {
                                     </p>
 
                                     <div className="news-detail-content-6">
-                                        {newsDetail.date || "No Date"}
+                                        Datum: {newsDetail.created
+                                            ? new Intl.DateTimeFormat('de-DE').format(new Date(newsDetail.created))
+                                            : "No Date"}
                                     </div>
                                 </div>
 
