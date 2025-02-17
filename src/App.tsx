@@ -1,5 +1,6 @@
 import React from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+// import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Importing all screen components
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
@@ -29,10 +30,11 @@ import {ElementTransfers} from "./screens/ElementTransfers";
 import {ElementLigaordnung} from "./screens/ElementLigaordnung";
 import {ElementRegeln} from "./screens/ElementRegeln";
 import {ElementBund} from "./screens/ElementBund";
+import {Transfer} from "./components/Transfer";
 
 export const App = () => {
   return (
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           {/* Specific Routes */}
             <Route path="/" element={<ElementLeagueSelection />} />
@@ -49,7 +51,7 @@ export const App = () => {
             <Route path="/kontakt" element={<ElementContactMobile />} />
             <Route path="/sperren" element={<ElementSperrenDesktop />} />
             <Route path="/transfers" element={<ElementTransfersDesktop />} />
-            <Route path="/confirm/transfer/:id" element={<ElementTransfer />} />
+            <Route path="/transfer/:transferID" element={<ElementTransfer />} />
             <Route path="/register" element={<ElementRegister />} />
             <Route path="/ligaordnung" element={<ElementLigaordnung />} />
             <Route path="/spielregeln" element={<ElementRegeln />} />
@@ -74,6 +76,6 @@ export const App = () => {
           {/* Fallback Route */}
           <Route path="*" element={<ElementLeagueSelection />} />
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
   );
 };
