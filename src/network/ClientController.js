@@ -126,6 +126,16 @@ class ClientController {
     }
 
     /**
+     * Fetch details of a specific player stats.
+     * GET /player/detail/:id
+     * @param {string} id - Player ID.
+     * @returns {Promise<Object>} Player Stats details.
+     */
+    async fetchPlayerStats(id) {
+        return this.apiService.get(`webClient/player/${id}/summary/`);
+    }
+
+    /**
      * Fetch the goal leaderboard for a specific league.
      * GET /leaderboard/:id/goal
      * @param {string} id - League ID.

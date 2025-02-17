@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ActionButton } from "../ActionButton";
-import ClientController from "../../network/ClientController";
 import "./style.css";
 
 interface TransferProps {
@@ -12,8 +11,12 @@ interface TransferProps {
     message: string;
     teamID: string;
     status: string;
+    origin: string;
+    teamImage: string;
     playerID: string;
     transferID: string;
+    onAccept: () => void;
+    onReject: () => void;
 }
 
 export const Transfer = ({
@@ -25,10 +28,13 @@ export const Transfer = ({
                              teamID,
                              playerID,
                              status,
+                            origin,
+                            teamImage,
                              transferID,
+                             onAccept,
+                             onReject,
                          }: TransferProps): JSX.Element => {
     const navigate = useNavigate();
-    const clientController = new ClientController();
 
     const handleTeamNavigation = () => {
         navigate(`/team-detail/${teamID}`);
@@ -38,26 +44,7 @@ export const Transfer = ({
         navigate(`/player-detail/${playerID}`);
     };
 
-    const handleAccept = async () => {
-        try {
-            await clientController.confirmTransfer(transferID);
-            console.log("Transfer accepted successfully");
-            navigate("/"); // Navigate to home after successful confirmation
-        } catch (error) {
-            console.error("Error confirming transfer:", error);
-        }
-    };
-
-    const handleReject = async () => {
-        try {
-            await clientController.rejectTransfer(transferID);
-            console.log("Transfer rejected successfully");
-            navigate("/"); // Navigate to home after successful rejection
-        } catch (error) {
-            console.error("Error rejecting transfer:", error);
-        }
-    };
-
+    // If the transfer status is not "warten", the transfer is already completed.
     if (status !== "warten") {
         return (
             <div className="transfer-completed">
@@ -68,8 +55,7 @@ export const Transfer = ({
 
     return (
         <div className={`transfer ${className}`}>
-            <div onClick={handlePlayerNavigation}
-                className="player-bio">
+            <div onClick={handlePlayerNavigation} className="player-bio">
                 <div className="card">
                     <div className="background-shadow">
                         <div className="player-detail-wrapper">
@@ -79,14 +65,17 @@ export const Transfer = ({
                                 src={playerImage}
                             />
                         </div>
-
                         <div className="card-data">
                             <div className="card-data-wrapper">
                                 <div className="logo-5" />
-
                                 <div className="content-2">
-                                    <div className="div-3">2</div>
+                                    <img
+                                        className="logo-5"
+                                        alt={`${origin} `}
+                                        src={origin}
+                                    />
 
+                                    <div className="div-3">2</div>
                                     <p className="div-3">
                     <span className="text-wrapper-9">
                       {playerName.split(" ")[0]}
@@ -103,19 +92,24 @@ export const Transfer = ({
             </div>
 
             <p className="subtitle-2">
-        <span
-            className="text-wrapper-11"
-            onClick={handleTeamNavigation}
-            style={{ cursor: "pointer", textDecoration: "underline" }}
-        >
+                <img
+                    className="logo-5"
+                    alt={`${teamImage} `}
+                    src={teamImage}
+                />
+                <span
+                    className="text-wrapper-11"
+                    onClick={handleTeamNavigation}
+                    style={{cursor: "pointer", textDecoration: "underline"}}
+                >
           {teamName}
         </span>
                 <span className="text-wrapper-12">{` ${message}`}</span>
             </p>
 
             <div className="buttons">
-                <ActionButton title="JA" onClick={handleAccept} />
-                <ActionButton title="NEIN" onClick={handleReject} />
+                <ActionButton title="JA" onClick={onAccept}/>
+                <ActionButton title="NEIN" onClick={onReject}/>
             </div>
         </div>
     );
