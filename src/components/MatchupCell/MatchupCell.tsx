@@ -33,19 +33,36 @@ interface Props {
 
 const fallbackLogo = "/img/fallback-logo.png";
 
+const formatMatchTime = (dateString: string) => {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "Ungültiges Datum";
+
+  return date.toISOString().substring(11, 16); // Extract HH:mm in UTC
+};
+
+const formatMatchDate = (dateString: string) => {
+  if (!dateString) return "Ungültiges Datum";
+
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return "Ungültiges Datum";
+
+  return new Intl.DateTimeFormat("de-DE", {
+    timeZone: "Europe/Vienna",
+    day: "2-digit",
+    month: "2-digit",
+  }).format(date);
+};
+
+
 export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element => {
   const navigate = useNavigate();
 
   console.log("Debug - Matchup:", matchup);
 
-  const formattedDate = matchup?.details?.date
-      ? new Date(matchup.details.date).toLocaleString("de-DE", {
-        day: "2-digit",
-        month: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-      })
-      : "N/A";
+  const formattedDate =
+      matchup?.details?.date
+          ? `${formatMatchDate(matchup.details.date)} - ${formatMatchTime(matchup.details.date)}`
+          : "Datum nicht Zugewiesen";
 
   const backgroundColorClass =
       matchup?.status === "pending"
