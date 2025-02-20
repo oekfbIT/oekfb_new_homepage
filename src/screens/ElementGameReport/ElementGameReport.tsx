@@ -150,12 +150,12 @@ export const ElementGameReport = (): JSX.Element => {
                 <div className="divider" />
 
                 <div className="game-setting-wrapper">
-                  <div className="referee-wrapper">
-                    <div className="referee-name">
-                      {gameData.referee?.name?.trim() ? gameData.referee?.name : "Schiedrichter Nicht Zugewiesen"}
-                    </div>
-                    <img className="img-3" alt="Referee icon" src="/img/referee-icon-7.svg"/>
-                  </div>
+                  {/*<div className="referee-wrapper">*/}
+                  {/*  <div className="referee-name">*/}
+                  {/*    {gameData.referee?.name?.trim() ? gameData.referee?.name : "Schiedrichter Nicht Zugewiesen"}*/}
+                  {/*  </div>*/}
+                  {/*  <img className="img-3" alt="Referee icon" src="/img/referee-icon-7.svg"/>*/}
+                  {/*</div>*/}
 
                   <div className="setting-wrapper">
                     <div className="setting-date">
