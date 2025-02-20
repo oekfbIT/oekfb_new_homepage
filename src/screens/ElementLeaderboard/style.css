@@ -152,3 +152,32 @@
 .element-leaderboard .footer-24 {
   margin-left: -324px !important;
 }
+
+.element-leaderboard .segButton {
+  align-self: stretch;
+  color: var(--themeswamp);
+  font-family: var(--theme-inter-bold-15-75-upper-font-family);
+  font-size: var(--theme-inter-bold-15-75-upper-font-size);
+  font-style: var(--theme-inter-bold-15-75-upper-font-style);
+  font-weight: var(--theme-inter-bold-15-75-upper-font-weight);
+  letter-spacing: var(--theme-inter-bold-15-75-upper-letter-spacing);
+  line-height: var(--theme-inter-bold-15-75-upper-line-height);
+  position: relative;
+  border: none;
+  background-color: transparent;
+}
+
+.segButtonActive {
+  align-self: stretch;
+  color: var(--themeswamp);
+  font-family: var(--theme-inter-bold-15-75-upper-font-family);
+  font-size: var(--theme-inter-bold-15-75-upper-font-size);
+  font-style: var(--theme-inter-bold-15-75-upper-font-style);
+  font-weight: var(--theme-inter-bold-15-75-upper-font-weight);
+  letter-spacing: var(--theme-inter-bold-15-75-upper-letter-spacing);
+  line-height: var(--theme-inter-bold-15-75-upper-line-height);
+  position: relative;
+  border: none;
+  background-color: transparent;
+  text-decoration-line: underline;
+}

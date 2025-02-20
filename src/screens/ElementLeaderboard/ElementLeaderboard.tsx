@@ -16,11 +16,11 @@ export const ElementLeaderboard = (): JSX.Element => {
 
   const [players, setPlayers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showGoals, setShowGoals] = useState(true); // State to toggle between goals and yellow cards
 
   const authService = new AuthService();
   const clientController = new ClientController();
 
-  // Fetch players on component mount
   useEffect(() => {
     const fetchPlayers = async () => {
       const leagueCode = authService.getLeagueID();
@@ -31,8 +31,10 @@ export const ElementLeaderboard = (): JSX.Element => {
       }
 
       try {
-        const playerData = await clientController.fetchGoalLeaderBoard(leagueCode);
-        setPlayers(playerData.sort((a, b) => b.count - a.count)); // Sort by most goals
+        const playerData = showGoals
+            ? await clientController.fetchGoalLeaderBoard(leagueCode)
+            : await clientController.fetchYellowCardLeaderBoard(leagueCode);
+        setPlayers(playerData.sort((a, b) => b.count - a.count));
       } catch (error) {
         console.error("Error fetching player data:", error);
       } finally {
@@ -41,35 +43,41 @@ export const ElementLeaderboard = (): JSX.Element => {
     };
 
     fetchPlayers();
-  }, []);
+  }, [showGoals]);
 
   return (
-      <div
-          className="element-leaderboard" style={{ minWidth: isMobile ? "390px" : "900px" }}>
-
-        {isMobile ? (
-            <>
-              <Navigation />
-            </>
-        ) : (
-            <>
-              <DesktopNav />
-            </>
-        )}
+      <div className="element-leaderboard" style={{ minWidth: isMobile ? "390px" : "900px" }}>
+        {isMobile ? <Navigation /> : <DesktopNav />}
 
         <div className="page-control-4">
-          <PageHeader className="instance-node-10" text="Torschützenkönig" />
+          <PageHeader className="instance-node-10" text={showGoals ? "Torschützenkönig" : "Kartenkönig"} />
+
+          <div className="leaderboard-highligh-2">
+            <button
+                onClick={() => setShowGoals(true)}
+                className={showGoals ? "segButtonActive" : "segButton"}
+            >
+              TORE
+            </button>
+
+            <button
+                onClick={() => setShowGoals(false)}
+                className={showGoals ? "segButton" : "segButtonActive"}
+            >
+              GELBE KARTEN
+            </button>
+          </div>
 
           <div className="leaderboard-highligh-2">
             {players.slice(0, 3).map((player, index) => (
                 <LeaderboardHighligh
                     key={index}
                     className={`${screenWidth < 900 ? "class-11" : "class-12"}`}
-                    title={`${index + 1}. Platz - ${player.count} Tore`} // Use template string to dynamically create title
+                    title={`${index + 1}. Platz - ${player.count} ${showGoals ? "Tore" : "Gelbe Karten"}`}
                     team={{
                       image: player.teamimg,
                       name: player.team_name,
-                      id: player.team_id
+                      id: player.team_id,
                     }}
                     player={{
                       image: player.image,
@@ -81,12 +89,12 @@ export const ElementLeaderboard = (): JSX.Element => {
             ))}
           </div>
 
-
           <div className="single-stat-cells">
             {players.slice(3).map((player, index) => (
                 <LeaderboardStat
                     key={index}
                     className="instance-node-10"
+                    goal={showGoals}
                     property1={
                       screenWidth < 900
                           ? "mobile"
@@ -97,14 +105,14 @@ export const ElementLeaderboard = (): JSX.Element => {
                     team={{
                       image: player.teamimg,
                       name: player.team_name,
-                      id: player.team_id
+                      id: player.team_id,
                     }}
                     player={{
                       image: player.image,
                       number: player.number,
                       name: player.name,
                       count: player.count,
-                      teamName: "" // Add team name here if available
+                      teamName: "", // Add team name here if available
                     }}
                 />
             ))}
@@ -112,7 +120,6 @@ export const ElementLeaderboard = (): JSX.Element => {
         </div>
 
         <Footer />
-
       </div>
   );
 };

@@ -4,6 +4,7 @@ import "./style.css";
 
 interface Props {
   property1: "desktop" | "mobile";
+  goal: boolean;
   className?: string;
   team: {
     image: string;
@@ -19,7 +20,13 @@ interface Props {
   };
 }
 
-export const LeaderboardStat = ({ property1, className = "", player, team }: Props): JSX.Element => {
+export const LeaderboardStat = ({ property1, goal, className = "", player, team }: Props): JSX.Element => {
+
+  const redCard = "/img/redCard.svg";
+  const yellowCard = "/img/yellowCard.svg";
+  const yellowredCard = "/img/yellowRedCard.svg";
+  const goalimg = "/img/goal.svg";
+
   return (
       <div className={`leaderboard-stat property-1-4-${property1} ${className}`}>
         <div className="left-container-5">
@@ -51,7 +58,11 @@ export const LeaderboardStat = ({ property1, className = "", player, team }: Pro
             <div className="team-name-5">{player.teamName}</div>
           </div>
 
-          <div className="count">{player.count} Tore</div>
+          <div className="count">
+            <img className="event-card-type-img" src={goal ? goalimg : yellowCard}/>
+            {player.count} {goal ? "Tore" : "Gelbe Karten"}
+          </div>
+
         </div>
       </div>
   );
@@ -59,6 +70,7 @@ export const LeaderboardStat = ({ property1, className = "", player, team }: Pro
 
 LeaderboardStat.propTypes = {
   property1: PropTypes.oneOf(["desktop", "mobile"]).isRequired,
+  goal: PropTypes.boolean,
   className: PropTypes.string,
   player: PropTypes.shape({
     image: PropTypes.string.isRequired,

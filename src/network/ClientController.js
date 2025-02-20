@@ -146,6 +146,17 @@ class ClientController {
     }
 
     /**
+     * Fetch the goal leaderboard yellow Cards for a specific league.
+     * GET /leaderboard/:id/yellowCard
+     * @param {string} id - League ID.
+     * @returns {Promise<Object[]>} YellowCard leaderboard data.
+     */
+    async fetchYellowCardLeaderBoard(id) {
+        return this.apiService.get(`webClient/leaderboard/${id}/yellowCard`);
+    }
+
+
+    /**
      * Fetch the red card leaderboard for a specific league.
      * GET /leaderboard/:id/redCard
      * @param {string} id - League ID.
