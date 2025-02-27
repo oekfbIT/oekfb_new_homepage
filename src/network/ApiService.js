@@ -1,7 +1,7 @@
 class ApiService {
   constructor() {
-    this.baseURL = "https://test.oekfb.eu";
-    // this.baseURL = "https://api.oekfb.eu";
+    // this.baseURL = "https://test.oekfb.eu";
+    this.baseURL = "https://api.oekfb.eu";
     // this.baseURL = "http://localhost:8080";
   }
 
