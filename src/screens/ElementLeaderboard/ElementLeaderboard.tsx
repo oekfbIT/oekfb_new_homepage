@@ -32,8 +32,8 @@ export const ElementLeaderboard = (): JSX.Element => {
 
       try {
         const playerData = showGoals
-            ? await clientController.fetchGoalLeaderBoard(leagueCode)
-            : await clientController.fetchYellowCardLeaderBoard(leagueCode);
+          ? await clientController.fetchGoalLeaderBoard(leagueCode)
+          : await clientController.fetchYellowCardLeaderBoard(leagueCode);
         setPlayers(playerData.sort((a, b) => b.count - a.count));
       } catch (error) {
         console.error("Error fetching player data:", error);
@@ -46,80 +46,88 @@ export const ElementLeaderboard = (): JSX.Element => {
   }, [showGoals]);
 
   return (
-      <div className="element-leaderboard" style={{ minWidth: isMobile ? "390px" : "900px" }}>
-        {isMobile ? <Navigation /> : <DesktopNav />}
+    <div
+      className="element-leaderboard"
+      style={{ minWidth: isMobile ? "390px" : "900px" }}
+    >
+      {isMobile ? <Navigation /> : <DesktopNav />}
 
-        <div className="page-control-4">
-          <PageHeader className="instance-node-10" text={showGoals ? "Torschützenkönig" : "Kartenkönig"} />
+      <div className="page-control-4">
+        <PageHeader
+          className="instance-node-10"
+          text={showGoals ? "Spielerstastik" : "Spielerstastik"}
+        />
 
-          <div className="leaderboard-highligh-2">
-            <button
-                onClick={() => setShowGoals(true)}
-                className={showGoals ? "segButtonActive" : "segButton"}
-            >
-              TORE
-            </button>
+        <div className="leaderboard-highligh-2">
+          <button
+            onClick={() => setShowGoals(true)}
+            className={showGoals ? "segButtonActive" : "segButton"}
+          >
+            TORE
+          </button>
 
-            <button
-                onClick={() => setShowGoals(false)}
-                className={showGoals ? "segButton" : "segButtonActive"}
-            >
-              GELBE KARTEN
-            </button>
-          </div>
-
-          <div className="leaderboard-highligh-2">
-            {players.slice(0, 3).map((player, index) => (
-                <LeaderboardHighligh
-                    key={index}
-                    className={`${screenWidth < 900 ? "class-11" : "class-12"}`}
-                    title={`${index + 1}. Platz - ${player.count} ${showGoals ? "Tore" : "Gelbe Karten"}`}
-                    team={{
-                      image: player.teamimg,
-                      name: player.team_name,
-                      id: player.team_id,
-                    }}
-                    player={{
-                      image: player.image,
-                      number: player.number,
-                      name: player.name,
-                      score: player.count,
-                    }}
-                />
-            ))}
-          </div>
-
-          <div className="single-stat-cells">
-            {players.slice(3).map((player, index) => (
-                <LeaderboardStat
-                    key={index}
-                    className="instance-node-10"
-                    goal={showGoals}
-                    property1={
-                      screenWidth < 900
-                          ? "mobile"
-                          : screenWidth >= 900
-                              ? "desktop"
-                              : undefined
-                    }
-                    team={{
-                      image: player.teamimg,
-                      name: player.team_name,
-                      id: player.team_id,
-                    }}
-                    player={{
-                      image: player.image,
-                      number: player.number,
-                      name: player.name,
-                      count: player.count,
-                      teamName: "", // Add team name here if available
-                    }}
-                />
-            ))}
-          </div>
+          <button
+            onClick={() => setShowGoals(false)}
+            className={showGoals ? "segButton" : "segButtonActive"}
+          >
+            GELBE KARTEN
+          </button>
         </div>
 
-        <Footer />
+        <div className="leaderboard-highligh-2">
+          {players.slice(0, 3).map((player, index) => (
+            <LeaderboardHighligh
+              key={index}
+              className={`${screenWidth < 900 ? "class-11" : "class-12"}`}
+              title={`${index + 1}. Platz - ${player.count} ${
+                showGoals ? "Tore" : "Gelbe Karten"
+              }`}
+              team={{
+                image: player.teamimg,
+                name: player.team_name,
+                id: player.team_id,
+              }}
+              player={{
+                image: player.image,
+                number: player.number,
+                name: player.name,
+                score: player.count,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="single-stat-cells">
+          {players.slice(3).map((player, index) => (
+            <LeaderboardStat
+              key={index}
+              className="instance-node-10"
+              goal={showGoals}
+              property1={
+                screenWidth < 900
+                  ? "mobile"
+                  : screenWidth >= 900
+                  ? "desktop"
+                  : undefined
+              }
+              team={{
+                image: player.teamimg,
+                name: player.team_name,
+                id: player.team_id,
+              }}
+              player={{
+                image: player.image,
+                number: player.number,
+                name: player.name,
+                count: player.count,
+                teamName: "", // Add team name here if available
+              }}
+            />
+          ))}
+        </div>
       </div>
+
+      <Footer />
+    </div>
   );
 };
