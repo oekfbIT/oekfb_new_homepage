@@ -148,7 +148,7 @@ export const DesktopNav = ({
                     { label: "Teams", to: "/teams" },
                     { label: "Tabelle", to: "/tabelle" },
                     { label: "Spielplan", to: "/spielplan" },
-                    { label: "Spielerstastik", to: "/leaderboards" },
+                    { label: "Spielerstatistik", to: "/leaderboards" },
                     { label: "News", to: "/news" },
                     { label: "Strafsenat", to: "/strafsenat" },
                     { label: "Sperren", to: "/sperren" },

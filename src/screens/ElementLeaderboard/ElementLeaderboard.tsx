@@ -55,7 +55,7 @@ export const ElementLeaderboard = (): JSX.Element => {
       <div className="page-control-4">
         <PageHeader
           className="instance-node-10"
-          text={showGoals ? "Spielerstastik" : "Spielerstastik"}
+          text={showGoals ? "Torschützenkönig" : "Kartenkönig"}
         />
 
         <div className="leaderboard-highligh-2">
