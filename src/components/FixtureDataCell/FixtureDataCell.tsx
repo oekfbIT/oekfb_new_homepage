@@ -34,8 +34,9 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
   const navigate = useNavigate();
 
   // Format using Luxon
-  const formattedTime = DateTime.fromISO(details.date, { zone: "gmt" })
-      .toFormat("HH:mm");
+  const formattedTime = DateTime.fromISO(details.date, {
+    zone: "gmt",
+  }).toFormat("HH:mm");
 
   const handleButtonClick = () => {
     navigate(`/match/${id}`);
@@ -46,56 +47,79 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
   };
 
   return (
-      <div className={`fixture-data-cell state-${state}`}>
-        <div className="fixture-data" style={{ maxWidth: "100%", paddingRight: "15px" }}>
-          <div className="home-team clickable" style={{ cursor: "pointer" }} onClick={() => handleTeamClick(home_blanket.id)}>
-            <div className="gameday-livescore justRight">
-              <img
-                  src={home_blanket.logo}
-                  alt={home_blanket.name}
-                  className="gameday-livescore-3"
-              />
-              <div className="gameday-livescore-2 justRight">
-                {home_blanket.name}
-              </div>
-            </div>
-          </div>
-
-          <div className="score-container">
-            <div className="score-string">{`${score.home}:${score.away}`}</div>
-          </div>
-
-          <div className="away-team clickable" style={{ cursor: "pointer" }} onClick={() => handleTeamClick(away_blanket.id)}>
-            <div className="gameday-livescore">
-              <img
-                  src={away_blanket.logo}
-                  alt={away_blanket.name}
-                  className="gameday-livescore-3"
-              />
-              <div className="gameday-livescore-5">{away_blanket.name}</div>
+    <div className={`fixture-data-cell state-${state}`}>
+      <div
+        className="fixture-data"
+        style={{ maxWidth: "100%", paddingRight: "15px" }}
+      >
+        <div
+          className="home-team clickable"
+          style={{ cursor: "pointer" }}
+          onClick={() => handleTeamClick(home_blanket.id)}
+        >
+          <div className="gameday-livescore justRight">
+            <img
+              src={home_blanket.logo}
+              alt={home_blanket.name}
+              className="gameday-livescore-3"
+            />
+            <div className="gameday-livescore-2 justRight">
+              {home_blanket.name}
             </div>
           </div>
         </div>
 
-        <div className="stadium-wrapper">
-          <img
-              className="stadium-image"
-              alt="Stadium image"
-              src={state === "mobile" ? "/img/stadium-image-1.svg" : "/img/stadium-image.svg"}
-          />
-          <div className="stadium-location">{details.location || "Unbekanntes Stadium"}</div>
+        <div className="score-container">
+          <div className="score-string">{`${score.home}:${score.away}`}</div>
         </div>
 
-        <div className="schedule-container">
-          <div className="time-string">{formattedTime}</div>
-        </div>
-
-        <div className="fixture-btn-wrapper">
-          <button className="fixture-btn" onClick={handleButtonClick}>
-            <div className="btn-txt">{status === "cancelled" ? "Abgesagt" : "Details"}</div>
-          </button>
+        <div
+          className="away-team clickable"
+          style={{ cursor: "pointer" }}
+          onClick={() => handleTeamClick(away_blanket.id)}
+        >
+          <div className="gameday-livescore">
+            <img
+              src={away_blanket.logo}
+              alt={away_blanket.name}
+              className="gameday-livescore-3"
+            />
+            <div className="gameday-livescore-5">{away_blanket.name}</div>
+          </div>
         </div>
       </div>
+
+      <div className="stadium-wrapper">
+        <img
+          className="stadium-image"
+          alt="Stadium image"
+          src={
+            state === "mobile"
+              ? "/img/stadium-image-1.svg"
+              : "/img/stadium-image.svg"
+          }
+        />
+        <div className="stadium-location">
+          {details.location || "Unbekanntes Stadium"}
+        </div>
+      </div>
+
+      <div className="schedule-container">
+        <div className="time-string">Spieltag: {match.details.gameday}</div>
+      </div>
+
+      <div className="schedule-container">
+        <div className="time-string">{formattedTime}</div>
+      </div>
+
+      <div className="fixture-btn-wrapper">
+        <button className="fixture-btn" onClick={handleButtonClick}>
+          <div className="btn-txt">
+            {status === "cancelled" ? "Abgesagt" : "Details"}
+          </div>
+        </button>
+      </div>
+    </div>
   );
 };
 

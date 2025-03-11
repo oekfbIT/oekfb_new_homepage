@@ -20,11 +20,11 @@
 
 @media (max-width: 500px) {
   .gameday-livescore-2 {
+  }
 
-    }
-
-  .justRight
-  { flex-direction: row-reverse}
+  .justRight {
+    flex-direction: row-reverse;
+  }
 }
 
 .fixture-data-cell .gameday-livescore {
@@ -93,10 +93,10 @@
   height: 24px;
   letter-spacing: 0;
   line-height: 32px;
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
   white-space: nowrap;
-  width: 39px;
+  padding: 0px 5px;
 }
 
 .fixture-data-cell .away-team {
@@ -149,9 +149,9 @@
     gap: 0px;
   }
 }
-  .justRight
-  { flex-direction: row-reverse}
-
+.justRight {
+  flex-direction: row-reverse;
+}
 
 .fixture-data-cell .stadium-image {
   height: 13.75px;
@@ -164,9 +164,9 @@
   font-family: "Inter", Helvetica;
   font-size: 14px;
   font-weight: 400;
-  letter-spacing: -0.40px;
+  letter-spacing: -0.4px;
   line-height: 18px;
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
   white-space: nowrap;
   width: fit-content;
@@ -203,7 +203,7 @@
   font-weight: 400;
   letter-spacing: 0;
   line-height: 16.1px;
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
   white-space: nowrap;
   width: fit-content;
@@ -245,7 +245,7 @@
 }
 
 .fixture-data-cell.state-mobile .gameday-livescore-2 {
-  margin-top: -1.00px;
+  margin-top: -1px;
   width: 100px;
   margin-right: 5px;
 }
@@ -264,16 +264,13 @@
 }
 
 .fixture-data-cell.state-mobile .gameday-livescore-5 {
-  margin-top: -1.00px;
+  margin-top: -1px;
 }
 
 .fixture-data-cell.state-desktop .gameday-livescore-5 {
   text-align: right;
   white-space: nowrap;
 }
-
-
-
 
 .fixture-data-cell .score-container {
   align-items: center;
@@ -298,7 +295,7 @@
   height: 24px;
   letter-spacing: 0;
   line-height: 32px;
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
   white-space: nowrap;
   padding: 0px 10px;
