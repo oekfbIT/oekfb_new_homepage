@@ -24,40 +24,40 @@ import { ElementTableMobile } from "./screens/ElementTableMobile";
 import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTermsMobile } from "./screens/ElementTermsMobile";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
-import {Strafsenat} from "./screens/Strafsenat";
-import {ElementTransfer} from "./screens/ElementTransfer";
-import {ElementTransfers} from "./screens/ElementTransfers";
-import {ElementLigaordnung} from "./screens/ElementLigaordnung";
-import {ElementRegeln} from "./screens/ElementRegeln";
-import {ElementBund} from "./screens/ElementBund";
-import {Transfer} from "./components/Transfer";
+import { Strafsenat } from "./screens/Strafsenat";
+import { ElementTransfer } from "./screens/ElementTransfer";
+import { ElementTransfers } from "./screens/ElementTransfers";
+import { ElementLigaordnung } from "./screens/ElementLigaordnung";
+import { ElementRegeln } from "./screens/ElementRegeln";
+import { ElementBund } from "./screens/ElementBund";
+import { Transfer } from "./components/Transfer";
 
 export const App = () => {
   return (
-      <BrowserRouter>
-        <Routes>
-          {/* Specific Routes */}
-            <Route path="/" element={<ElementLeagueSelection />} />
-            <Route path="/liga" element={<ElementHomepageDesktop />} /> {/* Changed from /homepage */}
-            <Route path="/mobilenav" element={<ElementMobilenav />} />
-            <Route path="/match/:id" element={<ElementGameReport />} />
-            <Route path="/spielplan" element={<ElementGamedayMobile />} />
-            <Route path="/team-detail/:id" element={<ElementTeamDetail />} />
-            <Route path="/player-detail/:id" element={<ElementPlayerDetail />} />
-            <Route path="/news" element={<ElementNewsMobile />} />
-            <Route path="/strafsenat" element={<Strafsenat />} />
+    <BrowserRouter>
+      <Routes>
+        {/* Specific Routes */}
+        <Route path="/" element={<ElementLeagueSelection />} />
+        <Route path="/liga" element={<ElementHomepageDesktop />} />
+        <Route path="/mobilenav" element={<ElementMobilenav />} />
+        <Route path="/match/:id" element={<ElementGameReport />} />
+        <Route path="/spielplan" element={<ElementGamedayMobile />} />
+        <Route path="/team-detail/:id" element={<ElementTeamDetail />} />
+        <Route path="/player-detail/:id" element={<ElementPlayerDetail />} />
+        <Route path="/news" element={<ElementNewsMobile />} />
+        <Route path="/strafsenat" element={<Strafsenat />} />
 
-            <Route path="/leaderboards" element={<ElementLeaderboard />} />
-            <Route path="/kontakt" element={<ElementContactMobile />} />
-            <Route path="/sperren" element={<ElementSperrenDesktop />} />
-            <Route path="/transfers" element={<ElementTransfersDesktop />} />
-            <Route path="/transfer/:transferID" element={<ElementTransfer />} />
-            <Route path="/register" element={<ElementRegister />} />
-            <Route path="/ligaordnung" element={<ElementLigaordnung />} />
-            <Route path="/spielregeln" element={<ElementRegeln />} />
-            <Route path="/bund" element={<ElementBund />} />
+        <Route path="/leaderboards" element={<ElementLeaderboard />} />
+        <Route path="/kontakt" element={<ElementContactMobile />} />
+        <Route path="/sperren" element={<ElementSperrenDesktop />} />
+        <Route path="/transfers" element={<ElementTransfersDesktop />} />
+        <Route path="/transfer/:transferID" element={<ElementTransfer />} />
+        <Route path="/register" element={<ElementRegister />} />
+        <Route path="/ligaordnung" element={<ElementLigaordnung />} />
+        <Route path="/spielregeln" element={<ElementRegeln />} />
+        <Route path="/bund" element={<ElementBund />} />
 
-            {/*
+        {/*
         <Route path="/news" element={<Strafsenat />} />
 
         <Route path="/registration-upload" element={<ElementRegistration />} />
@@ -69,13 +69,13 @@ export const App = () => {
         <Route path="/login" element={<ElementLoginMobile />} />
         <Route path="/terms" element={<ElementTermsMobile />} />
         */}
-          <Route path="/teams" element={<ElementClubsDesktop />} />
-          <Route path="/tabelle" element={<ElementTableMobile />} />
-          <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
+        <Route path="/teams" element={<ElementClubsDesktop />} />
+        <Route path="/tabelle" element={<ElementTableMobile />} />
+        <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
 
-          {/* Fallback Route */}
-          <Route path="*" element={<ElementLeagueSelection />} />
-        </Routes>
-      </BrowserRouter>
+        {/* Fallback Route */}
+        <Route path="*" element={<ElementLeagueSelection />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
