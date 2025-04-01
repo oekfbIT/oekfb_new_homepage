@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { Partners } from "../../components/Partners/Partners";
 import { ActionCell } from "../../components/ActionCell";
 import { IFrame } from "../../components/iFrame";
+import { LeagueTable } from "../../components/LeagueTable";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -104,6 +105,9 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           image={homepageData.data.sliderdata[0].image}
         />
       )}
+
+      {/* ADD THE TABLE HERE PLEASE  */}
+      <LeagueTable />
 
       {/* Sponsors */}
       <Sponsors
