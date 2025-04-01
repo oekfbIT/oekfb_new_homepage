@@ -1,6 +1,5 @@
 import React from "react";
-// import { HashRouter, Routes, Route } from "react-router-dom";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 // Importing all screen components
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
@@ -34,7 +33,7 @@ import { Transfer } from "./components/Transfer";
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         {/* Specific Routes */}
         <Route path="/" element={<ElementLeagueSelection />} />
@@ -58,16 +57,15 @@ export const App = () => {
         <Route path="/bund" element={<ElementBund />} />
 
         {/*
-        <Route path="/news" element={<Strafsenat />} />
-
-        <Route path="/registration-upload" element={<ElementRegistration />} />
-        <Route path="/confirmation" element={<ElementConfirmation />} />
-        <Route path="/transfers" element={<ElementTransfersDesktop />} />
-        <Route path="/player-detail" element={<ElementPlayerDetail />} />
-        <Route path="/kontakt" element={<ElementContactMobile />} />
-        <Route path="/impressium" element={<ElementImpressiumMobile />} />
-        <Route path="/login" element={<ElementLoginMobile />} />
-        <Route path="/terms" element={<ElementTermsMobile />} />
+          <Route path="/news" element={<Strafsenat />} />
+          <Route path="/registration-upload" element={<ElementRegistration />} />
+          <Route path="/confirmation" element={<ElementConfirmation />} />
+          <Route path="/transfers" element={<ElementTransfersDesktop />} />
+          <Route path="/player-detail" element={<ElementPlayerDetail />} />
+          <Route path="/kontakt" element={<ElementContactMobile />} />
+          <Route path="/impressium" element={<ElementImpressiumMobile />} />
+          <Route path="/login" element={<ElementLoginMobile />} />
+          <Route path="/terms" element={<ElementTermsMobile />} />
         */}
         <Route path="/teams" element={<ElementClubsDesktop />} />
         <Route path="/tabelle" element={<ElementTableMobile />} />
@@ -76,6 +74,6 @@ export const App = () => {
         {/* Fallback Route */}
         <Route path="*" element={<ElementLeagueSelection />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
