@@ -64,10 +64,18 @@ export const LeagueTable = () => {
                     <div className="data-2">
                       <div className="text-wrapper-31">{team.ranking}</div>
                     </div>
-                    <img className="data-3" alt={team.name} src={team.image} />
+                    <img
+                      className="data-3"
+                      alt={team.name}
+                      src={team.image}
+                      onClick={() => navigate(`/team-detail/${team.id}`)}
+                    />
                     <div className="container-wrapper">
                       <div className="container-3">
-                        <div className="text-wrapper-32">
+                        <div
+                          className="text-wrapper-32"
+                          onClick={() => navigate(`/team-detail/${team.id}`)}
+                        >
                           {team.shortName || team.name}
                         </div>
                       </div>
@@ -138,7 +146,12 @@ export const LeagueTable = () => {
                   </div>
                   <div className="data-22">
                     <div className="container-4">
-                      <div className="text-wrapper-56">{team.name}</div>
+                      <div
+                        className="text-wrapper-56"
+                        onClick={() => navigate(`/team-detail/${team.id}`)}
+                      >
+                        {team.name}
+                      </div>
                     </div>
                   </div>
                   <div className="data-23">

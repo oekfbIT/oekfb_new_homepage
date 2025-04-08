@@ -88,6 +88,7 @@ export const ElementLeaderboard = (): JSX.Element => {
                 id: player.team_id,
               }}
               player={{
+                id: player.playerid,
                 image: player.image,
                 number: player.number,
                 name: player.name,
@@ -116,11 +117,12 @@ export const ElementLeaderboard = (): JSX.Element => {
                 id: player.team_id,
               }}
               player={{
+                id: player.playerid,
                 image: player.image,
                 number: player.number,
                 name: player.name,
                 count: player.count,
-                teamName: "", // Add team name here if available
+                teamName: "",
               }}
             />
           ))}
