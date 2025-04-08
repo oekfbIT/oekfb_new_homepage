@@ -10,13 +10,13 @@ import { ActionButton } from "../../components/ActionButton";
 
 // Reusable InputField Component
 const InputField = ({
-                      type = "text",
-                      placeholder,
-                      required,
-                      name,
-                      value,
-                      onChange,
-                    }: {
+  type = "text",
+  placeholder,
+  required,
+  name,
+  value,
+  onChange,
+}: {
   type?: string;
   placeholder: string;
   required: boolean;
@@ -24,35 +24,35 @@ const InputField = ({
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }): JSX.Element => (
-    <div className="div-wrapper-3">
-      <div className="authentication-form-wrapper">
-        <div className="div-15">
-          <div className="authentication-form-4">
-            <input
-                type={type}
-                name={name}
-                value={value}
-                onChange={onChange}
-                className="authentication-form-7"
-                placeholder={required ? `${placeholder} *` : placeholder}
-                required={required}
-                aria-label={placeholder}
-                style={{ backgroundColor: "clear" }}
-            />
-          </div>
+  <div className="div-wrapper-3">
+    <div className="authentication-form-wrapper">
+      <div className="div-15">
+        <div className="authentication-form-4">
+          <input
+            type={type}
+            name={name}
+            value={value}
+            onChange={onChange}
+            className="authentication-form-7"
+            placeholder={required ? `${placeholder} *` : placeholder}
+            required={required}
+            aria-label={placeholder}
+            style={{ backgroundColor: "clear" }}
+          />
         </div>
       </div>
     </div>
+  </div>
 );
 
 const DropdownField = ({
-                         placeholder,
-                         required,
-                         name,
-                         value,
-                         onChange,
-                         options,
-                       }: {
+  placeholder,
+  required,
+  name,
+  value,
+  onChange,
+  options,
+}: {
   placeholder: string;
   required: boolean;
   name: string;
@@ -60,31 +60,31 @@ const DropdownField = ({
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   options: { label: string; value: string }[];
 }): JSX.Element => (
-    <div className="div-wrapper-3">
-      <div className="authentication-form-wrapper">
-        <div className="div-15">
-          <div className="authentication-form-4">
-            <select
-                name={name}
-                value={value}
-                onChange={onChange}
-                className="authentication-form-7"
-                required={required}
-                aria-label={placeholder}
-            >
-              <option value="" disabled>
-                {placeholder}
+  <div className="div-wrapper-3">
+    <div className="authentication-form-wrapper">
+      <div className="div-15">
+        <div className="authentication-form-4">
+          <select
+            name={name}
+            value={value}
+            onChange={onChange}
+            className="authentication-form-7"
+            required={required}
+            aria-label={placeholder}
+          >
+            <option value="" disabled>
+              {placeholder}
+            </option>
+            {options.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
               </option>
-              {options.map((option) => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-              ))}
-            </select>
-          </div>
+            ))}
+          </select>
         </div>
       </div>
     </div>
+  </div>
 );
 
 const generatePassword = (length = 6) => {
@@ -97,14 +97,12 @@ const generatePassword = (length = 6) => {
   return password;
 };
 
-
 export const ElementRegister = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
   const authService = new AuthService();
   const clientController = new ClientController();
   const initial_password = generatePassword();
-
 
   // State Management
   const [formData, setFormData] = useState({
@@ -227,9 +225,9 @@ export const ElementRegister = (): JSX.Element => {
 
       // Extract error message from response if available
       const message =
-          error?.response?.data?.message ||
-          error?.message ||
-          "Registration failed. Please try again.";
+        error?.response?.data?.message ||
+        error?.message ||
+        "Registration failed. Please try again.";
 
       setErrorMessage(message);
     } finally {
@@ -251,261 +249,270 @@ export const ElementRegister = (): JSX.Element => {
 
   const vereinOptions = [
     { label: "Privat", value: "privat" },
-    { label: "Exestierender Verein", value: "verein" }
+    { label: "Exestierender Verein", value: "verein" },
   ];
 
   return (
-      <div
-          className="element-register"
-          style={{ overflow: "hidden", minWidth: isMobile ? "366px" : "900px"}}
-      >
-        {isMobile ? <Navigation /> : <DesktopNav />}
+    <div
+      className="element-register"
+      style={{ overflow: "hidden", minWidth: isMobile ? "366px" : "900px" }}
+    >
+      {isMobile ? <Navigation /> : <DesktopNav />}
 
-        <div className="frame-wrapper">
-          <div className="frame-5">
-            <div className="authentication-form-14">
-              <form onSubmit={handleSubmit} className="authentication-form">
-                {/* Header Section */}
-                <div className="div-15">
-                  <div className="div-wrapper-3">
-                    <div className="authentication">
-                      <div className="authentication-2">
-                        Meine Mannschaft Anmelden
-                      </div>
-
-                      <p className="authentication-3">
-                        Sie melden sich als Verein an. Die Richtigkeit Ihrer Angaben ist entscheidend. Bitte füllen Sie das Formular vollständig und sorgfältig aus.
-                      </p>
+      <div className="frame-wrapper">
+        <div className="frame-5">
+          <div className="authentication-form-14">
+            <form onSubmit={handleSubmit} className="authentication-form">
+              {/* Header Section */}
+              <div className="div-15">
+                <div className="div-wrapper-3">
+                  <div className="authentication">
+                    <div className="authentication-2">
+                      Meine Mannschaft Anmelden
                     </div>
+
+                    <p className="authentication-3">
+                      Sie melden sich als Verein an. Die Richtigkeit Ihrer
+                      Angaben ist entscheidend. Bitte füllen Sie das Formular
+                      vollständig und sorgfältig aus.
+                    </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Display Success or Error Messages */}
-                {successMessage && (
-                    <div className="success-message">{successMessage}</div>
-                )}
-                {errorMessage && (
-                    <div className="error-message">{errorMessage}</div>
-                )}
+              {/* Display Success or Error Messages */}
+              {successMessage && (
+                <div className="success-message">{successMessage}</div>
+              )}
+              {errorMessage && (
+                <div className="error-message">{errorMessage}</div>
+              )}
 
-                {/* Primary Contact Section */}
-                <div className="authentication-form-2">
-                  <div className="authentication-form-15">
-                    PRIMÄRER ANSPRECHPARTNER
-                  </div>
-
-                  <InputField
-                      type="text"
-                      placeholder="Vorname"
-                      required={true}
-                      name="primaryContact.first"
-                      value={formData.primaryContact.first}
-                      onChange={handleChange}
-                  />
-
-                  <InputField
-                      type="text"
-                      placeholder="Familiename"
-                      required={true}
-                      name="primaryContact.last"
-                      value={formData.primaryContact.last}
-                      onChange={handleChange}
-                  />
-
-                  <InputField
-                      type="tel"
-                      placeholder="Telefonnummer"
-                      required={true}
-                      name="primaryContact.phone"
-                      value={formData.primaryContact.phone}
-                      onChange={handleChange}
-                  />
-
-                  <InputField
-                      type="email"
-                      placeholder="Email"
-                      required={true}
-                      name="primaryContact.email"
-                      value={formData.primaryContact.email}
-                      onChange={handleChange}
-                  />
+              {/* Primary Contact Section */}
+              <div className="authentication-form-2">
+                <div className="authentication-form-15">
+                  PRIMÄRER ANSPRECHPARTNER
                 </div>
 
-                {/* Secondary Contact Section */}
-                <div className="authentication-form-2">
-                  <div className="authentication-form-15">
-                    SEKUNDARER ANSPRECHPARTNER
-                  </div>
+                <InputField
+                  type="text"
+                  placeholder="Vorname"
+                  required={true}
+                  name="primaryContact.first"
+                  value={formData.primaryContact.first}
+                  onChange={handleChange}
+                />
 
-                  <InputField
-                      type="text"
-                      placeholder="Vorname"
-                      required={true}
-                      name="secondaryContact.first"
-                      value={formData.secondaryContact.first}
-                      onChange={handleChange}
-                  />
+                <InputField
+                  type="text"
+                  placeholder="Familiename"
+                  required={true}
+                  name="primaryContact.last"
+                  value={formData.primaryContact.last}
+                  onChange={handleChange}
+                />
 
-                  <InputField
-                      type="text"
-                      placeholder="Familiename"
-                      required={true}
-                      name="secondaryContact.last"
-                      value={formData.secondaryContact.last}
-                      onChange={handleChange}
-                  />
+                <InputField
+                  type="tel"
+                  placeholder="Telefonnummer"
+                  required={true}
+                  name="primaryContact.phone"
+                  value={formData.primaryContact.phone}
+                  onChange={handleChange}
+                />
 
-                  <InputField
-                      type="tel"
-                      placeholder="Telefonnummer"
-                      required={true}
-                      name="secondaryContact.phone"
-                      value={formData.secondaryContact.phone}
-                      onChange={handleChange}
-                  />
+                <InputField
+                  type="email"
+                  placeholder="Email"
+                  required={true}
+                  name="primaryContact.email"
+                  value={formData.primaryContact.email}
+                  onChange={handleChange}
+                />
+              </div>
 
-                  <InputField
-                      type="email"
-                      placeholder="Email"
-                      required={true}
-                      name="secondaryContact.email"
-                      value={formData.secondaryContact.email}
-                      onChange={handleChange}
-                  />
+              {/* Secondary Contact Section */}
+              <div className="authentication-form-2">
+                <div className="authentication-form-15">
+                  SEKUNDARER ANSPRECHPARTNER
                 </div>
+
+                <InputField
+                  type="text"
+                  placeholder="Vorname"
+                  required={true}
+                  name="secondaryContact.first"
+                  value={formData.secondaryContact.first}
+                  onChange={handleChange}
+                />
+
+                <InputField
+                  type="text"
+                  placeholder="Familiename"
+                  required={true}
+                  name="secondaryContact.last"
+                  value={formData.secondaryContact.last}
+                  onChange={handleChange}
+                />
+
+                <InputField
+                  type="tel"
+                  placeholder="Telefonnummer"
+                  required={true}
+                  name="secondaryContact.phone"
+                  value={formData.secondaryContact.phone}
+                  onChange={handleChange}
+                />
+
+                <InputField
+                  type="email"
+                  placeholder="Email"
+                  required={true}
+                  name="secondaryContact.email"
+                  value={formData.secondaryContact.email}
+                  onChange={handleChange}
+                />
+              </div>
+
+              {/* Additional Details Section */}
+              <div className="authentication-form-2">
+                <div className="authentication-form-15">MANNSCHAFT DETAILS</div>
+
+                <InputField
+                  type="text"
+                  placeholder="Team Name"
+                  required={true}
+                  name="teamName"
+                  value={formData.teamName}
+                  onChange={handleOtherChange}
+                />
+
+                <DropdownField
+                  placeholder="Privat oder Verein"
+                  required={true}
+                  name="type"
+                  value={formData.verein} // will store enum value like "wien"
+                  onChange={handleOtherChange}
+                  options={vereinOptions} // label for display, value for submission
+                />
+
+                {/*<InputField*/}
+                {/*    type="text"*/}
+                {/*    placeholder="Bundesland"*/}
+                {/*    required={true}*/}
+                {/*    name="bundesland"*/}
+                {/*    value={formData.bundesland}*/}
+                {/*    onChange={handleOtherChange}*/}
+                {/*/>*/}
+
+                <DropdownField
+                  placeholder="Wählen Sie Ihr Bundesland"
+                  required={true}
+                  name="bundesland"
+                  value={formData.bundesland} // will store enum value like "wien"
+                  onChange={handleOtherChange}
+                  options={bundeslandOptions} // label for display, value for submission
+                />
+
+                <InputField
+                  type="text"
+                  placeholder="Verein (Optional)"
+                  required={false}
+                  name="verein"
+                  value={formData.verein}
+                  onChange={handleOtherChange}
+                />
+
+                {/*<InputField*/}
+                {/*    type="text"*/}
+                {/*    placeholder="Refer Code"*/}
+                {/*    required={false}*/}
+                {/*    name="referCode"*/}
+                {/*    value={formData.referCode}*/}
+                {/*    onChange={handleOtherChange}*/}
+                {/*/>*/}
 
                 {/* Additional Details Section */}
                 <div className="authentication-form-2">
-                  <div className="authentication-form-15">MANNSCHAFT DETAILS</div>
-
-                  <InputField
-                      type="text"
-                      placeholder="Team Name"
-                      required={true}
-                      name="teamName"
-                      value={formData.teamName}
-                      onChange={handleOtherChange}
-                  />
-
-                  <DropdownField
-                      placeholder="Privat oder Verein"
-                      required={true}
-                      name="type"
-                      value={formData.verein} // will store enum value like "wien"
-                      onChange={handleOtherChange}
-                      options={vereinOptions} // label for display, value for submission
-                  />
-
-                  {/*<InputField*/}
-                  {/*    type="text"*/}
-                  {/*    placeholder="Bundesland"*/}
-                  {/*    required={true}*/}
-                  {/*    name="bundesland"*/}
-                  {/*    value={formData.bundesland}*/}
-                  {/*    onChange={handleOtherChange}*/}
-                  {/*/>*/}
-
-                  <DropdownField
-                      placeholder="Wählen Sie Ihr Bundesland"
-                      required={true}
-                      name="bundesland"
-                      value={formData.bundesland} // will store enum value like "wien"
-                      onChange={handleOtherChange}
-                      options={bundeslandOptions} // label for display, value for submission
-                  />
-
-                  <InputField
-                      type="text"
-                      placeholder="Verein (Optional)"
-                      required={false}
-                      name="verein"
-                      value={formData.verein}
-                      onChange={handleOtherChange}
-                  />
-
-                  {/*<InputField*/}
-                  {/*    type="text"*/}
-                  {/*    placeholder="Refer Code"*/}
-                  {/*    required={false}*/}
-                  {/*    name="referCode"*/}
-                  {/*    value={formData.referCode}*/}
-                  {/*    onChange={handleOtherChange}*/}
-                  {/*/>*/}
-
-                  {/* Additional Details Section */}
-                  <div className="authentication-form-2">
-                    <div className="div-wrapper-3">
-                      <div className="authentication-form-wrapper">
-                        <div className="div-15">
-                          <div className="authentication-form-4">
-                            <label>
-                              <input
-                                  type="checkbox"
-                                  name="acceptedAGB"
-                                  checked={formData.acceptedAGB}
-                                  onChange={handleOtherChange}
-                              />
-                              Ich akzeptiere die{" "}
-                              <span
-                                  style={{ color: "black", cursor: "pointer", textDecoration: "underline" }}
-                                  onClick={() => setIsModalOpen(true)}
-                              >
-                            Allgemeinen Geschäftsbedingungen
-                          </span>
-                            </label>
-                          </div>
+                  <div className="div-wrapper-3">
+                    <div className="authentication-form-wrapper">
+                      <div className="div-15">
+                        <div className="authentication-form-4">
+                          <label>
+                            <input
+                              type="checkbox"
+                              name="acceptedAGB"
+                              checked={formData.acceptedAGB}
+                              onChange={handleOtherChange}
+                            />
+                            Ich akzeptiere die{" "}
+                            <span
+                              style={{
+                                color: "black",
+                                cursor: "pointer",
+                                textDecoration: "underline",
+                              }}
+                              onClick={() => setIsModalOpen(true)}
+                            >
+                              Allgemeinen Geschäftsbedingungen
+                            </span>
+                          </label>
                         </div>
                       </div>
                     </div>
                   </div>
-
-
                 </div>
+              </div>
 
-                {/* Form Footer */}
-                <div className="authentication-4">
-                  <div className="authentication-form-9">* REQUIRED</div>
+              {/* Form Footer */}
+              <div className="authentication-4">
+                <div className="authentication-form-9">* REQUIRED</div>
 
-                  <div className="div-wrapper-3" onClick={handleSubmit}>
-                    <div className="authentication-form-12">
-                      <div className="authentication-form-13">
-                        NEUANMELDUNG
-                      </div>
-                    </div>
+                <div className="div-wrapper-3" onClick={handleSubmit}>
+                  <div className="authentication-form-12">
+                    <div className="authentication-form-13">NEUANMELDUNG</div>
                   </div>
                 </div>
-
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
-        <Footer/>
-        {/* Modal */}
-        {isModalOpen && (
-            <Modal
-                title="Clubregeln und erforderliche Dokumente"
-                content={`Wichtige Informationen und erforderliche Dokumente:
-    - Vertrag: Diese können unter dem Link unten heruntergeladen werden.
-    - Zwei Garnituren Trikots mit verschiedenen Farben.
+      </div>
+      <Footer />
+      {/* Modal */}
+      {isModalOpen && (
+        <Modal
+          title="Clubregeln und erforderliche Dokumente"
+          content={`Wichtige Informationen und erforderliche Dokumente:
+    - Vertrag: Diese bekommen Sie automatisch nach ihrer Registrierung per Mail zugesandt
+
     - Wohnsitz in Österreich.
-    - Kosten: Pro League: 3.000 €, Fans of Socca: 70 € pro Spieltag.
+    - Kosten:: 70 € pro Spiel.
     
     Weitere Informationen: Bei Fragen bitte FAQs durchlesen oder uns direkt kontaktieren.`}
-                onClose={() => setIsModalOpen(false)}
-            />
-        )}
-      </div>
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+    </div>
   );
 };
 
-const Modal = ({ title, content, onClose }: { title: string; content: string; onClose: () => void }) => (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button onClick={onClose} className="close-button">
-          &#x2715; {/* Close icon (X) */}
-        </button>
-        <h2 className="modal-title">{title}</h2>
-        <pre className="modal-text">{content}</pre>
-      </div>
+const Modal = ({
+  title,
+  content,
+  onClose,
+}: {
+  title: string;
+  content: string;
+  onClose: () => void;
+}) => (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <button onClick={onClose} className="close-button">
+        &#x2715; {/* Close icon (X) */}
+      </button>
+      <h2 className="modal-title">{title}</h2>
+      <pre className="modal-text">{content}</pre>
     </div>
+  </div>
 );
