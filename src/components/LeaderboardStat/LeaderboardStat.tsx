@@ -3,9 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
+type StatType = "goals" | "yellow" | "red";
+
 interface Props {
   property1: "desktop" | "mobile";
-  goal: boolean;
+  statType: StatType;
   className?: string;
   team: {
     image: string;
@@ -24,15 +26,23 @@ interface Props {
 
 export const LeaderboardStat = ({
   property1,
-  goal,
+  statType,
   className = "",
   player,
   team,
 }: Props): JSX.Element => {
-  const redCard = "/img/redCard.svg";
-  const yellowCard = "/img/yellowCard.svg";
-  const yellowredCard = "/img/yellowRedCard.svg";
-  const goalimg = "/img/goal.svg";
+  const iconMap: Record<StatType, string> = {
+    goals: "/img/goal.svg",
+    yellow: "/img/yellowCard.svg",
+    red: "/img/redCard.svg",
+  };
+
+  const labelMap: Record<StatType, string> = {
+    goals: "Tore",
+    yellow: "Gelbe Karten",
+    red: "Rote Karten",
+  };
+
   const navigate = useNavigate();
 
   const handlePlayerClick = () => {
@@ -86,9 +96,10 @@ export const LeaderboardStat = ({
         <div className="count">
           <img
             className="event-card-type-img"
-            src={goal ? goalimg : yellowCard}
+            src={iconMap[statType]}
+            alt={labelMap[statType]}
           />
-          {player.count} {goal ? "Tore" : "Gelbe Karten"}
+          {player.count} {labelMap[statType]}
         </div>
       </div>
     </div>
@@ -97,7 +108,7 @@ export const LeaderboardStat = ({
 
 LeaderboardStat.propTypes = {
   property1: PropTypes.oneOf(["desktop", "mobile"]).isRequired,
-  goal: PropTypes.bool,
+  statType: PropTypes.oneOf(["goals", "yellow", "red"]).isRequired,
   className: PropTypes.string,
   team: PropTypes.shape({
     image: PropTypes.string.isRequired,
