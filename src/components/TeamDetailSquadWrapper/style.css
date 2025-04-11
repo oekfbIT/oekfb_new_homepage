@@ -30,6 +30,7 @@
 
 .team-detail-squad-wrapper .team-detail-team-2 {
   align-items: center;
+  justify-content: space-between;
   background-color: black;
   color: white;
   box-shadow: 0px 2px 8px #000e140d;
@@ -50,6 +51,18 @@
   max-width: 80px;
   position: relative;
   width: 50px;
+  background-color: white;
+  padding: 3px;
+  margin-right: 10px;
+}
+
+.team-detail-squad-wrapper .dress-img {
+  background-position: 50% 50%;
+  background-size: contain;
+  height: 50px;
+  max-width: 80px;
+  position: relative;
+  width: 30px;
   background-color: white;
   padding: 3px;
   margin-right: 10px;
@@ -82,7 +95,7 @@
   font-weight: var(--theme-inter-bold-15-63-font-weight);
   letter-spacing: var(--theme-inter-bold-15-63-letter-spacing);
   line-height: var(--theme-inter-bold-15-63-line-height);
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
   white-space: nowrap;
   width: fit-content;
