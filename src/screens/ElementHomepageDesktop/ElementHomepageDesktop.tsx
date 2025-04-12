@@ -18,6 +18,7 @@ import { Partners } from "../../components/Partners/Partners";
 import { ActionCell } from "../../components/ActionCell";
 import { IFrame } from "../../components/iFrame";
 import { LeagueTable } from "../../components/LeagueTable";
+import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -73,7 +74,6 @@ export const ElementHomepageDesktop = (): JSX.Element => {
     >
       {/* Conditional Navigation */}
       {isMobile ? <Navigation /> : <DesktopNav />}
-
       {/* Matchup Row */}
       {homepageData?.upcoming?.length > 0 && (
         <div className="div-17">
@@ -96,7 +96,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         </div>
       )}
 
-      {/* Hero Section */}
+      {/* Hero Section
       {homepageData?.data?.sliderdata?.length > 0 && (
         <Hero
           className="hero-instance"
@@ -104,17 +104,21 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           description={homepageData.data.sliderdata[0].description}
           image={homepageData.data.sliderdata[0].image}
         />
-      )}
+      )} */}
 
+      {/* gallery Section */}
+      {homepageData?.data?.sliderdata?.length > 0 && (
+        <div style={{ maxWidth: "1200px" }}>
+          <GalleryCarousel sliderdata={homepageData?.data?.sliderdata} />
+        </div>
+      )}
       {/* ADD THE TABLE HERE PLEASE  */}
       <LeagueTable />
-
       {/* Sponsors */}
       <Sponsors
         className="design-component-instance-node"
         vWhite="/img/v-white-1-9.svg"
       />
-
       {/* Action Cells */}
       <div className="action-cell-2">
         <ActionCell
@@ -135,7 +139,6 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           />
         </div>
       </div>
-
       {/* Team Carousel */}
       {homepageData?.teams?.length > 0 && (
         <div className="div-17">
@@ -156,13 +159,11 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           </div>
         </div>
       )}
-
       {/* Partners */}
       <Partners
         className="design-component-instance-node"
         vWhite="/img/v-white-1-9.svg"
       />
-
       {/* News Section */}
       <div className="news-7">
         <div className="news-container-6">
@@ -185,7 +186,6 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           </div>
         </div>
       </div>
-
       {/* Footer */}
       <Footer />
     </div>
