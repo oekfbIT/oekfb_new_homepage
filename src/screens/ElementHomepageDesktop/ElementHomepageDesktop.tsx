@@ -108,7 +108,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
 
       {/* gallery Section */}
       {homepageData?.data?.sliderdata?.length > 0 && (
-        <div style={{ maxWidth: "1200px" }}>
+        <div style={{ width: "100%", maxWidth: "1200px" }}>
           <GalleryCarousel sliderdata={homepageData?.data?.sliderdata} />
         </div>
       )}
