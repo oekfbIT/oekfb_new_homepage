@@ -139,7 +139,7 @@
   font-weight: var(--theme-inter-bold-18-font-weight);
   letter-spacing: var(--theme-inter-bold-18-letter-spacing);
   line-height: var(--theme-inter-bold-18-line-height);
-  margin-top: -2.00px;
+  margin-top: -2px;
   position: relative;
   text-align: center;
   white-space: nowrap;
@@ -162,7 +162,7 @@
   font-weight: var(--theme-inter-bold-18-font-weight);
   letter-spacing: var(--theme-inter-bold-18-letter-spacing);
   line-height: var(--theme-inter-bold-18-line-height);
-  margin-top: -2.00px;
+  margin-top: -2px;
   position: relative;
   text-align: center;
   white-space: nowrap;
@@ -207,7 +207,7 @@
   font-weight: var(--theme-inter-bold-10-font-weight);
   letter-spacing: var(--theme-inter-bold-10-letter-spacing);
   line-height: var(--theme-inter-bold-10-line-height);
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
   white-space: nowrap;
   width: fit-content;
@@ -278,8 +278,8 @@
 }
 
 .matchup-cell
-.matchup-cell-bottom-6.state-fixture-w-top
-.matchup-cell-bottom-7 {
+  .matchup-cell-bottom-6.state-fixture-w-top
+  .matchup-cell-bottom-7 {
   color: var(--themeswamp);
 }
 
@@ -288,8 +288,8 @@
 }
 
 .matchup-cell
-.matchup-cell-bottom-6.state-fixture-no-top
-.matchup-cell-bottom-7 {
+  .matchup-cell-bottom-6.state-fixture-no-top
+  .matchup-cell-bottom-7 {
   color: var(--themeswamp);
 }
 
@@ -298,8 +298,8 @@
 }
 
 .matchup-cell
-.matchup-cell-bottom-8.state-1-fixture-w-top
-.matchup-cell-bottom-9 {
+  .matchup-cell-bottom-8.state-1-fixture-w-top
+  .matchup-cell-bottom-9 {
   color: var(--themeswamp);
 }
 
@@ -308,8 +308,8 @@
 }
 
 .matchup-cell
-.matchup-cell-bottom-8.state-1-fixture-no-top
-.matchup-cell-bottom-9 {
+  .matchup-cell-bottom-8.state-1-fixture-no-top
+  .matchup-cell-bottom-9 {
   color: var(--themeswamp);
 }
 
@@ -323,8 +323,8 @@
 }
 
 .matchup-cell .background.state-3-live-w-top .container {
-  margin-bottom: -13.00px;
-  margin-top: -13.00px;
+  margin-bottom: -13px;
+  margin-top: -13px;
 }
 
 .matchup-cell .background.state-3-fixture-no-top .container {
@@ -336,7 +336,6 @@
   margin-left: -24.27px;
   margin-right: -24.28px;
 }
-
 
 .team-logo {
   width: 100%; /* Ensure the image fills the wrapper */
@@ -350,7 +349,8 @@
 
 /* Background for Live States (first, second, halftime) */
 .background.state-red {
-  background-color: var(--themetorch-red); /* Red color */
+  /* background-color: var(--themetorch-red); Red color */
+  background-color: #ff8585;
 }
 
 .team-logo {

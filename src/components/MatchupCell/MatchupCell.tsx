@@ -1,7 +1,7 @@
-import React from "react";
 import PropTypes from "prop-types";
-import "./style.css";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
 interface Team {
   id?: string;
@@ -120,14 +120,6 @@ const getElapsedTime = (
   const diff = Math.floor((now - start) / 60000);
   const total = diff + offsetMinutes;
 
-  console.log(`🕒 [${label}]`);
-  console.log("Raw:", startTime);
-  console.log("Normalized:", startDateStr);
-  console.log("Start Date:", new Date(start).toISOString());
-  console.log("Now Vienna:", new Date(now).toISOString());
-  console.log("Elapsed:", diff, "min (+ offset:", offsetMinutes, ")");
-  console.log("▶️ Total shown:", total);
-
   return !isNaN(total) && total >= 0 ? `${total}'` : "0'";
 };
 
@@ -141,18 +133,14 @@ export const MatchupCell = ({
 
   const status = matchup?.status;
   const isLive = status === "first" || status === "second";
-  const isHalftime = status === "halftime";
-  const isPending = status === "pending";
 
   const firstHalfDate = matchup?.first_half_date;
   const secondHalfDate = matchup?.second_half_date;
 
   const halfStartTime =
-    status === "second"
-      ? secondHalfDate
-      : status === "first"
-      ? firstHalfDate
-      : null;
+    status === "second" && secondHalfDate ? secondHalfDate
+    : status === "first" ? firstHalfDate
+    : null;
 
   React.useEffect(() => {
     if (!isLive || !halfStartTime) return;
@@ -169,24 +157,37 @@ export const MatchupCell = ({
   }, [halfStartTime, isLive, status]);
 
   const formattedDate = matchup?.details?.date
-    ? `${formatMatchDate(matchup.details.date)} - ${formatMatchTime(
-        matchup.details.date
-      )}`
+    ? `${formatMatchDate(matchup.details.date)} - ${formatMatchTime(matchup.details.date)}`
     : "Datum nicht Zugewiesen";
 
-  const backgroundColorClass = isPending
+  const backgroundColorClass = ["pending"].includes(status || "")
     ? "state-gray"
     : ["first", "second", "halftime"].includes(status || "")
     ? "state-red"
     : "";
 
-  const matchStatusText = isPending
-    ? "Vorschau"
-    : isHalftime
-    ? "HALBZEIT"
-    : isLive && halfStartTime && parseInt(elapsedTime) > 0
-    ? `LIVE - ${status === "first" ? "1." : "2."} HB: ${elapsedTime}`
-    : formattedDate;
+  const matchStatusText = (() => {
+    switch (status) {
+      case "pending":
+        return "Spielvorschau";
+      case "first":
+        return firstHalfDate ? `LIVE - 1. HB: ${elapsedTime}` : formattedDate;
+      case "second":
+        return secondHalfDate ? `LIVE - 2. HB: ${elapsedTime}` : formattedDate;
+      case "halftime":
+        return "Halbzeit";
+      case "completed":
+      case "submitted":
+      case "done":
+        return "Abgeschlossen";
+      case "abgebrochen":
+        return "Abgebrochen";
+      case "cancelled":
+        return "Abgesagt";
+      default:
+        return formattedDate;
+    }
+  })();
 
   return (
     <div className={`matchup-cell ${className || ""}`}>
@@ -206,9 +207,7 @@ export const MatchupCell = ({
               <div
                 className="logo"
                 style={{
-                  backgroundImage: `url(${
-                    matchup?.home_blanket?.logo || fallbackLogo
-                  })`,
+                  backgroundImage: `url(${matchup?.home_blanket?.logo || fallbackLogo})`,
                 }}
               />
             </div>
