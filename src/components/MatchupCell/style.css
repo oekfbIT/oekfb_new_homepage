@@ -112,6 +112,7 @@
   flex: 0 0 auto;
   position: relative;
   padding: 0px 5px;
+  gap: 1.5px;
 }
 
 .matchup-cell .matchup-cell-bottom-5 {

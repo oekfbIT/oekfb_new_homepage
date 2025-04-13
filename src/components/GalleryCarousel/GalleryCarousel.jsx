@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./GalleryCarousel.css";
 
 const GalleryCarousel = ({ sliderdata }) => {
@@ -35,7 +35,6 @@ const GalleryCarousel = ({ sliderdata }) => {
             <img
               src={item.image}
               alt={item.description}
-              style={{ objectFit: "fill" }}
             />
             <div className="carousel-caption">
               <h3 className="sub">{item.description}</h3>
