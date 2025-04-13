@@ -189,7 +189,7 @@ export const ElementGameReport = (): JSX.Element => {
                 </div>
 
                 <div className="setting-wrapper">
-                  <div className="setting-date">{statusText}</div>
+                  <div className="setting-status">{statusText}</div>
                 </div>
 
                 <div className="stadium-wrapper">
