@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { useWindowWidth } from "../../breakpoints";
 import { useNavigate, useParams } from "react-router-dom";
+import { useWindowWidth } from "../../breakpoints";
 import { BlankettCell } from "../../components/DivWrapper";
 import { EventRow } from "../../components/EventRow";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { TeamDetailSquadWrapper } from "../../components/TeamDetailSquadWrapper";
-import "./style.css";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import ClientController from "../../network/ClientController";
+import {
+    formatMatchDate,
+    formatMatchTime,
+    getElapsedTime,
+    getMatchStatusText
+} from "../../utils/matchUtils";
+import "./style.css";
 
 export const ElementGameReport = (): JSX.Element => {
   const navigate = useNavigate();
-  const { id } = useParams(); // Get the match ID from the URL
+  const { id } = useParams();
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
   const clientController = new ClientController();
 
   const [gameData, setGameData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [elapsedTime, setElapsedTime] = useState("0'");
 
   useEffect(() => {
     const fetchGameData = async () => {
@@ -30,11 +38,9 @@ export const ElementGameReport = (): JSX.Element => {
       try {
         const matchDetail = await clientController.fetchMatchDetail(id);
 
-        // Initialize scores
         let homeScore = 0;
         let awayScore = 0;
 
-        // Process events to set assign value and calculate dynamic score
         let updatedEvents = matchDetail.events.map((event: any) => {
           const homePlayers = matchDetail.home_blanket?.players.map(
             (p: any) => p.id
@@ -43,39 +49,27 @@ export const ElementGameReport = (): JSX.Element => {
             (p: any) => p.id
           );
 
-          // Determine the assign value
           let assign = null;
-          if (homePlayers.includes(event.player?.id)) {
-            assign = "home";
-          } else if (awayPlayers.includes(event.player?.id)) {
-            assign = "away";
-          }
+          if (homePlayers.includes(event.player?.id)) assign = "home";
+          else if (awayPlayers.includes(event.player?.id)) assign = "away";
 
-          // Update score dynamically for goals
           let scoreAtTime = `${homeScore} - ${awayScore}`;
           if (event.type === "goal") {
-            if (assign === "home") {
-              homeScore++;
-            } else if (assign === "away") {
-              awayScore++;
-            }
+            if (assign === "home") homeScore++;
+            else if (assign === "away") awayScore++;
             scoreAtTime = `${homeScore} - ${awayScore}`;
           }
 
           return { ...event, assign, scoreAtTime };
         });
 
-        // ✅ Sort events by minute (lowest first)
         updatedEvents.sort(
           (a: any, b: any) =>
             Number(a.minute?.$numberLong || a.minute) -
             Number(b.minute?.$numberLong || b.minute)
         );
 
-        setGameData({
-          ...matchDetail,
-          events: updatedEvents,
-        });
+        setGameData({ ...matchDetail, events: updatedEvents });
       } catch (error) {
         console.error("Error fetching Match details:", error);
       } finally {
@@ -86,24 +80,43 @@ export const ElementGameReport = (): JSX.Element => {
     fetchGameData();
   }, [id]);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  useEffect(() => {
+    if (!gameData) return;
+    if (!["first", "second"].includes(gameData.status)) return;
 
-  if (!gameData) {
-    return <div>No game data available.</div>;
-  }
+    const updateElapsedTime = () => {
+      const offset = gameData.status === "second" ? 25 : 0;
+      const halfStartTime =
+        gameData.status === "second"
+          ? gameData.second_half_date
+          : gameData.first_half_date;
+      setElapsedTime(getElapsedTime(halfStartTime, offset));
+    };
 
-  const formatMatchTime = (dateString: string) => {
-    const date = new Date(dateString);
-    if (isNaN(date.getTime())) return "Ungültiges Datum";
+    updateElapsedTime();
+    const interval = setInterval(updateElapsedTime, 60000);
+    return () => clearInterval(interval);
+  }, [gameData]);
 
-    return date.toISOString().substring(11, 16); // Extract HH:mm in UTC
-  };
+  const status = gameData?.status;
+  const statusText = getMatchStatusText(
+    status || "",
+    gameData?.first_half_date,
+    gameData?.second_half_date,
+    gameData?.details?.date
+      ? `${formatMatchDate(gameData.details.date)} - ${formatMatchTime(
+          gameData.details.date
+        )}`
+      : "Datum nicht Zugewiesen"
+  );
+
+  if (loading) return <div>Loading...</div>;
+  if (!gameData) return <div>No game data available.</div>;
 
   return (
     <div className="element-game-report">
-      <Navigation />
+      {isMobile ? <Navigation /> : <DesktopNav />}
+
       <div className="game-report-wrapper">
         <div className="game-report-wrapper-2" style={{ paddingTop: "20px" }}>
           <div className="game-report-middle">
@@ -165,26 +178,18 @@ export const ElementGameReport = (): JSX.Element => {
               <div className="divider" />
 
               <div className="game-setting-wrapper">
-                {/*<div className="referee-wrapper">*/}
-                {/*  <div className="referee-name">*/}
-                {/*    {gameData.referee?.name?.trim() ? gameData.referee?.name : "Schiedrichter Nicht Zugewiesen"}*/}
-                {/*  </div>*/}
-                {/*  <img className="img-3" alt="Referee icon" src="/img/referee-icon-7.svg"/>*/}
-                {/*</div>*/}
-
                 <div className="setting-wrapper">
                   <div className="setting-date">
                     {gameData.details?.date
-                      ? `${new Date(gameData.details.date).toLocaleDateString(
-                          "de-DE",
-                          {
-                            day: "2-digit",
-                            month: "2-digit",
-                            year: "numeric",
-                          }
-                        )} - ${formatMatchTime(gameData.details.date)}`
+                      ? `${formatMatchDate(gameData.details.date)} - ${formatMatchTime(
+                          gameData.details.date
+                        )}`
                       : "Datum nicht Zugewiesen"}
                   </div>
+                </div>
+
+                <div className="setting-wrapper">
+                  <div className="setting-date">{statusText}</div>
                 </div>
 
                 <div className="stadium-wrapper">
@@ -194,9 +199,7 @@ export const ElementGameReport = (): JSX.Element => {
                     </div>
                   </div>
                   <div className="stadium-text">
-                    {gameData.details?.location?.trim()
-                      ? gameData.details.location
-                      : "Nicht Zugewiesen"}
+                    {gameData.details.location}
                   </div>
                 </div>
               </div>
@@ -235,11 +238,10 @@ export const ElementGameReport = (): JSX.Element => {
                   assign="home"
                 />
                 <div className="team-detail-squad-20">
-                  {gameData.home_blanket?.players &&
-                  gameData.home_blanket.players.length > 0 ? (
+                  {gameData.home_blanket?.players?.length > 0 ? (
                     gameData.home_blanket.players.map((player: any) => (
                       <BlankettCell
-                        key={player.id} // Ensure each key is unique
+                        key={player.id}
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -253,15 +255,7 @@ export const ElementGameReport = (): JSX.Element => {
                       />
                     ))
                   ) : (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        padding: "20px",
-                        color: "#555",
-                      }}
-                    >
-                      Blankett noch nicht ausgefüllt
-                    </div>
+                    <div className="empty-squad">Blankett noch nicht ausgefüllt</div>
                   )}
                 </div>
               </div>
@@ -275,15 +269,13 @@ export const ElementGameReport = (): JSX.Element => {
                   className="design-component-instance-node-2"
                   clubImgClassName="team-detail-squad-header"
                   teamName={gameData.away_blanket?.name}
-                  // trikot={gameData.away_blanket?.dress}
                   teamLogo={gameData.away_blanket?.logo}
                 />
                 <div className="team-detail-squad-20">
-                  {gameData.away_blanket?.players &&
-                  gameData.away_blanket.players.length > 0 ? (
+                  {gameData.away_blanket?.players?.length > 0 ? (
                     gameData.away_blanket.players.map((player: any) => (
                       <BlankettCell
-                        key={player.id} // Ensure each key is unique
+                        key={player.id}
                         className="design-component-instance-node-2"
                         flagiconClassName="team-detail-squad-22"
                         flagiconClassNameOverride="team-detail-squad-23"
@@ -297,15 +289,7 @@ export const ElementGameReport = (): JSX.Element => {
                       />
                     ))
                   ) : (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        padding: "20px",
-                        color: "#555",
-                      }}
-                    >
-                      Blankett noch nicht ausgefüllt
-                    </div>
+                    <div className="empty-squad">Blankett noch nicht ausgefüllt</div>
                   )}
                 </div>
               </div>

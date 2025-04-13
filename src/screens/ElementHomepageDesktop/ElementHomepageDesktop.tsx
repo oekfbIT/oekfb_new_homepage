@@ -74,6 +74,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
     >
       {/* Conditional Navigation */}
       {isMobile ? <Navigation /> : <DesktopNav />}
+
       {/* Matchup Row */}
       {homepageData?.upcoming?.length > 0 && (
         <div className="div-17">
