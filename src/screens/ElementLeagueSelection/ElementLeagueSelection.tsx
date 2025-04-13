@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Dropdown } from "../../components/Dropdown";
 import { Footer } from "../../components/Footer";
+import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
+import { IFrame } from "../../components/iFrame";
 import { LeagueSelection } from "../../components/LeagueSelection";
+import { Navigation } from "../../components/Navigation";
+import { NewsArticle } from "../../components/NewsArticle";
+import { Partners } from "../../components/Partners/Partners";
 import { Sponsors } from "../../components/Sponsors";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import "./style.css";
-import { Navigation } from "../../components/Navigation";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
-import { useNavigate } from "react-router-dom";
-import { Partners } from "../../components/Partners/Partners";
-import { Hero } from "../../components/Hero";
-import { ActionCell } from "../../components/ActionCell";
-import { IFrame } from "../../components/iFrame";
-import { NewsArticle } from "../../components/NewsArticle";
+import ClientController from "../../network/ClientController";
+import "./style.css";
 
 export const ElementLeagueSelection = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -115,7 +114,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
         ) : (
           <>
             {/* Hero Section */}
-            {homepageData?.data?.sliderdata?.length > 0 ? (
+            {/* {homepageData?.data?.sliderdata?.length > 0 ? (
               <Hero
                 className="hero-instance"
                 title={
@@ -134,8 +133,14 @@ export const ElementLeagueSelection = (): JSX.Element => {
               <p className="no-hero-text">
                 Keine Daten für den Hero-Bereich verfügbar.
               </p>
-            )}
+            )} */}
 
+     {/* gallery Section */}
+     {homepageData?.data?.sliderdata?.length > 0 && (
+        <div style={{ width: "100%", maxWidth: "1200px" }}>
+          <GalleryCarousel sliderdata={homepageData?.data?.sliderdata} />
+        </div>
+      )}
             <div className="page-content">
               <div className="leagues-wrapper">
                 <Dropdown
