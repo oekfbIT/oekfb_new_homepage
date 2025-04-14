@@ -1,5 +1,5 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 const { DateTime } = require("luxon");
@@ -44,6 +44,29 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
 
   const handleTeamClick = (teamId: string) => {
     navigate(`/team-detail/${teamId}`);
+  };
+
+  const getButtonText = (status, fallbackFormattedDate) => {
+    switch (status) {
+      case "pending":
+        return "Spielvorschau";
+      case "first":
+        return "Live - 1. HB";
+      case "second":
+        return "Live - 2. HB";
+      case "halftime":
+        return "Halbzeit";
+      case "completed":
+      case "submitted":
+      case "done":
+        return "Spielbericht";
+      case "abgebrochen":
+        return "Spiel Abgebrochen";
+      case "cancelled":
+        return "Spiel Abgesagt";
+      default:
+        return "Details"
+    }
   };
 
   return (
@@ -113,12 +136,12 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
       </div>
 
       <div className="fixture-btn-wrapper">
-        <button className="fixture-btn" onClick={handleButtonClick}>
-          <div className="btn-txt">
-            {status === "cancelled" ? "Abgesagt" : "Details"}
-          </div>
-        </button>
-      </div>
+  <button className="fixture-btn" onClick={handleButtonClick}>
+    <div className="btn-txt">
+      {getButtonText(status)}
+    </div>
+  </button>
+</div>
     </div>
   );
 };

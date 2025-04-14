@@ -194,6 +194,7 @@
   padding: 10px 20px;
   position: relative;
   cursor: pointer;
+  width: 140px;
 }
 
 .fixture-data-cell .btn-txt {

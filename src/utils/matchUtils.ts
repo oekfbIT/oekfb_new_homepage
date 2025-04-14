@@ -93,9 +93,13 @@ export const getMatchStatusText = (
     case "pending":
       return "Spielvorschau";
     case "first":
-      return firstHalfDate ? `LIVE - 1. HB: ${getElapsedTime(firstHalfDate, 0)}` : fallbackFormattedDate || "";
+      return firstHalfDate
+        ? `LIVE - 1. HB: ${getElapsedTime(firstHalfDate, 0)}`
+        : fallbackFormattedDate || "";
     case "second":
-      return secondHalfDate ? `LIVE - 2. HB: ${getElapsedTime(secondHalfDate, 25)}` : fallbackFormattedDate || "";
+      return secondHalfDate
+        ? `LIVE - 2. HB: ${getElapsedTime(secondHalfDate, 25)}`
+        : fallbackFormattedDate || "";
     case "halftime":
       return "Halbzeit";
     case "completed":
