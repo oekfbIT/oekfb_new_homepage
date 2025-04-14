@@ -32,7 +32,8 @@ export const ElementClubsDesktop = (): JSX.Element => {
 
             try {
                 const clubData = await clientController.fetchLeagueClubs(leagueCode);
-                setMatches(clubData);
+                const sortedClubs = clubData.sort((a, b) => Number(a.sid) - Number(b.sid));
+                setMatches(sortedClubs);
             } catch (error) {
                 console.error("Error fetching club data:", error);
             } finally {
@@ -42,6 +43,7 @@ export const ElementClubsDesktop = (): JSX.Element => {
 
         fetchMatches();
     }, []);
+
 
     return (
         <div className="element-clubs-desktop" style={{ minWidth: isMobile ? "390px" : "900px" }}>
