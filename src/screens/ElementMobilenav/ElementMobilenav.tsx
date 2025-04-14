@@ -31,6 +31,10 @@ export const ElementMobilenav = (): JSX.Element => {
             <div className="mobile-menu-item-2">Spielplan</div>
           </Link>
 
+          <Link className="mobile-menu-item" to="/livescore">
+            <div className="mobile-menu-item-2">Livescore</div>
+          </Link>
+
           <Link className="mobile-menu-item" to="/leaderboards">
             <div className="mobile-menu-item-2">Spielerstatistik</div>
           </Link>

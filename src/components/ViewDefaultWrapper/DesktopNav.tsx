@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./style.css";
 import AuthService from "../../network/AuthService";
+import "./style.css";
 
 export const DesktopNav = ({
   view = "default",
@@ -148,6 +148,7 @@ export const DesktopNav = ({
                     { label: "Teams", to: "/teams" },
                     { label: "Tabelle", to: "/tabelle" },
                     { label: "Spielplan", to: "/spielplan" },
+                    { label: "Livescore", to: "/livescore" },
                     { label: "Spielerstatistik", to: "/leaderboards" },
                     { label: "News", to: "/news" },
                     { label: "Strafsenat", to: "/strafsenat" },

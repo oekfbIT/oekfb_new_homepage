@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { ActionButton } from "../../components/ActionButton";
-import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import { Navigation } from "../../components/Navigation";
-import { Hero } from "../../components/Hero";
-import { MatchupCell } from "../../components/MatchupCell";
-import { NewsArticle } from "../../components/NewsArticle";
-import { Sponsors } from "../../components/Sponsors";
-import { Footer } from "../../components/Footer";
-import { Loading } from "../Loading/Loading";
-import { useWindowWidth } from "../../breakpoints";
-import ClientController from "../../network/ClientController";
-import AuthService from "../../network/AuthService";
-import "./style.css";
-import { ClubCell } from "../../components/ClubCell";
 import { useNavigate } from "react-router-dom";
-import { Partners } from "../../components/Partners/Partners";
+import { useWindowWidth } from "../../breakpoints";
 import { ActionCell } from "../../components/ActionCell";
+import { ClubCell } from "../../components/ClubCell";
+import { Footer } from "../../components/Footer";
+import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
 import { IFrame } from "../../components/iFrame";
 import { LeagueTable } from "../../components/LeagueTable";
-import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
+import { MatchupCell } from "../../components/MatchupCell";
+import { Navigation } from "../../components/Navigation";
+import { NewsArticle } from "../../components/NewsArticle";
+import { Partners } from "../../components/Partners/Partners";
+import { Sponsors } from "../../components/Sponsors";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
+import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+import { Loading } from "../Loading/Loading";
+import "./style.css";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();

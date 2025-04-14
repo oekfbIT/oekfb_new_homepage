@@ -28,6 +28,15 @@ class ClientController {
     }
 
     /**
+     * Fetch the Livescore Across Leagues.
+     * GET /livescore
+     * @returns {Promise<Object[]>} List of livescore matches short.
+     */
+        async livescore() {
+            return this.apiService.get(`webClient/livescore`);
+        }
+
+    /**
      * Fetch the transfers.
      * GET webClient/transfers
      * @returns {Promise<Object[]>} List of transfers.
