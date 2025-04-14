@@ -212,7 +212,7 @@ export const ElementPlayerDetail = () => {
                                     <div className="small-text-cell-key">Nationalität</div>
                                     <div className="small-text-cell-2">{playerData?.nationality || "Unknown"}</div>
                                     <img
-                                        src={`https://www.zeitzonen.de/templates/2014/dist/images/flags/${nationality}.svg`}
+                                        src={`https://www.zeitzonen.de/build/images/flags/${nationality}.svg`}
                                         className="flagicon"
                                     />
 

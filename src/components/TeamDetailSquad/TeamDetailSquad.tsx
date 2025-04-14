@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./style.css";
-import {useNavigate} from "react-router-dom";
 
 interface Player {
   id: number;
@@ -92,7 +92,7 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
 
             <div className="nationality-flags" style={{ gap: "5px", position: "relative" }}>
               <img
-                  src={`https://www.zeitzonen.de/templates/2014/dist/images/flags/${formattedNationality}.svg`}
+                  src={`https://www.zeitzonen.de/build/images/flags/${formattedNationality}.svg`}
                   alt={`${player.nationality} flag`}
                   className="flagicon"
               />
