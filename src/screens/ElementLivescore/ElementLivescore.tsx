@@ -9,7 +9,6 @@ import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 import "./style.css";
 
-
 export const ElementLivescore = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
@@ -31,7 +30,6 @@ export const ElementLivescore = (): JSX.Element => {
       }
 
       try {
-        // Fetch the updated data format with league info and matches.
         const data = await clientController.livescore();
         setLeagues(data);
       } catch (error) {
@@ -48,33 +46,32 @@ export const ElementLivescore = (): JSX.Element => {
     <div className="element-livescore">
       {isMobile ? <Navigation /> : <DesktopNav />}
 
-                    <div className="page-frame-2">
-                        <PageHeader className="page-header-4" text="Livescore" />
-                    </div>
+      <div className="page-frame-2">
+        <PageHeader className="page-header-4" text="Livescore" />
+      </div>
 
       <div className="page-frame-2">
-      {loading ? (
-  <p>Loading...</p>
-) : (
-  [...leagues]
-    .sort((a, b) => a.league.localeCompare(b.league))
-    .map((league, index) => (
-      <div key={index} className="league-section">
-        <h2 className="leagueHeader">{league.league}</h2>
-        <div className="fixtures">
-          {league.matches.map((fixture: any) => (
-            <div key={fixture.id} className="livescore-header">
-              <LivescoreCell
-                match={fixture}
-                state={isMobile ? "mobile" : "desktop"}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    ))
-)}
-
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          [...leagues]
+            .sort((a, b) => a.league.localeCompare(b.league))
+            .map((league, index) => (
+              <div key={index} className="league-section">
+                <h2 className="leagueHeader">{league.league}</h2>
+                <div className="fixtures">
+                  {league.matches.map((fixture: any) => (
+                    <div key={fixture.id} className="livescore-header">
+                      <LivescoreCell
+                        match={fixture}
+                        state={isMobile ? "mobile" : "desktop"}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+        )}
       </div>
 
       <Footer />

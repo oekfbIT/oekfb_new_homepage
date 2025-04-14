@@ -1,35 +1,29 @@
 import React from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 // Importing all screen components
+import { ElementBund } from "./screens/ElementBund";
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
-import { ElementConfirmation } from "./screens/ElementConfirmation";
 import { ElementContactMobile } from "./screens/ElementContactMobile";
 import { ElementGameReport } from "./screens/ElementGameReport";
 import { ElementGamedayMobile } from "./screens/ElementGamedayMobile";
 import { ElementHomepageDesktop } from "./screens/ElementHomepageDesktop";
-import { ElementImpressiumMobile } from "./screens/ElementImpressiumMobile";
 import { ElementLeaderboard } from "./screens/ElementLeaderboard";
 import { ElementLeagueSelection } from "./screens/ElementLeagueSelection";
-import { ElementLoginMobile } from "./screens/ElementLoginMobile";
+import { ElementLigaordnung } from "./screens/ElementLigaordnung";
+import { ElementLivescore } from "./screens/ElementLivescore";
 import { ElementMobilenav } from "./screens/ElementMobilenav";
 import { ElementNewsDetail } from "./screens/ElementNewsDetail";
 import { ElementNewsMobile } from "./screens/ElementNewsMobile";
 import { ElementPlayerDetail } from "./screens/ElementPlayerDetail";
+import { ElementRegeln } from "./screens/ElementRegeln";
 import { ElementRegister } from "./screens/ElementRegister";
-import { ElementRegistration } from "./screens/ElementRegistration";
 import { ElementSperrenDesktop } from "./screens/ElementSperrenDesktop";
 import { ElementTableMobile } from "./screens/ElementTableMobile";
 import { ElementTeamDetail } from "./screens/ElementTeamDetail";
-import { ElementTermsMobile } from "./screens/ElementTermsMobile";
+import { ElementTransfer } from "./screens/ElementTransfer";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 import { Strafsenat } from "./screens/Strafsenat";
-import { ElementTransfer } from "./screens/ElementTransfer";
-import { ElementTransfers } from "./screens/ElementTransfers";
-import { ElementLigaordnung } from "./screens/ElementLigaordnung";
-import { ElementRegeln } from "./screens/ElementRegeln";
-import { ElementBund } from "./screens/ElementBund";
-import { Transfer } from "./components/Transfer";
 
 export const App = () => {
   return (
@@ -41,6 +35,7 @@ export const App = () => {
         <Route path="/mobilenav" element={<ElementMobilenav />} />
         <Route path="/match/:id" element={<ElementGameReport />} />
         <Route path="/spielplan" element={<ElementGamedayMobile />} />
+        <Route path="/livescore" element={<ElementLivescore />} />
         <Route path="/team-detail/:id" element={<ElementTeamDetail />} />
         <Route path="/player-detail/:id" element={<ElementPlayerDetail />} />
         <Route path="/news" element={<ElementNewsMobile />} />

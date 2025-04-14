@@ -215,3 +215,8 @@
         padding: 12px;
     }
   }
+
+  .league-section {
+    width: 100%;
+    max-width: 1200px;
+  }
