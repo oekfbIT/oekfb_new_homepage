@@ -4,6 +4,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { BlankettCell } from "../../components/DivWrapper";
 import { EventRow } from "../../components/EventRow";
 import { Footer } from "../../components/Footer";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
 import { TeamDetailSquadWrapper } from "../../components/TeamDetailSquadWrapper";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
@@ -110,7 +111,7 @@ export const ElementGameReport = (): JSX.Element => {
       : "Datum nicht Zugewiesen"
   );
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return  <LoadingIndicator/> ;
   if (!gameData) return <div>No game data available.</div>;
 
   return (

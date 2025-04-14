@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useWindowWidth } from "../../breakpoints";
-import { Footer } from "../../components/Footer";
-import { PageHeader } from "../../components/PageHeader";
-import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import { Navigation } from "../../components/Navigation";
-import ClientController from "../../network/ClientController";
-import AuthService from "../../network/AuthService";
 import { useNavigate } from "react-router-dom";
+import { useWindowWidth } from "../../breakpoints";
+import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+
+import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import "./style.css";
 
 export const LeagueTable = () => {
@@ -57,7 +55,7 @@ export const LeagueTable = () => {
             </header>
             <div className="body">
               {loading ? (
-                <div>Loading...</div>
+                <LoadingIndicator />
               ) : (
                 table.map((team) => (
                   <div className="row-2" key={team.id}>
@@ -129,8 +127,8 @@ export const LeagueTable = () => {
           </div>
           <div className="league-table-cells">
             {loading ? (
-              <div>Loading...</div>
-            ) : (
+          <LoadingIndicator/>
+        ) : (
               table.map((team) => (
                 <div className="row-5" key={team.id}>
                   <div className="data-20">

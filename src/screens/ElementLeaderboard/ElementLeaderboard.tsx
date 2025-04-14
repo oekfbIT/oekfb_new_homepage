@@ -6,9 +6,9 @@ import { LeaderboardStat } from "../../components/LeaderboardStat";
 import { Navigation } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import "./style.css";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+import "./style.css";
 
 type StatType = "goals" | "yellow" | "red";
 

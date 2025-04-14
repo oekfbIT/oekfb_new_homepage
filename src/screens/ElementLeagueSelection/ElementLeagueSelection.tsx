@@ -6,6 +6,7 @@ import { Footer } from "../../components/Footer";
 import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
 import { IFrame } from "../../components/iFrame";
 import { LeagueSelection } from "../../components/LeagueSelection";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
 import { NewsArticle } from "../../components/NewsArticle";
 import { Partners } from "../../components/Partners/Partners";
@@ -110,7 +111,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
         {/* Loading Indicator */}
         {isLoading ? (
-          <p className="loading-text">Daten Laden...</p>
+          <LoadingIndicator/>
         ) : (
           <>
             {/* Hero Section */}

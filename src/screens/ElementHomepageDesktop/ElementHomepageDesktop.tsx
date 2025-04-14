@@ -7,6 +7,7 @@ import { Footer } from "../../components/Footer";
 import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
 import { IFrame } from "../../components/iFrame";
 import { LeagueTable } from "../../components/LeagueTable";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { MatchupCell } from "../../components/MatchupCell";
 import { Navigation } from "../../components/Navigation";
 import { NewsArticle } from "../../components/NewsArticle";
@@ -15,7 +16,6 @@ import { Sponsors } from "../../components/Sponsors";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
-import { Loading } from "../Loading/Loading";
 import "./style.css";
 
 export const ElementHomepageDesktop = (): JSX.Element => {
@@ -60,8 +60,8 @@ export const ElementHomepageDesktop = (): JSX.Element => {
   const isMobile = screenWidth < 800;
 
   if (loading) {
-    return <Loading message="Loading homepage data..." />;
-  }
+    return <LoadingIndicator />;
+}
 
   return (
     <div

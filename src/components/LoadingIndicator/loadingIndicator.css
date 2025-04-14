@@ -1,0 +1,33 @@
+/* loadingIndicator.css */
+.loading-indicator-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 1000; /* ensure it's above other content */
+}
+
+.loading-indicator-wrapper {
+    width: 40px;
+    height: 40px;
+}
+
+.loading-indicator-orbit {
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top: 3px solid orange;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

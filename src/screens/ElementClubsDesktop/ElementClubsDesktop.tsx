@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { ClubCard } from "../../components/ClubCard";
 import { Footer } from "../../components/Footer";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
+import { Navigation } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import { Navigation } from "../../components/Navigation";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
 import "./style.css";
 
 export const ElementClubsDesktop = (): JSX.Element => {
@@ -68,7 +69,7 @@ export const ElementClubsDesktop = (): JSX.Element => {
 
                 <div className="club-grid">
                     {loading ? (
-                        <p>Loading clubs...</p>
+                        <LoadingIndicator/>
                     ) : matches.length > 0 ? (
                         matches.map((club) => (
                             <ClubCard

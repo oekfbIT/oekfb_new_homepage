@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
+import { Navigation } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import "./style.css";
-import { Navigation } from "../../components/Navigation";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
-import { useNavigate } from "react-router-dom";
+import ClientController from "../../network/ClientController";
+import "./style.css";
 
 export const ElementTableMobile = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -86,7 +87,7 @@ export const ElementTableMobile = (): JSX.Element => {
 
                       <div className="body">
                         {loading ? (
-                          <div>Loading...</div>
+                            <LoadingIndicator/>
                         ) : (
                           table.map((team) => (
                             <div className="row-2" key={team.id}>
@@ -271,7 +272,7 @@ export const ElementTableMobile = (): JSX.Element => {
                     </div>
                     <div className="league-table-cells">
                       {loading ? (
-                        <div>Loading...</div>
+                        <LoadingIndicator/>
                       ) : (
                         table.map((team) => (
                           <div className="row-5" key={team.id}>

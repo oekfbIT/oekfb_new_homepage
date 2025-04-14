@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
-import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import "./style.css";
-import ClientController from "../../network/ClientController";
-import AuthService from "../../network/AuthService";
 import { SingleTransferCell } from "../../components/SingleTransferCell";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
+import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+import "./style.css";
 
 export const ElementSperrenDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -55,7 +56,7 @@ export const ElementSperrenDesktop = (): JSX.Element => {
 
         <div className="single-stat-cells">
           {loading ? (
-            <p>Loading...</p>
+            <LoadingIndicator/>
           ) : players && players.length > 0 ? (
             players.map((player, index) => (
               <div key={index} className="player-container">

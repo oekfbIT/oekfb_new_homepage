@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
-import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import "./style.css";
-import { Footer } from "../../components/Footer";
-import { PageHeader } from "../../components/PageHeader";
 import { Dropdown } from "../../components/Dropdown";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
+import { Footer } from "../../components/Footer";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
-import ClientController from "../../network/ClientController";
+import { PageHeader } from "../../components/PageHeader";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+import "./style.css";
 
 export const ElementGamedayMobile = (): JSX.Element => {
     const screenWidth = useWindowWidth();
@@ -120,7 +121,8 @@ export const ElementGamedayMobile = (): JSX.Element => {
 
                     <div className="page-frame-2">
                         {loading ? (
-                            <p>Loading...</p>
+                            <LoadingIndicator/>
+
                         ) : (
                             <div className="gamedays">
                                 {filteredClubs.map((fixture: any) => (

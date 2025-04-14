@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { LivescoreCell } from "../../components/LivescoreCell/LivescoreCell";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
@@ -52,7 +53,7 @@ export const ElementLivescore = (): JSX.Element => {
 
       <div className="page-frame-2">
         {loading ? (
-          <p>Loading...</p>
+            <LoadingIndicator/>
         ) : (
           [...leagues]
             .sort((a, b) => a.league.localeCompare(b.league))
