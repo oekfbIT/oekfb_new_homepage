@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
-import { ActionButton } from "../../components/ActionButton";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
 import { Footer } from "../../components/Footer";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
-import { NewsArticle } from "../../components/NewsArticle";
 import { StatCell } from "../../components/StatCell";
-import { TeamDetailSquad } from "../../components/TeamDetailSquad";
-import { TeamHeader } from "../../components/TeamHeader";
-import "./style.css";
-import { useNavigate, useParams } from "react-router-dom";
-import ClientController from "../../network/ClientController";
-import AuthService from "../../network/AuthService";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
+import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+
+import "./style.css";
 
 // Utility function to split and capitalize player names
 const splitAndCapitalizeName = (name) => {
@@ -62,11 +60,11 @@ export const ElementPlayerDetail = () => {
             }
 
             try {
+                setLoading(true);
                 const response = await clientController.fetchPlayerDetail(id);
                 setPlayerData(response.player);
                 setUpcoming(response.upcoming);
 
-                console.log("STATSSSSS", response.player);
                 if (response.player) {
                     const { firstName, lastName } = splitAndCapitalizeName(response.player.name);
                     setFirst(firstName);
@@ -84,6 +82,10 @@ export const ElementPlayerDetail = () => {
     }, [id]);
 
     const playerStats = playerData?.stats ? Object.entries(playerData?.stats) : [];
+
+    if (loading) {
+        return <LoadingIndicator />;
+    }
 
     return (
         <div

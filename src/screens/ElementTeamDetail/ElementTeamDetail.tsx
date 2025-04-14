@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
-import { ActionButton } from "../../components/ActionButton";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
 import { Footer } from "../../components/Footer";
+import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
 import { NewsArticle } from "../../components/NewsArticle";
 import { StatCell } from "../../components/StatCell";
 import { TeamDetailSquad } from "../../components/TeamDetailSquad";
 import { TeamHeader } from "../../components/TeamHeader";
-import "./style.css";
-import { useNavigate, useParams } from "react-router-dom";
-import ClientController from "../../network/ClientController";
-import AuthService from "../../network/AuthService";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
+import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+import "./style.css";
 
 export const ElementTeamDetail = (): JSX.Element => {
     const screenWidth = useWindowWidth();
@@ -56,17 +56,12 @@ export const ElementTeamDetail = (): JSX.Element => {
         fetchTeamDetail();
     }, [id]);
 
-    // Turn the teamData?.club?.stats object into an array so we can map over it
     const teamStats = teamData?.club?.stats
         ? Object.entries(teamData.club.stats)
         : [];
 
     if (loading) {
-        return (
-            <div className="loading-screen">
-                <h2>Laden...</h2>
-            </div>
-        );
+        return <LoadingIndicator/>;
     }
 
     return (
@@ -87,19 +82,17 @@ export const ElementTeamDetail = (): JSX.Element => {
             </div>
 
             <div className="page-content">
-                {/* Squad Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">{teamData?.club?.team_name} Kader</h2>
                     <div className="team-squad">
                         {teamData?.club?.players
                             ?.filter(
                                 (player: any) => player.eligibility === "Spielberechtigt" || player.eligibility === "Gesperrt"
-                            ) // Filter out players with other eligibility statuses
+                            )
                             .sort((a: any, b: any) => {
-                                // Sort by eligibility: "Spielberechtigt" first, then "Gesperrt"
                                 if (a.eligibility === "Spielberechtigt" && b.eligibility !== "Spielberechtigt") return -1;
                                 if (a.eligibility !== "Spielberechtigt" && b.eligibility === "Spielberechtigt") return 1;
-                                return 0; // Keep original order otherwise
+                                return 0;
                             })
                             .map((player: any) => (
                                 <div key={player.id} style={{ cursor: "pointer" }}>
@@ -109,7 +102,6 @@ export const ElementTeamDetail = (): JSX.Element => {
                     </div>
                 </section>
 
-                {/* Stats Section with a for-loop */}
                 <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">
                         {teamData?.club?.team_name} Statistiken
@@ -121,7 +113,6 @@ export const ElementTeamDetail = (): JSX.Element => {
                     </div>
                 </section>
 
-                {/* Fixtures Section */}
                 <section style={{ width: "-webkit-fill-available", justifyItems: "center" }}>
                     <h2 className="secTitle">Spiele & Ergebnisse</h2>
                     <div style={{ width: "100%" }}>
@@ -135,7 +126,6 @@ export const ElementTeamDetail = (): JSX.Element => {
                     </div>
                 </section>
 
-                {/* News Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">News & Spielberichte</h2>
                     <div className="news-wrapper">
