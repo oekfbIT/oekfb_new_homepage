@@ -139,7 +139,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
      {/* gallery Section */}
      {homepageData?.data?.sliderdata?.length > 0 && (
         <div style={{ width: "100%", maxWidth: "1200px" }}>
-          <GalleryCarousel sliderdata={homepageData?.data?.sliderdata} />
+          <GalleryCarousel sliderdata={homepageData?.data?.sliderdata.reverse()} />
         </div>
       )}
             <div className="page-content">

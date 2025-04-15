@@ -46,9 +46,8 @@ export const ElementGamedayMobile = (): JSX.Element => {
                 validClubData.forEach((item: any) => {
                     const gameday = item.details.gameday;
                     const date = new Date(item.details.date);
-                    const formattedDate = `${date.getDate().toString().padStart(2, "0")}.${(date.getMonth() + 1)
-                        .toString()
-                        .padStart(2, "0")}.${date.getFullYear()}`;
+                    const formattedDate = `${date.getDate().toString()}.${(date.getMonth() + 1)
+                        .toString()}.${date.getFullYear()}`;
                     if (!gamedayMap.has(gameday) || date < new Date(gamedayMap.get(gameday)!)) {
                         gamedayMap.set(gameday, formattedDate);
                     }
