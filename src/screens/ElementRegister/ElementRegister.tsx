@@ -3,10 +3,9 @@ import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
 import "./style.css";
-import { ActionButton } from "../../components/ActionButton";
 
 // Reusable InputField Component
 const InputField = ({
@@ -467,12 +466,12 @@ export const ElementRegister = (): JSX.Element => {
               {/* Form Footer */}
               <div className="authentication-4">
                 <div className="authentication-form-9">* REQUIRED</div>
-
                 <div className="div-wrapper-3" onClick={handleSubmit}>
                   <div className="authentication-form-12">
-                    <div className="authentication-form-13">NEUANMELDUNG</div>
+                    <div className="authentication-form-13">REGISTRIEREN</div>
                   </div>
                 </div>
+                <div className="authentication-form-9">* Weitere Infos bekommen sie automatisch per Mail.</div>
               </div>
             </form>
           </div>
@@ -488,7 +487,7 @@ export const ElementRegister = (): JSX.Element => {
 
     - Wohnsitz in Österreich.
     - Kosten:: 70 € pro Spiel.
-    
+
     Weitere Informationen: Bei Fragen bitte FAQs durchlesen oder uns direkt kontaktieren.`}
           onClose={() => setIsModalOpen(false)}
         />
