@@ -17,7 +17,6 @@ export const ElementLivescore = (): JSX.Element => {
   const [leagues, setLeagues] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Memoize the service instances so they're only created once per mount.
   const authService = useMemo(() => new AuthService(), []);
   const clientController = useMemo(() => new ClientController(), []);
 
@@ -53,7 +52,12 @@ export const ElementLivescore = (): JSX.Element => {
 
       <div className="page-frame-2">
         {loading ? (
-            <LoadingIndicator/>
+          <LoadingIndicator />
+        ) : leagues.length === 0 ? (
+          <div className="no-matches-message">
+            <p className="longP"><strong>Aktuell finden keine Spiele live statt.</strong></p>
+            <p>Mit wenigen Ausnahmen starten die Spiele sonntags zwischen 8 und 20 Uhr.</p>
+          </div>
         ) : (
           [...leagues]
             .sort((a, b) => a.league.localeCompare(b.league))

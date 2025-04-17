@@ -220,3 +220,14 @@
     width: 100%;
     max-width: 1200px;
   }
+
+
+  .no-matches-message {
+    font-family: var(--theme-inter-regular-13-67-font-family);
+    font-size: 14px;
+  }
+
+  .longP {
+    width: 100vw;
+    max-width: 1200px;
+  }
