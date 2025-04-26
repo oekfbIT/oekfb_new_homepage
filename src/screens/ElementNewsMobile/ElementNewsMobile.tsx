@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
-import { ActionButton } from "../../components/ActionButton";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { NewsArticle } from "../../components/NewsArticle";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
 
 import "./style.css";
 
@@ -66,7 +65,7 @@ export const ElementNewsMobile = (): JSX.Element => {
         <div className="news-7">
             <div className="news-container-6">
                 <div className="news-container-grid-7">
-                    {news?.map((newsItem: any) => (
+                    {news?.reverse().map((newsItem: any) => (
                         <NewsArticle
                             key={newsItem.id}
                             title={newsItem.title}

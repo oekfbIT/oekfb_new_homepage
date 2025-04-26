@@ -130,7 +130,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                     <h2 className="secTitle">News & Spielberichte</h2>
                     <div className="news-wrapper">
                         <div className="news-grid">
-                            {news?.map((newsItem: any) => (
+                            {news?.reverse().map((newsItem: any) => (
                                 <NewsArticle
                                     key={newsItem.id}
                                     id={newsItem.id}
