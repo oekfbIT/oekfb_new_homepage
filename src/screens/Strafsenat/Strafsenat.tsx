@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
-import { ActionButton } from "../../components/ActionButton";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { NewsArticle } from "../../components/NewsArticle";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
 
 import "./style.css";
 
@@ -33,7 +32,7 @@ export const Strafsenat = (): JSX.Element => {
 
             try {
                 const newsData = await clientController.fetchStrafsenatNews();
-                setNews(newsData);
+                setNews(newsData.reverse());
             } catch (error) {
                 console.error("Error fetching club data:", error);
             } finally {
