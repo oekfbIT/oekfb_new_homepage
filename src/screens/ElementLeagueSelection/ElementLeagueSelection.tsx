@@ -144,7 +144,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
                 className="custom-class"
                 title="Livescore"
                 subtitle="Live Spiele aller Ligen"
-                imageUrl="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Flogooekfblivescore.jpg?alt=media&token=7750f426-a583-478c-8781-e041b5ee7b67"
+                imageUrl="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Flivescorelange.png?alt=media&token=75e717f4-ba8d-4b47-b0c8-0f609b09c18b"
                 linkTo="/livescore"
               />
 
