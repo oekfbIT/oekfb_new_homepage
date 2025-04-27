@@ -112,7 +112,7 @@
   flex: 0 0 auto;
   position: relative;
   padding: 0px 5px;
-  gap: 1.5px;
+  gap: 3px;
 }
 
 .matchup-cell .matchup-cell-bottom-5 {
@@ -128,10 +128,10 @@
 .matchup-cell .matchup-cell-bottom-6 {
   align-items: center;
   display: flex;
-  height: 22px;
+  height: 23px;
   justify-content: center;
   position: relative;
-  width: 18px;
+  width: 50px;
 }
 
 .matchup-cell .matchup-cell-bottom-7 {
@@ -141,7 +141,6 @@
   font-weight: var(--theme-inter-bold-18-font-weight);
   letter-spacing: var(--theme-inter-bold-18-letter-spacing);
   line-height: var(--theme-inter-bold-18-line-height);
-  margin-top: -2px;
   position: relative;
   text-align: center;
   white-space: nowrap;
@@ -151,11 +150,10 @@
 .matchup-cell .matchup-cell-bottom-8 {
   align-items: center;
   display: flex;
-  height: 22px;
+  height: 23px;
   justify-content: center;
   position: relative;
-  width: 18px;
-}
+  width: 30px;}
 
 .matchup-cell .matchup-cell-bottom-9 {
   font-family: var(--theme-inter-bold-18-font-family);

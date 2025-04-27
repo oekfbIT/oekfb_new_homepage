@@ -123,12 +123,7 @@ export const MatchupCell = ({
             <div className="matchup-cell-bottom-4">
               <div className={`matchup-cell-bottom-6 state-${state}`}>
                 <div className="matchup-cell-bottom-7">
-                  {matchup?.score?.home ?? 0}
-                </div>
-              </div>
-              <div className={`matchup-cell-bottom-8 state-1-${state}`}>
-                <div className="matchup-cell-bottom-9">
-                  {matchup?.score?.away ?? 0}
+                  {matchup?.score?.home ?? 0}:{matchup?.score?.away ?? 0}
                 </div>
               </div>
             </div>
