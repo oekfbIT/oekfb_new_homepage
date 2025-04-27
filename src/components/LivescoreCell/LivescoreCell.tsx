@@ -76,7 +76,7 @@ export const LivescoreCell = ({ match, state }: Props): JSX.Element => {
   }).toFormat("HH:mm");
 
   const handleButtonClick = () => {
-    navigate(`/match/${id}`);
+    navigate(`/match/${match.id}`);
   };
 
   const handleTeamClick = (teamId: string) => {
