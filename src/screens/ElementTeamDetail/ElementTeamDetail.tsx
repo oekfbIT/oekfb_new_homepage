@@ -114,20 +114,20 @@ export const ElementTeamDetail = (): JSX.Element => {
                 </section>
 
                 <section style={{ width: "-webkit-fill-available", justifyItems: "center" }}>
-    <h2 className="secTitle">Spiele & Ergebnisse</h2>
-    <div style={{ width: "100%" }}>
-        {teamData?.upcoming
-            ?.slice()
-            .sort((a, b) => new Date(a.details.date.$date).getTime() - new Date(b.details.date.$date).getTime())
-            .map((match: any) => (
-                <FixtureDataCell
-                    key={match.id}
-                    match={match}
-                    state={screenWidth < 600 ? "mobile" : "desktop"}
-                />
-            ))}
-    </div>
-</section>
+                    <h2 className="secTitle">Spiele & Ergebnisse</h2>
+                    <div style={{ width: "100%" }}>
+                        {teamData?.upcoming
+                            ?.slice()
+                            .sort((a, b) => new Date(a.details.date.$date).getTime() - new Date(b.details.date.$date).getTime())
+                            .map((match: any) => (
+                                <FixtureDataCell
+                                    key={match.id}
+                                    match={match}
+                                    state={screenWidth < 600 ? "mobile" : "desktop"}
+                                />
+                            ))}
+                    </div>
+                </section>
 
                 <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">News & Spielberichte</h2>
