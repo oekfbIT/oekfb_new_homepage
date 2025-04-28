@@ -272,13 +272,16 @@ export const ElementPlayerDetail = () => {
                 <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">Spiele & Ergebnisse</h2>
                     <div style={{ width: "100%" }}>
-                        {upcoming?.map((match) => (
-                            <FixtureDataCell
-                                key={match.id}
-                                match={match}
-                                state={screenWidth < 600 ? "mobile" : "desktop"}
-                            />
-                        ))}
+                        {upcoming
+                            ?.slice() // clone to avoid mutating original
+                            .sort((a, b) => new Date(a.details.date.$date).getTime() - new Date(b.details.date.$date).getTime())
+                            .map((match) => (
+                                <FixtureDataCell
+                                    key={match.id}
+                                    match={match}
+                                    state={screenWidth < 600 ? "mobile" : "desktop"}
+                                />
+                            ))}
                     </div>
                 </section>
             </div>
