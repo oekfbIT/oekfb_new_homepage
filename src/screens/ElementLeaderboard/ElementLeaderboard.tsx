@@ -10,7 +10,7 @@ import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 import "./style.css";
 
-type StatType = "goals" | "yellow" | "red";
+type StatType = "goals" | "yellow" | "red" | "yellowRed";
 
 export const ElementLeaderboard = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -37,19 +37,16 @@ export const ElementLeaderboard = (): JSX.Element => {
         let playerData = [];
         switch (activeStat) {
           case "goals":
-            playerData = await clientController.fetchGoalLeaderBoard(
-              leagueCode
-            );
+            playerData = await clientController.fetchGoalLeaderBoard(leagueCode);
             break;
           case "yellow":
-            playerData = await clientController.fetchYellowCardLeaderBoard(
-              leagueCode
-            );
+            playerData = await clientController.fetchYellowCardLeaderBoard(leagueCode);
             break;
           case "red":
-            playerData = await clientController.fetchRedCardLeaderBoard(
-              leagueCode
-            );
+            playerData = await clientController.fetchRedCardLeaderBoard(leagueCode);
+            break;
+          case "yellowRed":
+            playerData = await clientController.fetchYellowRedCardLeaderBoard(leagueCode);
             break;
         }
 
@@ -72,6 +69,8 @@ export const ElementLeaderboard = (): JSX.Element => {
         return "Kartenkönig (Gelb)";
       case "red":
         return "Kartenkönig (Rot)";
+      case "yellowRed":
+        return "Kartenkönig (Gelb/Rot)";
     }
   };
 
@@ -102,9 +101,7 @@ export const ElementLeaderboard = (): JSX.Element => {
 
           <button
             onClick={() => handleStatChange("yellow")}
-            className={
-              activeStat === "yellow" ? "segButtonActive" : "segButton"
-            }
+            className={activeStat === "yellow" ? "segButtonActive" : "segButton"}
             disabled={loading}
           >
             GELBE KARTEN
@@ -116,6 +113,14 @@ export const ElementLeaderboard = (): JSX.Element => {
             disabled={loading}
           >
             ROTE KARTEN
+          </button>
+
+          <button
+            onClick={() => handleStatChange("yellowRed")}
+            className={activeStat === "yellowRed" ? "segButtonActive" : "segButton"}
+            disabled={loading}
+          >
+            GELB/ROT
           </button>
         </div>
 
@@ -135,7 +140,9 @@ export const ElementLeaderboard = (): JSX.Element => {
                       ? "Tore"
                       : activeStat === "yellow"
                       ? "Gelbe Karten"
-                      : "Rote Karten"
+                      : activeStat === "red"
+                      ? "Rote Karten"
+                      : "Gelb/Rote Karten"
                   }`}
                   team={{
                     image: player.teamimg,

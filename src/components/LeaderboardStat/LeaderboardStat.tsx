@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-type StatType = "goals" | "yellow" | "red";
+type StatType = "goals" | "yellow" | "red" | "yellowRed";
 
 interface Props {
   property1: "desktop" | "mobile";
@@ -31,17 +31,19 @@ export const LeaderboardStat = ({
   player,
   team,
 }: Props): JSX.Element => {
-  const iconMap: Record<StatType, string> = {
-    goals: "/img/goal.svg",
-    yellow: "/img/yellowCard.svg",
-    red: "/img/redCard.svg",
-  };
+    const iconMap: Record<StatType, string> = {
+        goals: "/img/goal.svg",
+        yellow: "/img/yellowCard.svg",
+        red: "/img/redCard.svg",
+        yellowRed: "/img/yellowRedCard.svg",
+      };
 
-  const labelMap: Record<StatType, string> = {
-    goals: "Tore",
-    yellow: "Gelbe Karten",
-    red: "Rote Karten",
-  };
+      const labelMap: Record<StatType, string> = {
+        goals: "Tore",
+        yellow: "Gelbe Karten",
+        red: "Rote Karten",
+        yellowRed: "Gelb + Rot",
+      };
 
   const navigate = useNavigate();
 
@@ -108,7 +110,7 @@ export const LeaderboardStat = ({
 
 LeaderboardStat.propTypes = {
   property1: PropTypes.oneOf(["desktop", "mobile"]).isRequired,
-  statType: PropTypes.oneOf(["goals", "yellow", "red"]).isRequired,
+  statType: PropTypes.oneOf(["goals", "yellow", "red", "yellowRed"]).isRequired,
   className: PropTypes.string,
   team: PropTypes.shape({
     image: PropTypes.string.isRequired,
