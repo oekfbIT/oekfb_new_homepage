@@ -2,8 +2,8 @@ import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
-import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import { Sponsors } from "../../components/Sponsors";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
 export const ElementContactMobile = (): JSX.Element => {
@@ -40,6 +40,12 @@ export const ElementContactMobile = (): JSX.Element => {
                       <br/>
                       <br/>
                       1020 Wien, Pazmanitengasse 15/7
+                      <br/>
+                      <br/>
+                      <br/>
+                      Sie erreichen uns Telefonisch (Mo - Fr - 10:00 bis 17:00) unter:
+                      <br/>
+                      +43 665 6700 9191
                       <br/>
                       <br/>
                       Oder per mail unter:
