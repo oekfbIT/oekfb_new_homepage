@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { ActionCell } from "../../components/ActionCell";
@@ -107,7 +107,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
 
       {/* gallery Section */}
       {homepageData?.data?.sliderdata?.length > 0 && (
-        <div style={{ width: "100%", maxWidth: "1200px" }}>
+        <div style={{ width: "100%", maxWidth: "1200px", justifyContent: "center" }}>
           <GalleryCarousel sliderdata={homepageData?.data?.sliderdata.slice().reverse()} />
         </div>
       )}

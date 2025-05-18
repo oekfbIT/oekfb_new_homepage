@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../../network/AuthService";
 import "./style.css";
@@ -144,7 +144,7 @@ export const DesktopNav = ({
               <div className="nav-row-wrapper-7">
                 <div className="nav-row-wrapper-8">
                   {[
-                    { label: "Startseite", to: "/homepage" },
+                    { label: "Startseite", to: "/liga" },
                     { label: "Teams", to: "/teams" },
                     { label: "Tabelle", to: "/tabelle" },
                     { label: "Spielplan", to: "/spielplan" },
