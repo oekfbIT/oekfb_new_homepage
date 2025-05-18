@@ -144,7 +144,7 @@ export const DesktopNav = ({
               <div className="nav-row-wrapper-7">
                 <div className="nav-row-wrapper-8">
                   {[
-                    { label: "Startseite", to: "/liga" },
+                    { label: "Liga", to: "/liga" },
                     { label: "Teams", to: "/teams" },
                     { label: "Tabelle", to: "/tabelle" },
                     { label: "Spielplan", to: "/spielplan" },

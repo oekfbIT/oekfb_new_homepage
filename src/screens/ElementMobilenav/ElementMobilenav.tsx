@@ -15,7 +15,7 @@ export const ElementMobilenav = (): JSX.Element => {
 
         <div className="mobile-menu-items">
           <Link className="mobile-menu-item" to="/liga">
-            <div className="mobile-menu-item-2">Startseite</div>
+            <div className="mobile-menu-item-2">Liga</div>
           </Link>
 
           <Link className="mobile-menu-item" to="/teams">
