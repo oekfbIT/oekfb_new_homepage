@@ -65,7 +65,7 @@
   right: 10px;
 }
 
-.p {
+.pRousel {
   font-size: 14px;
   font-family: Inter, Helvetica;
   font-weight: 400;
@@ -92,8 +92,7 @@
 @media screen and (max-width: 500px) {
   .carousel-wrapper {
     margin: 16px auto;
-    width: calc(100% - 32px);
-    max-width: 100vw;
+    width: calc(100% - 16px);
   }
 
   .header {
@@ -102,7 +101,7 @@
     margin-bottom: 8px;
   }
 
-  .p {
+  .pRousel {
     font-size: 16px;
     line-height: 24px;
   }

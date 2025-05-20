@@ -30,7 +30,7 @@ const GalleryCarousel = ({ sliderdata }) => {
               </div>
               <div className="carousel-caption">
                 <h3 className="header">{item.description}</h3>
-                <h2 className="p">{item.title}</h2>
+                <h2 className="pRousel">{item.title}</h2>
               </div>
             </div>
           ))}
