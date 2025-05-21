@@ -104,8 +104,8 @@
   object-fit: contain;
 }
 .sponsorc {
-  width: 100px;
+  width: 130px;
   position: relative;
   height: 50px;
-  object-fit: cover;
+  object-fit: contain;
 }

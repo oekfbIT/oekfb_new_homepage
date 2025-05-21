@@ -1,10 +1,9 @@
 /*
-We're constantly improving the code you see. 
+We're constantly improving the code you see.
 Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
 */
 
 import PropTypes from "prop-types";
-import React from "react";
 import "./style.css";
 
 interface Props {
@@ -41,7 +40,7 @@ export const Sponsors = ({
               <img
                   className="sponsorc"
                   alt="Aircash"
-                  src="https://egt-digital.com/wp-content/uploads/2024/07/aircash-900x720-1.png"
+                  src="https://careerdate.fer.hr/wp-content/uploads/2024/10/aircash-logo-red-pdf-1.png"
               />
             </a>
             <a href="https://kaddur.at/" target="_blank" rel="noopener noreferrer">
