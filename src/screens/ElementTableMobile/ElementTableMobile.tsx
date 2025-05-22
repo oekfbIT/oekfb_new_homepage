@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
@@ -260,10 +260,10 @@ export const ElementTableMobile = (): JSX.Element => {
                           <div className="text-wrapper-28">L</div>
                         </div>
                         <div className="cell-11">
-                          <div className="text-wrapper-52">Tore</div>
+                          <div className="text-wrapper-54">Tore</div>
                         </div>
                         <div className="cell-12">
-                          <div className="text-wrapper-53">+/-</div>
+                          <div className="text-wrapper-54">+/-</div>
                         </div>
                         <div className="cell-13">
                           <div className="text-wrapper-54">Punkte</div>

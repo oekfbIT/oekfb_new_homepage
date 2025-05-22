@@ -79,7 +79,6 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
-  max-width: 1140px;
   position: relative;
   width: 100%;
 }
@@ -1027,7 +1026,6 @@
   flex: 0 0 auto;
   flex-direction: column;
   justify-content: center;
-  max-width: 1140px;
   position: relative;
   width: 100%;
 }

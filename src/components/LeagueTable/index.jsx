@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import AuthService from "../../network/AuthService";
@@ -119,7 +119,7 @@ export const LeagueTable = () => {
               {["Matches", "W", "D", "L", "Tore", "+/-", "Punkte"].map(
                 (label, idx) => (
                   <div key={idx} className={`cell-${7 + idx}`}>
-                    <div className={`text-wrapper-${51 + idx}`}>{label}</div>
+                    <div className={`text-wrapper-54`}>{label}</div>
                   </div>
                 )
               )}
@@ -193,7 +193,7 @@ export const LeagueTable = () => {
   return (
     <div
       className="element-table-mobile"
-      style={{ minWidth: isMobile ? "390px" : "1130px" }}
+      style={{ width: isMobile ? "95%" : "100%", maxWidth: "1200px" }}
     >
       {isMobile ? renderMobileTable() : renderDesktopTable()}
     </div>

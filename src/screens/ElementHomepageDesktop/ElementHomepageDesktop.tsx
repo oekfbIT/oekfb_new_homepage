@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { ActionCell } from "../../components/ActionCell";
+import Banner from "../../components/Banner";
 import { ClubCell } from "../../components/ClubCell";
 import { Footer } from "../../components/Footer";
 import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
@@ -112,7 +113,15 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         </div>
       )}
       {/* ADD THE TABLE HERE PLEASE  */}
-      <LeagueTable />
+      <div style={{ width: "1200px", maxWidth: "95%", margin: "0px 20px" }}>
+        <LeagueTable />
+      </div>
+
+      <div style={{ width: "100%" }}>
+        <Banner/>
+      </div>
+
+
       {/* Sponsors */}
       <Sponsors
         className="design-component-instance-node"
@@ -146,6 +155,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
           />
         </div>
       </div>
+
       {/* Team Carousel */}
       {homepageData?.teams?.length > 0 && (
         <div className="div-17">
