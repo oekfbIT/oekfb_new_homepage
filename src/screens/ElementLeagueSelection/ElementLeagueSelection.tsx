@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { ActionCell } from "../../components/ActionCell";
+import Banner from "../../components/Banner";
 import { Dropdown } from "../../components/Dropdown";
 import { Footer } from "../../components/Footer";
 import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
@@ -138,6 +139,10 @@ export const ElementLeagueSelection = (): JSX.Element => {
                 )}
               </div>
             </div>
+
+      <div style={{ width: "100%" }}>
+        <Banner/>
+      </div>
 
             <div className="action-cell-2">
               <ActionCell
