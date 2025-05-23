@@ -10,7 +10,7 @@ const Banner = () => {
         <div className={styles.textBlock}>
           <h1 className={styles.heading}>Team Neuanmeldungen</h1>
                 <Link className="item" to="/register">
-                      <button className={styles.downloadBtn}>Jetzt Ihr Team Anmelden</button>>
+                      <button className={styles.downloadBtn}>Jetzt Ihr Team Anmelden</button>
                 </Link>
         </div>
       </div>
