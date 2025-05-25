@@ -193,7 +193,7 @@ export const LeagueTable = () => {
   return (
     <div
       className="element-table-mobile"
-      style={{ width: isMobile ? "95%" : "100%", maxWidth: "1200px" }}
+      style={{ width: isMobile ? "100%" : "100%", maxWidth: "1200px" }}
     >
       {isMobile ? renderMobileTable() : renderDesktopTable()}
     </div>
