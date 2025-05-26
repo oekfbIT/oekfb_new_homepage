@@ -26,6 +26,7 @@
 .overlay {
   background: rgba(0, 0, 0, 0.4); /* Optional overlay for contrast */
   padding: 40px;
+  width: 100%;
 }
 
 .textBlock {

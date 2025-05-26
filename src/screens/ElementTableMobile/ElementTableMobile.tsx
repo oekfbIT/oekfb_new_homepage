@@ -16,7 +16,9 @@ export const ElementTableMobile = (): JSX.Element => {
   const authService = new AuthService();
   const clientController = new ClientController();
   const [table, setTable] = useState([]);
+  const [league, setLeague] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate(); // Initialize the navigate function
 
   useEffect(() => {
@@ -31,6 +33,10 @@ export const ElementTableMobile = (): JSX.Element => {
       try {
         const tableData = await clientController.fetchTable(leagueCode);
         setTable(tableData);
+
+        const league = await clientController.fetchLeagueClubs(leagueCode);
+        setTable(league);
+
       } catch (error) {
         console.error("Error fetching table data:", error);
       } finally {

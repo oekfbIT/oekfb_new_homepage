@@ -2,40 +2,35 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /*justify-content: space-between;*/
-  background-color: #ffffff;
-  padding: 8px;
-  width: 100px;
-  /*height: 110px; !* Adjusted for better proportions *!*/
-  box-sizing: border-box;
-  text-align: center;
-}
-
-.club-cell .img-container {
-  width: 40px; /* Smaller image */
-  height: 40px;
-  object-fit: contain; /* Maintain aspect ratio */
-  margin-bottom: 6px;
-}
-
-.club-cell .text-container {
-  width: 100%;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 4px 0;
+  background-color: #ffffff;
+  padding: 5px;
+  width: 120px;
+  height: 150px;
   box-sizing: border-box;
+  text-align: center;
+  flex-shrink: 0;
 }
 
-.club-cell .club-cell-name {
-  color: #333333; /* Text color */
+.club-cell-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.club-cell-name {
   font-family: "Inter", sans-serif;
-  font-size: 11px; /* Adjusted size for small cells */
+  font-size: 12px;
   font-weight: 600;
-  line-height: 1.2;
-  word-wrap: break-word; /* Breaks long words */
-  overflow-wrap: break-word; /* Ensures wrapping */
-  text-align: center;
+  line-height: 1.3;
+  color: #333;
   max-width: 100%;
-  overflow: hidden; /* Ensures no layout breaking */
+  overflow: hidden;
+  text-align: center;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }

@@ -203,7 +203,6 @@
   width: 100%;
   scroll-behavior: auto;
   -ms-scroll-rails: railed;
-  padding-left: 12px;
 
 }
 
@@ -245,7 +244,7 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
-  padding: 0px 20px;
+  padding: 10px 0px;
   position: relative;
   width: 100%;
 }

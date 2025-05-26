@@ -47,7 +47,6 @@
   width: 100%;
   scroll-behavior: auto;
   -ms-scroll-rails: railed;
-  padding-left: 12px;
 
 }
 
@@ -89,7 +88,7 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
-  padding: 0px 20px;
+  padding: 10px 0px;
   position: relative;
   width: 100%;
 }
@@ -353,4 +352,21 @@
   .element-homepage-desktop .news-container-grid-7 {
     grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
   }
+}
+
+
+.element-homepage-desktop .downloadBtn {
+  background-color: white;
+  font-size: medium;
+  color: black;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.element-homepage-desktop .downloadBtn:hover {
+  background-color: orange;
 }
