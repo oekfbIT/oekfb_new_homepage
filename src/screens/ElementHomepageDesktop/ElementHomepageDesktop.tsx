@@ -117,6 +117,27 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         <LeagueTable />
       </div>
 
+    {/* Team Carousel */}
+      {homepageData?.teams?.length > 0 && (
+        <div className="div-17">
+          <div className="club-carousel-header">
+            <div className="club-carousel-title">CLUBS</div>
+            <div
+              className="club-carousel-action"
+              style={{ cursor: "pointer" }}
+              onClick={() => navigate("/teams")}
+            >
+              ALLE MANNSCHAFTEN
+            </div>
+          </div>
+          <div className="club-carousel-list">
+            {homepageData.teams.map((team: any) => (
+              <ClubCell key={team.id} team={team} />
+            ))}
+          </div>
+        </div>
+      )}
+
       <div style={{ width: "100%" }}>
         <Banner/>
       </div>
@@ -156,26 +177,6 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         </div>
       </div>
 
-      {/* Team Carousel */}
-      {homepageData?.teams?.length > 0 && (
-        <div className="div-17">
-          <div className="club-carousel-header">
-            <div className="club-carousel-title">CLUBS</div>
-            <div
-              className="club-carousel-action"
-              style={{ cursor: "pointer" }}
-              onClick={() => navigate("/teams")}
-            >
-              ALLE MANNSCHAFTEN
-            </div>
-          </div>
-          <div className="club-carousel-list">
-            {homepageData.teams.map((team: any) => (
-              <ClubCell key={team.id} team={team} />
-            ))}
-          </div>
-        </div>
-      )}
       {/* Partners */}
       <Partners
         className="design-component-instance-node"

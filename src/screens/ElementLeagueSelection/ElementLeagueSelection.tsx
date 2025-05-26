@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { ActionCell } from "../../components/ActionCell";
 import Banner from "../../components/Banner";
@@ -170,7 +170,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
                   <div className="page-content-24">NEWS</div>
                 </div>
                 <div className="news-container-grid-7">
-                  {homepageData?.news?.slice().reverse().map((newsItem: any) => (
+                  {homepageData?.news?.slice(-6).reverse().map((newsItem: any) => (
                     <NewsArticle
                       key={newsItem.id}
                       title={newsItem.title}
@@ -180,6 +180,10 @@ export const ElementLeagueSelection = (): JSX.Element => {
                     />
                   ))}
                 </div>
+                                <Link className="item" to="/news">
+                                    <button className="downloadBtn">Zu allen News Artikeln</button>
+                                </Link>
+
               </div>
             </div>
 
