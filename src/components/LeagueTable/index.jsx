@@ -46,15 +46,14 @@ export const LeagueTable = () => {
   const normalizedLeagueName = (leagueName || "").trim();
   const hideBlue = /1/.test(normalizedLeagueName) || /Master/i.test(normalizedLeagueName);
 
-  const mobileHeaders = ["", "Team", "M", "W", "D", "L", "G", "P"];
-  const desktopHeaders = [
-    "",
+  const headers = [
+    "", // rank
     "Team",
     "Matches",
     "W",
     "D",
     "L",
-    "Goals",
+    "G",
     "+/-",
     "Points",
   ];
@@ -79,23 +78,18 @@ export const LeagueTable = () => {
         <div className="table-cell table-cell--number">{team.wins}</div>
         <div className="table-cell table-cell--number">{team.draws}</div>
         <div className="table-cell table-cell--number">{team.losses}</div>
-        <div
-          className="table-cell table-cell--number goals-cell diff-mobile"
-        //   style={{ flex: isMobile ? 2 : 1 }}
-        >
+        <div className="table-cell table-cell--number goals-cell">
           {team.scored}:{team.against}
         </div>
-        {!isMobile && (
-          <div className="table-cell table-cell--number diff-mobile">
-            {team.difference > 0 ? `+${team.difference}` : team.difference}
-          </div>
-        )}
+        <div className="table-cell table-cell--number diff-cell">
+          {team.difference > 0 ? `+${team.difference}` : team.difference}
+        </div>
         <div className="table-cell table-cell--number">{team.points}</div>
       </div>
     ));
 
-  const renderHeader = (headers) => (
-    <div className="table-header nil-mobile">
+  const renderHeader = () => (
+    <div className="table-header">
       {headers.map((label, i) => (
         <div
           key={i}
@@ -126,7 +120,7 @@ export const LeagueTable = () => {
           </div>
         ) : (
           <div className={`table${!hideBlue ? " with-blue" : ""}`}>
-            {isMobile ? renderHeader(mobileHeaders) : renderHeader(desktopHeaders)}
+            {renderHeader()}
             {renderRows()}
           </div>
         )}

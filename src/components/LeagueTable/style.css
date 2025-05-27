@@ -110,11 +110,11 @@
 
 /* conditional stripes */
 .with-blue .table-row:nth-child(-n+3) .table-cell:first-child {
-  border-left: 4px solid blue;
+  border-left: 4px solid orange;
 }
 
 .table-row:nth-last-child(-n+2) .table-cell:first-child {
-  border-left: 4px solid red;
+  border-left: 4px solid rgb(243, 125, 125);
 }
 
 /* Only apply flex: 2 to the team column on mobile */
