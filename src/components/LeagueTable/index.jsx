@@ -108,14 +108,49 @@ export const LeagueTable = () => {
       </div>
     ));
 
-    const renderFooter = () => (
-    <div className="tb-footer">
-        <p><img src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png" alt="Trophy" width={14} style={{ verticalAlign: "middle", marginRight: "6px" }} /> = Meister</p>
-        <p><strong>P</strong> = Punkte</p>
-        <p><strong>+/-</strong> = Tor Differenz</p>
-        <p><strong>W-D-L</strong> = Siege - Unentschieden - Niederlagen</p>
-    </div>
-    );
+const renderFooter = () => (
+  <div className="tb-footer">
+    <p>
+      <img
+        src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png"
+        alt="Trophy"
+        width={14}
+        style={{ verticalAlign: "middle", marginRight: "6px" }}
+      />
+      = Meister
+    </p>
+    <p><strong>P</strong> = Punkte</p>
+    <p><strong>+/-</strong> = Tor Differenz</p>
+    <p><strong>W-D-L</strong> = Siege - Unentschieden - Niederlagen</p>
+    <p>
+      <span
+        style={{
+          display: "inline-block",
+          width: "10px",
+          height: "10px",
+          backgroundColor: "orange",
+          marginRight: "6px",
+          verticalAlign: "middle"
+        }}
+      ></span>
+      Aufsteiger
+    </p>
+    <p>
+      <span
+        style={{
+          display: "inline-block",
+          width: "10px",
+          height: "10px",
+          backgroundColor: "red",
+          marginRight: "6px",
+          verticalAlign: "middle",
+          borderWidth: "2px"
+        }}
+      ></span>
+      Absteiger
+    </p>
+  </div>
+);
 
   return (
     <div
