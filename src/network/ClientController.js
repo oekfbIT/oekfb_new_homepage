@@ -56,6 +56,16 @@ class ClientController {
   }
 
   /**
+   * Fetch a specific league.
+   * GET /leagues/code/:code
+   * @param {string} code - League code.
+   * @returns {Promise<Object>} List of clubs.
+   */
+  async fetchLeague(code) {
+    return this.apiService.get(`leagues/code/${code}`);
+  }
+
+  /**
    * Fetch details of a specific club.
    * GET /clubs/detail/:id
    * @param {string} id - Club ID.

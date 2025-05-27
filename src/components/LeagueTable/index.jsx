@@ -3,199 +3,134 @@ import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
-
 import LoadingIndicator from "../LoadingIndicator/LoadingIndicator";
 import "./style.css";
 
 export const LeagueTable = () => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
+
   const authService = new AuthService();
   const clientController = new ClientController();
+
   const [table, setTable] = useState([]);
+  const [leagueName, setLeagueName] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchTable = async () => {
-      const leagueCode = authService.getLeagueCode();
-      if (!leagueCode) {
+    const fetchData = async () => {
+      const code = authService.getLeagueCode();
+      if (!code) {
         console.error("No league code found in cookies.");
         setLoading(false);
         return;
       }
 
       try {
-        const tableData = await clientController.fetchTable(leagueCode);
-        setTable(tableData);
-      } catch (error) {
-        console.error("Error fetching table data:", error);
+        const tbl = await clientController.fetchTable(code);
+        setTable(tbl);
+
+        const league = await clientController.fetchLeague(code);
+        setLeagueName(league.name || "");
+      } catch (err) {
+        console.error("Error fetching data:", err);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchTable();
+    fetchData();
   }, []);
 
-  const renderMobileTable = () => (
-    <>
-      <div className="container-2">
-        <div className="div-wrapper-2">
-          <div className="table">
-            <header className="row-wrapper">
-              <div className="row">
-                <div className="filler" style={{ minWidth: "140px" }} />
-                {["M", "W", "D", "L", "G", "P"].map((label, idx) => (
-                  <div key={idx} className={`cell${idx ? `-${idx + 1}` : ""}`}>
-                    <div className={`text-wrapper-2${5 + idx}`}>{label}</div>
-                  </div>
-                ))}
-              </div>
-            </header>
-            <div className="body">
-              {loading ? (
-                <LoadingIndicator />
-              ) : (
-                table.map((team) => (
-                  <div className="row-2" key={team.id}>
-                    <div className="data-2">
-                      <div className="text-wrapper-31">{team.ranking}</div>
-                    </div>
-                    <img
-                      className="data-3"
-                      alt={team.name}
-                      src={team.image}
-                      onClick={() => navigate(`/team-detail/${team.id}`)}
-                    />
-                    <div className="container-wrapper">
-                      <div className="container-3">
-                        <div
-                          className="text-wrapper-32"
-                          onClick={() => navigate(`/team-detail/${team.id}`)}
-                        >
-                          {team.shortName || team.name}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="data-4">
-                      <div className="text-wrapper-33">
-                        {team.wins + team.draws + team.losses}
-                      </div>
-                    </div>
-                    <div className="data-5">
-                      <div className="text-wrapper-34">{team.wins}</div>
-                    </div>
-                    <div className="data-6">
-                      <div className="text-wrapper-34">{team.draws}</div>
-                    </div>
-                    <div className="data-7">
-                      <div className="text-wrapper-34">{team.losses}</div>
-                    </div>
-                    <div className="data-8">
-                      <div className="text-wrapper-35">
-                        {team.scored}:{team.against}
-                      </div>
-                    </div>
-                    <div className="data-9">
-                      <div className="text-wrapper-36">{team.points}</div>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+  const normalizedLeagueName = (leagueName || "").trim();
+  const hideBlue = /1/.test(normalizedLeagueName) || /Master/i.test(normalizedLeagueName);
 
-  const renderDesktopTable = () => (
-    <>
-      <div className="div-wrapper-2">
-        <div className="league-table-content">
-          <div className="row-wrapper">
-            <div className="row-4">
-              {["Matches", "W", "D", "L", "Tore", "+/-", "Punkte"].map(
-                (label, idx) => (
-                  <div key={idx} className={`cell-${7 + idx}`}>
-                    <div className={`text-wrapper-54`}>{label}</div>
-                  </div>
-                )
-              )}
-            </div>
-          </div>
-          <div className="league-table-cells">
-            {loading ? (
-          <LoadingIndicator/>
-        ) : (
-              table.map((team) => (
-                <div className="row-5" key={team.id}>
-                  <div className="data-20">
-                    <div className="text-wrapper-55">{team.ranking}</div>
-                  </div>
-                  <div className="data-30">
-                    <img
-                      className="mask-group"
-                      alt={team.name}
-                      src={team.image}
-                      onClick={() => navigate(`/team-detail/${team.id}`)}
-                    />
-                  </div>
-                  <div className="data-22">
-                    <div className="container-4">
-                      <div
-                        className="text-wrapper-56"
-                        onClick={() => navigate(`/team-detail/${team.id}`)}
-                      >
-                        {team.name}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="data-23">
-                    <div className="text-wrapper-57">
-                      {team.wins + team.draws + team.losses}
-                    </div>
-                  </div>
-                  <div className="data-24">
-                    <div className="text-wrapper-58">{team.wins}</div>
-                  </div>
-                  <div className="data-25">
-                    <div className="text-wrapper-58">{team.draws}</div>
-                  </div>
-                  <div className="data-26">
-                    <div className="text-wrapper-59">{team.losses}</div>
-                  </div>
-                  <div className="data-27">
-                    <div className="text-wrapper-60">
-                      {team.scored}:{team.against}
-                    </div>
-                  </div>
-                  <div className="data-28">
-                    <div className="text-wrapper-61">
-                      {team.difference > 0
-                        ? `+${team.difference}`
-                        : team.difference}
-                    </div>
-                  </div>
-                  <div className="data-29">
-                    <div className="text-wrapper-62">{team.points}</div>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
+  const mobileHeaders = ["", "Team", "M", "W", "D", "L", "G", "P"];
+  const desktopHeaders = [
+    "",
+    "Team",
+    "Matches",
+    "W",
+    "D",
+    "L",
+    "Goals",
+    "+/-",
+    "Points",
+  ];
+
+  const renderRows = () =>
+    table.map((team) => (
+      <div
+        key={team.id}
+        className="table-row"
+        onClick={() => navigate(`/team-detail/${team.id}`)}
+      >
+        <div className="table-cell table-cell--number">{team.ranking}</div>
+        <div className="table-cell table-cell--img">
+          <img src={team.image} alt={team.name} width={24} height={24} />
         </div>
+        <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>
+          {isMobile ? team.shortName || team.name : team.name}
+        </div>
+        <div className="table-cell table-cell--number">
+          {team.wins + team.draws + team.losses}
+        </div>
+        <div className="table-cell table-cell--number">{team.wins}</div>
+        <div className="table-cell table-cell--number">{team.draws}</div>
+        <div className="table-cell table-cell--number">{team.losses}</div>
+        <div
+          className="table-cell table-cell--number goals-cell diff-mobile"
+        //   style={{ flex: isMobile ? 2 : 1 }}
+        >
+          {team.scored}:{team.against}
+        </div>
+        {!isMobile && (
+          <div className="table-cell table-cell--number diff-mobile">
+            {team.difference > 0 ? `+${team.difference}` : team.difference}
+          </div>
+        )}
+        <div className="table-cell table-cell--number">{team.points}</div>
       </div>
-    </>
+    ));
+
+  const renderHeader = (headers) => (
+    <div className="table-header">
+      {headers.map((label, i) => (
+        <div
+          key={i}
+          className={
+            "table-cell" +
+            (i === 0
+              ? " table-cell--number"
+              : i === 1
+              ? isMobile
+                ? " table-cell--team-mobile"
+                : ""
+              : " table-cell--number") +
+            (i === 0 && isMobile ? " table-cell--img" : "")
+          }
+        >
+          {label}
+        </div>
+      ))}
+    </div>
   );
 
   return (
-    <div
-      className="element-table-mobile"
-      style={{ width: isMobile ? "100%" : "100%", maxWidth: "1200px" }}
-    >
-      {isMobile ? renderMobileTable() : renderDesktopTable()}
+    <div className="element-table-mobile" style={{ maxWidth: "1200px", width: "100%" }}>
+      <div className="league-table-wrapper">
+        {loading ? (
+          <div className="loading-wrapper">
+            <LoadingIndicator />
+          </div>
+        ) : (
+          <div className={`table${!hideBlue ? " with-blue" : ""}`}>
+            {isMobile ? renderHeader(mobileHeaders) : renderHeader(desktopHeaders)}
+            {renderRows()}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
