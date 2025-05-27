@@ -23,7 +23,7 @@
 
 .league-table-wrapper {
   width: 100%;
-  max-width: 1140px;
+  /* max-width: 1140px; */
   padding: var(--gap-lg) 0;
 }
 

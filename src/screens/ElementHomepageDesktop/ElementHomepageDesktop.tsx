@@ -11,7 +11,7 @@ import { LeagueTable } from "../../components/LeagueTable";
 import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { MatchupCell } from "../../components/MatchupCell";
 import { Navigation } from "../../components/Navigation";
-import { NewsArticle } from "../../components/NewsArticle";
+import { NewsRow } from "../../components/NewsRow";
 import { Partners } from "../../components/Partners/Partners";
 import { Sponsors } from "../../components/Sponsors";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
@@ -183,31 +183,33 @@ export const ElementHomepageDesktop = (): JSX.Element => {
         vWhite="/img/v-white-1-9.svg"
       />
       {/* News Section */}
-      <div className="news-7">
+        <div className="news-7">
         <div className="news-container-6">
-          <div className="page-content-23">
+            <div className="page-content-23">
             <div className="page-content-24">NEWS UND SPIELBERICHTE</div>
-          </div>
-          <div className="news-container-grid-7">
+            </div>
+
+            <div className="news-container-grid-7">
             {homepageData?.news
                 ?.slice(-6)
                 .reverse()
                 .map((newsItem: any) => (
-                    <NewsArticle
+                <NewsRow
                     key={newsItem.id}
                     title={newsItem.title}
                     image={newsItem.image}
-                    text={newsItem.text}
+                    text={newsItem.created}
                     id={newsItem.id}
-                    />
+                    youtubeUrl={newsItem.youtube}
+                />
                 ))}
-          </div>
-                <Link className="item" to="/news">
-                    <button className="downloadBtn">Zu allen News Artikeln</button>
-                </Link>
+            </div>
 
+            <Link className="item" to="/news">
+            <button className="downloadBtn">Zu allen News Artikeln</button>
+            </Link>
         </div>
-      </div>
+        </div>
       {/* Footer */}
       <Footer />
     </div>

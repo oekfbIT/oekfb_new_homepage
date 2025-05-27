@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
-import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import { Navigation } from "../../components/Navigation";
 import { Footer } from "../../components/Footer";
-import ClientController from "../../network/ClientController";
+import { IFrame } from "../../components/iFrame";
+import { Navigation } from "../../components/Navigation";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
 import "./style.css";
 
 interface NewsDetail {
@@ -14,6 +15,7 @@ interface NewsDetail {
     date: string;
     image: string;
     text: string;
+    youtube: string;
 }
 
 export const ElementNewsDetail = (): JSX.Element => {
@@ -101,6 +103,16 @@ export const ElementNewsDetail = (): JSX.Element => {
                                             backgroundImage: `url(${newsDetail.image || ""})`,
                                         }}
                                     />
+                                </div>
+
+                                <div className="hero-img">
+                                              <IFrame
+                                                className="custom-class"
+                                                title=""
+                                                subtitle=""
+                                                youtubeUrl={newsDetail.youtube || ""}
+                                                linkTo={newsDetail.youtube || "#"}
+                                              />
                                 </div>
                             </div>
                         </div>
