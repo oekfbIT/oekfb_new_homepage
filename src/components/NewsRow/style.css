@@ -1,7 +1,7 @@
 /* Grid container for news */
 .element-homepage-desktop .news-container-grid-7 {
   display: grid;
-  grid-template-columns: 1fr;
+  /* grid-template-columns: 1fr; */
   gap: 20px;
   width: 100%;
   max-width: 1200px;

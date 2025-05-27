@@ -230,11 +230,11 @@
 
 .element-homepage-desktop .news-container-grid-7 {
   display: grid;
-  grid-template-columns: 1fr; /* single column on mobile */
+  /* grid-template-columns: 1fr;  */
   gap: 20px;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0 16px;
   box-sizing: border-box;
 }
