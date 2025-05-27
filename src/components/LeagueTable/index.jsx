@@ -82,28 +82,17 @@ export const LeagueTable = () => {
       </div>
     ));
 
-  const renderHeader = () => (
-    <div className="table-header">
-      {headers.map((label, i) => (
-        <div
-          key={i}
-          className={
-            "table-cell" +
-            (i === 0
-              ? " table-cell--number"
-              : i === 1
-              ? isMobile
-                ? " table-cell--team-mobile nil-mobile"
-                : ""
-              : " table-cell--number") +
-            (i === 0 && isMobile ? " table-cell--img" : "")
-          }
-        >
-          {label}
-        </div>
-      ))}
-    </div>
-  );
+const renderHeader = () => (
+  <div className="table-header">
+    <div className="table-cell table-cell--number nil-mobile"></div> {/* Rank */}
+    <div className="table-cell table-cell--img"></div>                {/* Image */}
+    <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>Team</div>
+    <div className="table-cell table-cell--number nil-mobile">Matches</div>
+    <div className="table-cell table-cell--number">W-D-L</div>
+    <div className="table-cell table-cell--number diff-cell">+/-</div>
+    <div className="table-cell table-cell--number">Points</div>
+  </div>
+);
 
    const renderFooter = () => (
     <div className="tb-footer">
