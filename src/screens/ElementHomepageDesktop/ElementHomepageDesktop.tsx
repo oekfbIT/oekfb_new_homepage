@@ -121,7 +121,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
       {homepageData?.teams?.length > 0 && (
         <div className="div-17">
           <div className="club-carousel-header">
-            <div className="club-carousel-title">CLUBS</div>
+            <div className="club-carousel-title" style={{marginLeft: "12px"}}>CLUBS</div>
             <div
               className="club-carousel-action"
               style={{ cursor: "pointer" }}
@@ -130,7 +130,7 @@ export const ElementHomepageDesktop = (): JSX.Element => {
               ALLE MANNSCHAFTEN
             </div>
           </div>
-          <div className="club-carousel-list">
+          <div className="club-carousel-list" style={{marginLeft: "12px"}}>
             {homepageData.teams.map((team: any) => (
               <ClubCell key={team.id} team={team} />
             ))}

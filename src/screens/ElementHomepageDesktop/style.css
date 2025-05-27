@@ -59,6 +59,7 @@
   scrollbar-width: none; /* Hide scrollbar for Firefox */
   -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
   width: -webkit-fill-available;
+  margin-left: 12px;
 }
 
 .element-homepage-desktop .matchup-row-list::-webkit-scrollbar {

@@ -66,7 +66,7 @@ export const LeagueTable = () => {
         className="table-row"
         onClick={() => navigate(`/team-detail/${team.id}`)}
       >
-        <div className="table-cell table-cell--number">{team.ranking}</div>
+        <div className="table-cell table-cell--number nil-mobile">{team.ranking}</div>
         <div className="table-cell table-cell--img">
           <img src={team.image} alt={team.name} width={24} height={24} />
         </div>
@@ -95,7 +95,7 @@ export const LeagueTable = () => {
     ));
 
   const renderHeader = (headers) => (
-    <div className="table-header">
+    <div className="table-header nil-mobile">
       {headers.map((label, i) => (
         <div
           key={i}
