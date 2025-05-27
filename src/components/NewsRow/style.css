@@ -35,8 +35,8 @@
 
 /* Image in the row */
 .news-row-img {
-  width: 120px;
-  height: 90px;
+  width: 90px;
+  height: 60px;
   object-fit: cover;
   flex-shrink: 0;
   border-radius: 4px;
