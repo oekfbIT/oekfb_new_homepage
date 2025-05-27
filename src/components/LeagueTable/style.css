@@ -113,21 +113,33 @@
   border-left: 4px solid orange;
 }
 
-.table-row:nth-last-child(-n+2) .table-cell:first-child {
+.table-row:nth-last-child(-n+3) .table-cell:first-child {
   border-left: 4px solid rgb(243, 125, 125);
 }
 
 /* Only apply flex: 2 to the team column on mobile */
 @media (max-width: 500px) {
   .table-cell--team-mobile {
-    flex: 3;
+    flex: 4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+   .img-mobile {
+    flex: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .rank-mobile {
+    flex: 2;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 }
 
 .diff-mobile {
-    flex: 2;
+    flex: 3;
     overflow: hidden;
     text-overflow: ellipsis;
   }

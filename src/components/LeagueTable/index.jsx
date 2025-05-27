@@ -46,14 +46,24 @@ export const LeagueTable = () => {
   const normalizedLeagueName = (leagueName || "").trim();
   const hideBlue = /1/.test(normalizedLeagueName) || /Master/i.test(normalizedLeagueName);
 
-  const headers = [
-    "",       // Rank #
-    "Team",   // Team Name
-    "Matches",
-    "W-D-L",
-    "+/-",
-    "Points",
-  ];
+  const desktopHeaders = ["", "", "Team", "Matches", "W-D-L", "+/-", "Points"];
+  const mobileHeaders = ["", "", "T", "M", "WDL", "+/-", "P"];
+
+  const renderHeader = () => {
+    const headers = isMobile ? mobileHeaders : desktopHeaders;
+
+    return (
+      <div className="table-header">
+        <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>{headers[0]}</div>
+        <div className="table-cell table-cell--img">{headers[1]}</div>
+        <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>{headers[2]}</div>
+        <div className={`table-cell table-cell--number ${isMobile ? "" : "nil-mobile"}`}>{headers[3]}</div>
+        <div className="table-cell table-cell--number">{headers[4]}</div>
+        <div className="table-cell table-cell--number diff-cell">{headers[5]}</div>
+        <div className="table-cell table-cell--number">{headers[6]}</div>
+      </div>
+    );
+  };
 
   const renderRows = () =>
     table.map((team) => (
@@ -62,44 +72,50 @@ export const LeagueTable = () => {
         className="table-row"
         onClick={() => navigate(`/team-detail/${team.id}`)}
       >
-        <div className="table-cell table-cell--number nil-mobile">{team.ranking}</div>
-        <div className="table-cell table-cell--img">
+        <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>
+          {team.ranking === 1 && (
+            <img
+              src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png"
+              alt="Trophy"
+              width={15}
+              height={15}
+              style={{ marginRight: "6px" }}
+            />
+          )}
+          {team.ranking}
+        </div>
+        <div className="table-cell table-cell--img img-mobile">
           <img src={team.image} alt={team.name} width={24} height={24} />
         </div>
         <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>
           {isMobile ? team.shortName || team.name : team.name}
         </div>
-        <div className="table-cell table-cell--number nil-mobile">
+        <div className={`table-cell table-cell--number ${isMobile ? "" : "nil-mobile"}`}>
           {team.wins + team.draws + team.losses}
         </div>
-        <div className="table-cell table-cell--number">
+        <div className="table-cell table-cell--number ">
           {team.wins}-{team.draws}-{team.losses}
         </div>
         <div className="table-cell table-cell--number diff-cell">
-          {team.difference > 0 ? `+${team.difference}` : team.difference}
+          {isMobile
+            ? team.difference > 0
+              ? `+${team.difference}`
+              : team.difference
+            : `${team.scored} : ${team.against}`}
         </div>
         <div className="table-cell table-cell--number">{team.points}</div>
       </div>
     ));
 
-const renderHeader = () => (
-  <div className="table-header">
-    <div className="table-cell table-cell--number nil-mobile"></div> {/* Rank */}
-    <div className="table-cell table-cell--img"></div>                {/* Image */}
-    <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>Team</div>
-    <div className="table-cell table-cell--number nil-mobile">Matches</div>
-    <div className="table-cell table-cell--number">W-D-L</div>
-    <div className="table-cell table-cell--number diff-cell">+/-</div>
-    <div className="table-cell table-cell--number">Points</div>
-  </div>
-);
-
-   const renderFooter = () => (
-    <div className="tb-footer">
-            </div>
+  const renderFooter = () => (
+    <div className="tb-footer">{/* Optional footer */}</div>
   );
+
   return (
-    <div className="element-table-mobile" style={{ maxWidth: "1200px", width: "100%", background: "white"}}>
+    <div
+      className="element-table-mobile"
+      style={{ maxWidth: "1200px", width: "100%", background: "white" }}
+    >
       <div className="league-table-wrapper">
         {loading ? (
           <div className="loading-wrapper">
@@ -110,7 +126,6 @@ const renderHeader = () => (
             {renderHeader()}
             {renderRows()}
             {renderFooter()}
-
           </div>
         )}
       </div>
