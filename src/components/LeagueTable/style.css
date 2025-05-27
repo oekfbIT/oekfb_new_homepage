@@ -34,7 +34,7 @@
 .table-header,
 .table-row {
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
 }
 
@@ -120,14 +120,14 @@
 /* Only apply flex: 2 to the team column on mobile */
 @media (max-width: 500px) {
   .table-cell--team-mobile {
-    flex: 10;
+    flex: 3;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 }
 
 .diff-mobile {
-    flex: 5;
+    flex: 2;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -136,4 +136,13 @@
     flex: 0.2;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+
+  .tb-footer {
+    background-color: #ffffff;
+    margin: 14px;
+    font-size: 0.8rem;
+    font-family: "Inter", Helvetica, sans-serif;
+
   }

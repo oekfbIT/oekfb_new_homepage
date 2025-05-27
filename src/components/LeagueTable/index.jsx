@@ -47,13 +47,10 @@ export const LeagueTable = () => {
   const hideBlue = /1/.test(normalizedLeagueName) || /Master/i.test(normalizedLeagueName);
 
   const headers = [
-    "", // rank
-    "Team",
+    "",       // Rank #
+    "Team",   // Team Name
     "Matches",
-    "W",
-    "D",
-    "L",
-    "G",
+    "W-D-L",
     "+/-",
     "Points",
   ];
@@ -72,14 +69,11 @@ export const LeagueTable = () => {
         <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>
           {isMobile ? team.shortName || team.name : team.name}
         </div>
-        <div className="table-cell table-cell--number">
+        <div className="table-cell table-cell--number nil-mobile">
           {team.wins + team.draws + team.losses}
         </div>
-        <div className="table-cell table-cell--number">{team.wins}</div>
-        <div className="table-cell table-cell--number">{team.draws}</div>
-        <div className="table-cell table-cell--number">{team.losses}</div>
-        <div className="table-cell table-cell--number goals-cell">
-          {team.scored}:{team.against}
+        <div className="table-cell table-cell--number">
+          {team.wins}-{team.draws}-{team.losses}
         </div>
         <div className="table-cell table-cell--number diff-cell">
           {team.difference > 0 ? `+${team.difference}` : team.difference}
@@ -99,7 +93,7 @@ export const LeagueTable = () => {
               ? " table-cell--number"
               : i === 1
               ? isMobile
-                ? " table-cell--team-mobile"
+                ? " table-cell--team-mobile nil-mobile"
                 : ""
               : " table-cell--number") +
             (i === 0 && isMobile ? " table-cell--img" : "")
@@ -111,8 +105,14 @@ export const LeagueTable = () => {
     </div>
   );
 
+   const renderFooter = () => (
+    <div className="tb-footer">
+
+        <p>Tore </p>
+    </div>
+  );
   return (
-    <div className="element-table-mobile" style={{ maxWidth: "1200px", width: "100%" }}>
+    <div className="element-table-mobile" style={{ maxWidth: "1200px", width: "100%", background: "white"}}>
       <div className="league-table-wrapper">
         {loading ? (
           <div className="loading-wrapper">
@@ -122,6 +122,8 @@ export const LeagueTable = () => {
           <div className={`table${!hideBlue ? " with-blue" : ""}`}>
             {renderHeader()}
             {renderRows()}
+            {renderFooter()}
+
           </div>
         )}
       </div>
