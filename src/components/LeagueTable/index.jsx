@@ -72,7 +72,8 @@ export const LeagueTable = () => {
         className="table-row"
         onClick={() => navigate(`/team-detail/${team.id}`)}
       >
-        <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>
+        {/* <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}> */}
+        <div className={`table-cell table-cell--number nil-mobile `}>
           {team.ranking === 1 && (
             <img
               src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png"
@@ -84,16 +85,16 @@ export const LeagueTable = () => {
           )}
           {team.ranking}
         </div>
-        <div className="table-cell table-cell--img img-mobile">
+        <div className="table-cell table-cell--img ">
           <img src={team.image} alt={team.name} width={24} height={24} />
         </div>
         <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>
           {isMobile ? team.shortName || team.name : team.name}
         </div>
-        <div className={`table-cell table-cell--number ${isMobile ? "" : "nil-mobile"}`}>
+        <div className={`table-cell table-cell--number ${isMobile ? "nil-mobile" : "nil-mobile"}`}>
           {team.wins + team.draws + team.losses}
         </div>
-        <div className="table-cell table-cell--number ">
+        <div className="table-cell table-cell--number diff-mobile ">
           {team.wins}-{team.draws}-{team.losses}
         </div>
         <div className="table-cell table-cell--number diff-cell">
@@ -107,9 +108,14 @@ export const LeagueTable = () => {
       </div>
     ));
 
-  const renderFooter = () => (
-    <div className="tb-footer">{/* Optional footer */}</div>
-  );
+    const renderFooter = () => (
+    <div className="tb-footer">
+        <p><img src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png" alt="Trophy" width={14} style={{ verticalAlign: "middle", marginRight: "6px" }} /> = Meister</p>
+        <p><strong>P</strong> = Punkte</p>
+        <p><strong>+/-</strong> = Tor Differenz</p>
+        <p><strong>W-D-L</strong> = Siege - Unentschieden - Niederlagen</p>
+    </div>
+    );
 
   return (
     <div

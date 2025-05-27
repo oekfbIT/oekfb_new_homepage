@@ -126,7 +126,7 @@
   }
 
    .img-mobile {
-    flex: 2;
+    flex: 0.2;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -150,11 +150,34 @@
     text-overflow: ellipsis;
   }
 
-
-  .tb-footer {
-    background-color: #ffffff;
-    margin: 14px;
-    font-size: 0.8rem;
-    font-family: "Inter", Helvetica, sans-serif;
-
+    .one-mobile {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
+
+.tb-footer {
+  background-color: orange;
+  margin: 14px;
+  font-size: 0.7rem;
+  font-family: "Inter", Helvetica, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 8px 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+@media (max-width: 500px) {
+  .tb-footer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+    .nil-mobile {
+    flex: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+}
