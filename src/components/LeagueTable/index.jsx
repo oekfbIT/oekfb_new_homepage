@@ -96,9 +96,7 @@ const renderHeader = () => (
 
    const renderFooter = () => (
     <div className="tb-footer">
-
-        <p>Tore </p>
-    </div>
+            </div>
   );
   return (
     <div className="element-table-mobile" style={{ maxWidth: "1200px", width: "100%", background: "white"}}>
