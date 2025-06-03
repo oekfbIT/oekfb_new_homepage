@@ -90,6 +90,8 @@ export const DesktopNav = ({
       code: "IBK2",
       id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8",
     },
+    {img: "/img/league-row-item-content-img-90.png",text: "1. Liga Niederösterreich", code: "NÖ1", id: "B844ED89-6766-49BC-9996-5572AA7B1FB7" }, // new
+    { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Bregenz", code: "BGZ", id: "32B5B0E6-7F8E-4F82-8837-F6A9EE103D91" }, // new
   ];
 
   // Fetch active league from cookie on mount

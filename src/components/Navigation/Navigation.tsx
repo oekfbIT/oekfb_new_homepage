@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import "./style.css";
-import { ElementMobilenav } from "../../screens/ElementMobilenav";
-import AuthService from "../../network/AuthService";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthService from "../../network/AuthService";
+import { ElementMobilenav } from "../../screens/ElementMobilenav";
+import "./style.css";
 
 export const Navigation = ({
                                className = "",
@@ -31,6 +31,8 @@ export const Navigation = ({
         { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Salzburg", code: "SBZ", id: "4C0521AB-B28B-4C5B-A147-E6BA50042348" },
         { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Innsbruck", code: "IBK", id: "AD2C1309-7F78-4E31-9FFC-957D1A38A43E" },
         { img: "/img/league-row-item-content-img-90.png", text: "2. Liga Innsbruck", code: "IBK2", id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8" },
+        { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Niederösterreich", code: "NÖ1", id: "B844ED89-6766-49BC-9996-5572AA7B1FB7" }, // new
+        { img: "/img/league-row-item-content-img-90.png", text: "1. Liga Bregenz", code: "BGZ", id: "32B5B0E6-7F8E-4F82-8837-F6A9EE103D91" }, // new
     ];
 
     // On mount, load active league from cookie
