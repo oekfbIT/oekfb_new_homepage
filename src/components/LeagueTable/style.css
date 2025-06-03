@@ -139,7 +139,6 @@
 }
 
 .diff-mobile {
-    flex: 3;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -175,6 +174,12 @@
     grid-template-columns: repeat(2, 1fr);
   }
     .nil-mobile {
+    flex: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .diff-mobile {
     flex: 2;
     overflow: hidden;
     text-overflow: ellipsis;
