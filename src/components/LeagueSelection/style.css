@@ -42,3 +42,12 @@
   position: relative;
   transform: rotate(180deg);
 }
+@media (max-width: 500px) {
+    .league-selection .subtitle {
+    font-size: 12px;
+  }
+
+.league-selection .name {
+    font-size: 15px;
+  }
+}

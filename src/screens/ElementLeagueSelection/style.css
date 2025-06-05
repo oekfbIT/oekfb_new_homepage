@@ -123,7 +123,7 @@
 }
 
 .element-league-selection .league-selection-cell {
-  min-width: 260px;
+  /* min-width: 260px; */
   flex-grow: 1; /* Allows it to expand within grid cell */
   width: 100%; /* Ensures it takes up the full width of its grid cell */
 }
@@ -258,3 +258,13 @@
         grid-template-columns: 1fr; /* Single column on small screens */
     }
   }
+/* New override: always two columns for leagues on mobile */
+@media (max-width: 500px) {
+  .element-league-selection .league-cell-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .element-league-selection {
+    font-size: 14px;
+  }
+}
