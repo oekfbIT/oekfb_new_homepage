@@ -27,7 +27,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
   const [allLeagues, setAllLeagues] = useState<any[]>([]);
   const [filteredLeagues, setFilteredLeagues] = useState<any[]>([]);
   const [homepageData, setHomepageData] = useState<any>(null);
-  const [selectedState, setSelectedState] = useState<string>("wien");
+  const [selectedState, setSelectedState] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigate = useNavigate();
 
@@ -60,9 +60,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
         );
 
         setAllLeagues(validLeagues);
-        setFilteredLeagues(
-          validLeagues.filter((league) => league.state === "wien")
-        );
+        setFilteredLeagues(validLeagues); // no filter on load
       } catch (error) {
         console.error("Error fetching leagues:", error);
       } finally {
@@ -75,8 +73,12 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
   const handleStateChange = (state: string) => {
     setSelectedState(state);
-    const filtered = allLeagues.filter((league) => league.state === state);
-    setFilteredLeagues(filtered);
+
+    if (!state) {
+      setFilteredLeagues(allLeagues);
+    } else {
+      setFilteredLeagues(allLeagues.filter((league) => league.state === state));
+    }
   };
 
   const handleLeagueSelect = (league: any) => {
@@ -118,7 +120,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
                 text="Bundesland auswählen"
                 placeholder="Wählen Sie ein Bundesland"
                 onChange={handleStateChange}
-                defaultValue="wien"
+                defaultValue=""
               />
 
               <div className="league-cell-list">
@@ -140,9 +142,9 @@ export const ElementLeagueSelection = (): JSX.Element => {
               </div>
             </div>
 
-      <div style={{ width: "100%" }}>
-        <Banner/>
-      </div>
+            <div style={{ width: "100%" }}>
+              <Banner />
+            </div>
 
             <div className="action-cell-2">
               <ActionCell
@@ -170,7 +172,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
                   <div className="page-content-24">NEWS</div>
                 </div>
                 <div className="news-container-grid-7">
-                  {homepageData?.news?.slice(-6).reverse().map((newsItem: any) => (
+                  {homepageData?.news?.slice().reverse().map((newsItem: any) => (
                     <NewsArticle
                       key={newsItem.id}
                       title={newsItem.title}
@@ -180,10 +182,9 @@ export const ElementLeagueSelection = (): JSX.Element => {
                     />
                   ))}
                 </div>
-                                <Link className="item" to="/news">
-                                    <button className="downloadBtn">Zu allen News Artikeln</button>
-                                </Link>
-
+                <Link className="item" to="/news">
+                  <button className="downloadBtn">Zu allen News Artikeln</button>
+                </Link>
               </div>
             </div>
 
