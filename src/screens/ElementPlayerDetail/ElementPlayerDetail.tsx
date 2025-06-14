@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
@@ -260,7 +260,16 @@ export const ElementPlayerDetail = () => {
             <div className="page-content" style={{ padding: "20px 0px" }}>
                 {/* Stats Section */}
                 <section style={{ width: "-webkit-fill-available" }}>
-                    <h2 className="secTitle">{playerData?.name || "Player"} Statistiken</h2>
+                    <h2 className="secTitle">{playerData?.name || "Player"} Ewige Statistik</h2>
+                    <div className="stats-grid" style={{ justifyItems: "center" }}>
+                        {playerStats.map(([statKey, statValue]) => (
+                            <StatCell key={statKey} statKey={statKey} statValue={statValue} />
+                        ))}
+                    </div>
+                </section>
+
+                <section style={{ width: "-webkit-fill-available" }}>
+                    <h2 className="secTitle">{playerData?.name || "Player"} Saison Statistik</h2>
                     <div className="stats-grid" style={{ justifyItems: "center" }}>
                         {playerStats.map(([statKey, statValue]) => (
                             <StatCell key={statKey} statKey={statKey} statValue={statValue} />

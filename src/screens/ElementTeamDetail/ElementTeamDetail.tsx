@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
 import { Footer } from "../../components/Footer";
 import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
-import { NewsArticle } from "../../components/NewsArticle";
 import { StatCell } from "../../components/StatCell";
 import { TeamDetailSquad } from "../../components/TeamDetailSquad";
 import { TeamHeader } from "../../components/TeamHeader";
@@ -102,9 +101,20 @@ export const ElementTeamDetail = (): JSX.Element => {
                     </div>
                 </section>
 
-                <section style={{ width: "-webkit-fill-available" }}>
+                <section style={{ width: "-webkit-fill-available", marginTop: "25px" }}>
                     <h2 className="secTitle">
-                        {teamData?.club?.team_name} Statistiken
+                        {teamData?.club?.team_name} Ewige Statistiken
+                    </h2>
+                    <div className="stats-grid" style={{ justifyItems: "center" }}>
+                        {teamStats.map(([statKey, statValue]) => (
+                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
+                        ))}
+                    </div>
+                </section>
+
+                 <section style={{ width: "-webkit-fill-available", marginTop: "25px" }}>
+                    <h2 className="secTitle">
+                        {teamData?.club?.team_name} Saison Statistiken
                     </h2>
                     <div className="stats-grid" style={{ justifyItems: "center" }}>
                         {teamStats.map(([statKey, statValue]) => (
@@ -129,21 +139,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                     </div>
                 </section>
 
-                <section style={{ width: "-webkit-fill-available" }}>
-                    <h2 className="secTitle">News & Spielberichte</h2>
-                    <div className="news-wrapper">
-                        <div className="news-grid">
-                            {news?.reverse().map((newsItem: any) => (
-                                <NewsArticle
-                                    key={newsItem.id}
-                                    id={newsItem.id}
-                                    title={newsItem.title}
-                                    image={newsItem.image}
-                                    text={newsItem.text}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                <section style={{ height: "35px" }}>
                 </section>
             </div>
 

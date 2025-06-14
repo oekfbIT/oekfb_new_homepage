@@ -10,7 +10,7 @@ import { IFrame } from "../../components/iFrame";
 import { LeagueSelection } from "../../components/LeagueSelection";
 import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
 import { Navigation } from "../../components/Navigation";
-import { NewsArticle } from "../../components/NewsArticle";
+import { NewsRow } from "../../components/NewsRow";
 import { Partners } from "../../components/Partners/Partners";
 import { Sponsors } from "../../components/Sponsors";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
@@ -166,7 +166,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
             <Sponsors className="instance-node-2" vWhite="/img/v-white-1-1.svg" />
 
-            <div className="news-7">
+            {/* <div className="news-7">
               <div className="news-container-6">
                 <div className="page-content-23">
                   <div className="page-content-24">NEWS</div>
@@ -186,7 +186,35 @@ export const ElementLeagueSelection = (): JSX.Element => {
                   <button className="downloadBtn">Zu allen News Artikeln</button>
                 </Link>
               </div>
+            </div> */}
+      {/* News Section */}
+        <div className="news-7">
+        <div className="news-container-6">
+            <div className="page-content-23">
+            <div className="page-content-24" style={{ margin: "10px"}}>NEWS UND SPIELBERICHTE</div>
             </div>
+
+            <div className="news-container-grid-7">
+            {homepageData?.news
+                ?.slice(-6)
+                .reverse()
+                .map((newsItem: any) => (
+                <NewsRow
+                    key={newsItem.id}
+                    title={newsItem.title}
+                    image={newsItem.image}
+                    text={newsItem.created}
+                    id={newsItem.id}
+                    youtubeUrl={newsItem.youtube}
+                />
+                ))}
+            </div>
+
+            <Link className="item" to="/news">
+            <button className="downloadBtn">Zu allen News Artikeln</button>
+            </Link>
+        </div>
+        </div>
 
             <div style={{ paddingBottom: "40px" }}></div>
             <Partners className="partners-section" />
