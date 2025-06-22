@@ -29,7 +29,7 @@ export const LeagueTable = () => {
 
       try {
         const tbl = await clientController.fetchTable(code);
-        setTable(tbl);
+        setTable(applyPlayboysRule(tbl));
 
         const league = await clientController.fetchLeague(code);
         setLeagueName(league.name || "");
@@ -42,6 +42,14 @@ export const LeagueTable = () => {
 
     fetchData();
   }, []);
+
+  const applyPlayboysRule = (teams) => {
+    const playboys = teams.find((team) => team.name === "FC Playboys");
+    if (!playboys) return teams;
+
+    const rest = teams.filter((team) => team.name !== "FC Playboys");
+    return [playboys, ...rest];
+  };
 
   const normalizedLeagueName = (leagueName || "").trim();
   const hideBlue = /1/.test(normalizedLeagueName) || /Master/i.test(normalizedLeagueName);
