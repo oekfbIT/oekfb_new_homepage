@@ -73,47 +73,48 @@ export const LeagueTable = () => {
     );
   };
 
-  const renderRows = () =>
-    table.map((team) => (
-      <div
-        key={team.id}
-        className="table-row"
-        onClick={() => navigate(`/team-detail/${team.id}`)}
-      >
-        <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>
-          {team.ranking === 1 && (
-            <img
-              src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png"
-              alt="Trophy"
-              width={15}
-              height={15}
-              style={{ marginRight: "6px" }}
-            />
-          )}
-          {team.ranking}
-        </div>
-        <div className="table-cell table-cell--img">
-          <img src={team.image} alt={team.name} width={24} height={24} />
-        </div>
-        <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>
-          {isMobile ? team.shortName || team.name : team.name}
-        </div>
-        <div className={`table-cell table-cell--number ${isMobile ? "" : "nil-mobile"}`}>
-          {team.wins + team.draws + team.losses}
-        </div>
-        <div className="table-cell table-cell--number diff-mobile">
-          {team.wins}-{team.draws}-{team.losses}
-        </div>
-        <div className="table-cell table-cell--number diff-cell">
-          {isMobile
-            ? team.difference > 0
-              ? `+${team.difference}`
-              : team.difference
-            : `${team.scored} : ${team.against}`}
-        </div>
-        <div className="table-cell table-cell--number">{team.points}</div>
+const renderRows = () =>
+  table.map((team, index) => (
+    <div
+      key={team.id}
+      className="table-row"
+      onClick={() => navigate(`/team-detail/${team.id}`)}
+    >
+      <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>
+        {index === 0 && (
+          <img
+            src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png"
+            alt="Trophy"
+            width={15}
+            height={15}
+            style={{ marginRight: "6px" }}
+          />
+        )}
+        {team.ranking}
       </div>
-    ));
+      <div className="table-cell table-cell--img">
+        <img src={team.image} alt={team.name} width={24} height={24} />
+      </div>
+      <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>
+        {isMobile ? team.shortName || team.name : team.name}
+      </div>
+      <div className={`table-cell table-cell--number ${isMobile ? "" : "nil-mobile"}`}>
+        {team.wins + team.draws + team.losses}
+      </div>
+      <div className="table-cell table-cell--number diff-mobile">
+        {team.wins}-{team.draws}-{team.losses}
+      </div>
+      <div className="table-cell table-cell--number diff-cell">
+        {isMobile
+          ? team.difference > 0
+            ? `+${team.difference}`
+            : team.difference
+          : `${team.scored} : ${team.against}`}
+      </div>
+      <div className="table-cell table-cell--number">{team.points}</div>
+    </div>
+  ));
+
 
   const renderFooter = () => (
     <div className="tb-footer">
