@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import {useNavigate, useParams} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
-import { Transfer } from "../../components/Transfer";
 import { Navigation } from "../../components/Navigation";
+import { Transfer } from "../../components/Transfer";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import ClientController from "../../network/ClientController";
-import { useWindowWidth } from "../../breakpoints";
 
 import "./style.css";
 
 export const ElementTransfer = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const isMobile = screenWidth < 900;
-    const { transferID } = useParams<{ transferID: string }>();
+    const { id } = useParams();
 
     const [transfer, setTransfer] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -22,43 +22,53 @@ export const ElementTransfer = (): JSX.Element => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log("🔍 Mounted with transfer ID:", id);
+
+        if (!id) {
+            setError("Ungültige Transfer-ID.");
+            setLoading(false);
+            return;
+        }
+
         const fetchTransfer = async () => {
             try {
-                const response = await clientController.fetchTransfer(transferID);
-                if (!response) {
+                const response = await clientController.fetchTransfer(id);
+                console.log("✅ Fetched transfer:", response);
+
+                if (!response || !response.playerName) {
                     setError("Keine gültigen Transferdaten gefunden.");
                     return;
                 }
+
                 setTransfer(response);
             } catch (error) {
+                console.error("❌ Fehler beim Laden der Transferdaten:", error);
                 setError("Fehler beim Laden der Transferdaten.");
             } finally {
                 setLoading(false);
             }
         };
 
-        if (transferID) {
-            fetchTransfer();
-        }
-    }, [transferID]);
+        fetchTransfer();
+    }, [id]);
 
     const handleAccept = async () => {
         try {
-            await clientController.confirmTransfer(transferID);
-            console.log("Transfer accepted successfully");
+            await clientController.confirmTransfer(id);
+            console.log("✅ Transfer accepted");
             navigate(`/player-detail/${transfer.player}`);
         } catch (error) {
-            console.error("Error confirming transfer:", error);
+            console.error("❌ Fehler beim Bestätigen des Transfers:", error);
         }
     };
 
     const handleReject = async () => {
         try {
-            await clientController.rejectTransfer(transferID);
-            console.log("Transfer rejected successfully");
+            await clientController.rejectTransfer(id);
+            console.log("✅ Transfer abgelehnt");
             navigate(`/player-detail/${transfer.player}`);
         } catch (error) {
-            console.error("Error rejecting transfer:", error);
+            console.error("❌ Fehler beim Ablehnen des Transfers:", error);
         }
     };
 
@@ -67,22 +77,25 @@ export const ElementTransfer = (): JSX.Element => {
             {isMobile ? <Navigation /> : <DesktopNav />}
 
             {loading ? (
-                <p>Laden...</p>
+                <div style={{ padding: 24, textAlign: "center" }}>
+                    <h2>⏳ Transfer wird geladen...</h2>
+                </div>
             ) : error ? (
-                <p>{error}</p>
+                <div style={{ padding: 24, textAlign: "center", color: "red" }}>
+                    <p>{error}</p>
+                </div>
             ) : (
                 <Transfer
                     className="transfer-confirmation"
-                    // Map the API response keys to the expected prop names
-                    playerName={transfer.player_name}
-                    playerImage={transfer.player_image}
-                    teamName={transfer.team_name}
+                    playerName={transfer.playerName}
+                    playerImage={transfer.playerImage}
+                    teamName={transfer.teamName}
                     teamID={transfer.team}
-                    transferID={transfer.id}
+                    transferID={transfer._id}
                     playerID={transfer.player}
                     status={transfer.status}
-                    origin={transfer.origin_image}
-                    teamImage={transfer.team_image}
+                    origin={transfer.originImage ?? ""} // fallback if null
+                    teamImage={transfer.teamImage}
                     message="hat dir eine Anfrage geschickt, ihrer Mannschaft beizutreten und deine derzeitige zu verlassen. Willst du diese Anfrage annehmen?"
                     onAccept={handleAccept}
                     onReject={handleReject}
