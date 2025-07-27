@@ -1,6 +1,7 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 
 // Importing all screen components
+import { BrowserRouter } from "react-router-dom";
 import { ElementBund } from "./screens/ElementBund";
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
 import { ElementContactMobile } from "./screens/ElementContactMobile";
@@ -24,8 +25,6 @@ import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTransfer } from "./screens/ElementTransfer";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 import { Strafsenat } from "./screens/Strafsenat";
-
-import { BrowserRouter } from "react-router-dom";
 
 const HashBasedRoutes = () => (
   <HashRouter>
