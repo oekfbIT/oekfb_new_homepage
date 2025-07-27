@@ -60,6 +60,7 @@ const BrowserBasedRoutes = () => (
   <BrowserRouter>
     <Routes>
       <Route path="/team/upload/:id" element={<ElementRegistration />} />
+      console.log ('Loading normal routes ')
     </Routes>
   </BrowserRouter>
 );
