@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
-import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
 /**
  * Footer Component
- *
+ * new
  * This component renders a structured footer with links, logos, and optional sponsor details.
  */
 export const Footer = (): JSX.Element => {
