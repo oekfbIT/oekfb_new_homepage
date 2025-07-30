@@ -43,11 +43,18 @@ export const Sponsors = ({
                   src="https://careerdate.fer.hr/wp-content/uploads/2024/10/aircash-logo-red-pdf-1.png"
               />
             </a>
-            <a href="https://kaddur.at/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.erima.at/" target="_blank" rel="noopener noreferrer">
               <img
                   className="sponsor"
-                  alt="Kaddur"
-                  src="https://kaddur.at/cdn/shop/files/Bildschirmfoto_2024-06-05_um_16.03.49.png?v=1717596335&width=500"
+                  alt="Erima"
+                  src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ferima.png?alt=media&token=37f57c16-fcd2-467b-a132-b6e5a179da2b"
+              />
+            </a>
+            <a href="https://radosport.at/" target="_blank" rel="noopener noreferrer">
+              <img
+                  className="sponsor"
+                  alt="Radosport"
+                  src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fats.jpeg?alt=media&token=835dca80-9546-4c2e-9a4f-630fcdb53fce"
               />
             </a>
           </div>

@@ -190,7 +190,7 @@
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
-  gap: 0px 0px;
+  gap: 5px 5px;
   position: relative;
   width: 100%;
 }
@@ -227,15 +227,28 @@
 
 .footer .logo-2 {
   align-self: stretch;
-  background-image: url(../../../static/img/logo-3.png);
-  background-position: 50% 50%;
-  background-size: cover;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fats.jpeg?alt=media&token=835dca80-9546-4c2e-9a4f-630fcdb53fce);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   flex: 1;
-  flex-grow: 1;
-  max-width: 90px;
-  position: relative;
+  max-width: 150px;
   width: 100%;
+  height: 100%; /* Ensure container has height */
 }
+
+.footer .logo-5 {
+  align-self: stretch;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ferima.png?alt=media&token=37f57c16-fcd2-467b-a132-b6e5a179da2b);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex: 1;
+  max-width: 150px;
+  width: 100%;
+  height: 100%; /* Ensure container has height */
+}
+
 
 .footer .logo-3 {
   align-self: stretch;

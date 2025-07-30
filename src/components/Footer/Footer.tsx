@@ -90,7 +90,10 @@ export const Footer = (): JSX.Element => {
                   <a href="https://kaddur.at/" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
                     <SponsorLogo imgClass="logo-2"/>
                   </a>
-                  <a href="https://at.coca-colahellenic.com/de" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
+                  <a href="https://www.erima.at/" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
+                    <SponsorLogo imgClass="logo-5"/>
+                  </a>
+                  <a href="https://radosport.at/" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
                     <SponsorLogo imgClass="logo-3"/>
                   </a>
                   <a href="https://aircash.eu/de/" target="_blank" rel="noopener noreferrer" style={{cursor: "pointer"}}>
