@@ -7,8 +7,8 @@ import "./style.css";
 export const DesktopNav = ({
   view = "default",
   className = "",
-  navRowWrapper = "/img/nav-row-wrapper-content-logo-9.svg",
-  navRowWrapper1 = "/img/nav-row-wrapper-content-login-wrapper-image-4.svg",
+  navRowWrapper = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0",
+  navRowWrapper1 = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficon_login.svg?alt=media&token=3ac3297f-bcd4-42e7-bb76-74acbf4c81c0",
   mobileBurgerMenu1 = "/img/mobile-burger-menu-10.svg",
   to = "/",
 }) => {

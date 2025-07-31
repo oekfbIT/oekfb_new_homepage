@@ -1,10 +1,9 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
+import { Navigation } from "../../components/Navigation";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
-import {Navigation} from "../../components/Navigation";
 
 export const ElementConfirmation = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -77,7 +76,7 @@ export const ElementConfirmation = (): JSX.Element => {
             leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem9="/img/league-row-item-content-img-1090.png"
             mobileBurgerMenu="/img/mobile-burger-menu-30.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
+            navRowWrapper="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0"
             navRowWrapper1="/img/nav-row-wrapper-content-login-wrapper-image-15.svg"
             view="default"
           />

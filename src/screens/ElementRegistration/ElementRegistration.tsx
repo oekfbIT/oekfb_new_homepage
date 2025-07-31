@@ -43,7 +43,7 @@ export const ElementRegistration = (): JSX.Element => {
             leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem9="/img/league-row-item-content-img-1090.png"
             mobileBurgerMenu="/img/mobile-burger-menu-25.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
+            navRowWrapper="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0"
           />
           <div className="upload-request-form-wrapper">
             <div className="upload-request-form">
@@ -93,7 +93,7 @@ export const ElementRegistration = (): JSX.Element => {
             leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem9="/img/league-row-item-content-img-1090.png"
             mobileBurgerMenu="/img/mobile-burger-menu-27.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
+            navRowWrapper="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0"
             navRowWrapper1="/img/nav-row-wrapper-content-login-wrapper-image-13.svg"
             view="default"
           />

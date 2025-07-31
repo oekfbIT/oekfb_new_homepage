@@ -1,4 +1,3 @@
-import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { ActionButton } from "../../components/ActionButton";
 import { Footer } from "../../components/Footer";
@@ -43,7 +42,7 @@ export const ElementLoginMobile = (): JSX.Element => {
           leagueRowItem8="/img/league-row-item-content-seperator-108.svg"
           leagueRowItem9="/img/league-row-item-content-img-108.png"
           mobileBurgerMenu="/img/mobile-burger-menu-43.svg"
-          navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
+          navRowWrapper="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0"
         />
       )}
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { NavigationDesktop } from "../../components/Navigation";
@@ -44,7 +43,7 @@ export const ElementImpressiumMobile = (): JSX.Element => {
             leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem9="/img/league-row-item-content-img-1090.png"
             mobileBurgerMenu="/img/mobile-burger-menu-40.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
+            navRowWrapper="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0"
           />
           <div className="impressium">
             <div className="impressium-header">
@@ -149,7 +148,7 @@ export const ElementImpressiumMobile = (): JSX.Element => {
             leagueRowItem8="/img/league-row-item-content-seperator-1080.svg"
             leagueRowItem9="/img/league-row-item-content-img-1090.png"
             mobileBurgerMenu="/img/mobile-burger-menu-42.svg"
-            navRowWrapper="/img/nav-row-wrapper-content-logo-9.svg"
+            navRowWrapper="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0"
             navRowWrapper1="/img/nav-row-wrapper-content-login-wrapper-image-20.svg"
             view="default"
           />
