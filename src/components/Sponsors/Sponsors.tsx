@@ -43,7 +43,7 @@ export const Sponsors = ({
                   src="https://careerdate.fer.hr/wp-content/uploads/2024/10/aircash-logo-red-pdf-1.png"
               />
             </a>
-            <a href="https://www.erima.at/" target="_blank" rel="noopener noreferrer">
+            <a href="https://katalog.erima.de/erima-teamsport-2025-at/69231928" target="_blank" rel="noopener noreferrer">
               <img
                   className="sponsor"
                   alt="Erima"
