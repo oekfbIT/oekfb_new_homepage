@@ -106,15 +106,15 @@ export const Footer = (): JSX.Element => {
               <div className="bundesliga-footer">
                 <SocialLink
                     href="https://www.facebook.com/kleinfeldliga/"
-                    src="/img/link-32.svg"
+                    src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Flinks%2Ffb.svg?alt=media&token=3d87d1eb-ea05-4343-ab47-1716f82d5bbc"
                 />
                 <SocialLink
                     href="https://www.youtube.com/@OEKFB"
-                    src="/img/link-33.svg"
+                    src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Flinks%2Fyt.svg?alt=media&token=fb8143da-2498-44d0-bc1e-743d44c112c1"
                 />
                 <SocialLink
                     href="https://www.instagram.com/oekfb/?hl=en"
-                    src="/img/link-35.svg"
+                    src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Flinks%2Fig.svg?alt=media&token=a4af766c-5a4f-473a-b7ec-cb5f8f06c028"
                 />
               </div>
             </div>
