@@ -7,8 +7,8 @@ import "./style.css";
 
 export const Navigation = ({
                                className = "",
-                               navRowWrapper = "/img/nav-row-wrapper-content-logo-7.svg",
-                               mobileBurgerMenu = "/img/mobile-burger-menu-7.svg",
+                               navRowWrapper = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0",
+                               mobileBurgerMenu = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fmobile-burger-menu-7.svg?alt=media&token=4f55528e-3719-41ee-b137-311723b3a4b9",
                            }) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);

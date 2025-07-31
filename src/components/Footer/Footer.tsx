@@ -19,7 +19,7 @@ export const Footer = (): JSX.Element => {
               <img
                   className="footer-content-4"
                   alt="Footer Logo"
-                  src="/img/footer-content-wrapper-left-logo-7.png"
+                  src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ffooterlogo.png?alt=media&token=a7353143-33df-4a6b-9f82-db7bcbd8bb0b"
               />
 
               {/* Navigation Links */}

@@ -70,7 +70,7 @@ export const ElementMobilenav = (): JSX.Element => {
           <img
             className="dfl-simple-icon-user"
             alt="Dfl simple icon user"
-            src="/img/dfl-simple-icon-user-loggedout-svg.svg"
+            src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fwhitelogin.svg?alt=media&token=fda570f5-1c8c-41a3-99d1-132c3d6e7331"
           />
         </a>
       </div>
