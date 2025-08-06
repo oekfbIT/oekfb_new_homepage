@@ -1,7 +1,8 @@
-// Redirect non-hash URLs to hash-based versions
+// Redirect non-hash URLs (except for native routing path) to hash-based versions
 if (
   !window.location.hash &&
-  window.location.pathname !== "/"
+  window.location.pathname !== "/" &&
+  !window.location.pathname.startsWith("/team/upload/")
 ) {
   const fullPath = window.location.pathname + window.location.search + window.location.hash;
   const newUrl = `${window.location.origin}/#${fullPath}`;
