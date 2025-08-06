@@ -1,15 +1,11 @@
-// Redirect non-hash URLs (except for native routing path) to hash-based versions
-if (
-  !window.location.hash &&
-  window.location.pathname !== "/" &&
-  !window.location.pathname.startsWith("/team/upload/")
-) {
+// Redirect to hash-based URL if not already present
+if (!window.location.hash) {
   const fullPath = window.location.pathname + window.location.search + window.location.hash;
   const newUrl = `${window.location.origin}/#${fullPath}`;
   window.location.replace(newUrl);
 }
 
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 // Importing all screen components
 import { ElementBund } from "./screens/ElementBund";
@@ -36,7 +32,7 @@ import { ElementTransfer } from "./screens/ElementTransfer";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 import { Strafsenat } from "./screens/Strafsenat";
 
-const HashBasedRoutes = () => (
+const App = () => (
   <HashRouter>
     <Routes>
       <Route path="/" element={<ElementLeagueSelection />} />
@@ -61,22 +57,10 @@ const HashBasedRoutes = () => (
       <Route path="/teams" element={<ElementClubsDesktop />} />
       <Route path="/tabelle" element={<ElementTableMobile />} />
       <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
+      <Route path="/team/upload/:id" element={<ElementRegistration />} />
       <Route path="*" element={<ElementLeagueSelection />} />
     </Routes>
   </HashRouter>
 );
-
-const App = () => {
-  const useNativeRouting = window.location.pathname.startsWith("/team/upload/");
-  return useNativeRouting ? (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/team/upload/:id" element={<ElementRegistration />} />
-      </Routes>
-    </BrowserRouter>
-  ) : (
-    <HashBasedRoutes />
-  );
-};
 
 export { App };
