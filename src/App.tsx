@@ -1,11 +1,4 @@
-// Redirect to hash-based URL if not already present
-if (!window.location.hash) {
-  const fullPath = window.location.pathname + window.location.search + window.location.hash;
-  const newUrl = `${window.location.origin}/#${fullPath}`;
-  window.location.replace(newUrl);
-}
-
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Importing all screen components
 import { ElementBund } from "./screens/ElementBund";
@@ -33,7 +26,7 @@ import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 import { Strafsenat } from "./screens/Strafsenat";
 
 const App = () => (
-  <HashRouter>
+  <BrowserRouter>
     <Routes>
       <Route path="/" element={<ElementLeagueSelection />} />
       <Route path="/liga" element={<ElementHomepageDesktop />} />
@@ -60,7 +53,7 @@ const App = () => (
       <Route path="/team/upload/:id" element={<ElementRegistration />} />
       <Route path="*" element={<ElementLeagueSelection />} />
     </Routes>
-  </HashRouter>
+  </BrowserRouter>
 );
 
 export { App };
