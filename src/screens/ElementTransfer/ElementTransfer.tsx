@@ -35,7 +35,7 @@ export const ElementTransfer = (): JSX.Element => {
                 const response = await clientController.fetchTransfer(id);
                 console.log("✅ Fetched transfer:", response);
 
-                if (!response || !response.playerName) {
+                if (!response || !response.player_name) {
                     setError("Keine gültigen Transferdaten gefunden.");
                     return;
                 }
@@ -87,15 +87,15 @@ export const ElementTransfer = (): JSX.Element => {
             ) : (
                 <Transfer
                     className="transfer-confirmation"
-                    playerName={transfer.playerName}
-                    playerImage={transfer.playerImage}
-                    teamName={transfer.teamName}
+                    playerName={transfer.player_name}
+                    playerImage={transfer.player_image}
+                    teamName={transfer.team_name}
                     teamID={transfer.team}
-                    transferID={transfer._id}
+                    transferID={transfer.id}
                     playerID={transfer.player}
                     status={transfer.status}
-                    origin={transfer.originImage ?? ""} // fallback if null
-                    teamImage={transfer.teamImage}
+                    origin={transfer.origin_image ?? ""} // fallback if null
+                    teamImage={transfer.team_image}
                     message="hat dir eine Anfrage geschickt, ihrer Mannschaft beizutreten und deine derzeitige zu verlassen. Willst du diese Anfrage annehmen?"
                     onAccept={handleAccept}
                     onReject={handleReject}
