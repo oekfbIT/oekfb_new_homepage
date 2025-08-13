@@ -58,9 +58,12 @@
   font-size: 16px;
   color: var(--themeswamp);
   margin-bottom: 4px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: normal;         /* Allow wrapping */
 }
 
 /* Description */

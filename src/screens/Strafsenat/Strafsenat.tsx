@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
-import { NewsArticle } from "../../components/NewsArticle";
 import { PageHeader } from "../../components/PageHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 
+import { NewsRow } from "../../components/NewsRow";
 import "./style.css";
 
 export const Strafsenat = (): JSX.Element => {
@@ -66,12 +66,13 @@ export const Strafsenat = (): JSX.Element => {
             <div className="news-container-6">
                 <div className="news-container-grid-7">
                     {news?.map((newsItem: any) => (
-                        <NewsArticle
+                        <NewsRow
                             key={newsItem.id}
                             title={newsItem.title}
                             image={newsItem.image}
-                            text={newsItem.text}
+                            text={newsItem.created}
                             id={newsItem.id}
+                            youtubeUrl={newsItem.youtube}
                         />
                     ))}
                 </div>
