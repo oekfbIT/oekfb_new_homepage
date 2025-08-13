@@ -1,7 +1,6 @@
-// App.tsx
 import { HashRouter, Route, Routes } from "react-router-dom";
 
-// Importing all screen components
+// Screens
 import { ElementBund } from "./screens/ElementBund";
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
 import { ElementContactMobile } from "./screens/ElementContactMobile";

@@ -1,41 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8" />
     <title>Österreichischer Kleinfeld Fußball Bund</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fonts/reset (kept minimal) -->
     <style>
-      @import url("https://fonts.googleapis.com/css?family=Inter:var(--theme-inter-bold-13-89-font-weight),var(--theme-inter-bold-15-63-font-weight),var(--theme-inter-regular-15-13-font-weight),var(--theme-inter-bold-80-font-weight),var(--theme-inter-bold-12-03-font-weight),var(--theme-inter-bold-15-75-font-weight),var(--theme-inter-bold-14-font-weight),var(--theme-inter-bold-15-47-font-weight),var(--theme-inter-bold-25-9-font-weight),var(--theme-inter-regular-16-font-weight),var(--theme-inter-bold-11-44-font-weight),var(--theme-inter-bold-12-font-weight),var(--theme-inter-bold-13-67-font-weight),var(--theme-inter-black-37-03-font-weight),var(--theme-inter-bold-16-03-upper-font-weight),var(--theme-inter-regular-40-font-weight),var(--theme-inter-regular-15-25-font-weight),var(--theme-inter-regular-15-75-font-weight),var(--theme-inter-bold-15-75-upper-font-weight),var(--theme-inter-regular-13-45-font-weight),var(--theme-inter-bold-27-88-font-weight),var(--theme-inter-bold-11-38-upper-font-weight),var(--theme-inter-regular-13-89-font-weight),var(--theme-inter-regular-15-font-weight),var(--theme-inter-bold-15-94-upper-font-weight),var(--theme-inter-regular-11-05-font-weight),var(--theme-inter-bold-21-font-weight),var(--theme-inter-regular-15-63-font-weight),var(--theme-inter-bold-11-58-upper-font-weight),var(--theme-inter-regular-11-63-upper-font-weight),700,var(--theme-inter-bold-13-upper-font-weight),var(--theme-inter-regular-13-78-font-weight),var(--theme-inter-bold-16-72-upper-font-weight),500,var(--theme-inter-regular-14-font-weight),900,600,var(--theme-inter-regular-13-13-font-weight),var(--theme-inter-bold-15-88-font-weight),var(--theme-inter-regular-13-67-font-weight),var(--theme-inter-bold-27-63-upper-font-weight),var(--theme-inter-regular-26-75-font-weight),400,var(--theme-inter-bold-10-97-upper-font-weight),var(--theme-inter-regular-11-63-font-weight),var(--theme-inter-bold-20-63-font-weight),var(--theme-inter-bold-15-font-weight),var(--theme-inter-black-36-25-font-weight),var(--theme-inter-black-37-5-font-weight),var(--theme-inter-bold-15-5-font-weight),var(--theme-inter-bold-27-75-font-weight),var(--theme-inter-bold-18-font-weight),var(--theme-inter-regular-15-5-font-weight),var(--theme-inter-bold-16-font-weight),var(--theme-inter-regular-11-44-font-weight),var(--theme-inter-regular-12-font-weight),var(--theme-inter-bold-10-font-weight),var(--theme-inter-bold-15-33-upper-font-weight),var(--theme-inter-bold-13-75-upper-font-weight),var(--theme-inter-bold-27-63-font-weight),var(--theme-inter-regular-13-25-font-weight),var(--theme-inter-regular-12-75-font-weight),var(--theme-inter-black-37-66-font-weight),var(--theme-inter-bold-15-89-upper-font-weight),var(--theme-inter-regular-11-25-font-weight),var(--theme-inter-bold-44-font-weight),var(--theme-inter-regular-12-upper-font-weight)");
+      @import url("https://fonts.googleapis.com/css?family=Inter:700,600,500,400,900");
+      @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+      * { -webkit-font-smoothing: antialiased; box-sizing: border-box; }
+      html, body { margin: 0; height: 100%; }
+      button:focus-visible { outline: 2px solid #4a90e2 !important; outline: -webkit-focus-ring-color auto 5px !important; }
+      a { text-decoration: none; }
       @font-face {
         font-family: "Arial-Regular";
-        src: url("https://anima-uploads.s3.amazonaws.com/projects/66eaa9f8e5d9b24120c2de64/fonts/satoshi-regular.ttf")
-          format("truetype");
+        src: url("https://anima-uploads.s3.amazonaws.com/projects/66eaa9f8e5d9b24120c2de64/fonts/satoshi-regular.ttf") format("truetype");
       }
     </style>
-    <style>
-      @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
-      * {
-        -webkit-font-smoothing: antialiased;
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0px;
-        height: 100%;
-      }
-      /* a blue color as a generic focus style */
-      button:focus-visible {
-        outline: 2px solid #4a90e2 !important;
-        outline: -webkit-focus-ring-color auto 5px !important;
-      }
-      a {
-        text-decoration: none;
-      }
-    </style>
+
+    <!-- Important for absolute asset paths -->
+    <base href="/" />
+
     <link href="styleguide.css" rel="stylesheet" />
+
+    <!-- 🔁 URGENT FIX: redirect clean paths -> hash paths before React loads -->
+    <script>
+      (function () {
+        // Already hash routing? Do nothing.
+        if (location.hash && location.hash.startsWith("#/")) return;
+
+        // If user hit a deep link like /transfer/ID, rewrite to /#/transfer/ID
+        if (location.pathname !== "/" && !location.pathname.startsWith("/index.html")) {
+          var newUrl = location.origin + "/#" + location.pathname + location.search + location.hash;
+          // Replace (not push) so back button works naturally
+          location.replace(newUrl);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>
-    <script type="module" src="./src/index.tsx"></script>
+    <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
