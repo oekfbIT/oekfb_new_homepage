@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+// App.tsx
+import { HashRouter, Route, Routes } from "react-router-dom";
 
 // Importing all screen components
 import { ElementBund } from "./screens/ElementBund";
@@ -26,7 +27,7 @@ import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
 import { Strafsenat } from "./screens/Strafsenat";
 
 const App = () => (
-  <BrowserRouter>
+  <HashRouter>
     <Routes>
       <Route path="/" element={<ElementLeagueSelection />} />
       <Route path="/liga" element={<ElementHomepageDesktop />} />
@@ -53,7 +54,7 @@ const App = () => (
       <Route path="/team/upload/:id" element={<ElementRegistration />} />
       <Route path="*" element={<ElementLeagueSelection />} />
     </Routes>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export { App };
