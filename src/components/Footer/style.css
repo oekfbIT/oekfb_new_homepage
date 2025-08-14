@@ -252,9 +252,12 @@
 
 .footer .logo-3 {
   align-self: stretch;
-  background-image: url(../../../static/img/logo-4.png);
+background-color: white;
+padding: 5px;
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/2560px-Coca-Cola_logo.svg.png);
   background-position: 50% 50%;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   flex: 1;
   flex-grow: 1;
   max-width: 90px;
@@ -264,10 +267,12 @@
 
 .footer .logo-4 {
   align-self: stretch;
-  background-image: url(../../../static/img/logo-5.png);
+  background-color: white;
+padding: 5px;
+  background-image: url(https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Faircash-logo-red-pdf-1-removebg-preview.png?alt=media&token=c45fc5de-3dfb-4169-b7be-f6975f893cac);
   background-position: 50% 50%;
-  background-size: cover;
-  flex: 1;
+background-size: contain;
+  background-repeat: no-repeat;  flex: 1;
   flex-grow: 1;
   max-width: 90px;
   position: relative;

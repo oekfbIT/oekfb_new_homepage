@@ -125,7 +125,7 @@ export const LeagueTable = () => {
     <div className="tb-footer">
       <p>
         <img
-          src="https://static-00.iconduck.com/assets.00/trophy-winner-prize-icon-2013x2048-rfqmn1p2.png"
+          src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-winner-trophy-cup-icon-cartoon-style-png-image_5150422.jpg"
           alt="Trophy"
           width={14}
           style={{ verticalAlign: "middle", marginRight: "6px" }}
