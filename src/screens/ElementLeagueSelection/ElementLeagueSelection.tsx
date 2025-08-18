@@ -50,7 +50,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
         const [data, noneData] = await Promise.all([
           clientController.fetchLeagueSelection(),
-          clientController.fetchHomepageData("NONE"),
+          clientController.fetchHomepageData("W1"),
         ]);
 
         setHomepageData(noneData);
