@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ApiService from "../../network/ApiService";
 import AuthService from "../../network/AuthService";
 import "./style.css";
+
+// codes to exclude from the API result
+const EXCLUDED_CODES = ["NONE",];
 
 export const DesktopNav = ({
   view = "default",
@@ -13,94 +17,30 @@ export const DesktopNav = ({
   to = "/",
 }) => {
   const [activeLeague, setActiveLeague] = useState(null);
+  const [leagues, setLeagues] = useState([]);
   const authService = new AuthService();
+  const apiService = new ApiService();
   const navigate = useNavigate();
 
-  // League Rows Data
-  const leagueRows = [
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "1. Wiener Liga",
-      code: "W1",
-      id: "B236BAAD-404C-4451-9C30-122CBD9EB0DA",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "2. Wiener Liga A",
-      code: "W2A",
-      id: "80B164B6-4015-4D95-A432-D85CBAD5AF8B",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "2. Wiener Liga B",
-      code: "W2B",
-      id: "F6813EF5-BF80-4A2D-B9B3-3C5845A9CC98",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "3. Wiener Liga A",
-      code: "W3A",
-      id: "69A15306-4F1E-4A5B-AE64-5487B7B99CDD",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "3. Wiener Liga B",
-      code: "W3B",
-      id: "77F04A92-7E91-4C65-9E96-0FA1E1033805",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "4. Wiener Liga A",
-      code: "W4A",
-      id: "F58269FD-DE67-4E5D-BBD2-780877555F2B",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "4. Wiener Liga B",
-      code: "W4B",
-      id: "29FFA358-A32B-4F60-904B-D66B118E1661",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "1. Liga Linz",
-      code: "L1",
-      id: "D506E56C-3877-4581-90F0-26D144EFBE83",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "1. Liga Graz",
-      code: "G1",
-      id: "E171419D-C82E-4620-B691-B0D7BFEFB154",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "1. Liga Salzburg",
-      code: "SBZ",
-      id: "4C0521AB-B28B-4C5B-A147-E6BA50042348",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "1. Liga Innsbruck",
-      code: "IBK",
-      id: "AD2C1309-7F78-4E31-9FFC-957D1A38A43E",
-    },
-    {
-      img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",
-      text: "2. Liga Innsbruck",
-      code: "IBK2",
-      id: "554ACBEE-A0D3-4E5E-8DCF-50825136C3C8",
-    },
-    {img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc",text: "1. Liga Niederösterreich", code: "NÖ1", id: "B844ED89-6766-49BC-9996-5572AA7B1FB7" }, // new
-    { img: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc", text: "1. Liga Bregenz", code: "BGZ", id: "32B5B0E6-7F8E-4F82-8837-F6A9EE103D91" }, // new
-  ];
-
-  // Fetch active league from cookie on mount
   useEffect(() => {
+    const fetchLeagues = async () => {
+      try {
+        const response = await apiService.get("client/leagueList?per=25");
+        const filtered = Array.isArray(response)
+          ? response.filter((l) => !EXCLUDED_CODES.includes(l.code))
+          : [];
+        setLeagues(filtered);
+      } catch (error) {
+        console.error("Failed to fetch leagues:", error);
+      }
+    };
+
+    fetchLeagues();
+
     const savedLeagueCode = authService.getLeagueCode();
     if (savedLeagueCode) setActiveLeague(savedLeagueCode);
   }, []);
 
-  // If the user is already on #/liga or the site’s #/liga, reload
   const handleLeagueClick = (code, id) => {
     authService.setLeagueData(code, id);
 
@@ -119,15 +59,15 @@ export const DesktopNav = ({
       {/* League Rows */}
       <div className="league-rows-2">
         <div className="leauge-row-wrapper-2" style={{ cursor: "pointer" }}>
-          {leagueRows.map((row) => (
+          {leagues.map((league) => (
             <LeagueRowItem
-              key={row.id}
-              code={row.code}
-              id={row.id}
-              img={row.img}
-              text={row.code}
+              key={league.id}
+              code={league.code}
+              id={league.id}
+              img="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc"
+              text={league.code} // or league.name if you prefer the full name
               separator="/img/league-row-item-content-seperator-90.svg"
-              isActive={row.code === activeLeague}
+              isActive={league.code === activeLeague}
               handleLeagueClick={handleLeagueClick}
             />
           ))}
@@ -155,8 +95,6 @@ export const DesktopNav = ({
                     { label: "News", to: "/news" },
                     { label: "Strafsenat", to: "/strafsenat" },
                     { label: "Sperren", to: "/sperren" },
-                    // {label: "Bund", to: "/bund"},
-                    // {label: "Kontakt", to: "/kontakt"},
                   ].map((link, index) => (
                     <Link key={index} className="item-3" to={link.to}>
                       <div className="link-6">
@@ -169,7 +107,7 @@ export const DesktopNav = ({
               <div
                 className="nav-row-wrapper-9"
                 onClick={() => (window.location.href = "https://team.oekfb.eu")}
-                style={{ cursor: "pointer" }} // Add a pointer cursor to indicate it's clickable
+                style={{ cursor: "pointer" }}
               >
                 <div className="nav-row-wrapper-10">
                   <img
@@ -183,7 +121,6 @@ export const DesktopNav = ({
             </>
           )}
 
-          {/* Mobile View */}
           {view === "mobile" && (
             <Link to={to}>
               <img
@@ -231,11 +168,7 @@ const LeagueRowItem = ({
       <div className="league-row-item-wrapper">
         <div className="league-row-item-7">
           <div className="content-2">
-            <img
-              className="league-row-item-8"
-              alt="League row item"
-              src={img}
-            />
+            <img className="league-row-item-8" alt="League row item" src={img} />
             <div className="league-row-item-9">{text}</div>
           </div>
           <img className="league-row-item-10" alt="Separator" src={separator} />
