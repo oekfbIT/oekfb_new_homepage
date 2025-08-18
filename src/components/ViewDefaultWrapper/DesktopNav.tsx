@@ -66,7 +66,7 @@ export const DesktopNav = ({
               id={league.id}
               img="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc"
               text={league.code} // or league.name if you prefer the full name
-              separator="/img/league-row-item-content-seperator-90.svg"
+              separator="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/league-row-item-content-seperator-90.svg?alt=media&token=0537078e-f6b3-49be-b352-fefe162bcebd"
               isActive={league.code === activeLeague}
               handleLeagueClick={handleLeagueClick}
             />
