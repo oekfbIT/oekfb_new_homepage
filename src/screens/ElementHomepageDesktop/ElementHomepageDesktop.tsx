@@ -64,6 +64,9 @@ export const ElementHomepageDesktop = (): JSX.Element => {
     return <LoadingIndicator />;
 }
 
+const slides =
+  (homepageData?.data?.sliderdata?.length ? homepageData.data.sliderdata : homepageData?.news) ?? [];
+
   return (
     <div
       className="element-homepage-desktop"
@@ -107,11 +110,12 @@ export const ElementHomepageDesktop = (): JSX.Element => {
       )} */}
 
       {/* gallery Section */}
-      {homepageData?.data?.sliderdata?.length > 0 && (
-        <div style={{ width: "100%", maxWidth: "1200px", justifyContent: "center" }}>
-          <GalleryCarousel sliderdata={homepageData?.data?.sliderdata.slice().reverse()} />
+        {slides.length > 0 && (
+        <div style={{ width: "100%", maxWidth: "1200px" }}>
+            {/* clone to avoid mutating source if a child ever reverses/sorts */}
+            <GalleryCarousel sliderdata={[...slides]} />
         </div>
-      )}
+        )}
       {/* ADD THE TABLE HERE PLEASE  */}
       <div style={{ width: "1200px", maxWidth: "95%", margin: "0px 20px" }}>
         <LeagueTable />
