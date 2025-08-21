@@ -137,9 +137,12 @@
 }
 
 .stadium-wrapper {
-  width: 200px;
-  justify-items: center;
+  display: flex;
+  align-items: center;     /* vertically center */
+  gap: 8px;                /* space between image and label */
+  width: 200px;            /* optional, keep if you need */
 }
+
 @media (max-width: 500px) {
   .stadium-wrapper {
     justify-items: center;

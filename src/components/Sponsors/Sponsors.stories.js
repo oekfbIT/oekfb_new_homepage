@@ -8,7 +8,8 @@ export default {
 export const Default = {
   args: {
     className: {},
-    vWhite: "/img/v-white-1.svg",
+    vWhite:
+      "https://www.minifootball.eu/wp-content/uploads/2024/09/cropped-v_blue.png",
     sponsorsContainerClassName: {},
   },
 };

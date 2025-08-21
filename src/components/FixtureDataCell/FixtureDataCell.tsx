@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 const { DateTime } = require("luxon");
@@ -118,8 +117,8 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
           alt="Stadium image"
           src={
             state === "mobile"
-              ? "/img/stadium-image-1.svg"
-              : "/img/stadium-image.svg"
+              ? "https://cdn-icons-png.flaticon.com/512/88/88961.png"
+              : "https://cdn-icons-png.flaticon.com/512/88/88961.png"
           }
         />
         <div className="stadium-location">

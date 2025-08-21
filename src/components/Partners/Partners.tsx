@@ -9,7 +9,7 @@ interface Props {
 
 export const Partners = ({
                            className,
-                           vWhite = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fpartner%2Fv-white-1.svg?alt=media&token=68497c24-7f68-4b7c-887b-1c083c1574dd",
+                           vWhite = "https://www.minifootball.eu/wp-content/uploads/2024/09/cropped-v_blue.png",
                            sponsorsContainerClassName,
                          }: Props): JSX.Element => {
   return (
@@ -43,7 +43,7 @@ export const Partners = ({
             </a>
 
             <a href="https://www.minifootball.eu/" target="_blank" rel="noopener noreferrer">
-              <img className="v-white" alt="V white" src={vWhite} />
+              <img className="v-white" alt="V white" src={"https://www.minifootball.eu/wp-content/uploads/2024/09/cropped-v_blue.png"} />
             </a>
           </div>
         </div>
