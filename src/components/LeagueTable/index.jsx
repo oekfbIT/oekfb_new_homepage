@@ -18,30 +18,31 @@ export const LeagueTable = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
+    useEffect(() => {
     const fetchData = async () => {
-      const code = authService.getLeagueCode();
-      if (!code) {
+        const code = authService.getLeagueCode();
+        if (!code) {
         console.error("No league code found in cookies.");
         setLoading(false);
         return;
-      }
+        }
 
-      try {
-        const tbl = await clientController.fetchTable(code);
+        try {
+        const tbl = await clientController.fetchCurrentSeasonTable(code);
         setTable(applyPlayboysRule(tbl));
 
         const league = await clientController.fetchLeague(code);
         setLeagueName(league.name || "");
-      } catch (err) {
+        } catch (err) {
         console.error("Error fetching data:", err);
-      } finally {
+        } finally {
         setLoading(false);
-      }
+        }
     };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
+
 
   const applyPlayboysRule = (teams) => {
     const playboys = teams.find((team) => team.name === "FC Playboys");

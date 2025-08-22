@@ -219,7 +219,7 @@ export const ElementImpressiumMobile = (): JSX.Element => {
             </div>
 
             <div className="content-frame-3">
-              <Sponsors className="sponsors-4" vWhite="/img/v-white-1-6.svg" />
+              <Sponsors className="sponsors-4" vWhite="https://www.minifootball.eu/wp-content/uploads/2024/09/cropped-v_blue.png" />
             </div>
           </div>
 
