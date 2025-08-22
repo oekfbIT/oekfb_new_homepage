@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Dropdown } from "../../components/Dropdown";
 import { FixtureDataCell } from "../../components/FixtureDataCell";
@@ -33,7 +33,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
             }
 
             try {
-                const clubData = await clientController.fetchFirstSeasonMatches(leagueCode);
+                const clubData = await clientController.fetchPrimarySeasonMatches(leagueCode);
 
                 const validClubData = clubData.filter((item: any) => {
                     const date = new Date(item.details?.date);
