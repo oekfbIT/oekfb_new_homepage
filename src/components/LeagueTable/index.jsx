@@ -90,7 +90,8 @@ export const LeagueTable = () => {
         <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>
           {index === 0 && (
             <img
-              src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-winner-trophy-cup-icon-cartoon-style-png-image_5150422.jpg"
+            //   src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-winner-trophy-cup-icon-cartoon-style-png-image_5150422.jpg"
+              src="https://www.ledr.com/colours/white.jpg"
               alt="Trophy"
               width={20}
               height={20}
