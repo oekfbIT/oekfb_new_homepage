@@ -50,17 +50,19 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
         const [data, noneData] = await Promise.all([
           clientController.fetchLeagueSelection(),
-          clientController.fetchHomepageData("W1"),
+          clientController.fetchHomepageData("HME"),
         ]);
 
         setHomepageData(noneData);
 
         const validLeagues = data.filter(
           (league) => league.name !== "Mannschaft aus der Liga ausgetreten"
+        // (league) => league.name !== ""
         );
 
         setAllLeagues(validLeagues);
         setFilteredLeagues(validLeagues); // no filter on load
+
       } catch (error) {
         console.error("Error fetching leagues:", error);
       } finally {
