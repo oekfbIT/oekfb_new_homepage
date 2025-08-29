@@ -81,7 +81,30 @@ export const ElementTeamDetail = (): JSX.Element => {
             </div>
 
             <div className="page-content">
-                <section style={{ width: "-webkit-fill-available" }}>
+
+                <section style={{ width: "-webkit-fill-available", marginTop: "25px" }}>
+                    <h2 className="secTitle">
+                        {teamData?.club?.team_name} Ewige Statistiken
+                    </h2>
+                    <div className="stats-grid" style={{ justifyItems: "center" }}>
+                        {teamStats.map(([statKey, statValue]) => (
+                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
+                        ))}
+                    </div>
+                </section>
+
+                <section style={{ width: "-webkit-fill-available", marginTop: "25px" }}>
+                        <h2 className="secTitle">
+                            {teamData?.club?.team_name} Saison Statistiken
+                        </h2>
+                        <div className="stats-grid" style={{ justifyItems: "center" }}>
+                            {teamStats.map(([statKey, statValue]) => (
+                                <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
+                            ))}
+                        </div>
+                </section>
+
+                                <section style={{ width: "-webkit-fill-available" }}>
                     <h2 className="secTitle">{teamData?.club?.team_name} Kader</h2>
                     <div className="team-squad">
                         {teamData?.club?.players
@@ -101,43 +124,25 @@ export const ElementTeamDetail = (): JSX.Element => {
                     </div>
                 </section>
 
-                <section style={{ width: "-webkit-fill-available", marginTop: "25px" }}>
-                    <h2 className="secTitle">
-                        {teamData?.club?.team_name} Ewige Statistiken
-                    </h2>
-                    <div className="stats-grid" style={{ justifyItems: "center" }}>
-                        {teamStats.map(([statKey, statValue]) => (
-                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
-                        ))}
-                    </div>
-                </section>
-
-                 <section style={{ width: "-webkit-fill-available", marginTop: "25px" }}>
-                    <h2 className="secTitle">
-                        {teamData?.club?.team_name} Saison Statistiken
-                    </h2>
-                    <div className="stats-grid" style={{ justifyItems: "center" }}>
-                        {teamStats.map(([statKey, statValue]) => (
-                            <StatCell statKey={statKey} statValue={statValue} className="my-stat-cell" />
-                        ))}
-                    </div>
-                </section>
-
                 <section style={{ width: "-webkit-fill-available", justifyItems: "center" }}>
-                    <h2 className="secTitle">Spiele & Ergebnisse</h2>
-                    <div style={{ width: "100%" }}>
-                        {teamData?.upcoming
-                            ?.slice()
-                            .sort((a, b) => new Date(a.details.date.$date).getTime() - new Date(b.details.date.$date).getTime())
-                            .map((match: any) => (
-                                <FixtureDataCell
-                                    key={match.id}
-                                    match={match}
-                                    state={screenWidth < 600 ? "mobile" : "desktop"}
-                                />
-                            ))}
-                    </div>
+                <h2 className="secTitle">Spiele & Ergebnisse</h2>
+                <div style={{ width: "100%" }}>
+                    {teamData?.upcoming
+                    ?.slice()
+                    .sort((a, b) =>
+                        Number(b.details?.gameday ?? b.details?.gameDay ?? b.gameday ?? b.gameDay ?? 0) -
+                        Number(a.details?.gameday ?? a.details?.gameDay ?? a.gameday ?? a.gameDay ?? 0)
+                    )
+                    .map((match: any) => (
+                        <FixtureDataCell
+                        key={match.id}
+                        match={match}
+                        state={screenWidth < 600 ? "mobile" : "desktop"}
+                        />
+                    ))}
+                </div>
                 </section>
+
 
                 <section style={{ height: "35px" }}>
                 </section>

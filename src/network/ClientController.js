@@ -145,6 +145,16 @@ class ClientController {
   }
 
   /**
+   * Fetch matches for the primary season in a league.
+   * GET /matches/league/:code/all
+   * @param {string} code - League code.
+   * @returns {Promise<Object[]>} List of matches.
+   */
+  async fetchAllSeasonMatches(code) {
+    return this.apiService.get(`webClient/matches/league/${code}/index`);
+  }
+
+  /**
    * Fetch details of a specific match.
    * GET /match/detail/:id
    * @param {string} id - Match ID.

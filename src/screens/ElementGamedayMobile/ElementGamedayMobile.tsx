@@ -33,7 +33,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
             }
 
             try {
-                const clubData = await clientController.fetchPrimarySeasonMatches(leagueCode);
+                const clubData = await clientController.fetchAllSeasonMatches(leagueCode);
 
                 const validClubData = clubData.filter((item: any) => {
                     const date = new Date(item.details?.date);
