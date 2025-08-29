@@ -85,7 +85,7 @@
   border-color: var(--themeblack-42);
   height: 1px;
   max-width: 300px;
-  position: relative;
+  /* position: relative; */
   width: 100%;
 }
 
