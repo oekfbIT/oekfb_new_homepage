@@ -1,3 +1,9 @@
+
+/* =============================
+   style.css (append to your file)
+   ============================= */
+
+/* Original container layout */
 .element-gameday-mobile {
   align-items: center;
   background-color: #f5f5f5;
@@ -202,4 +208,27 @@
   gap: 32px;
   position: relative;
   width: 100%;
+}
+
+/* ====== NEW: keeps both dropdowns perfectly aligned like before ====== */
+.element-gameday-mobile .filters-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two equal columns */
+  gap: 16px;
+}
+
+/* Make each dropdown expand to the column width and keep original sizing */
+.element-gameday-mobile .filters-row .instance-node-7 {
+  /* align-self: stretch !important; */
+  /* width: 100% !important; */
+  min-width: 0; /* prevent overflow */
+}
+
+/* Responsive: stack on small widths while preserving spacing */
+@media (max-width: 640px) {
+  .element-gameday-mobile .filters-row {
+    grid-template-columns: 1fr; /* stack */
+    gap: 12px;
+  }
 }
