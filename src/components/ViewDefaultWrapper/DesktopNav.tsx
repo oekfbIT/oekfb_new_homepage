@@ -94,6 +94,7 @@ export const DesktopNav = ({
                     { label: "Spielerstatistik", to: "/leaderboards" },
                     { label: "News", to: "/news" },
                     { label: "Strafsenat", to: "/strafsenat" },
+                    { label: "Transfers", to: "/transfers" },
                     { label: "Sperren", to: "/sperren" },
                   ].map((link, index) => (
                     <Link key={index} className="item-3" to={link.to}>

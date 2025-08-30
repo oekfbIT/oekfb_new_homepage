@@ -38,13 +38,18 @@ export const ElementMobilenav = (): JSX.Element => {
             <div className="mobile-menu-item-2">Spielerstatistik</div>
           </Link>
 
+          <Link className="mobile-menu-item" to="/sperren">
+            <div className="mobile-menu-item-2">Sperren</div>
+          </Link>
+
           <Link className="mobile-menu-item" to="/strafsenat">
             <div className="mobile-menu-item-2">Strafsenat</div>
           </Link>
 
-          <Link className="mobile-menu-item" to="/sperren">
-            <div className="mobile-menu-item-2">Sperren</div>
+          <Link className="mobile-menu-item" to="/transfers">
+            <div className="mobile-menu-item-2">Transfers</div>
           </Link>
+
 
           <Link className="mobile-menu-item" to="/news">
             <div className="mobile-menu-item-2">News</div>
