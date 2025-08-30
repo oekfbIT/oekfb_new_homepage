@@ -55,14 +55,15 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
         setHomepageData(noneData);
 
-        const validLeagues = data.filter(
-          (league) => league.name !== "Mannschaft aus der Liga ausgetreten"
-        // (league) => league.name !== ""
-        );
+        // Normalize list once:
+        // 1) Drop the placeholder league
+        // 2) Only include leagues with visibility === true
+        const visibleLeagues = (data || [])
+          .filter((l: any) => l?.name !== "Mannschaft aus der Liga ausgetreten")
+          .filter((l: any) => l?.visibility === true);
 
-        setAllLeagues(validLeagues);
-        setFilteredLeagues(validLeagues); // no filter on load
-
+        setAllLeagues(visibleLeagues);
+        setFilteredLeagues(visibleLeagues); // initial: already visibility-filtered
       } catch (error) {
         console.error("Error fetching leagues:", error);
       } finally {
@@ -108,7 +109,10 @@ export const ElementLeagueSelection = (): JSX.Element => {
         <>
           {homepageData?.data?.sliderdata?.length > 0 && (
             <div style={{ width: "100%", maxWidth: "1200px" }}>
-              <GalleryCarousel sliderdata={homepageData.data.sliderdata.reverse()} />
+              {/* slice() to avoid mutating original array with reverse() */}
+              <GalleryCarousel
+                sliderdata={homepageData.data.sliderdata.slice().reverse()}
+              />
             </div>
           )}
 
@@ -168,55 +172,36 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
             <Sponsors className="instance-node-2" vWhite="/img/v-white-1-1.svg" />
 
-            {/* <div className="news-7">
+            {/* News Section */}
+            <div className="news-7">
               <div className="news-container-6">
                 <div className="page-content-23">
-                  <div className="page-content-24">NEWS</div>
+                  <div className="page-content-24" style={{ margin: "10px" }}>
+                    NEWS UND SPIELBERICHTE
+                  </div>
                 </div>
+
                 <div className="news-container-grid-7">
-                  {homepageData?.news?.slice().reverse().map((newsItem: any) => (
-                    <NewsArticle
-                      key={newsItem.id}
-                      title={newsItem.title}
-                      image={newsItem.image}
-                      text={newsItem.text}
-                      id={newsItem.id}
-                    />
-                  ))}
+                  {homepageData?.news
+                    ?.slice(-6)
+                    .reverse()
+                    .map((newsItem: any) => (
+                      <NewsRow
+                        key={newsItem.id}
+                        title={newsItem.title}
+                        image={newsItem.image}
+                        text={newsItem.created}
+                        id={newsItem.id}
+                        youtubeUrl={newsItem.youtube}
+                      />
+                    ))}
                 </div>
+
                 <Link className="item" to="/news">
                   <button className="downloadBtn">Zu allen News Artikeln</button>
                 </Link>
               </div>
-            </div> */}
-      {/* News Section */}
-        <div className="news-7">
-        <div className="news-container-6">
-            <div className="page-content-23">
-            <div className="page-content-24" style={{ margin: "10px"}}>NEWS UND SPIELBERICHTE</div>
             </div>
-
-            <div className="news-container-grid-7">
-            {homepageData?.news
-                ?.slice(-6)
-                .reverse()
-                .map((newsItem: any) => (
-                <NewsRow
-                    key={newsItem.id}
-                    title={newsItem.title}
-                    image={newsItem.image}
-                    text={newsItem.created}
-                    id={newsItem.id}
-                    youtubeUrl={newsItem.youtube}
-                />
-                ))}
-            </div>
-
-            <Link className="item" to="/news">
-            <button className="downloadBtn">Zu allen News Artikeln</button>
-            </Link>
-        </div>
-        </div>
 
             <div style={{ paddingBottom: "40px" }}></div>
             <Partners className="partners-section" />
