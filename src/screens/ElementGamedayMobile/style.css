@@ -229,5 +229,6 @@
   .element-gameday-mobile .filters-row {
     grid-template-columns: 1fr; /* stack */
     gap: 12px;
+    padding: 0px 18px;
   }
 }

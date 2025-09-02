@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { PageHeader } from "../../components/PageHeader";
 import { PropertyDesktopWrapper } from "../../components/PropertyDesktopWrapper";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import "./style.css";
-import { useNavigate, useParams } from "react-router-dom";
-import ClientController from "../../network/ClientController";
 import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
+import "./style.css";
 
 export const ElementTransfersDesktop = (): JSX.Element => {
   const screenWidth = useWindowWidth();
@@ -23,20 +23,26 @@ export const ElementTransfersDesktop = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
 
   // Fetch clubs on component mount
-  useEffect(() => {
+    useEffect(() => {
     const fetchTransfers = async () => {
-      try {
+        try {
         const clubData = await clientController.fetchTransferList();
-        setTransfers(clubData);
-      } catch (error) {
+        // 🔽 Temporary filter until backend fix
+        const filtered = clubData.filter((t: any) =>
+            new Date(t.created).getFullYear() === 2025
+        );
+        setTransfers(filtered);
+
+        setTransfers(clubData); // <-- uncomment when backend fix is done
+        } catch (error) {
         console.error("Error fetching club data:", error);
-      } finally {
+        } finally {
         setLoading(false);
-      }
+        }
     };
 
     fetchTransfers();
-  }, []);
+    }, []);
 
   return (
       <div
@@ -57,27 +63,33 @@ export const ElementTransfersDesktop = (): JSX.Element => {
             ) : (
                 transfers.map((transfer) => (
                     <PropertyDesktopWrapper
-                        key={transfer.id}
-                        className="instance-node-9"
-                        icnArrowRight={
-                          screenWidth < 900 ? "/img/icn-arrow-right-22.svg" : undefined
-                        }
-                        img={screenWidth >= 900 ? "/img/icn-arrow-right-16.svg" : undefined}
-                        property1={
-                          screenWidth < 900
-                              ? "mobile"
-                              : screenWidth >= 900
-                                  ? "desktop"
-                                  : undefined
-                        }
-                        data={{
-                          origin_name: transfer.origin_name,
-                          player_name: transfer.player_name,
-                          origin_image: transfer.origin_image,
-                          player_image: transfer.player_image,
-                          team_name: transfer.team_name,
-                          team_image: transfer.team_image,
-                        }}
+                    key={transfer.id}
+                    className="instance-node-9"
+                    icnArrowRight={
+                        screenWidth < 900
+                        ? "/img/icn-arrow-right-22.svg"
+                        : undefined
+                    }
+                    img={
+                        screenWidth >= 900
+                        ? "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficn-arrow-right-16.svg?alt=media&token=80ecc6b4-b418-45ee-80b0-6f45197089e1"
+                        : undefined
+                    }
+                    property1={
+                        screenWidth < 900
+                        ? "mobile"
+                        : screenWidth >= 900
+                            ? "desktop"
+                            : undefined
+                    }
+                    data={{
+                        origin_name: transfer.origin_name,
+                        player_name: transfer.player_name,
+                        origin_image: transfer.origin_image,
+                        player_image: transfer.player_image,
+                        team_name: transfer.team_name,
+                        team_image: transfer.team_image,
+                    }}
                     />
                 ))
             )}

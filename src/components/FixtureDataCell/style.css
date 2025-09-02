@@ -139,8 +139,10 @@
 .stadium-wrapper {
   display: flex;
   align-items: center;     /* vertically center */
+  justify-content: center;
   gap: 8px;                /* space between image and label */
   width: 200px;            /* optional, keep if you need */
+  margin: 10px 0px;
 }
 
 @media (max-width: 500px) {
