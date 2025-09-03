@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./style.css";
 
@@ -143,14 +142,14 @@ export const EventRow = ({
                     className={`event-card-name ${eventCardNameClassNameOverride}`}
                   >
                     <div
-                      className="event-card-first"
+                      className="h3_alt"
                       style={{ cursor: "pointer" }}
                       onClick={navigateToPlayerDetail} // Navigate on name click
                     >
                       {firstName}
                     </div>
                     <div
-                      className={`event-card-last-name ${eventCardLastNameClassName}`}
+                      className={`h3_alt`}
                       style={{ cursor: "pointer" }}
                       onClick={navigateToPlayerDetail} // Navigate on name click
                     >
@@ -165,7 +164,7 @@ export const EventRow = ({
 
         <div className="event-card-score">
           <div className="event-card-minute">
-            <div className="event-card-minute-2">{event.minute}&#39;</div>
+            <div className="h3">{event.minute}&#39;</div>
           </div>
           <img
             className="event-card-type-img"
@@ -173,7 +172,7 @@ export const EventRow = ({
             src={eventTypeImg}
           />
           {event.own_goal && event.type === "goal" && (
-            <div className="event-card-minute-2">(ET)</div>
+            <div className="h3">(ET)</div>
           )}
         </div>
 
@@ -203,14 +202,14 @@ export const EventRow = ({
                     className={`event-card-name-2 property-1-0-${property1} ${eventCardNameClassName}`}
                   >
                     <div
-                      className="event-card-first"
+                      className="h3_alt"
                       style={{ cursor: "pointer" }}
                       onClick={navigateToPlayerDetail} // Navigate on name click
                     >
                       {firstName}
                     </div>
                     <div
-                      className={`event-card-last-name ${eventCardLastNameClassNameOverride}`}
+                      className={`h3_alt ${eventCardLastNameClassNameOverride}`}
                       style={{ cursor: "pointer" }}
                       onClick={navigateToPlayerDetail} // Navigate on name click
                     >

@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "./style.css";
 
@@ -70,7 +69,7 @@ export const BlankettCell = ({
                         )}
 
                         <div className="team-detail-squad-7">
-                            <div className="team-detail-squad-8">
+                            <div className="h3_alt">
                                 <div className="team-detail-squad-9">{firstName}</div>
                                 <div className="team-detail-squad-10">{lastName}</div>
                             </div>
@@ -82,7 +81,7 @@ export const BlankettCell = ({
                             {/* Other components */}
                         </div>
                         <div className="team-detail-squad-7">
-                            <div className="team-detail-squad-11">{playerNumber}</div>
+                            <div className="h3_alt">{playerNumber}</div>
                         </div>
                     </div>
                 </div>

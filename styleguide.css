@@ -148,6 +148,21 @@
   text-align: start;
 }
 
+.h3_alt {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: var(--fs-base);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text-strong);
+  padding: 5px 0px;
+  text-align: start;
+  margin-right: 5px;
+}
+
+.white {
+    color: white;
+}
 .title {
   font-family: var(--font-sans);
   font-weight: 800;

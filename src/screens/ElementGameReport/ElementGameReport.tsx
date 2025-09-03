@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { BlankettCell } from "../../components/DivWrapper";
@@ -122,7 +122,7 @@ export const ElementGameReport = (): JSX.Element => {
         <div className="game-report-wrapper-2" style={{ paddingTop: "20px" }}>
           <div className="game-report-middle">
             <div className="away-team-2">
-              <div className="club-name">{gameData.home_blanket?.name}</div>
+              <div className="title">{gameData.home_blanket?.name}</div>
               <div
                 className="club-img-2"
                 style={{
@@ -139,7 +139,7 @@ export const ElementGameReport = (): JSX.Element => {
                   <div className="container-5">
                     <div className="container-6"></div>
                     <div className="container-7">
-                      <div className="text-wrapper-106">
+                      <div className="title white">
                         {gameData.score?.home}
                       </div>
                     </div>
@@ -152,7 +152,7 @@ export const ElementGameReport = (): JSX.Element => {
                   <div className="container-5">
                     <div className="container-8"></div>
                     <div className="container-7">
-                      <div className="text-wrapper-108">
+                      <div className="title">
                         {gameData.score?.away}
                       </div>
                     </div>
@@ -170,7 +170,7 @@ export const ElementGameReport = (): JSX.Element => {
                   backgroundSize: "contain",
                 }}
               />
-              <div className="club-name">{gameData.away_blanket?.name}</div>
+              <div className="title">{gameData.away_blanket?.name}</div>
             </div>
           </div>
 
@@ -180,7 +180,7 @@ export const ElementGameReport = (): JSX.Element => {
 
               <div className="game-setting-wrapper">
                 <div className="setting-wrapper">
-                  <div className="setting-date">
+                  <div className="h3">
                     {gameData.details?.date
                       ? `${formatMatchDate(gameData.details.date)} - ${formatMatchTime(
                           gameData.details.date
@@ -188,9 +188,10 @@ export const ElementGameReport = (): JSX.Element => {
                       : "Datum nicht Zugewiesen"}
                   </div>
                 </div>
+              </div>
 
-                <div className="setting-wrapper">
-                  <div className="setting-status">{statusText}</div>
+            <div className="setting-wrapper">
+                  <div className="h3">{statusText}</div>
                 </div>
 
                 <div className="stadium-wrapper">
@@ -199,12 +200,10 @@ export const ElementGameReport = (): JSX.Element => {
                       <div className="DFL-STA-b-png" />
                     </div>
                   </div>
-                  <div className="stadium-text">
+                  <div className="h3">
                     {gameData.details.location}
                   </div>
                 </div>
-              </div>
-
               <div className="divider" />
 
               <div className="game-report-bottom">

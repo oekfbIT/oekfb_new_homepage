@@ -336,7 +336,7 @@
 }
 
 .element-game-report .background-3 {
-  background-color: var(--themeblack);
+  background-color: orange;
   height: 80px;
   position: relative;
   width: 72px;
@@ -678,4 +678,8 @@
 
 .element-game-report .footer-38 {
   margin-left: -324px !important;
+}
+
+.white {
+    color: white;
 }

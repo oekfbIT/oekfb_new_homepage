@@ -1,4 +1,3 @@
-import React from "react";
 import "./style.css";
 
 interface Props {
@@ -32,10 +31,10 @@ export const TeamDetailSquadWrapper = ({
               <div className="team-detail-team-3">
                 <div className="team-detail-team-4">
                   {/* Conditional Text Based on Assign */}
-                  <div className="team-detail-squad-2">
+                  <div className="h3_alt white">
                     {assign ? "Aufstellung (Heim)" : "Aufstellung (Auswärts)"}
                   </div>
-                  <div className="team-detail-squad-3">{teamName}</div>
+                  <div className="h3_alt white">{teamName}</div>
                 </div>
               </div>
             </div>

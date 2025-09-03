@@ -111,7 +111,7 @@
 .leagueGrid {
   display: grid;
   gap: var(--space-3, 18px);
-  /* padding: 0px 30px; */
+  /* padding: 0px 30px; impulse we didn't even know */
   width: 100%;
   align-items: stretch;
   justify-items: stretch;
