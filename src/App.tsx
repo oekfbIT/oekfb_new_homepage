@@ -17,7 +17,6 @@ import { ElementPlayerDetail } from "./screens/ElementPlayerDetail";
 import { ElementPostpone } from "./screens/ElementPostpone/ElementPostpone";
 import { ElementRegeln } from "./screens/ElementRegeln";
 import { ElementRegister } from "./screens/ElementRegister";
-import { ElementRegistration } from "./screens/ElementRegistration/ElementRegistration";
 import { ElementSperrenDesktop } from "./screens/ElementSperrenDesktop";
 import { ElementTableMobile } from "./screens/ElementTableMobile";
 import { ElementTeamDetail } from "./screens/ElementTeamDetail";
@@ -52,7 +51,7 @@ const App = () => (
       <Route path="/teams" element={<ElementClubsDesktop />} />
       <Route path="/tabelle" element={<ElementTableMobile />} />
       <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
-      <Route path="/team/upload/:id" element={<ElementRegistration />} />
+      {/* <Route path="/team/upload/:id" element={<ElementRegistration />} /> */}
       <Route path="*" element={<ElementLeagueSelection />} />
     </Routes>
   </HashRouter>
