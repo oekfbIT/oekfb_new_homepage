@@ -6,7 +6,7 @@
   "scripts": {
     "start": "serve -s dist -l ${PORT:-8081}",
     "clean": "rm -rf dist .parcel-cache",
-    "build": "NODE_ENV=production npm run clean && parcel build --public-url ./ --no-scope-hoist && GENERATE_SOURCEMAP=false",
+  "build": "NODE_ENV=production npm run clean && parcel build --public-url ./ --no-scope-hoist --no-source-maps",
     "dev": "parcel",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
