@@ -11,8 +11,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 1200px;     /* keep original fixed width behavior */
-  width: 1200px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 /* Card/panel container (kept same paddings/gaps) */

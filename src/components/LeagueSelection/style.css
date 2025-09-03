@@ -25,7 +25,7 @@
 .leaguePage__content {
   width: 100%;
   max-width: 1200px;
-  padding: var(--space-8, 60px) 0;
+  padding: var(--space-8, 60px) 12px;
 }
 
 .leaguePage__section {
@@ -111,7 +111,7 @@
 .leagueGrid {
   display: grid;
   gap: var(--space-3, 18px);
-  padding: 0 var(--space-4, 16px) 30px;
+  /* padding: 0px 30px; */
   width: 100%;
   align-items: stretch;
   justify-items: stretch;
