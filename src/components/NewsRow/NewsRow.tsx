@@ -38,8 +38,8 @@ export const NewsRow = ({ className, title, image, text, id, youtubeUrl }: Props
         {youtubeUrl && <div className="play-icon">▶</div>}
       </div>
       <div className="news-row-content">
-        <div className="news-row-title">{title}</div>
-        <div className="news-row-description">{formatDate(text)}</div>
+        <div className="h3">{title}</div>
+        <div className="p">{formatDate(text)}</div>
       </div>
     </div>
   );

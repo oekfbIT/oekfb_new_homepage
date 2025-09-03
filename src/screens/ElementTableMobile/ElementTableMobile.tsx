@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { LeagueTable } from "../../components/LeagueTable";
@@ -10,19 +9,24 @@ import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 import "./style.css";
 
+type TableRow = Record<string, unknown>;
+type LeagueInfo = Record<string, unknown>;
+
 export const ElementTableMobile = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
+
   const authService = new AuthService();
   const clientController = new ClientController();
-  const [table, setTable] = useState([]);
-  const [league, setLeague] = useState([]);
+
+  const [table, setTable] = useState<TableRow[]>([]);
+  const [league, setLeague] = useState<LeagueInfo[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const navigate = useNavigate(); // Initialize the navigate function
-
   useEffect(() => {
-    const fetchTable = async () => {
+    const fetchData = async () => {
+      setLoading(true);
+
       const leagueCode = authService.getLeagueCode();
       if (!leagueCode) {
         console.error("No league code found in cookies.");
@@ -32,19 +36,22 @@ export const ElementTableMobile = (): JSX.Element => {
 
       try {
         const tableData = await clientController.fetchTable(leagueCode);
-        setTable(tableData);
+        setTable(Array.isArray(tableData) ? tableData : []);
 
-        const league = await clientController.fetchLeagueClubs(leagueCode);
-        setTable(league);
-
-      } catch (error) {
-        console.error("Error fetching table data:", error);
+        // ⬇️ this used to call setTable by mistake; set league info instead
+        const leagueClubs = await clientController.fetchLeagueClubs(leagueCode);
+        setLeague(Array.isArray(leagueClubs) ? leagueClubs : []);
+      } catch (err) {
+        console.error("Error fetching table data:", err);
+        setTable([]);
+        setLeague([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchTable();
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -52,52 +59,26 @@ export const ElementTableMobile = (): JSX.Element => {
       className="element-table-mobile"
       style={{ minWidth: isMobile ? "390px" : "900px" }}
     >
-      {isMobile ? (
-        <>
-          <Navigation />
-          <div className="league-table">
-            <div
-              className="league-table-wrapper"
-              style={{ paddingTop: "30px", paddingBottom: "30px" }}
-            >
-              <div className="league-table-2">
-                <PageHeader className="instance-node-5" text="Tabelle" />
-                <div className="container-2">
-                    <LeagueTable/>
-                </div>
-              </div>
-            </div>
-          </div>
+      {isMobile ? <Navigation /> : <DesktopNav />}
 
-          <Footer
-            className="footer-7"
-            footerContent="/img/footer-content-wrapper-left-logo-13.png"
-            footerContentClassNameOverride="footer-8"
-            href="https://www.facebook.com/kleinfeldliga/"
-            href1="https://www.youtube.com/@OEKFB"
-            href2="https://www.instagram.com/oekfb/?hl=en"
-            img="/img/link-54.svg"
-            link="/img/link-52.svg"
-            link1="/img/link-55.svg"
-            link2="/img/link-56.svg"
-          />
-        </>
-      ) : (
-        <>
-          <DesktopNav />
-          <div className="content-frame">
-            <div className="page-content-wrapper">
-              <div className="page-content-5">
-                <PageHeader className="instance-node-5" text="Tabelle" />
-                <div className="div-wrapper-2">
-                    <LeagueTable/>
-                </div>
-                <Footer />
-              </div>
+      <div className="league-table">
+        <div className="league-table-wrapper" style={{ paddingTop: 30, paddingBottom: 30 }}>
+          <div className="league-table-2">
+            <PageHeader className="instance-node-5" text="Tabelle" />
+            <div className="container-2">
+              {/* LeagueTable reads from its own store/requests; if you want,
+                 pass `table` and `league` via props instead */}
+              {loading ? (
+                <div className="table-loading">Laden…</div>
+              ) : (
+                <LeagueTable />
+              )}
             </div>
           </div>
-        </>
-      )}
+        </div>
+      </div>
+
+      <Footer />
     </div>
   );
 };

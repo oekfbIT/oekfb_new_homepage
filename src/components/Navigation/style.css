@@ -1,234 +1,82 @@
-.navigation-desktop {
-  align-items: center;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: center;
-  position: relative;
-  width: 100%;
-}
+/* Lock scroll when drawer is open */
+.u-no-scroll { overflow: hidden; }
 
-.navigation-desktop .main-navigation {
-  align-items: flex-start;
-  align-self: stretch;
-  background-color: var(--themewhite);
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-}
-
-.navigation-desktop .league-rows {
-  align-items: flex-start;
-  align-self: stretch;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-color: #e9ebed;
-  display: flex;
-  flex-direction: column;
-  height: 36px;
-  justify-content: center;
-  overflow-x: scroll;
-  padding: 0px 0px 10px;
-  position: relative;
-  width: 100%;
-}
-
-.navigation-desktop .leauge-row-wrapper {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 1;
-  flex-grow: 1;
-  gap: 15px;
-  max-width: 1440px;
-  padding: 5.08px 18px;
-  position: relative;
-  width: 100%;
-}
-
-.navigation-desktop .league-row-item {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  margin-bottom: -8.16px;
-  position: relative;
-}
-
-.navigation-desktop .link {
-  align-items: flex-start;
-  display: inline-flex;
-  flex-direction: column;
-  height: 24px;
-  justify-content: center;
-  position: relative;
-}
-
-.league-row-item.active .link {
-  background-color: black; /* Example: Set background */
-  color: white; /* Example: Text color */
-  padding-left: 2px;
-  padding-right: 2px;
-}
-
-
-.navigation-desktop .div {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 3px;
-  position: relative;
-}
-
-.navigation-desktop .content {
-  align-items: flex-start;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: space-between;
-  position: relative;
-  width: 49px;
-}
-
-.navigation-desktop .img {
-  height: 13px;
-  position: relative;
-  width: 16px;
-}
-
-.navigation-desktop .text-wrapper {
-  font-family: var(--theme-inter-bold-12-font-family);
-  font-size: var(--theme-inter-bold-12-font-size);
-  font-style: var(--theme-inter-bold-12-font-style);
-  font-weight: var(--theme-inter-bold-12-font-weight);
-  letter-spacing: var(--theme-inter-bold-12-letter-spacing);
-  line-height: var(--theme-inter-bold-12-line-height);
-  margin-top: -1.00px;
-  position: relative;
-  width: fit-content;
-}
-
-.navigation-desktop .league-row-item-2 {
-  align-self: stretch;
-  height: 1.5px;
-  background-color: black;
-  width: 100%;
-  position: relative;
-}
-
-.navigation-desktop .link-wrapper {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  margin-bottom: -8.16px;
-  margin-right: -15.00px;
-  position: relative;
-}
-
-.navigation-desktop .league-row-item-3 {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  margin-bottom: -8.16px;
-  margin-right: -79.00px;
-  position: relative;
-}
-
-.navigation-desktop .league-row-item-4 {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  margin-bottom: -8.16px;
-  margin-right: -143.00px;
-  position: relative;
-}
-
-.navigation-desktop .league-row-item-5 {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  margin-bottom: -8.16px;
-  margin-right: -207.00px;
-  position: relative;
-}
-
-.navigation-desktop .nav-row-wrapper {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  padding: 15px 18px 10px;
-  position: relative;
-  width: 100%;
-}
-
-.navigation-desktop .nav-row-wrapper-2 {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  height: 30.92px;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-}
-
-.navigation-desktop .nav-row-wrapper-3 {
-  height: 44.03px;
-  margin-bottom: -6.56px;
-  margin-top: -6.56px;
-  object-fit: cover;
-  position: relative;
-  width: 120px;
-}
-
-.navigation-desktop .mobile-burger-menu {
-  position: relative;
-  width: 24px;
-}
-/* Drawer Overlay */
-.drawer-overlay {
+/* Drawer shell */
+.drawer {
+  pointer-events: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-  display: flex;
-  justify-content: flex-end;
+  inset: 0;
+  z-index: 1000;
 }
+.drawer--open { pointer-events: auto; }
 
-/* Drawer Content */
-.drawer-content {
-  background-color: #fff;
-  width: 300px;
+/* Backdrop */
+.drawer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.drawer--open .drawer__backdrop { opacity: 1; }
+
+/* Panel (right slide-in) */
+.drawer__panel {
+  position: absolute;
+  top: 0;
+  right: 0;
   height: 100%;
-  position: relative;
-  box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+  width: min(84vw, 320px);
+  background: var(--color-surface, #111); /* darker so white close is visible if content loads late */
+  box-shadow: -2px 0 14px rgba(0,0,0,.12);
+  transform: translateX(100%);
+  transition: transform .25s ease;  /* still used when programmatic open/close */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+}
+.drawer--open .drawer__panel {
+  /* transform handled inline when dragging; leave this for the programmatic open */
 }
 
-/* Close Button */
-.close-button {
+/* Close button (masked white icon) */
+.drawer__close {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 24px;
-  height: 24px;
+  top: var(--space-3, 12px);
+  right: var(--space-3, 12px);
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: rgba(255,255,255,.14);
+  border-radius: 999px;
   cursor: pointer;
 }
 
-.league-row-wrapper {
-  display: flex;
-  gap: 15px;
+/* Use CSS mask so any icon becomes solid white */
+.drawer__close::before {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: 7px; /* centers within 32px circle */
+  background: #fff;               /* color of the icon */
+  /* The icon path is taken from the button's data-attribute */
+  mask: var(--mask-url) center / contain no-repeat;
+  -webkit-mask: var(--mask-url) center / contain no-repeat;
+}
+/* take the URL from data-icon attribute of the button */
+.drawer__close {
+  --mask-url: attr(data-icon url);
+}
+
+/* Burger button sizing */
+.nav__burger {
+  background: transparent;
+  border: 0;
+  padding: 4px;
+  cursor: pointer;
+}
+.nav__burger-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
 }

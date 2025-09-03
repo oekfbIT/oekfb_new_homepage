@@ -1,136 +1,35 @@
-/*.action-cell {*/
-/*  align-items: flex-start;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  height: 484px;*/
-/*  position: relative;*/
-/*  width: 457px;*/
-/*}*/
+/* IFrame.css
+   --------------------------------------------------------------
+   This ONLY covers iframe specifics. The card shell, spacing,
+   radius, shadows, typography, etc. come from ActionCell's
+   classes (.home__card, .home__mediaBox, .home__body, .h3, .p)
+   so both components look identical.
+   -------------------------------------------------------------- */
 
-/*.action-cell .image-wrapper-2 {*/
-/*  align-self: stretch;*/
-/*  flex: 1;*/
-/*  flex-grow: 1;*/
-/*  position: relative;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.action-cell .textwrapper {*/
-/*  align-items: flex-start;*/
-/*  align-self: stretch;*/
-/*  background-color: #ffffff;*/
-/*  display: flex;*/
-/*  flex-direction: column;*/
-/*  gap: 2px;*/
-/*  height: 171px;*/
-/*  padding: 15px 10px;*/
-/*  position: relative;*/
-/*  width: 100%;*/
-/*}*/
-
-/*.action-cell .title-4 {*/
-/*  align-self: stretch;*/
-/*  color: var(--themeswamp);*/
-/*  font-family: var(--theme-inter-bold-21-font-family);*/
-/*  font-size: var(--theme-inter-bold-21-font-size);*/
-/*  font-style: var(--theme-inter-bold-21-font-style);*/
-/*  font-weight: var(--theme-inter-bold-21-font-weight);*/
-/*  letter-spacing: var(--theme-inter-bold-21-letter-spacing);*/
-/*  line-height: var(--theme-inter-bold-21-line-height);*/
-/*  margin-top: -1.00px;*/
-/*  position: relative;*/
-/*}*/
-
-/*.action-cell .subtitle-4 {*/
-/*  align-self: stretch;*/
-/*  color: var(--themenevada);*/
-/*  font-family: var(--theme-inter-regular-15-13-font-family);*/
-/*  font-size: var(--theme-inter-regular-15-13-font-size);*/
-/*  font-style: var(--theme-inter-regular-15-13-font-style);*/
-/*  font-weight: var(--theme-inter-regular-15-13-font-weight);*/
-/*  letter-spacing: var(--theme-inter-regular-15-13-letter-spacing);*/
-/*  line-height: var(--theme-inter-regular-15-13-line-height);*/
-/*  position: relative;*/
-/*}*/
-
-.action-cell {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  /*height: 700px;*/
+/* Keep the same aspect ratio as your ActionCell image cards */
+.home__mediaBox--iframe {
   position: relative;
   width: 100%;
-  /*max-width: 50%;*/
-}
-
-.action-cell .iframe-wrapper {
-  align-self: stretch;
-  flex: 1;
-  flex-grow: 1;
-  position: relative;
-  width: 100%;
-  height: 100%;
+  aspect-ratio: 1140 / 630; /* match ActionCell's media ratio */
   overflow: hidden;
 }
 
-.action-cell .youtube-iframe {
+/* Fallback for older browsers without aspect-ratio */
+@supports not (aspect-ratio: 1 / 1) {
+  .home__mediaBox--iframe {
+    height: 0;
+    padding-bottom: calc(100% / (1140 / 630));
+  }
+  .home__iframe {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+/* Make the iframe fill the media box exactly */
+.home__iframe {
   width: 100%;
   height: 100%;
-  border: none;
-}
-
-.action-cell .textwrapper {
-  align-items: flex-start;
-  align-self: stretch;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 15px 10px;
-  position: relative;
-  width: 100%;
-}
-
-.action-cell .title-4 {
-  align-self: stretch;
-  color: var(--themeswamp);
-  font-family: var(--theme-inter-bold-21-font-family);
-  font-size: var(--theme-inter-bold-21-font-size);
-  font-style: var(--theme-inter-bold-21-font-style);
-  font-weight: var(--theme-inter-bold-21-font-weight);
-  letter-spacing: var(--theme-inter-bold-21-letter-spacing);
-  line-height: var(--theme-inter-bold-21-line-height);
-  margin-top: -1.00px;
-  position: relative;
-}
-
-.action-cell .subtitle-4 {
-  align-self: stretch;
-  color: var(--themenevada);
-  font-family: var(--theme-inter-regular-15-13-font-family);
-  font-size: var(--theme-inter-regular-15-13-font-size);
-  font-style: var(--theme-inter-regular-15-13-font-style);
-  font-weight: var(--theme-inter-regular-15-13-font-weight);
-  letter-spacing: var(--theme-inter-regular-15-13-letter-spacing);
-  line-height: var(--theme-inter-regular-15-13-line-height);
-  position: relative;
-}
-
-.youtube-iframe {
-  width: 10%;
-}
-
-.thumbnail-wrapper {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.play-button-overlay {
-  font-size: 64px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 50%;
-  padding: 10px 20px;
+  border: 0;
+  display: block;
 }

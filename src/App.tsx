@@ -6,7 +6,6 @@ import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
 import { ElementContactMobile } from "./screens/ElementContactMobile";
 import { ElementGameReport } from "./screens/ElementGameReport";
 import { ElementGamedayMobile } from "./screens/ElementGamedayMobile";
-import { ElementHomepageDesktop } from "./screens/ElementHomepageDesktop";
 import { ElementLeaderboard } from "./screens/ElementLeaderboard";
 import { ElementLeagueSelection } from "./screens/ElementLeagueSelection";
 import { ElementLigaordnung } from "./screens/ElementLigaordnung";
@@ -15,6 +14,7 @@ import { ElementMobilenav } from "./screens/ElementMobilenav";
 import { ElementNewsDetail } from "./screens/ElementNewsDetail";
 import { ElementNewsMobile } from "./screens/ElementNewsMobile";
 import { ElementPlayerDetail } from "./screens/ElementPlayerDetail";
+import { ElementPostpone } from "./screens/ElementPostpone/ElementPostpone";
 import { ElementRegeln } from "./screens/ElementRegeln";
 import { ElementRegister } from "./screens/ElementRegister";
 import { ElementRegistration } from "./screens/ElementRegistration/ElementRegistration";
@@ -23,13 +23,14 @@ import { ElementTableMobile } from "./screens/ElementTableMobile";
 import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTransfer } from "./screens/ElementTransfer";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
+import { Homepage } from "./screens/Homepage";
 import { Strafsenat } from "./screens/Strafsenat";
 
 const App = () => (
   <HashRouter>
     <Routes>
       <Route path="/" element={<ElementLeagueSelection />} />
-      <Route path="/liga" element={<ElementHomepageDesktop />} />
+      <Route path="/liga" element={<Homepage />} />
       <Route path="/mobilenav" element={<ElementMobilenav />} />
       <Route path="/match/:id" element={<ElementGameReport />} />
       <Route path="/spielplan" element={<ElementGamedayMobile />} />
@@ -43,6 +44,7 @@ const App = () => (
       <Route path="/sperren" element={<ElementSperrenDesktop />} />
       <Route path="/transfers" element={<ElementTransfersDesktop />} />
       <Route path="/transfer/:id" element={<ElementTransfer />} />
+      <Route path="/postpone/:id" element={<ElementPostpone />} />
       <Route path="/register" element={<ElementRegister />} />
       <Route path="/ligaordnung" element={<ElementLigaordnung />} />
       <Route path="/spielregeln" element={<ElementRegeln />} />

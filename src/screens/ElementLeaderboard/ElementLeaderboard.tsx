@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { LeaderboardHighligh } from "../../components/LeaderboardHighligh";
@@ -49,7 +49,6 @@ export const ElementLeaderboard = (): JSX.Element => {
             playerData = await clientController.fetchYellowRedCardLeaderBoard(leagueCode);
             break;
         }
-
         setPlayers(playerData.sort((a, b) => b.count - a.count));
       } catch (error) {
         console.error("Error fetching player data:", error);
@@ -61,63 +60,47 @@ export const ElementLeaderboard = (): JSX.Element => {
     fetchPlayers();
   }, [activeStat]);
 
-  const getHeaderText = () => {
-    switch (activeStat) {
-      case "goals":
-        return "Torschützenkönig";
-      case "yellow":
-        return "Kartenkönig (Gelb)";
-      case "red":
-        return "Kartenkönig (Rot)";
-      case "yellowRed":
-        return "Kartenkönig (Gelb/Rot)";
-    }
-  };
-
-  const handleStatChange = (type: StatType) => {
-    if (!loading && activeStat !== type) {
-      setActiveStat(type);
-    }
-  };
+  const headerText = {
+    goals: "Torschützenkönig",
+    yellow: "Kartenkönig (Gelb)",
+    red: "Kartenkönig (Rot)",
+    yellowRed: "Kartenkönig (Gelb/Rot)",
+  }[activeStat];
 
   return (
-    <div
-      className="element-leaderboard"
-      style={{ minWidth: isMobile ? "390px" : "900px" }}
-    >
+    <div className="leaderboard-page" style={{ minWidth: isMobile ? "390px" : "900px" }}>
       {isMobile ? <Navigation /> : <DesktopNav />}
 
-      <div className="page-control-4">
-        <PageHeader className="instance-node-10" text={getHeaderText()} />
+      {/* Controls + content wrapper */}
+      <div className="leaderboard__controls">
+        <PageHeader className="leaderboard__header" text={headerText} />
 
-        <div className="leaderboard-highligh-2">
+        {/* Segmented selector */}
+        <div className="h3 leaderboard__segments">
           <button
-            onClick={() => handleStatChange("goals")}
-            className={activeStat === "goals" ? "segButtonActive" : "segButton"}
+            onClick={() => !loading && setActiveStat("goals")}
+            className={`seg-btn ${activeStat === "goals" ? "seg-btn--active" : ""}`}
             disabled={loading}
           >
             TORE
           </button>
-
           <button
-            onClick={() => handleStatChange("yellow")}
-            className={activeStat === "yellow" ? "segButtonActive" : "segButton"}
+            onClick={() => !loading && setActiveStat("yellow")}
+            className={`h3 seg-btn ${activeStat === "yellow" ? "seg-btn--active" : ""}`}
             disabled={loading}
           >
             GELBE KARTEN
           </button>
-
           <button
-            onClick={() => handleStatChange("red")}
-            className={activeStat === "red" ? "segButtonActive" : "segButton"}
+            onClick={() => !loading && setActiveStat("red")}
+            className={`seg-btn ${activeStat === "red" ? "seg-btn--active" : ""}`}
             disabled={loading}
           >
             ROTE KARTEN
           </button>
-
           <button
-            onClick={() => handleStatChange("yellowRed")}
-            className={activeStat === "yellowRed" ? "segButtonActive" : "segButton"}
+            onClick={() => !loading && setActiveStat("yellowRed")}
+            className={`seg-btn ${activeStat === "yellowRed" ? "seg-btn--active" : ""}`}
             disabled={loading}
           >
             GELB/ROT
@@ -125,17 +108,18 @@ export const ElementLeaderboard = (): JSX.Element => {
         </div>
 
         {loading ? (
-          <div style={{ padding: "2rem", textAlign: "center" }}>
-            <div className="loader" />
+          <div className="leaderboard__loader">
+            <div className="spinner" />
           </div>
         ) : (
           <>
-            <div className="leaderboard-highligh-2">
-              {players.slice(0, 3).map((player, index) => (
+            {/* Top 3 cards */}
+            <div className="leaderboard__top3">
+              {players.slice(0, 3).map((player, i) => (
                 <LeaderboardHighligh
-                  key={index}
-                  className={`${isMobile ? "class-11" : "class-12"}`}
-                  title={`${index + 1}. Platz - ${player.count} ${
+                  key={i}
+                  className="leaderboard__top3Item"
+                  title={`${i + 1}. Platz - ${player.count} ${
                     activeStat === "goals"
                       ? "Tore"
                       : activeStat === "yellow"
@@ -144,11 +128,7 @@ export const ElementLeaderboard = (): JSX.Element => {
                       ? "Rote Karten"
                       : "Gelb/Rote Karten"
                   }`}
-                  team={{
-                    image: player.teamimg,
-                    name: player.team_name,
-                    id: player.team_id,
-                  }}
+                  team={{ image: player.teamimg, name: player.team_name, id: player.team_id }}
                   player={{
                     id: player.playerid,
                     image: player.image,
@@ -160,18 +140,15 @@ export const ElementLeaderboard = (): JSX.Element => {
               ))}
             </div>
 
-            <div className="single-stat-cells">
-              {players.slice(3).map((player, index) => (
+            {/* Remaining rows */}
+            <div className="leaderboard__list">
+              {players.slice(3).map((player, i) => (
                 <LeaderboardStat
-                  key={index}
-                  className="instance-node-10"
+                  key={i}
+                  className="leaderboard__row"
                   property1={isMobile ? "mobile" : "desktop"}
                   statType={activeStat}
-                  team={{
-                    image: player.teamimg,
-                    name: player.team_name,
-                    id: player.team_id,
-                  }}
+                  team={{ image: player.teamimg, name: player.team_name, id: player.team_id }}
                   player={{
                     id: player.playerid,
                     image: player.image,

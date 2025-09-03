@@ -1,24 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+// LeagueSelection.tsx
+// -------------------------------------------------------------
+// Small clickable card used in the league grid.
+// - No layout hacks, uses tokens + BEM classes
+// - Kept your title + "X TEAMS" subtitle
+// -------------------------------------------------------------
+
 import "./style.css";
 
-interface LeagueSelectionProps {
-    className: string;
-    name: string;
-    teams: number;
-    onClick?: () => void;
-}
+type Props = {
+  className?: string;
+  name: string;
+  teams: number;
+  onClick?: () => void;
+};
 
-export const LeagueSelection = ({
-                                    className,
-                                    name,
-                                    teams,
-                                    onClick,
-                                }: LeagueSelectionProps): JSX.Element => {
-    return (
-        <div className={`league-selection ${className}`} onClick={onClick}>
-            <div className="name">{name}</div>
-            <div className="subtitle">{teams} TEAMS</div>
-        </div>
-    );
+export const LeagueSelection = ({ className = "", name, teams, onClick }: Props): JSX.Element => {
+  return (
+    <button type="button" className={`leagueCard ${className}`} onClick={onClick}>
+      <div className="leagueCard__name">{name}</div>
+      <div className="leagueCard__meta">{teams} TEAMS</div>
+    </button>
+  );
 };

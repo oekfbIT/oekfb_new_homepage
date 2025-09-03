@@ -1,1 +1,0 @@
-export { ElementHomepageDesktop } from "./ElementHomepageDesktop";

@@ -1,110 +1,77 @@
-.element-clubs-desktop {
-  align-items: center;
-  background-color: #f5f5f5;
+/* ElementClubsDesktop.css
+   --------------------------------------------------------------
+   Clean Bundesliga-style grid:
+   - Max 3 columns
+   - White cards with border, no shadows
+   - Responsive (1 → 2 → 3 columns)
+   -------------------------------------------------------------- */
+
+/* Page shell */
+.page {
+  min-width: 390px;
+  background: var(--color-bg);
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+/* Main content container */
+.page__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-4) 0;
+}
+
+/* Page header */
+.page__header {
+  width: 100%;
+  max-width: 1200px;
+  padding-top: var(--space-6);
+}
+
+/* Clubs section */
+.clubs {
+  width: 100%;
+  max-width: 1200px;
+  padding: var(--space-4) var(--space-4) var(--space-8);
+}
+
+/* Loading / Empty states */
+.clubs__loading {
+  display: flex;
   justify-content: center;
-  position: relative;
+  padding: var(--space-6) 0;
 }
 
-.element-clubs-desktop .class {
-  margin-bottom: -906.42px !important;
-  margin-right: -780.00px !important;
+.clubs__empty {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--color-text);
+  opacity: .8;
+  padding: var(--space-6) var(--space-3);
 }
 
-.element-clubs-desktop .class-2 {
-  margin-bottom: -908.42px !important;
-  margin-right: -749.00px !important;
+/* Responsive grid (max 3 cols) */
+.clubs__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4) var(--space-3);
+  padding-top: var(--space-4);
 }
 
-.element-clubs-desktop .class-3 {
-  margin-bottom: -908.42px !important;
-  margin-right: -813.00px !important;
+@media (min-width: 560px) {
+  .clubs__grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-.element-clubs-desktop .class-4 {
-  margin-left: -746px !important;
+@media (min-width: 900px) {
+  .clubs__grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-.element-clubs-desktop .class-5 {
-  margin-bottom: -906.42px !important;
-  margin-right: -652.00px !important;
-}
-
-.element-clubs-desktop .class-6 {
-  margin-left: -681px !important;
-}
-
-.element-clubs-desktop .class-7 {
-  margin-left: -809px !important;
-}
-
-.element-clubs-desktop .class-8 {
-  margin-bottom: -908.42px !important;
-  margin-right: -685.00px !important;
-}
-
-.element-clubs-desktop .class-9 {
-  margin-bottom: -906.42px !important;
-  margin-right: -716.00px !important;
-}
-
-.element-clubs-desktop .instance-node-4 {
-  /*align-self: stretch !important;*/
-  flex: 0 0 auto !important;
-  width: 100% !important;
-  padding-top: 40px;
-}
-
-.element-clubs-desktop .page-content-3 {
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  position: relative;
-  width: 100%;
-}
-
-.element-clubs-desktop .club-grid {
-  align-items: center;
-  /*align-self: stretch;*/
-  display: flex;
-  flex: 0 0 auto;
-  flex-wrap: wrap;
-  gap: 15px 32px;
-  justify-content: flex-start;
-  max-width: 1200px;
-  position: relative;
-  width: 100%;
-  padding-bottom: 60px;
-  padding-top: 20px;
-}
-
-.element-clubs-desktop .club-card-instance {
-  flex: 1 !important;
-  flex-grow: 1 !important;
-  min-width: 289px !important;
-  width: unset !important;
-}
-
-.element-clubs-desktop .page-content-4 {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  flex-grow: 1;
-  gap: 20px;
-  max-width: 1200px;
-  padding: 0px 20px;
-  position: relative;
-}
-
-.element-clubs-desktop .class-10 {
-  margin-left: -324px !important;
-}
-
-.element-clubs-desktop .footer-6 {
-  align-self: stretch !important;
-  background-color: transparent !important;
-  flex: 0 0 auto !important;
-  width: 100% !important;
+/* Card wrapper */
+.clubs__card {
+  min-width: 0;
 }

@@ -1,130 +1,149 @@
-.dropdown {
-  align-items: flex-start;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 1200px;
-  position: relative;
-}
+/* Dropdown.css
+   ---------------------------------------------------------------
+   Uses your global tokens (swap to match your palette):
+   --color-surface, --color-elevated, --color-bg, --color-text,
+   --color-text-muted, --color-border, --color-primary
+   --space-*, --radius-*, --shadow-* , --font-sans, --fs-*, --lh-*
+   --------------------------------------------------------------- */
 
-.dropdown .dropdown-wrapper {
-  align-items: baseline;
+.select {
+  --select-width: 260px;
+  min-width: var(--select-width);
   display: inline-flex;
-  flex: 0 0 auto;
-  position: relative;
-}
-
-.dropdown .dropdown-wrapper-2 {
-  align-items: flex-start;
-  display: flex;
   flex-direction: column;
-  min-height: 56px;
-  padding: 24px 0px 8px;
+  gap: var(--space-2);
   position: relative;
-  width: 180px;
+  margin-bottom: 20px;
 }
 
-.dropdown .mat-label-select-a-wrapper {
-  align-items: flex-start;
+/* Label */
+.select__label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text);
+  opacity: .9;
+}
+
+/* Control (pill with inner glow, like screenshot) */
+.select__control {
   display: flex;
-  flex-direction: column;
-  left: 0;
-  max-width: 162px;
-  overflow: hidden;
-  padding: 1.5px 0px;
-  position: absolute;
-  top: 7px;
-}
-
-.dropdown .mat-label-select-a {
-  color: var(--themeblack-60);
-  font-family: "Inter", Helvetica;
-  font-size: 11.2px;
-  font-weight: 700;
-  letter-spacing: 0.29px;
-  line-height: normal;
-  margin-right: -2.43px;
-  margin-top: -1.00px;
-  position: relative;
-  width: max-content;
-}
-
-.dropdown .dropdown-wrapper-3 {
   align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: space-between;
-  position: relative;
+  gap: var(--space-3);
   width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-elevated, var(--color-surface));
+  color: var(--color-text);
+  border: 2px solid color-mix(in srgb, var(--color-primary) 40%, transparent);
+  border-radius: var(--radius-xl, 14px);
+  box-shadow:
+    0 2px 0 rgba(0,0,0,.15) inset,
+    0 0 0 1px color-mix(in srgb, var(--color-primary) 25%, transparent);
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.select__control:hover {
+  background: color-mix(in srgb, var(--color-elevated, var(--color-surface)) 90%, var(--color-bg) 10%);
+}
+.select__control.is-open {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+.select__control:focus-visible {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 35%, transparent);
 }
 
-.dropdown .dropdown-wrapper-4 {
-  color: var(--themeblack-87);
-  font-family: "Inter", Helvetica;
-  font-size: 15.6px;
-  font-weight: 700;
-  letter-spacing: 0.29px;
-  line-height: 20px;
-  margin-top: -1.00px;
+/* Leading icon + chevron */
+.select__icon { display: inline-flex; opacity: .9; }
+.select__chevron { margin-left: auto; transition: transform .18s ease; opacity: .85; }
+.select__chevron.is-open { transform: rotate(180deg); }
+
+/* Current value */
+.select__value {
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg, 18px);
+  line-height: var(--lh-normal);
+  color: var(--color-text-muted);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.select__value.is-selected { color: var(--color-text); }
+
+/* Popover + animation wrapper */
+.select__popover {
   position: relative;
-  white-space: nowrap;
-  width: fit-content;
+  pointer-events: none;
+  height: 0;
+  overflow: visible;
 }
+.select__popover.is-open { pointer-events: auto; }
 
-.dropdown .dropdown-wrapper-5 {
-  height: 5px;
-  position: relative;
-  width: 10px;
-}
-
-.dropdown .dropdown-wrapper-6 {
-  align-self: stretch;
-  border-bottom-style: solid;
-  border-bottom-width: 1px;
-  border-color: var(--themeblack-42);
-  height: 1px;
-  max-width: 300px;
-  /* position: relative; */
-  width: 100%;
-}
-
-/* Dropdown options styling */
-.dropdown-wrapper-6 {
+/* Animated menu (fold up/down) */
+.select__menu {
   position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: white;
-  border: 1px solid var(--themeblack-42);
-  z-index: 10;
-  max-width: 300px;
+  top: var(--space-2);
+  left: 0; right: 0;
+  background: var(--color-elevated, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: var(--shadow-lg, 0 14px 40px rgba(0,0,0,.25));
+  padding: var(--space-2);
+  max-height: 320px;
+  overflow: auto;
+
+  /* animation */
+  transform-origin: top center;
+  transform: scaleY(0.85);
+  opacity: 0;
+  transition: transform .18s ease, opacity .18s ease;
+}
+.select__popover.is-open .select__menu {
+  transform: scaleY(1);
+  opacity: 1;
+  z-index: 1;
+
 }
 
-.dropdown-options {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 200px;
-  overflow-y: auto;
+/* Motion-safe */
+@media (prefers-reduced-motion: reduce) {
+  .select__menu,
+  .select__chevron { transition: none; }
 }
 
-.dropdown-option-item {
-  padding: 15px;
+/* Option styles (rounded chips like screenshot) */
+.select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  margin: var(--space-1) 0;
+  border-radius: var(--radius-md, 10px);
   cursor: pointer;
-  font-family: "Inter", Helvetica;
-  font-size: 14px;
-  color: var(--themeblack-87);
-  background-color: white;
+  color: var(--color-text);
+  background: transparent;
+  transition: background .12s ease, color .12s ease;
+}
+.select__option:hover,
+.select__option.is-active {
+  background: color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+.select__option.is-selected {
+  font-weight: var(--font-weight-bold, 700);
+  background: color-mix(in srgb, var(--color-primary) 45%, transparent);
+  color: var(--color-text); /* stays readable with your theme text color */
+}
+.select__option-label {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+}
+.select__check {
+  opacity: .95;
 }
 
-.dropdown-option-item:hover {
-  background-color: black;
-  color: white;
-}
-
-/* Add hover effect and pointer cursor */
-.dropdown-wrapper-3 {
-  cursor: pointer; /* Changes the cursor to a pointer (finger) */
-  transition: background-color 0.3s ease; /* Optional: smooth transition */
+/* Let it stretch on small screens */
+@media (max-width: 480px) {
+  .select { --select-width: 100%; }
 }

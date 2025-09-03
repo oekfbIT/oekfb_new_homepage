@@ -1,0 +1,302 @@
+/* =========================
+   Homepage layout (BEM-ish)
+   ========================= */
+
+.home {
+  align-items: center;
+  background-color: var(--color-bg);                /* replaced: #f5f5f5 */
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);                              /* replaced: 20px */
+  overflow: hidden;
+  position: relative;
+  min-width: 390px;
+}
+
+/* Desktop min width */
+@media (min-width: 800px) {
+  .home { min-width: 900px; }
+}
+
+/* Sections keep content centered & capped */
+.home__section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Full-width slots for components that should stretch edge-to-edge */
+.home__fullwidth-slot {
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  padding: 12px;
+}
+
+/* ========= Matchups ========= */
+
+.home__matchups-list {
+  display: flex;
+  gap: var(--space-3);                              /* replaced: 12px */
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: var(--space-3);                   /* replaced: 10px -> 12px for scale */
+  width: -webkit-fill-available;
+  margin-left: var(--space-3);                      /* replaced: 12px */
+}
+.home__matchups-list.u-scrollbar-hidden {}          /* use utility */
+
+/* ========= Carousel ========= */
+.home__carousel {
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* ========= League Table ========= */
+.home__table {
+  width: 1200px;
+  max-width: 95%;
+  margin: 0 var(--space-5);                         /* replaced: 0 20px */
+}
+
+/* ========= Clubs ========= */
+
+.home__clubs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) 0;                        /* replaced: 10px -> 12px */
+  width: 100%;
+  margin-left: var(--space-3);                      /* replaced: 12px */
+}
+
+.home__clubs-title {
+  color: var(--color-text-strong);                  /* replaced: var(--themeswamp) */
+  font-family: var(--font-sans);                    /* replaced: many “inter-bold-*” vars */
+  font-weight: var(--font-weight-bold);             /* replaced */
+  font-size: var(--fs-lg);                          /* ≈ 20px; replaced: --theme-inter-bold-15-33-upper-font-size */
+  line-height: var(--lh-tight);                     /* replaced */
+  letter-spacing: var(--ls-upper);                  /* replaced: many “upper-letter-spacing: 1px” */
+  white-space: nowrap;
+  width: fit-content;
+  text-transform: uppercase;                        /* preserves “upper” semantics */
+  /* replaced: --theme-inter-bold-15-33-upper-* (several duplicates) */
+}
+
+.home__clubs-link {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-strong);                  /* replaced: var(--themeswamp) */
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-md);                          /* ≈ 14px; replaced: --theme-inter-bold-10-97-upper-font-size */
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-upper);
+  white-space: nowrap;
+  width: fit-content;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.home__clubs-list {
+  display: flex;
+  gap: 13px;
+  height: 146px;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: -webkit-fill-available;
+  margin-left: var(--space-3);
+}
+.home__clubs-list.u-scrollbar-hidden {}             /* use utility */
+
+/* ========= Banner ========= */
+.home__banner { width: 100%; }
+
+/* ========= Actions ========= */
+/* ========= Actions ========= */
+.home__actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 1200px;
+  align-items: stretch; /* equal heights per row */
+  padding: 12px;
+}
+
+/* ========= News ========= */
+
+.home__news {
+  align-items: center;
+  gap: var(--space-6);                              /* replaced: 25px -> 24px */
+}
+
+.home__news-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);                              /* replaced: 24px */
+  width: 100%;
+}
+
+.home__news-header {
+  display: flex;
+  justify-content: start;
+  padding: 0 var(--space-8);                        /* replaced: 32px */
+  width: 100%;
+}
+
+.home__news-title {
+  /* Tip: you could use .h-title instead */
+  color: var(--color-text-strong);                  /* replaced: var(--themeswamp) */
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-upper);
+  text-align: center;
+  text-transform: uppercase;
+  /* replaced: --theme-inter-bold-27-63-upper-... (whole set) */
+}
+
+.home__news-grid {
+  display: grid;
+  gap: var(--space-5);                              /* replaced: 20px */
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 var(--space-4);                        /* replaced: 16px */
+  box-sizing: border-box;
+}
+@media (min-width: 768px) {
+  .home__news-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.home__news-link { text-decoration: none; }
+
+/* Use the shared button utility */
+.home__button { composes: u-btn; }                  /* if CSS Modules */
+.home__button {                                     /* fallback if global CSS */
+  background-color: var(--color-surface);           /* replaced: #ffffff */
+  font-family: var(--font-sans);                        /* replaced: medium */
+  font-size: var(--fs-md);                        /* replaced: medium */
+  color: var(--color-text-strong);                  /* replaced: #000 */
+  font-weight: 800;
+  padding: 24px 35px;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.home__button:hover { background-color: var(--color-warning); }  /* replaced: orange */
+
+/* ========= NewsRow (consider moving into component CSS) ========= */
+
+.news-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: var(--space-4);                              /* replaced: 16px */
+  background-color: var(--color-surface);           /* replaced: var(--themewhite) */
+  padding: var(--space-3);                          /* replaced: 12px */
+  border: 1px solid var(--color-border);            /* replaced: #e9ebed */
+  border-radius: var(--radius-sm);                  /* replaced: 4px */
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: var(--shadow-sm);                     /* new: subtle elevation */
+}
+
+.news-row-img {
+  width: 90px;
+  height: 60px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: var(--color-border);            /* replaced: #e9ebed */
+}
+
+.news-row-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.news-row-title {
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);             /* replaced: bold */
+  font-size: var(--fs-base);                        /* replaced: 16px */
+  line-height: var(--lh-tight);
+  color: var(--color-text-strong);                  /* replaced: var(--themeswamp) */
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.news-row-description {
+  font-size: var(--fs-sm);                          /* replaced: 14px */
+  line-height: var(--lh-normal);                    /* replaced: 1.5 */
+  color: var(--color-text-muted);                   /* replaced: #555 */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+/* Shared "card" shell for actions/iframe */
+.home__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  height: 100%; /* make all cards same height inside grid */
+}
+
+.home__cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: contents; /* full card is the hit area */
+}
+
+/* Media area (image/iframe) gets fixed aspect for equal visual height */
+.home__mediaBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--color-bg);
+}
+.home__mediaBox > * {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+}
+
+/* Body */
+.home__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+}
+
+/* Title (h3) + subtitle (p) */
+.home__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-tight);
+  color: var(--color-text-strong);
+}
+
+.home__subtitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: var(--lh-normal);
+  color: var(--color-text);
+  opacity: 0.95;
+}

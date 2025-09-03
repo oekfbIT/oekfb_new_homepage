@@ -19,8 +19,16 @@ interface NewsDetail {
   created: string;
 }
 
+/**
+ * News Detail Page
+ * - Fetches a single news item by :id
+ * - Renders hero image and optional YouTube embed
+ * - Shows formatted rich-text content from CMS
+ */
 export const ElementNewsDetail = (): JSX.Element => {
   const screenWidth = useWindowWidth();
+  const isMobile = screenWidth < 900;
+
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -31,6 +39,7 @@ export const ElementNewsDetail = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch news detail on mount / id change
   useEffect(() => {
     const fetchNewsDetail = async () => {
       const leagueCode = authService.getLeagueCode();
@@ -53,86 +62,81 @@ export const ElementNewsDetail = (): JSX.Element => {
     };
 
     fetchNewsDetail();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  if (loading) return <div>Loading news details...</div>;
-  if (error) return <div className="error-message">{error}</div>;
-  if (!newsDetail) return <div className="error-message">News details not available.</div>;
+  if (loading) return <div className="news-detail-page__status">Loading news details...</div>;
+  if (error) return <div className="news-detail-page__error">{error}</div>;
+  if (!newsDetail) return <div className="news-detail-page__error">News details not available.</div>;
+
+  // Date formatting helper (DE locale)
+  const createdText = newsDetail.created
+    ? new Intl.DateTimeFormat("de-DE", {
+        day: "numeric",
+        month: "numeric",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(new Date(newsDetail.created))
+    : "No Date";
 
   return (
     <div
-      className="element-news-detail"
-      style={{
-        minWidth: screenWidth < 900 ? "390px" : "900px",
-      }}
+      className="news-detail-page"
+      style={{ minWidth: isMobile ? "390px" : "900px" }}
     >
-      {screenWidth < 900 ? <Navigation /> : <DesktopNav />}
+      {/* Navigation */}
+      {isMobile ? <Navigation /> : <DesktopNav />}
 
-      <div className="content-frame-2">
-        <div className="news-detail-2">
-          <div className="news-detail-wrapper">
-            <div className="news-detail-content">
-              <div className="news-detail-content-2">
-                <div className="news-detail-content-3">
-                  <div className="news-detail-content-4">
-                    {newsDetail.tag || "No Tag"}
-                  </div>
-
-                  <p className="news-detail-content-5">
-                    {newsDetail.title || "Untitled"}
-                  </p>
-
-                  <div className="news-detail-content-6">
-                    Datum: {newsDetail.created
-                      ? new Intl.DateTimeFormat("de-DE", {
-                          day: "numeric",
-                          month: "numeric",
-                          year: "numeric",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        }).format(new Date(newsDetail.created))
-                      : "No Date"}
-                  </div>
-                </div>
-
-                {/* Always show the image */}
-                <div className="hero-img">
-                  <div
-                    className="image-12"
-                    style={{
-                      backgroundImage: `url(${newsDetail.image || ""})`,
-                    }}
-                  />
-                </div>
-
-                {/* Conditionally show YouTube iframe if URL exists */}
-                {newsDetail.youtube?.trim() && (
-                  <div className="hero-img">
-                    <IFrame
-                      className="custom-class"
-                      title=""
-                      subtitle=""
-                      youtubeUrl={newsDetail.youtube}
-                      linkTo={newsDetail.youtube}
-                    />
-                  </div>
-                )}
+      <main className="news-detail-page__outer">
+        {/* Constrains content width */}
+        <article className="news-detail-page__container">
+          {/* Header block: tag, title, date */}
+          <header className="news-detail-page__header">
+            <div className="news-detail-page__heading">
+              <div className="news-detail-page__tag">{newsDetail.tag || "Ohne Kategorie"}</div>
+              <h1 className="news-detail-page__title">{newsDetail.title || "Untitled"}</h1>
+              <div className="news-detail-page__meta">
+                Datum: <time>{createdText}</time>
               </div>
             </div>
 
-            <div className="news-detail-content-wrapper">
-              <div className="news-detail-content-7">
-                <div
-                  className="news-detail-content-8"
-                  dangerouslySetInnerHTML={{
-                    __html: newsDetail.text || "No content available.",
-                  }}
+            {/* Media: hero image */}
+            <div className="news-detail-page__media">
+              <div
+                className="news-detail-page__hero"
+                style={{ backgroundImage: `url(${newsDetail.image || ""})` }}
+                aria-label="Artikelbild"
+                role="img"
+              />
+            </div>
+
+            {/* Optional: YouTube video */}
+            {newsDetail.youtube?.trim() && (
+              <div className="news-detail-page__media news-detail-page__media--video">
+                <IFrame
+                  className="news-detail-page__video"
+                  title=""
+                  subtitle=""
+                  youtubeUrl={newsDetail.youtube}
+                  linkTo={newsDetail.youtube}
                 />
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            )}
+          </header>
+
+          {/* Body: rich text from CMS */}
+          <section className="news-detail-page__body">
+            <div
+              className="news-detail-page__content"
+              // CMS-provided HTML
+              dangerouslySetInnerHTML={{
+                __html: newsDetail.text || "No content available.",
+              }}
+            />
+          </section>
+        </article>
+      </main>
 
       <Footer />
     </div>

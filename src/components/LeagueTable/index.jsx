@@ -9,6 +9,7 @@ import "./style.css";
 export const LeagueTable = () => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
+  const hideDiff = screenWidth < 480; // remove +/- on very small screens
 
   const authService = new AuthService();
   const clientController = new ClientController();
@@ -18,151 +19,174 @@ export const LeagueTable = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-    useEffect(() => {
-    const fetchData = async () => {
-        const code = authService.getLeagueCode();
-        if (!code) {
-        console.error("No league code found in cookies.");
-        setLoading(false);
-        return;
-        }
+  const desktopHeaders = ["RANK", "", "TEAM", "Matches", "W-D-L", "+/-", "Points"];
+  const mobileHeaders  = ["RANK", "", "TEAM", "M", "WDL", "+/-", "P"];
+  const compactHeaders = ["RANK", "", "TEAM", "M", "WDL", "P"]; // without +/-
+  const headers = hideDiff
+    ? compactHeaders
+    : (isMobile ? mobileHeaders : desktopHeaders);
 
-        try {
+  useEffect(() => {
+    const fetchData = async () => {
+      const code = authService.getLeagueCode();
+      if (!code) { setLoading(false); return; }
+
+      try {
         const tbl = await clientController.fetchCurrentSeasonTable(code);
         setTable(applyPlayboysRule(tbl));
-
         const league = await clientController.fetchLeague(code);
         setLeagueName(league.name || "");
-        } catch (err) {
+      } catch (err) {
         console.error("Error fetching data:", err);
-        } finally {
+      } finally {
         setLoading(false);
-        }
+      }
     };
-
-  fetchData();
-}, []);
-
+    fetchData();
+  }, []);
 
   const applyPlayboysRule = (teams) => {
-    const playboys = teams.find((team) => team.name === "FC Playboys");
+    const playboys = teams.find((t) => t.name === "FC Playboys");
     if (!playboys) return teams;
-
-    const rest = teams.filter((team) => team.name !== "FC Playboys");
-    const reordered = [playboys, ...rest];
-
-    // Force-correct ranking after reordering
-    return reordered.map((team, index) => ({
-      ...team,
-      ranking: index + 1,
-    }));
+    const rest = teams.filter((t) => t.name !== "FC Playboys");
+    return [playboys, ...rest].map((t, i) => ({ ...t, ranking: i + 1 }));
   };
 
-  const normalizedLeagueName = (leagueName || "").trim();
-  const hideBlue = /1/.test(normalizedLeagueName) || /Master/i.test(normalizedLeagueName);
-
-  const desktopHeaders = ["RANK", "", "TEAM", "Matches", "W-D-L", "+/-", "Points"];
-  const mobileHeaders = ["RANK", "", "TEAM", "M", "WDL", "+/-", "P"];
-
-  const renderHeader = () => {
-    const headers = isMobile ? mobileHeaders : desktopHeaders;
-
+  if (loading) {
     return (
-      <div className="table-header">
-        <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>{headers[0]}</div>
-        <div className="table-cell table-cell--img">{headers[1]}</div>
-        <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>{headers[2]}</div>
-        <div className={`table-cell table-cell--number ${isMobile ? "" : "nil-mobile"}`}>{headers[3]}</div>
-        <div className="table-cell table-cell--number">{headers[4]}</div>
-        <div className="table-cell table-cell--number diff-cell">{headers[5]}</div>
-        <div className="table-cell table-cell--number">{headers[6]}</div>
+      <div className="lt">
+        <div className="lt__container">
+          <div className="lt__loading"><LoadingIndicator /></div>
+        </div>
       </div>
     );
-  };
-
-  const renderRows = () =>
-    table.map((team, index) => (
-      <div
-        key={team.id}
-        className="table-row"
-        onClick={() => navigate(`/team-detail/${team.id}`)}
-      >
-        <div className={`table-cell table-cell--number ${isMobile ? "rank-mobile" : "nil-mobile"}`}>
-          {index === 0 && (
-            <img
-            //   src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-winner-trophy-cup-icon-cartoon-style-png-image_5150422.jpg"
-              src="https://www.ledr.com/colours/white.jpg"
-              alt="Trophy"
-              width={20}
-              height={20}
-              style={{ marginRight: "6px" }}
-            />
-          )}
-          {team.ranking}
-        </div>
-        <div className="table-cell table-cell--img">
-          <img src={team.image} alt={team.name} width={24} height={24} />
-        </div>
-        <div className={`table-cell team-name ${isMobile ? "table-cell--team-mobile" : ""}`}>
-          {isMobile ? team.shortName || team.name : team.name}
-        </div>
-        <div className={`table-cell table-cell--number ${isMobile ? "" : "nil-mobile"}`}>
-          {team.wins + team.draws + team.losses}
-        </div>
-        <div className="table-cell table-cell--number diff-mobile">
-          {team.wins}-{team.draws}-{team.losses}
-        </div>
-        <div className="table-cell table-cell--number diff-cell">
-          {isMobile
-            ? team.difference > 0
-              ? `+${team.difference}`
-              : team.difference
-            : `${team.scored} : ${team.against}`}
-        </div>
-        <div className="table-cell table-cell--number">{team.points}</div>
-      </div>
-    ));
-
-  const renderFooter = () => (
-    <div className="tb-footer">
-      <p>
-        <img
-          src="https://png.pngtree.com/png-clipart/20191121/original/pngtree-winner-trophy-cup-icon-cartoon-style-png-image_5150422.jpg"
-          alt="Trophy"
-          width={14}
-          style={{ verticalAlign: "middle", marginRight: "6px" }}
-        />
-        = Meister
-      </p>
-      <p><strong>P</strong> = Punkte</p>
-      <p><strong>+/-</strong> = Tor Differenz</p>
-      <p><strong>W-D-L</strong> = Siege - Unentschieden - Niederlagen</p>
-      <p>
-        <span className="promotion-marker" />
-        Aufsteiger
-      </p>
-      <p>
-        <span className="relegation-marker" />
-        Absteiger
-      </p>
-    </div>
-  );
+  }
 
   return (
-    <div className="element-table-mobile" style={{ maxWidth: "1200px", width: "100%", background: "white" }}>
-      <div className="league-table-wrapper">
-        {loading ? (
-          <div className="loading-wrapper">
-            <LoadingIndicator />
+    <section className="lt" aria-label={leagueName || "League table"}>
+      <div className={`lt__container ${hideDiff ? "lt--hideDiff" : ""}`}>
+        {/* Header */}
+        <div className="lt__header" role="row">
+          <div className="h3-table">{headers[0]}</div>
+          <div className="h3-table h3start">{headers[1]}</div>
+          <div className="h3-table h3start">{headers[2]}</div>
+          <div className="h3-table">{headers[3]}</div>
+          <div className="h3-table">{headers[4]}</div>
+          {!hideDiff && <div className="h3-table center">{headers[5]}</div>}
+          <div className="h3-table center">{headers[hideDiff ? 5 : 6]}</div>
+        </div>
+
+        {/* Body */}
+        <div className="lt__body">
+          {table.map((team, index) => {
+            const matches = team.wins + team.draws + team.losses;
+            const goals = `${team.scored} : ${team.against}`;
+            const diff = team.difference > 0 ? `+${team.difference}` : team.difference;
+
+            const promo = index < 3;
+            const relega = index >= table.length - 2;
+
+            return (
+              <button
+                key={team.id}
+                className={`lt__row${promo ? " lt__row--promo" : ""}${relega ? " lt__row--relega" : ""}`}
+                onClick={() => navigate(`/team-detail/${team.id}`)}
+              >
+                <div className="lt__leftStripe" />
+
+                <div className="lt__cell lt__cell--rank">
+                  <span className="lt__rankBadge">{team.ranking}</span>
+                </div>
+
+                <div className="lt__cell lt__cell--crest">
+                  <img src={team.image} alt="" />
+                </div>
+
+                <div className="pb lt__cell lt__cell--team">
+                  {isMobile ? team.shortName || team.name : team.name}
+                </div>
+
+                <div className="lt__cell lt__cell--num">{matches}</div>
+                <div className="lt__cell lt__cell--num">
+                  {team.wins}-{team.draws}-{team.losses}
+                </div>
+
+                {!hideDiff && (
+                  <div className="lt__cell lt__cell--num">
+                    {isMobile ? diff : goals}
+                  </div>
+                )}
+
+                <div className="lt__cell lt__cell--num">{team.points}</div>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Legend */}
+        <footer className="lt__legend" aria-label="Legende">
+          <h3 className="h2 lt__legendTitle">Legende</h3>
+
+          <div className="lt__legendItem">
+            <span className="lt__legendIcon lt__legendIcon--trophy" aria-hidden>
+              <svg viewBox="0 0 24 24" width="1em" height="1em">
+                <path d="M5 5h14v2a4 4 0 0 1-4 4h-1a4 4 0 0 1-8 0H6a4 4 0 0 1-4-4V5h3zm0 0V3h14v2" fill="currentColor"></path>
+                <path d="M10 15h4v3h3v2H7v-2h3v-3z" fill="currentColor"></path>
+              </svg>
+            </span>
+            <span>Meister</span>
           </div>
-        ) : (
-          <div className={`table${!hideBlue ? " with-blue" : ""}`}>
-            {renderHeader()}
-            {renderRows()}
-            {renderFooter()}
+
+          <div className="lt__legendItem">
+            <span className="lt__legendIcon lt__legendIcon--points" aria-hidden>
+              <svg viewBox="0 0 24 24" width="1em" height="1em">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" fill="none" />
+              </svg>
+            </span>
+            <span>Punkte</span>
           </div>
-        )}
+
+          {!hideDiff && (
+            <div className="lt__legendItem">
+              <span className="lt__legendIcon lt__legendIcon--diff" aria-hidden>
+                <svg viewBox="0 0 24 24" width="1em" height="1em">
+                  <path d="M5 12h14M9 7h6M9 17h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </span>
+              <span>Tor Differenz</span>
+            </div>
+          )}
+
+          <div className="lt__legendItem">
+            <span className="lt__legendIcon lt__legendIcon--wdl" aria-hidden>
+              <svg viewBox="0 0 24 24" width="1em" height="1em">
+                <rect x="3" y="6" width="5" height="12" rx="2" fill="currentColor" />
+                <rect x="10" y="6" width="5" height="12" rx="2" fill="currentColor" opacity="0.6" />
+                <rect x="17" y="6" width="4" height="12" rx="2" fill="currentColor" opacity="0.35" />
+              </svg>
+            </span>
+            <span>Siege/Niederlagen</span>
+          </div>
+
+          <div className="lt__legendItem">
+            <span className="lt__legendIcon lt__legendIcon--up" aria-hidden>
+              <svg viewBox="0 0 24 24" width="1em" height="1em">
+                <path d="M12 5l6 6h-4v8H10v-8H6l6-6z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span>Aufsteiger</span>
+          </div>
+
+          <div className="lt__legendItem">
+            <span className="lt__legendIcon lt__legendIcon--down" aria-hidden>
+              <svg viewBox="0 0 24 24" width="1em" height="1em">
+                <path d="M12 19l-6-6h4V5h4v8h4l-6 6z" fill="currentColor"/>
+              </svg>
+            </span>
+            <span>Absteiger</span>
+          </div>
+        </footer>
       </div>
-    </div>
+    </section>
   );
 };

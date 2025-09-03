@@ -1,112 +1,168 @@
-.carousel-wrapper {
-  margin: 16px auto;
-  max-width: 1200px;
-  width: calc(100% - 32px);
+/* GalleryCarousel.css
+   --------------------------------------------------------------
+   Uses tokens from global.css with safe fallbacks:
+   Colors:  var(--color-surface,#fff) var(--color-text,#111)
+            var(--color-text-strong,#0b0f14) var(--color-border,#e9ebed)
+            var(--overlay-scrim, rgba(0,0,0,0.5))
+   Type:    var(--font-sans, Inter, Helvetica, Arial, sans-serif)
+            var(--font-weight-regular,400) var(--font-weight-bold,700)
+            var(--fs-sm,14px) var(--fs-base,16px) var(--fs-lg,20px)
+            var(--fs-xl,30px)
+            var(--lh-tight,1.2) var(--lh-normal,1.5)
+   Space:   var(--space-2,8px) var(--space-3,12px) var(--space-4,16px)
+   Radius:  var(--radius-sm,4px)
+   Motion:  var(--ease-standard, ease-in-out)
+   --------------------------------------------------------------
+   Local custom properties you can tune per page:
+     --carousel-max-width: 1200px;
+     --carousel-h-padding: 16px;
+     --carousel-aspect: 1140 / 630;    (keeps media ratio consistent)
+     --carousel-btn-size: 44px;
+     --carousel-btn-font: 2rem;
+   -------------------------------------------------------------- */
+
+:root {
+  --carousel-max-width: 1200px;
+  --carousel-h-padding: 16px;
+  --carousel-aspect: 1140 / 630;
+  --carousel-btn-size: 44px;
+  --carousel-btn-font: 2rem;
 }
 
-.carousel-container {
+/* Wrapper */
+.carousel {
+  margin: var(--space-4, 16px) auto;
+  max-width: var(--carousel-max-width);
+  width: calc(100% - (var(--carousel-h-padding) * 2));
+}
+
+/* Clipping viewport */
+.carousel__viewport {
   overflow: hidden;
   position: relative;
+  background: var(--color-surface, #fff);
+  border-radius: var(--radius-sm, 4px);
 }
 
-.carousel-track {
+/* Track translates horizontally */
+.carousel__track {
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s var(--ease-standard, ease-in-out);
 }
 
-.carousel-slide {
+/* Each slide takes full viewport width */
+.carousel__slide {
   flex: 0 0 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 }
 
-/* Image container with enforced aspect ratio */
-.carousel-image-wrapper {
+/* Media with enforced aspect ratio */
+.carousel__media {
   position: relative;
   width: 100%;
-  aspect-ratio: 1140 / 630;
+  aspect-ratio: var(--carousel-aspect);
   overflow: hidden;
+  background: #f2f4f7;
 }
 
-.carousel-image-wrapper img {
+.carousel__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.carousel-caption {
-  padding: 16px;
-  background-color: white;
-  color: black;
+/* Caption area */
+.carousel__caption {
+  padding: var(--space-4,16px);
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #111);
   text-align: left;
 }
 
-.carousel-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  color: white;
-  font-size: 2rem;
-  padding: 0 10px;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.carousel-button.prev {
-  left: 10px;
-}
-
-.carousel-button.next {
-  right: 10px;
-}
-
-.pRousel {
-  font-size: 14px;
-  font-family: Inter, Helvetica;
-  font-weight: 400;
-  line-height: 22px;
+/* Subtitle (smaller, two-line clamp) — replaces `.pRousel` */
+.carousel__caption-subtitle {
+  font-family: var(--font-sans, Inter, Helvetica, Arial, sans-serif);
+  font-weight: var(--font-weight-regular, 400);
+  font-size: var(--fs-sm, 14px);
+  line-height: 22px; /* tighter than base; keep for density */
   margin: 0;
-  text-align: left;
 
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 2;      /* 2-line clamp */
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.header {
+/* Title (larger, bold) — replaces `.header` */
+.carousel__caption-title {
   margin: 0 0 10px;
-  font-family: Inter, Helvetica;
-  font-size: 30px;
+  font-family: var(--font-sans, Inter, Helvetica, Arial, sans-serif);
+  font-size: var(--fs-xl, 30px);
   line-height: 36px;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold, 700);
   text-align: left;
 }
 
+/* Prev/Next buttons */
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--carousel-btn-size);
+  height: var(--carousel-btn-size);
+  display: grid;
+  place-items: center;
+  background: var(--overlay-scrim, rgba(0, 0, 0, 0.5));
+  border: none;
+  color: var(--color-surface, #fff);
+  font-size: var(--carousel-btn-font);
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.carousel__btn--prev { left: 10px; }
+.carousel__btn--next { right: 10px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .carousel__btn:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ===== Responsive tweaks ===== */
 @media screen and (max-width: 500px) {
-  .carousel-wrapper {
-    margin: 16px auto;
-    width: calc(100% - 16px);
+  .carousel {
+    margin: var(--space-4, 16px) auto;
+    width: calc(100% - (var(--carousel-h-padding) * 1)); /* slightly wider on small */
   }
 
-  .header {
-    font-size: 20px;
-    line-height: 26px;
-    margin-bottom: 8px;
-  }
+/* Specific usage */
+.carousel__caption-title {
+  font-size: var(--fs-4xl, 29px); /* uses same as h2, fallback 29px */
+  line-height: 26px;
+  margin-bottom: 8px;
+}
 
-  .pRousel {
-    font-size: 16px;
+  .carousel__caption-subtitle {
+    font-size: var(--fs-base, 16px);
     line-height: 24px;
   }
 
-  .carousel-image-wrapper {
-    aspect-ratio: 1140 / 630;
+  .carousel__media {
+    aspect-ratio: var(--carousel-aspect); /* keep ratio; override if you want taller thumbs */
   }
 }
+
+/* Optional: hide native scrollbar if track overflows horizontally somewhere else */
+.u-scrollbar-hidden {
+  scrollbar-width: none;            /* Firefox */
+  -ms-overflow-style: none;         /* IE/Edge */
+}
+.u-scrollbar-hidden::-webkit-scrollbar { display: none; }

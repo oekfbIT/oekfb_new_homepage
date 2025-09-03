@@ -1,61 +1,88 @@
+// Navigation.jsx
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ApiService from "../../network/ApiService";
 import AuthService from "../../network/AuthService";
 import { ElementMobilenav } from "../../screens/ElementMobilenav";
 import "./style.css";
 
-// codes to exclude from the API result
 const EXCLUDED_CODES = ["NONE", "W2A"];
+const MOBILE_MAX_WIDTH = 800;
+
+const DEFAULT_BURGER_ICON =
+  "https://cdn-icons-png.flaticon.com/512/5259/5259008.png";
+const DEFAULT_CLOSE_ICON =
+  "https://cdn-icons-png.flaticon.com/512/2961/2961937.png";
 
 export const Navigation = ({
   className = "",
-  navRowWrapper =
-    "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0",
-  mobileBurgerMenu =
-    "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fmobile-burger-menu-7.svg?alt=media&token=4f55528e-3719-41ee-b137-311723b3a4b9",
+  logoSrc = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fnav-row-wrapper-content-logo-9.svg?alt=media&token=c6df6440-75af-4ee3-8f20-3b76ddab00d0",
+  burgerIconSrc = DEFAULT_BURGER_ICON,
+  closeIconSrc = DEFAULT_CLOSE_ICON,
 }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_MAX_WIDTH);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeLeague, setActiveLeague] = useState(null);
   const [leagues, setLeagues] = useState([]);
+
+  // drag state
+  const [dragX, setDragX] = useState(0);       // how far panel is dragged (0..panelWidth)
+  const dragStartXRef = useRef(0);
+  const lastXRef = useRef(0);
+  const lastTimeRef = useRef(0);
+  const velocityRef = useRef(0);
+  const panelRef = useRef(null);
 
   const authService = new AuthService();
   const apiService = new ApiService();
   const navigate = useNavigate();
 
-  // load leagues from API + active league from cookie
   useEffect(() => {
     const fetchLeagues = async () => {
       try {
-        const response = await apiService.get("client/leagueList?per=25");
-        const filtered = Array.isArray(response)
-          ? response.filter((l) => !EXCLUDED_CODES.includes(l.code))
+        const res = await apiService.get("client/leagueList?per=25");
+        const filtered = Array.isArray(res)
+          ? res.filter((l) => !EXCLUDED_CODES.includes(l.code))
           : [];
         setLeagues(filtered);
       } catch (e) {
         console.error("Failed to fetch leagues:", e);
-        setLeagues([]); // fail-safe
+        setLeagues([]);
       }
     };
-
     fetchLeagues();
 
-    const leagueCode = authService.getLeagueCode();
-    if (leagueCode) setActiveLeague(leagueCode);
+    const saved = authService.getLeagueCode();
+    if (saved) setActiveLeague(saved);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // responsive
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 800);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const onResize = () => setIsMobile(window.innerWidth <= MOBILE_MAX_WIDTH);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
+
+  // ESC + body scroll lock
+  useEffect(() => {
+    const onKeyDown = (e) => e.key === "Escape" && setIsDrawerOpen(false);
+    if (isDrawerOpen) {
+      document.body.classList.add("u-no-scroll");
+      window.addEventListener("keydown", onKeyDown);
+    } else {
+      document.body.classList.remove("u-no-scroll");
+      window.removeEventListener("keydown", onKeyDown);
+      setDragX(0); // reset drag
+    }
+    return () => {
+      document.body.classList.remove("u-no-scroll");
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isDrawerOpen]);
 
   const handleLeagueClick = (code, id) => {
     authService.setLeagueData(code, id);
-
     if (
       window.location.hash === "#/liga" ||
       window.location.href === "https://oekfb.eu/#/liga"
@@ -66,116 +93,151 @@ export const Navigation = ({
     }
   };
 
+  // ---- Drag handlers (touch only; optional to support mouse if you want) ----
+  const onTouchStart = (e) => {
+    if (!isDrawerOpen) return;
+    const x = e.touches[0].clientX;
+    dragStartXRef.current = x;
+    lastXRef.current = x;
+    lastTimeRef.current = performance.now();
+    velocityRef.current = 0;
+  };
+
+  const onTouchMove = (e) => {
+    if (!isDrawerOpen) return;
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const x = e.touches[0].clientX;
+    const dx = Math.max(0, dragStartXRef.current - x); // dragging left increases dx
+    const panelWidth = panel.getBoundingClientRect().width;
+
+    // update velocity estimate
+    const now = performance.now();
+    const dt = Math.max(1, now - lastTimeRef.current);
+    velocityRef.current = (lastXRef.current - x) / dt; // px/ms, positive when moving left
+    lastXRef.current = x;
+    lastTimeRef.current = now;
+
+    // clamp to panel width
+    setDragX(Math.min(dx, panelWidth));
+  };
+
+  const onTouchEnd = () => {
+    if (!isDrawerOpen) return;
+    const panel = panelRef.current;
+    if (!panel) return;
+
+    const panelWidth = panel.getBoundingClientRect().width;
+    const progress = dragX / panelWidth;
+    const speed = velocityRef.current; // px/ms
+
+    // Close if dragged over 35% OR quick swipe (speed > 0.6 px/ms ~ 600px/s)
+    if (progress > 0.35 || speed > 0.6) {
+      setIsDrawerOpen(false);
+    } else {
+      // snap back
+      setDragX(0);
+    }
+  };
+
+  // Translate value for panel while dragging (base open pos is 0, translate right by dragX)
+  const panelTransform = isDrawerOpen
+    ? `translateX(${dragX}px)`
+    : `translateX(100%)`;
+
   return (
-    <div className={`navigation-desktop ${className}`}>
-      {/* League Rows */}
-      <div className="league-rows">
-        <div className="league-row-wrapper">
-          {leagues.map((item) => (
-            <LeagueRow
-              key={item.id}
-              img="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fleague-row-item-content.png?alt=media&token=78fbe411-ed2f-4779-947c-6390725f56dc"
-              text={item.code} // or item.name
-              separator="/img/league-row-item-content-seperator-90.svg"
-              isActive={item.code === activeLeague}
-              handleLeagueClick={handleLeagueClick}
-              code={item.code}
-              id={item.id}
+    <header className={`nav ${className}`}>
+      {/* ===== League Strip ===== */}
+      <div className="nav__leagues">
+        <div className="nav__leagues-track u-scrollbar-hidden">
+          {leagues.map((l) => (
+            <LeaguePill
+              key={l.id}
+              code={l.code}
+              id={l.id}
+              text={l.code}
+              isActive={l.code === activeLeague}
+              onClick={handleLeagueClick}
             />
           ))}
         </div>
       </div>
 
-      {/* Navigation Row */}
-      <div className="nav-row-wrapper">
-        <div className="nav-row-wrapper-2">
-          <Link to="/">
-            <img
-              className="nav-row-logo"
-              alt="Nav row wrapper"
-              src={navRowWrapper}
-            />
+      {/* ===== Main Bar ===== */}
+      <div className="nav__bar">
+        <div className="nav__bar-inner">
+          <Link to="/" className="nav__brand" aria-label="Startseite">
+            <img className="nav__brand-logo" src={logoSrc} alt="Logo" />
           </Link>
+
           {isMobile ? (
-            <img
-              className="mobile-burger-menu"
-              alt="Mobile Burger Menu"
-              src={mobileBurgerMenu}
+            <button
+              type="button"
+              className="nav__burger"
+              aria-label="Menü öffnen"
               onClick={() => setIsDrawerOpen(true)}
-            />
+            >
+              <img className="nav__burger-icon" src={burgerIconSrc} alt="" />
+            </button>
           ) : (
-            <div className="nav-login-button">Login</div>
+            <button
+              type="button"
+              className="nav__login"
+              aria-label="Team Login"
+              onClick={() => (window.location.href = "https://team.oekfb.eu")}
+            >
+              <span className="nav__login-label">Login</span>
+            </button>
           )}
         </div>
       </div>
 
-      {/* Drawer */}
-      {isDrawerOpen && (
-        <div className="drawer-overlay">
-          <div className="drawer-content">
-            <ElementMobilenav />
-            <img
-              className="close-button"
-              alt="Close"
-              src="/img/close.svg"
-              onClick={() => setIsDrawerOpen(false)}
-            />
-          </div>
-        </div>
-      )}
-    </div>
+      {/* ===== Drawer ===== */}
+      <div className={`drawer ${isDrawerOpen ? "drawer--open" : ""}`} aria-hidden={!isDrawerOpen}>
+        <div className="drawer__backdrop" onClick={() => setIsDrawerOpen(false)} />
+        <aside
+          ref={panelRef}
+          className="drawer__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation"
+          style={{ transform: panelTransform }}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+        >
+          <button
+            type="button"
+            className="drawer__close"
+            aria-label="Schließen"
+            onClick={() => setIsDrawerOpen(false)}
+            // Use mask to render icon as solid white
+            data-icon={closeIconSrc}
+          />
+          <ElementMobilenav />
+        </aside>
+      </div>
+    </header>
   );
 };
 
 Navigation.propTypes = {
   className: PropTypes.string,
-  navRowWrapper: PropTypes.string,
-  mobileBurgerMenu: PropTypes.string,
+  logoSrc: PropTypes.string,
+  burgerIconSrc: PropTypes.string,
+  closeIconSrc: PropTypes.string,
 };
 
-// Presentational row wrapped by Link
-const LeagueRow = ({
-  img,
-  text,
-  separator,
-  isActive,
-  code,
-  id,
-  handleLeagueClick,
-}) => (
+// Reusable league pill
+const LeaguePill = ({ text, isActive, code, id, onClick }) => (
   <Link
     to="/liga"
-    onClick={() => handleLeagueClick(code, id)}
+    onClick={() => onClick(code, id)}
     reloadDocument
-    style={{ textDecoration: "none", color: "inherit" }}
+    className={`league ${isActive ? "league--active" : ""}`}
+    aria-label={`Liga ${text}`}
   >
-    <div
-      className={`league-row-item ${isActive ? "active" : ""}`}
-      style={{ cursor: "pointer" }}
-    >
-      <div className="link">
-        <div className="div">
-          <div className="content">
-            <img className="img" alt="League row item" src={img} />
-            <div className="text-wrapper">{text}</div>
-          </div>
-          <img
-            className="league-row-item-2"
-            alt="League row separator"
-            src={separator}
-          />
-        </div>
-      </div>
-    </div>
+    <span className="league__code">{text}</span>
   </Link>
 );
-
-LeagueRow.propTypes = {
-  img: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  separator: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  code: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  handleLeagueClick: PropTypes.func.isRequired,
-};

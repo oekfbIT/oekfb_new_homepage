@@ -1,373 +1,171 @@
-.matchup-cell {
-  align-items: flex-start;
+/* ===========================================================
+   MatchupCell (refactored to NEW design tokens)
+   =========================================================== */
+
+/* Root container */
+.matchup {
   display: inline-flex;
   flex-direction: column;
-  height: 121px;
   justify-content: center;
-  max-width: 1148px;
-  min-width: 128px;
-  padding: 0px 8px 0px 0px;
   position: relative;
+  min-width: 128px;
+  max-width: 1148px;
+  height: 121px;
+  padding: 0 var(--space-2) 0 0; /* 8px */
 }
 
-.matchup-cell .matchup-cell-top {
-  align-items: flex-start;
+/* Top ribbon + date badge line */
+.matchup__top {
   display: flex;
   flex-direction: column;
-  height: 17.14px;
   position: relative;
   width: 124px;
+  height: 17px;
 }
 
-.matchup-cell .line {
-  background-color: var(--themeswamp);
+/* The horizontal ribbon line (colored by theme) */
+.matchup__ribbon {
+  background-color: var(--color-text-strong);
+  width: 128px;
   height: 1px;
+  position: relative;
   left: 4px;
   top: 7px;
-  width: 128px;
 }
 
-.matchup-cell .txt-overlay {
-  background-color: var(--themeporcelain);
-  height: 17.14px;
+/* Inline date badge overlay shown for *-w-top variants */
+.matchup__date-badge {
   position: relative;
   width: 96.5px;
+  height: 17px;
+  background-color: var(--color-bg);
 }
 
-.matchup-cell .date-txt {
-  color: var(--themeswamp);
-  font-family: var(--theme-inter-regular-12-font-family);
-  font-size: var(--theme-inter-regular-12-font-size);
-  font-style: var(--theme-inter-regular-12-font-style);
-  font-weight: var(--theme-inter-regular-12-font-weight);
-  height: 17px;
-  left: 6px;
-  letter-spacing: var(--theme-inter-regular-12-letter-spacing);
-  line-height: var(--theme-inter-regular-12-line-height);
+.matchup__date-text {
   position: absolute;
   top: -2px;
-  white-space: nowrap;
+  left: 6px;
   width: 85px;
+  height: 17px;
+
+  color: var(--color-text-strong);
+  white-space: nowrap;
+
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--fs-xs);       /* 12px */
+  line-height: var(--lh-normal); /* ~17-18px visually */
+  letter-spacing: var(--ls-normal);
 }
 
-.matchup-cell .matchup-cell-bottom {
-  align-items: flex-end;
-  align-self: stretch;
+/* Body wrapper (card background + content) */
+.matchup__body {
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  gap: 5.86px;
-  position: relative;
   width: 100%;
   cursor: pointer;
 }
 
-.matchup-cell .matchup-cell-bottom-2 {
-  align-items: flex-start;
-  align-self: stretch;
-  background-color: var(--themewhite-02);
-  box-shadow: 0px 2px 8px #000e140d;
+/* Row with home logo — score — away logo */
+.matchup__row {
   display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
-}
-
-.matchup-cell .link-9 {
   align-items: center;
-  align-self: stretch;
-  background-color: var(--themewhite);
-  display: flex;
+  justify-content: center;
+
+  width: 100%;
   height: 44px;
-  justify-content: center;
   padding: 4.5px 10px;
-  position: relative;
-  width: 100%;
+
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
 }
 
-.matchup-cell .matchup-cell-bottom-wrapper {
-  align-items: flex-start;
+/* Team logo wrapper + image */
+.matchup__team {
   display: flex;
-  height: 35px;
+  align-items: center;
   justify-content: center;
-  padding: 0px 2.5px;
-  position: relative;
   width: 40px;
+  height: 35px;
+  padding: 0 4px;
 }
 
-.matchup-cell .logo {
-  align-self: stretch;
-  background-position: 50% 50%;
-  background-size: contain;
-  background-repeat: no-repeat;
-  flex: 1;
-  flex-grow: 1;
-  position: relative;
+.matchup__team-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  background-color: var(--color-surface);
 }
 
-.matchup-cell .matchup-cell-bottom-4 {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  position: relative;
-  padding: 0px 5px;
-  gap: 3px;
-}
-
-.matchup-cell .matchup-cell-bottom-5 {
-  align-items: flex-start;
+/* Score block */
+.matchup__score {
   display: flex;
-  flex-direction: column;
-  height: 22px;
-  padding: 0px 1px;
-  position: relative;
-  width: 20px;
-}
-
-.matchup-cell .matchup-cell-bottom-6 {
   align-items: center;
-  display: flex;
-  height: 23px;
   justify-content: center;
-  position: relative;
-  width: 50px;
+  height: 23px;
+  min-width: 50px;
+  padding: 0 5px;
 }
 
-.matchup-cell .matchup-cell-bottom-7 {
-  font-family: var(--theme-inter-bold-18-font-family);
-  font-size: var(--theme-inter-bold-18-font-size);
-  font-style: var(--theme-inter-bold-18-font-style);
-  font-weight: var(--theme-inter-bold-18-font-weight);
-  letter-spacing: var(--theme-inter-bold-18-letter-spacing);
-  line-height: var(--theme-inter-bold-18-line-height);
-  position: relative;
+.matchup__score-text {
   text-align: center;
   white-space: nowrap;
-  width: fit-content;
+
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-md);       /* 18px */
+  line-height: var(--lh-normal); /* 24px-ish */
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text-strong); /* default */
 }
 
-.matchup-cell .matchup-cell-bottom-8 {
-  align-items: center;
-  display: flex;
-  height: 23px;
-  justify-content: center;
-  position: relative;
-  width: 30px;}
-
-.matchup-cell .matchup-cell-bottom-9 {
-  font-family: var(--theme-inter-bold-18-font-family);
-  font-size: var(--theme-inter-bold-18-font-size);
-  font-style: var(--theme-inter-bold-18-font-style);
-  font-weight: var(--theme-inter-bold-18-font-weight);
-  letter-spacing: var(--theme-inter-bold-18-letter-spacing);
-  line-height: var(--theme-inter-bold-18-line-height);
-  margin-top: -2px;
-  position: relative;
-  text-align: center;
-  white-space: nowrap;
-  width: fit-content;
+/* Score color variants (mapped from legacy) */
+.matchup__score--fixture-w-top .matchup__score-text,
+.matchup__score--fixture-no-top .matchup__score-text {
+  color: var(--color-text-strong);
 }
 
-/*.matchup-cell .matchup-cell-bottom-10 {*/
-/*  align-self: stretch;*/
-/*  background-image: url(../../../static/img/matchup-cell-bottom-content-awayimg.png);*/
-/*  background-position: 50% 50%;*/
-/*  background-size: cover;*/
-/*  flex: 1;*/
-/*  flex-grow: 1;*/
-/*  position: relative;*/
-/*}*/
+.matchup__score--live-w-top .matchup__score-text,
+.matchup__score--live-top .matchup__score-text {
+  color: var(--color-surface); /* light text on live backgrounds */
+}
 
-.matchup-cell .background {
-  align-items: center;
-  align-self: stretch;
-  background-color: var(--themewhite);
+/* Footer status strip */
+.matchup__footer {
   display: flex;
-  height: 36px;
+  align-items: center;
   justify-content: center;
   min-width: 120px;
-  position: relative;
   width: 100%;
+  height: 36px;
+  background-color: var(--color-surface);
 }
 
-.matchup-cell .container {
-  align-items: flex-start;
-  display: inline-flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  position: relative;
+/* Background tones for footer by live/pending */
+.matchup__footer--pending {
+  /* keep neutral */
+  /* background-color: var(--color-bg); */
 }
 
-.matchup-cell .vorschau {
-  color: var(--themeswamp);
-  font-family: var(--theme-inter-bold-10-font-family);
-  font-size: var(--theme-inter-bold-10-font-size);
-  font-style: var(--theme-inter-bold-10-font-style);
-  font-weight: var(--theme-inter-bold-10-font-weight);
-  letter-spacing: var(--theme-inter-bold-10-letter-spacing);
-  line-height: var(--theme-inter-bold-10-line-height);
-  margin-top: -1px;
-  position: relative;
+.matchup__footer--live {
+  background-color: var(--color-danger);
+  color: var(--color-surface);
+}
+
+/* Clickable CTA text */
+.matchup__cta {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+
+  color: var(--color-text-strong);
   white-space: nowrap;
-  width: fit-content;
-}
+  cursor: pointer;
 
-.matchup-cell .fixture-w-top {
-  position: absolute;
-}
-
-.matchup-cell .live-w-top {
-  position: absolute;
-}
-
-.matchup-cell .fixture-no-top {
-  position: relative;
-}
-
-.matchup-cell .live-top {
-  position: relative;
-}
-
-.matchup-cell .state-fixture-w-top {
-  background-color: var(--themeporcelain);
-}
-
-.matchup-cell .state-live-w-top {
-  background-color: var(--themetorch-red);
-}
-
-.matchup-cell .state-fixture-no-top {
-  background-color: var(--themeporcelain);
-}
-
-.matchup-cell .state-live-top {
-  background-color: var(--themetorch-red);
-}
-
-.matchup-cell .state-1-fixture-w-top {
-  background-color: var(--themeporcelain);
-}
-
-.matchup-cell .state-1-live-w-top {
-  background-color: var(--themetorch-red);
-}
-
-.matchup-cell .state-1-fixture-no-top {
-  background-color: var(--themeporcelain);
-}
-
-.matchup-cell .state-1-live-top {
-  background-color: var(--themetorch-red);
-}
-
-.matchup-cell .state-3-fixture-w-top {
-  padding: 7px 57.78px 7px 57.77px;
-}
-
-.matchup-cell .state-3-live-w-top {
-  padding: 20px;
-}
-
-.matchup-cell .state-3-fixture-no-top {
-  padding: 7px 57.78px 7px 57.77px;
-}
-
-.matchup-cell .state-3-live-top {
-  padding: 7px 57.78px 7px 57.77px;
-}
-
-.matchup-cell
-  .matchup-cell-bottom-6.state-fixture-w-top
-  .matchup-cell-bottom-7 {
-  color: var(--themeswamp);
-}
-
-.matchup-cell .matchup-cell-bottom-6.state-live-w-top .matchup-cell-bottom-7 {
-  color: var(--themewild-sand);
-}
-
-.matchup-cell
-  .matchup-cell-bottom-6.state-fixture-no-top
-  .matchup-cell-bottom-7 {
-  color: var(--themeswamp);
-}
-
-.matchup-cell .matchup-cell-bottom-6.state-live-top .matchup-cell-bottom-7 {
-  color: var(--themewild-sand);
-}
-
-.matchup-cell
-  .matchup-cell-bottom-8.state-1-fixture-w-top
-  .matchup-cell-bottom-9 {
-  color: var(--themeswamp);
-}
-
-.matchup-cell .matchup-cell-bottom-8.state-1-live-w-top .matchup-cell-bottom-9 {
-  color: var(--themewild-sand);
-}
-
-.matchup-cell
-  .matchup-cell-bottom-8.state-1-fixture-no-top
-  .matchup-cell-bottom-9 {
-  color: var(--themeswamp);
-}
-
-.matchup-cell .matchup-cell-bottom-8.state-1-live-top .matchup-cell-bottom-9 {
-  color: var(--themewild-sand);
-}
-
-.matchup-cell .background.state-3-fixture-w-top .container {
-  margin-left: -19.27px;
-  margin-right: -19.28px;
-}
-
-.matchup-cell .background.state-3-live-w-top .container {
-  margin-bottom: -13px;
-  margin-top: -13px;
-}
-
-.matchup-cell .background.state-3-fixture-no-top .container {
-  margin-left: -19.27px;
-  margin-right: -19.28px;
-}
-
-.matchup-cell .background.state-3-live-top .container {
-  margin-left: -24.27px;
-  margin-right: -24.28px;
-}
-
-.team-logo {
-  width: 100%; /* Ensure the image fills the wrapper */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Display entire image without cropping */
-}
-/* Background for Pending */
-.background.state-gray {
-  /*background-color: var(--themeporcelain); !* Gray color *!*/
-}
-
-/* Background for Live States (first, second, halftime) */
-.background.state-red {
-  /* background-color: var(--themetorch-red); Red color */
-  background-color: #ff8585;
-}
-
-.team-logo {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 50%;
-  /*background-color: #f1f1f1; !* Fallback background *!*/
-}
-
-.matchup-cell-bottom-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  width: 35px;
-  height: 35px;
-  /*border-radius: 50%;*/
-  background-color: white;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--fs-xs);       /* 12px (was 10px) */
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-upper); /* subtle CTA emphasis */
 }

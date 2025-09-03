@@ -1,37 +1,61 @@
+// ClubCard.tsx
+// -------------------------------------------------------------
+// Small clickable card for a club/team.
+// - Uses BEM-ish class names
+// - Token-driven styles (colors, spacing, radius, shadows)
+// - Keyboard accessible (enter/space)
+// -------------------------------------------------------------
+
 import React from "react";
-import "./style.css";
 import { useNavigate } from "react-router-dom";
+import "./style.css";
 
-interface Club {
-    id: string;
-    logo: string;
-    team_name: string;
-    sid: string;
-}
-
-interface ClubCardProps {
-    className?: string;
-    club: Club;
-}
-
-export const ClubCard = ({ className, club }: ClubCardProps): JSX.Element => {
-    const navigate = useNavigate(); // React Router hook for navigation
-
-    const handleNavigation = () => {
-        navigate(`/team-detail/${club.id}`);
-    };
-
-    return (
-        <div className={`club-card ${className}`} onClick={handleNavigation}>
-            <div className="club-card-content" style={{ cursor: "pointer" }}>
-                <div className="image-wrapper">
-                    <img src={club.logo} alt={club.team_name} className="image-6" />
-                </div>
-                <div className="club-card-content-2">
-                    <div className="club-card-content-3">{club.team_name}</div>
-                    <p className="club-card-content-4">{`ID: ${club.sid}`}</p>
-                </div>
-            </div>
-        </div>
-    );
+type Club = {
+  id: string;
+  logo: string;
+  team_name: string;
+  sid: string;
 };
+
+type ClubCardProps = {
+  className?: string;
+  club: Club;
+};
+
+export const ClubCard = ({ className = "", club }: ClubCardProps): JSX.Element => {
+  const navigate = useNavigate();
+
+  const goToTeam = () => navigate(`/team-detail/${club.id}`);
+
+  const onKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      goToTeam();
+    }
+  };
+
+  return (
+    <div
+      className={`card ${className}`}
+      role="button"
+      tabIndex={0}
+      onClick={goToTeam}
+      onKeyDown={onKeyDown}
+      aria-label={`Open ${club.team_name}`}
+    >
+      <div className="card__inner">
+        <div className="card__logo">
+          {/* Use object-fit: contain so all crests render nicely */}
+          <img src={club.logo} alt="" aria-hidden="true" />
+        </div>
+
+        <div className="card__meta">
+          <h3 className="card__title">{club.team_name}</h3>
+          <p className="card__sub">ID: {club.sid}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ClubCard;

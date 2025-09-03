@@ -1,56 +1,81 @@
+/* ActionCell.css
+   --------------------------------------------------------------
+   Uses global tokens:
+   - colors: --color-surface, --color-text, --color-text-muted,
+             --color-border, --color-primary
+   - spacing: --space-*, radius: --radius-*, shadow: --shadow-*
+   - type: --font-sans, --fs-*, --lh-*
+   -------------------------------------------------------------- */
+
 .action-cell {
-  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 484px;
-  position: relative;
-  width: 457px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.06));
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  width: 100%;
+  max-width: 460px;
+  height: 100%;
+  cursor: pointer;
 }
 
-.action-cell .image-wrapper-2 {
-  align-self: stretch;
+.action-cell:hover,
+.action-cell:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md, 0 6px 18px rgba(0, 0, 0, 0.08));
+  outline: none;
+}
+
+/* Image wrapper */
+.action-cell__image {
   flex: 1;
-  flex-grow: 1;
-  position: relative;
-  width: 100%;
-  object-fit: cover;
   max-height: 345px;
+  background: var(--color-border);
+  overflow: hidden;
 }
 
-.action-cell .textwrapper {
-  align-items: flex-start;
-  align-self: stretch;
-  background-color: #ffffff;
+.action-cell__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Text body */
+.action-cell__body {
+  padding: var(--space-4) var(--space-3);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 15px 10px;
-  position: relative;
-  width: 100%;
-  height: 140px;
+  gap: var(--space-1);
+  min-height: 140px;
 }
 
-.action-cell .title-4 {
-  align-self: stretch;
-  color: var(--themeswamp);
-  font-family: var(--theme-inter-bold-21-font-family);
-  font-size: var(--theme-inter-bold-21-font-size);
-  font-style: var(--theme-inter-bold-21-font-style);
-  font-weight: var(--theme-inter-bold-21-font-weight);
-  letter-spacing: var(--theme-inter-bold-21-letter-spacing);
-  line-height: var(--theme-inter-bold-21-line-height);
-  margin-top: -1.00px;
-  position: relative;
+.action-cell__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-lg, 1.25rem);  /* ~20px */
+  font-weight: var(--font-weight-bold, 700);
+  line-height: var(--lh-tight);
+  color: var(--color-text);
 }
 
-.action-cell .subtitle-4 {
-  align-self: stretch;
-  color: var(--themenevada);
-  font-family: var(--theme-inter-regular-15-13-font-family);
-  font-size: var(--theme-inter-regular-15-13-font-size);
-  font-style: var(--theme-inter-regular-15-13-font-style);
-  font-weight: var(--theme-inter-regular-15-13-font-weight);
-  letter-spacing: var(--theme-inter-regular-15-13-letter-spacing);
-  line-height: var(--theme-inter-regular-15-13-line-height);
-  position: relative;
+.action-cell__subtitle {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base, 1rem);   /* ~16px */
+  font-weight: var(--font-weight-regular, 400);
+  line-height: var(--lh-normal);
+  color: var(--color-text-muted);
+}
+
+/* Responsive tweak */
+@media (max-width: 560px) {
+  .action-cell__body {
+    padding: var(--space-3);
+    min-height: auto;
+  }
 }

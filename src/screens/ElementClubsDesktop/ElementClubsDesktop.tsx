@@ -1,4 +1,12 @@
-import React, { useEffect, useState } from "react";
+// ElementClubsDesktop.tsx
+// -------------------------------------------------------------
+// Clubs index page
+// - Uses Navigation (mobile) and DesktopNav (desktop)
+// - Fetches clubs for the current league (from AuthService)
+// - Token-driven layout + responsive grid
+// -------------------------------------------------------------
+
+import { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { ClubCard } from "../../components/ClubCard";
 import { Footer } from "../../components/Footer";
@@ -10,83 +18,76 @@ import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 import "./style.css";
 
+type Club = {
+  id: string | number;
+  sid?: string | number;
+  [key: string]: any;
+};
+
 export const ElementClubsDesktop = (): JSX.Element => {
-    const screenWidth = useWindowWidth();
-    const isMobile = screenWidth < 900;
+  const screenWidth = useWindowWidth();
+  const isMobile = screenWidth < 900;
 
-    const [matches, setMatches] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [clubs, setClubs] = useState<Club[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const authService = new AuthService();
-    const clientController = new ClientController();
+  const authService = new AuthService();
+  const clientController = new ClientController();
 
-    // Fetch clubs on component mount
-    useEffect(() => {
-        const fetchMatches = async () => {
-            const leagueCode = authService.getLeagueCode();
-            if (!leagueCode) {
-                console.error("No league code found in cookies.");
-                setLoading(false);
-                return;
-            }
+  // Fetch clubs on mount
+  useEffect(() => {
+    const fetchClubs = async () => {
+      const leagueCode = authService.getLeagueCode();
+      if (!leagueCode) {
+        console.error("No league code found in cookies.");
+        setLoading(false);
+        return;
+      }
 
-            try {
-                const clubData = await clientController.fetchLeagueClubs(leagueCode);
-                const sortedClubs = clubData.sort((a, b) => Number(a.sid) - Number(b.sid));
-                setMatches(sortedClubs);
-            } catch (error) {
-                console.error("Error fetching club data:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+      try {
+        const data = await clientController.fetchLeagueClubs(leagueCode);
+        const sorted = [...data].sort(
+          (a, b) => Number(a.sid ?? 0) - Number(b.sid ?? 0)
+        );
+        setClubs(sorted);
+      } catch (error) {
+        console.error("Error fetching club data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        fetchMatches();
-    }, []);
+    fetchClubs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
+  return (
+    <div className={`page page--clubs ${isMobile ? "is-mobile" : "is-desktop"}`}>
+      {/* Header / Navigation */}
+      {isMobile ? <Navigation /> : <DesktopNav />}
 
-    return (
-        <div className="element-clubs-desktop" style={{ minWidth: isMobile ? "390px" : "900px" }}>
-            {isMobile ? (
-                <>
-                    <Navigation />
-                </>
-            ) : (
-                <>
-                    <DesktopNav />
-                </>
-            )}
-            <div
-                className="page-content-3"
-                style={{
-                    alignItems: "center",
-                    flexDirection: "column",
-                    gap: isMobile ? "20px" : "10px",
-                    justifyContent: !isMobile ? "center" : undefined,
-                    maxWidth: isMobile ? "1200px" : undefined,
-                    padding: isMobile ? "0px 20px" : undefined,
-                }}
-            >
-                <PageHeader className="instance-node-4" text="Mannschaften"/>
+      {/* Main content */}
+      <main className="page__main" role="main">
+        <PageHeader className="page__header" text="Mannschaften" />
 
-                <div className="club-grid">
-                    {loading ? (
-                        <LoadingIndicator/>
-                    ) : matches.length > 0 ? (
-                        matches.map((club) => (
-                            <ClubCard
-                                key={club.id}
-                                className="club-card-instance"
-                                club={club}
-                            />
-                        ))
-                    ) : (
-                        <p>No clubs available for this league.</p>
-                    )}
-                </div>
-
+        <section className="clubs" aria-labelledby="clubs-heading">
+          {loading ? (
+            <div className="clubs__loading">
+              <LoadingIndicator />
             </div>
-            <Footer/>
-        </div>
-    );
+          ) : clubs.length === 0 ? (
+            <p className="clubs__empty">No clubs available for this league.</p>
+          ) : (
+            <div className="clubs__grid">
+              {clubs.map((club) => (
+                <ClubCard key={club.id} className="clubs__card" club={club} />
+              ))}
+            </div>
+          )}
+        </section>
+      </main>
+
+      <Footer />
+    </div>
+  );
 };

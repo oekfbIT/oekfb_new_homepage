@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
@@ -10,75 +10,81 @@ import ClientController from "../../network/ClientController";
 
 import "./style.css";
 
+/**
+ * News listing page (mobile + desktop)
+ * - Fetches league news
+ * - Renders a responsive grid (max 3 columns)
+ */
 export const ElementNewsMobile = (): JSX.Element => {
-    const screenWidth = useWindowWidth();
-    const isMobile = screenWidth < 900;
+  const screenWidth = useWindowWidth();
+  const isMobile = screenWidth < 900;
 
-    const [news, setNews] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const authService = new AuthService();
-    const clientController = new ClientController();
+  const authService = new AuthService();
+  const clientController = new ClientController();
 
-    // Fetch news on component mount
-    useEffect(() => {
-        const fetchNews = async () => {
-            const leagueCode = authService.getLeagueCode();
-            if (!leagueCode) {
-                console.error("No league code found in cookies.");
-                setLoading(false);
-                return;
-            }
+  // Fetch news on mount
+  useEffect(() => {
+    const fetchNews = async () => {
+      const leagueCode = authService.getLeagueCode();
+      if (!leagueCode) {
+        console.error("No league code found in cookies.");
+        setLoading(false);
+        return;
+      }
 
-            try {
-                const newsData = await clientController.fetchLeagueNews(leagueCode);
-                setNews(newsData);
-            } catch (error) {
-                console.error("Error fetching club data:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
+      try {
+        const newsData = await clientController.fetchLeagueNews(leagueCode);
+        setNews(Array.isArray(newsData) ? newsData : []);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-        fetchNews();
-    }, []);
+    fetchNews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Never mutate React state directly: make a reversed copy for newest-first
+  const orderedNews = [...news].reverse();
+
   return (
     <div
-      className="element-news-mobile" style={{ minWidth: isMobile ? "390px" : "900px", gap: "30px" }}>
+      className="news-page"
+      style={{ minWidth: isMobile ? "390px" : "900px" }}
+    >
+      {/* Global Navigation */}
+      {isMobile ? <Navigation /> : <DesktopNav />}
 
-        {/*NAVIGATION */}
-        {isMobile ? (
-            <>
-                <Navigation />
-            </>
+      {/* Page Title */}
+      <PageHeader className="news-page__header" text="News & Spielberichte" />
+
+      {/* News Grid */}
+      <section className="news-page__section">
+        {loading ? (
+          <p className="news-page__status">Laden…</p>
+        ) : orderedNews.length === 0 ? (
+          <p className="news-page__status">Keine Artikel verfügbar.</p>
         ) : (
-            <>
-                <DesktopNav />
-            </>
+          <div className="news-grid">
+            {orderedNews.map((item: any) => (
+              <NewsArticle
+                key={item.id}
+                title={item.title}
+                image={item.image}
+                text={item.text}
+                id={item.id}
+              />
+            ))}
+          </div>
         )}
+      </section>
 
-        <PageHeader className="instance-node-4"
-                    text="News & Spielberichte"/>
-
-
-        {/* News Section */}
-        <div className="news-7">
-            <div className="news-container-6">
-                <div className="news-container-grid-7">
-                    {news?.reverse().map((newsItem: any) => (
-                        <NewsArticle
-                            key={newsItem.id}
-                            title={newsItem.title}
-                            image={newsItem.image}
-                            text={newsItem.text}
-                            id={newsItem.id}
-                        />
-                    ))}
-                </div>
-            </div>
-        </div>
-        <Footer/>
-
+      <Footer />
     </div>
   );
 };

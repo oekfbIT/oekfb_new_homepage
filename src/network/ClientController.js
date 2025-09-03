@@ -245,6 +245,16 @@ class ClientController {
   }
 
   /**
+   * Fetch A Postpone Request Data.
+   * GET /postpone/:id
+   * @param {string} id - Postpone ID.
+   * @returns {Promise<Object>} postpone details.
+   */
+  async fetchPostpone(id) {
+    return this.apiService.get(`postpone/${id}/id`);
+  }
+
+  /**
    * Confirm A Transfer Request.
    * GET /transfers/confirm/:id
    * @param {string} id - Transfer ID.
@@ -255,8 +265,28 @@ class ClientController {
   }
 
   /**
+   * Confirm A Postpone Request.
+   * GET /postpone/confirm/:id
+   * @param {string} id - postpone ID.
+   * @returns {Promise<Object>} postpone details.
+   */
+  async approvePostpone(id) {
+    return this.apiService.post(`postpone/${id}/approve`);
+  }
+
+  /**
+   * Decline A Postpone Request.
+   * GET /postpone/confirm/:id
+   * @param {string} id - postpone ID.
+   * @returns {Promise<Object>} postpone details.
+   */
+  async denyPostpone(id) {
+    return this.apiService.post(`postpone/${id}/deny`);
+  }
+
+  /**
    * Decline A Transfer Request.
-   * GET /transfers/reject/:id
+   * GET /transfers/deny/:id
    * @param {string} id - Transfer ID.
    * @returns {Promise<Object>} Transfer details.
    */

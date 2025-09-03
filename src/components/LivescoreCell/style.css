@@ -37,10 +37,10 @@
 }
 
 .fixture-data-cell .gameday-livescore-2 {
-  color: var(--themenevada);
+  color: black;
   font-family: "Inter", Helvetica;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 20px;
   position: relative;
@@ -117,10 +117,10 @@
 }
 
 .fixture-data-cell .gameday-livescore-5 {
-  color: var(--themenevada);
+  color: black;
   font-family: "Inter", Helvetica;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 20px;
   margin-left: -0.01px;
@@ -130,6 +130,7 @@
 
 .fixture-data-cell .staium-wrapper {
   align-items: center;
+  justify-items: center;
   display: inline-flex;
   flex: 0 0 auto;
   gap: 9px;
@@ -137,7 +138,6 @@
 }
 
 .stadium-wrapper {
-  width: 200px;
   justify-items: center;
 }
 @media (max-width: 500px) {

@@ -6,6 +6,7 @@ interface Props {
   team: {
     id: string;
     logo: string;
+    points: number;
     team_name: string;
   };
   imgContainerClassName?: string;
@@ -20,12 +21,15 @@ export const ClubCell = ({ team, imgContainerClassName = "" }: Props): JSX.Eleme
 
   return (
     <div className="club-cell" onClick={handleClick} style={{ cursor: "pointer" }}>
+    {/* <div className="club-cell-name">{team.team_name}</div> */}
       <img
         className={`club-cell-logo ${imgContainerClassName}`}
         alt={team.team_name}
         src={team.logo}
       />
       <div className="club-cell-name">{team.team_name}</div>
+      <div className="club-cell-pkt">{[team.points]}Pkt</div>
+
     </div>
   );
 };

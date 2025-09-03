@@ -1,214 +1,168 @@
-.team-header {
+/* style.css — cleaned, mapped to your design tokens; preserves layout/visuals */
 
-  width: 100% ;
-}
+/* Root wrapper */
+.team-header { width: 100%; }
 
 .team-header .team-detail {
-  align-items: flex-start;
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100% ;
+  width: 100%;
 }
 
+/* Banner */
 .team-header .team-detail-header {
-  align-items: flex-start;
   align-self: stretch;
-  background-color: var(--themetorch-red);
+  background-color: var(--color-accent); /* was var(--themetorch-red); choose your semantic */
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  position: relative;
   width: 100%;
 }
 
+/* Inner dark strip */
 .team-header .team-detail-header-wrapper {
-  align-items: flex-start;
   align-self: stretch;
-  background-color: #34383c;
+  background-color: var(--color-dark); /* was #34383c */
   display: flex;
-  flex: 0 0 auto;
   flex-wrap: wrap;
-  gap: 0px 0px;
   justify-content: center;
+  gap: 0;
   padding: 26px 10px;
-  position: relative;
   width: 100%;
 }
 
+/* Content row (logo + text + kits) */
 .team-header .team-detail-header-2 {
   align-items: center;
   display: flex;
   flex: 1;
-  flex-grow: 1;
   flex-wrap: wrap;
-  gap: 30px 30px;
+  gap: 30px;
   justify-content: center;
   max-width: 1140px;
-  padding: 20px 0px;
+  padding: 20px 0;
   position: relative;
 }
 
+/* Club logo */
 .team-header .image-2 {
   height: 160px;
+  width: 170px;
   object-fit: cover;
   position: relative;
-  width: 170px;
+}
+.club-logo {
+  background-color: var(--color-surface); /* was white inline */
+  padding: 5px;
+  object-fit: contain; /* preserve original intent */
 }
 
+/* Text + kits layout */
 .team-header .team-detail-header-3 {
   align-items: center;
   display: flex;
   flex: 1;
-  flex-grow: 1;
   flex-wrap: wrap;
-  gap: 30px 30px;
+  gap: 30px;
   justify-content: center;
   min-width: 200px;
   position: relative;
 }
 
+/* Text block */
 .team-header .team-detail-text {
-  align-items: flex-start;
   display: flex;
   flex: 1;
   flex-direction: column;
-  flex-grow: 1;
   justify-content: center;
   max-width: 400px;
   min-width: 150px;
-  position: relative;
 }
 
+/* (Legacy) extra text helpers — keep for compatibility */
 .team-header .team-detail-text-2 {
-  align-self: stretch;
-  color: var(--themewhite);
-  font-family: var(--theme-inter-bold-27-63-font-family);
-  font-size: var(--theme-inter-bold-27-63-font-size);
-  font-style: var(--theme-inter-bold-27-63-font-style);
-  font-weight: var(--theme-inter-bold-27-63-font-weight);
-  letter-spacing: var(--theme-inter-bold-27-63-letter-spacing);
-  line-height: var(--theme-inter-bold-27-63-line-height);
-  margin-top: -1.00px;
-  position: relative;
+  color: var(--color-surface); /* white */
+  margin-top: -1px;
   text-align: center;
 }
-
 .team-header .team-detail-text-3 {
-  align-self: stretch;
-  color: var(--themewhite);
-  font-family: "Inter", Helvetica;
-  font-size: 16px;
-  font-weight: 400;
+  color: var(--color-surface); /* white */
   height: 21px;
   letter-spacing: 0;
-  line-height: Truepx;
-  position: relative;
+  line-height: var(--lh-normal); /* was invalid value 'Truepx' */
   text-align: center;
   white-space: nowrap;
 }
 
+/* Kits */
 .team-header .team-detail-header-4 {
-  align-items: flex-start;
   display: inline-flex;
-  flex: 0 0 auto;
-  position: relative;
 }
-
 .team-header .team-detail-header-5 {
   height: 180px;
-  position: relative;
   width: 100px;
   object-fit: contain;
 }
 
+/* Optional tab row (kept mostly as-is, tokenized) */
 .team-header .team-detail-wrapper {
-  align-items: flex-start;
-  align-self: stretch;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  position: relative;
   width: 100%;
 }
-
 .team-header .team-detail-2 {
   align-items: center;
   align-self: stretch;
-  background-color: #ffffff;
+  background-color: var(--color-surface); /* was #ffffff */
   display: flex;
   gap: 15px;
   height: 64px;
-  padding: 0px 0px 0px 16px;
-  position: relative;
+  padding-left: 16px;
   width: 100%;
-  flex-direction: row;
 }
-
 .team-header .team-detail-3 {
-  color: #000000;
-  font-family: "Inter", Helvetica;
-  font-size: 13.8px;
-  font-weight: 700;
-  letter-spacing: 1.00px;
-  line-height: Truepx;
-  position: relative;
+  color: var(--color-text-strong);
+  font-family: var(--font-sans);
+  font-size: 13.8px; /* keep figma size */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--ls-upper); /* underline look kept via text-decoration */
+  line-height: var(--lh-normal);
   text-decoration: underline;
   white-space: nowrap;
   width: fit-content;
 }
-
-.team-header .team-detail-4 {
-  color: #999fa1;
-  font-family: var(--theme-inter-bold-13-75-upper-font-family);
-  font-size: var(--theme-inter-bold-13-75-upper-font-size);
-  font-style: var(--theme-inter-bold-13-75-upper-font-style);
-  font-weight: var(--theme-inter-bold-13-75-upper-font-weight);
-  letter-spacing: var(--theme-inter-bold-13-75-upper-letter-spacing);
-  line-height: var(--theme-inter-bold-13-75-upper-line-height);
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-  align-content: center;
-
-}
-
+.team-header .team-detail-4,
 .team-header .team-detail-5 {
-  color: #999fa1;
-  font-family: var(--theme-inter-bold-13-75-upper-font-family);
-  font-size: var(--theme-inter-bold-13-75-upper-font-size);
-  font-style: var(--theme-inter-bold-13-75-upper-font-style);
-  font-weight: var(--theme-inter-bold-13-75-upper-font-weight);
-  letter-spacing: var(--theme-inter-bold-13-75-upper-letter-spacing);
-  line-height: var(--theme-inter-bold-13-75-upper-line-height);
-  margin-right: -122.00px;
-  position: relative;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm); /* mapped from 13-14px */
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--ls-upper);
+  line-height: var(--lh-normal);
   white-space: nowrap;
   width: fit-content;
 }
 
+/* Horizontal scroll (optional tabs) */
 .team-detail-scroll {
   display: flex;
   max-width: 100%;
-  gap: 15px; /* Space between items */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
-  padding: 10px 0; /* Optional padding for better appearance */
+  gap: var(--space-3);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
 }
+.team-detail-scroll::-webkit-scrollbar-thumb { background: #999fa1; border-radius: 3px; }
+.team-detail-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
 
-.team-detail-scroll::-webkit-scrollbar-thumb {
-  background: #999fa1; /* Scrollbar thumb color */
-  border-radius: 3px; /* Rounded edges */
-}
-
-.team-detail-scroll::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Scrollbar track color */
-}
-
+/* Local section title (legacy) */
 .secTitle {
-  font-size: 18px;
-  color: black;
-  font-family: var(--theme-inter-bold-13-75-upper-font-family);
-  font-weight: bold;
+  font-size: var(--fs-md); /* ~18px */
+  color: var(--color-text-strong);
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-bold);
   padding: 30px 2px;
 }
+
+/* Utility */
+.white { color: var(--color-surface); } /* white text on dark background */

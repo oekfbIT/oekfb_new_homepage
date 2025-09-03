@@ -1,3 +1,11 @@
+// ElementGamedayMobile.tsx
+// -------------------------------------------------------------
+// Matchday view with season + gameday filters and a fixtures list.
+// - Reuses Navigation / DesktopNav header
+// - Clean class names + token-driven CSS (see style.css)
+// - Picks closest gameday to "today" for the default selection
+// -------------------------------------------------------------
+
 import { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Dropdown } from "../../components/Dropdown";
@@ -11,11 +19,18 @@ import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 import "./style.css";
 
+type Season = {
+  id: string;
+  name: string;
+  primary?: boolean;
+  matches?: any[];
+};
+
 export const ElementGamedayMobile = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
 
-  const [seasons, setSeasons] = useState<any[]>([]);
+  const [seasons, setSeasons] = useState<Season[]>([]);
   const [loading, setLoading] = useState(true);
 
   const [selectedSeasonId, setSelectedSeasonId] = useState<string | null>(null);
@@ -28,6 +43,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
   const authService = new AuthService();
   const clientController = new ClientController();
 
+  // Load seasons for current league
   useEffect(() => {
     const fetchSeasons = async () => {
       const leagueCode = authService.getLeagueCode();
@@ -38,12 +54,13 @@ export const ElementGamedayMobile = (): JSX.Element => {
       }
 
       try {
-        const seasonData = await clientController.fetchAllSeasonMatches(leagueCode);
+        const seasonData: Season[] = await clientController.fetchAllSeasonMatches(
+          leagueCode
+        );
         setSeasons(seasonData);
 
         if (seasonData.length > 0) {
-          // Prefer primary season if present, otherwise first
-          const primary = seasonData.find((s: any) => s.primary);
+          const primary = seasonData.find((s) => s.primary);
           setSelectedSeasonId((primary ?? seasonData[0]).id);
         }
       } catch (error) {
@@ -57,7 +74,7 @@ export const ElementGamedayMobile = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Update gamedays whenever season changes
+  // Build gameday choices whenever season changes
   useEffect(() => {
     if (!selectedSeasonId) return;
 
@@ -65,116 +82,107 @@ export const ElementGamedayMobile = (): JSX.Element => {
     if (!selectedSeason) return;
 
     const matches = selectedSeason.matches || [];
+    const map = new Map<number, string>();
 
-    const gamedayMap = new Map<number, string>();
     matches.forEach((m: any) => {
-      const gameday = m.details?.gameday;
+      const gd = m.details?.gameday;
       const date = new Date(m.details?.date);
-      if (!gameday || !m.details?.date || isNaN(date.getTime())) return;
+      if (!gd || !m.details?.date || isNaN(date.getTime())) return;
 
       const dd = String(date.getDate());
       const mm = String(date.getMonth() + 1);
       const yyyy = String(date.getFullYear());
-      const formattedDate = `${dd}.${mm}.${yyyy}`;
+      const formatted = `${dd}.${mm}.${yyyy}`;
 
-      if (!gamedayMap.has(gameday) || date < new Date(gamedayMap.get(gameday)!)) {
-        gamedayMap.set(gameday, formattedDate);
-      }
+      // store the earliest date for a gameday
+      const existing = map.get(gd);
+      if (!existing || date < new Date(existing)) map.set(gd, formatted);
     });
 
-    const gamedaysWithDates = Array.from(gamedayMap.entries())
+    const list = Array.from(map.entries())
       .map(([gameday, date]) => ({ gameday, date }))
       .sort((a, b) => a.gameday - b.gameday);
 
-    setUniqueGamedays(gamedaysWithDates);
+    setUniqueGamedays(list);
 
-    // Pick closest gameday to today
+    // default: closest fixture date to "today"
     const today = new Date();
-    let closestGameday = gamedaysWithDates[0]?.gameday ?? null;
-    let smallestDifference = Infinity;
+    let closest: number | null = list[0]?.gameday ?? null;
+    let minDiff = Infinity;
 
     matches.forEach((m: any) => {
-      const fixtureDate = new Date(m.details?.date);
-      if (!m.details?.date || isNaN(fixtureDate.getTime())) return;
-      const diff = Math.abs(today.getTime() - fixtureDate.getTime());
-      if (diff < smallestDifference) {
-        smallestDifference = diff;
-        closestGameday = m.details.gameday;
+      const when = new Date(m.details?.date);
+      if (!m.details?.date || isNaN(when.getTime())) return;
+      const diff = Math.abs(today.getTime() - when.getTime());
+      if (diff < minDiff) {
+        minDiff = diff;
+        closest = m.details.gameday;
       }
     });
 
-    setSelectedGameday(closestGameday);
+    setSelectedGameday(closest);
   }, [selectedSeasonId, seasons]);
 
   const selectedSeason = seasons.find((s) => s.id === selectedSeasonId);
-  const filteredMatches =
-    selectedSeason?.matches.filter((m: any) => m.details?.gameday === selectedGameday) ?? [];
+  const fixtures =
+    selectedSeason?.matches?.filter(
+      (m: any) => m.details?.gameday === selectedGameday
+    ) ?? [];
 
   return (
-    <div className="element-gameday-mobile">
+    <div className="gameday">
       {isMobile ? <Navigation /> : <DesktopNav />}
 
-      <div className="page-frame-2">
-        <div className="livescore-2">
-          <div className="page-frame-2">
-            <PageHeader className="page-header-4" text="Spielplan" />
-          </div>
+      <main className="gameday__main" role="main">
+        <PageHeader className="gameday__header" text="Spielplan" />
 
-          {/* Filters row (keeps original look) */}
-          <div className="page-frame-2 filters-row">
-            <Dropdown
-              className="instance-node-7"
-              dropdownWrapper="/img/dropdown-wrapper-icon-3.svg"
-              dropdownWrapperClassName="dropdown-instance"
-              dropdownWrapperClassNameOverride="dropdown-3"
-              matLabelSelectAClassName="dropdown-2"
-              text="Saison"
-              placeholder="Saison"
-              options={seasons.map((s) => ({ id: s.id, value: s.id, label: s.name }))}
-              displayKey="label"
-              valueKey="value"
-              onChange={(val) => setSelectedSeasonId(val)}
-              value={selectedSeasonId}
-            />
+        {/* Filters */}
+        <div className="gameday__filters">
+          <Dropdown
+            className="gameday__filter"
+            text="Saison"
+            placeholder="Saison Auswahl"
+            options={seasons.map((s) => ({ id: s.id, value: s.id, label: s.name }))}
+            displayKey="label"
+            valueKey="value"
+            onChange={(val) => setSelectedSeasonId(val)}
+            value={selectedSeasonId ?? undefined}
+          />
 
-            <Dropdown
-              className="instance-node-7"
-              dropdownWrapper="/img/dropdown-wrapper-icon-3.svg"
-              dropdownWrapperClassName="dropdown-instance"
-              dropdownWrapperClassNameOverride="dropdown-3"
-              matLabelSelectAClassName="dropdown-2"
-              text="Spieltag"
-              placeholder="Spieltag"
-              options={uniqueGamedays.map(({ gameday, date }) => ({
-                id: gameday,
-                value: gameday,
-                label: `Spieltag ${gameday} - ${date}`,
-              }))}
-              displayKey="label"
-              valueKey="value"
-              onChange={(val) => setSelectedGameday(Number(val))}
-              value={selectedGameday ?? undefined}
-            />
-          </div>
-
-          <div className="page-frame-2">
-            {loading ? (
-              <LoadingIndicator />
-            ) : (
-              <div className="gamedays">
-                {filteredMatches.map((fixture: any) => (
-                  <div key={fixture.id} className="livescore-header">
-                    <FixtureDataCell
-                      match={fixture}
-                      state={isMobile ? "mobile" : "desktop"}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+          <Dropdown
+            className="gameday__filter"
+            text="Spieltag"
+            placeholder="Spieltag Auswahl"
+            options={uniqueGamedays.map(({ gameday, date }) => ({
+              id: gameday,
+              value: gameday,
+              label: `Spieltag ${gameday} – ${date}`,
+            }))}
+            displayKey="label"
+            valueKey="value"
+            onChange={(val) => setSelectedGameday(Number(val))}
+            value={selectedGameday ?? undefined}
+          />
         </div>
-      </div>
+
+        {/* Fixtures list */}
+        {loading ? (
+          <div className="gameday__loading">
+            <LoadingIndicator />
+          </div>
+        ) : (
+          <section className="gameday__list" aria-live="polite">
+            {fixtures.map((fixture: any) => (
+              <div key={fixture.id} className="gameday__item">
+                <FixtureDataCell
+                  match={fixture}
+                  state={isMobile ? "mobile" : "desktop"}
+                />
+              </div>
+            ))}
+          </section>
+        )}
+      </main>
 
       <Footer />
     </div>

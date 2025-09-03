@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { LivescoreCell } from "../../components/LivescoreCell/LivescoreCell";
@@ -55,15 +55,15 @@ export const ElementLivescore = (): JSX.Element => {
           <LoadingIndicator />
         ) : leagues.length === 0 ? (
           <div className="no-matches-message">
-            <p className="longP"><strong>Aktuell finden keine Spiele live statt.</strong></p>
-            <p>Mit wenigen Ausnahmen starten die Spiele sonntags zwischen 8 und 20 Uhr.</p>
+            <p className="p longP"><strong>Aktuell finden keine Spiele live statt.</strong></p>
+            <p className="p">Mit wenigen Ausnahmen starten die Spiele sonntags zwischen 8 und 20 Uhr.</p>
           </div>
         ) : (
           [...leagues]
             .sort((a, b) => a.league.localeCompare(b.league))
             .map((league, index) => (
               <div key={index} className="league-section">
-                <h2 className="leagueHeader">{league.league}</h2>
+                <h2 className="h3">{league.league}</h2>
                 <div className="fixtures">
                   {league.matches.map((fixture: any) => (
                     <div key={fixture.id} className="livescore-header">

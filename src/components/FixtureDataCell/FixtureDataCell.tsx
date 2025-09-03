@@ -1,52 +1,54 @@
+// FixtureDataCell.tsx
+// -------------------------------------------------------------
+// Match row used in Spielplan/Livescore.
+// - Mobile-first; desktop tweaks via .fixture--desktop
+// - Uses a single "meta row" that holds Spieltag + time
+//   (on mobile they are side-by-side as requested)
+// -------------------------------------------------------------
+
+import { DateTime } from "luxon";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
-const { DateTime } = require("luxon");
-interface Match {
-  id: string;
-  home_blanket: {
-    name: string;
-    logo: string;
-  };
-  away_blanket: {
-    name: string;
-    logo: string;
-  };
+
+type TeamBlanket = {
+  id?: string | number;
+  name: string;
+  logo: string;
+};
+
+type Match = {
+  id: string | number;
+  home_blanket: TeamBlanket;
+  away_blanket: TeamBlanket;
   details: {
     date: string;
     location?: string;
+    gameday?: number;
   };
-  score: {
-    home: number;
-    away: number;
-  };
+  score: { home: number; away: number };
   status: string;
-}
+};
 
-interface Props {
+type Props = {
   match: Match;
   state: "desktop" | "mobile";
-}
+};
 
 export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
   const { id, home_blanket, away_blanket, details, score, status } = match;
   const navigate = useNavigate();
 
-  // Format using Luxon
-  const formattedTime = DateTime.fromISO(details.date, {
-    zone: "gmt",
-  }).toFormat("HH:mm");
+  // Format kickoff time (UTC → HH:mm)
+  const formattedTime = DateTime.fromISO(details.date, { zone: "gmt" }).toFormat("HH:mm");
 
-  const handleButtonClick = () => {
-    navigate(`/match/${id}`);
+  const goMatch = () => navigate(`/match/${id}`);
+  const goTeam = (teamId?: string | number) => {
+    if (teamId != null) navigate(`/team-detail/${teamId}`);
   };
 
-  const handleTeamClick = (teamId: string) => {
-    navigate(`/team-detail/${teamId}`);
-  };
-
-  const getButtonText = (status, fallbackFormattedDate) => {
-    switch (status) {
+  const getButtonText = (s: string) => {
+    switch (s) {
       case "pending":
         return "Spielvorschau";
       case "first":
@@ -64,107 +66,81 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
       case "cancelled":
         return "Spiel Abgesagt";
       default:
-        return "Details"
+        return "Details";
     }
   };
 
   return (
-    <div className={`fixture-data-cell state-${state}`}>
-      <div
-        className="fixture-data"
-        style={{ maxWidth: "100%", paddingRight: "15px" }}
-      >
-        <div
-          className="home-team clickable"
-          style={{ cursor: "pointer" }}
-          onClick={() => handleTeamClick(home_blanket.id)}
-        >
-          <div className="gameday-livescore justRight">
-            <img
-              src={home_blanket.logo}
-              alt={home_blanket.name}
-              className="gameday-livescore-3"
-            />
-            <div className="gameday-livescore-2 justRight">
-              {home_blanket.name}
-            </div>
-          </div>
+    <section className={`fixture ${state === "mobile" ? "fixture--mobile" : "fixture--desktop"}`}>
+      {/* Teams + score */}
+      <div className="fixture__teams">
+        <button className="team team--home" onClick={() => goTeam(home_blanket.id)} aria-label={home_blanket.name}>
+          <span className="team__nameR">{home_blanket.name}</span>
+          <img className="team__logo" src={home_blanket.logo} alt="" />
+        </button>
+
+        <div className="score" aria-label={`Spielstand ${score.home} zu ${score.away}`}>
+          <span className="score__value">{score.home}:{score.away}</span>
         </div>
 
-        <div className="score-container">
-          <div className="score-string">{`${score.home}:${score.away}`}</div>
-        </div>
-
-        <div
-          className="away-team clickable"
-          style={{ cursor: "pointer" }}
-          onClick={() => handleTeamClick(away_blanket.id)}
-        >
-          <div className="gameday-livescore">
-            <img
-              src={away_blanket.logo}
-              alt={away_blanket.name}
-              className="gameday-livescore-3"
-            />
-            <div className="gameday-livescore-5">{away_blanket.name}</div>
-          </div>
-        </div>
+        <button className="team team--away" onClick={() => goTeam(away_blanket.id)} aria-label={away_blanket.name}>
+          <img className="team__logo" src={away_blanket.logo} alt="" />
+          <span className="team__nameL">{away_blanket.name}</span>
+        </button>
       </div>
 
-      <div className="stadium-wrapper">
+      {/* Venue */}
+      <div className="fixture__venue">
         <img
-          className="stadium-image"
-          alt="Stadium image"
-          src={
-            state === "mobile"
-              ? "https://cdn-icons-png.flaticon.com/512/88/88961.png"
-              : "https://cdn-icons-png.flaticon.com/512/88/88961.png"
-          }
+          className="fixture__venueIcon"
+          src="https://cdn-icons-png.flaticon.com/512/88/88961.png"
+          alt=""
+          aria-hidden="true"
         />
-        <div className="stadium-location">
-          {details.location || "Unbekanntes Stadium"}
-        </div>
+        <span className="fixture__venueName">{details.location || "Unbekanntes Stadium"}</span>
       </div>
 
-      <div className="schedule-container">
-        <div className="time-string">Spieltag: {match.details.gameday}</div>
+      {/* Meta row: Spieltag + time (side-by-side on mobile) */}
+      <div className="fixture__metaRow">
+        <div className="chip">Spieltag: {details.gameday ?? "-"}</div>
+        <div className="chip">{formattedTime}</div>
       </div>
 
-      <div className="schedule-container">
-        <div className="time-string">{formattedTime}</div>
+      {/* CTA */}
+      <div className="fixture__cta">
+        <button className="btn" onClick={goMatch}>
+          <span className="btn__label">{getButtonText(status)}</span>
+        </button>
       </div>
-
-      <div className="fixture-btn-wrapper">
-  <button className="fixture-btn" onClick={handleButtonClick}>
-    <div className="btn-txt">
-      {getButtonText(status)}
-    </div>
-  </button>
-</div>
-    </div>
+    </section>
   );
 };
 
 FixtureDataCell.propTypes = {
   match: PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     home_blanket: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       name: PropTypes.string.isRequired,
       logo: PropTypes.string.isRequired,
-    }),
+    }).isRequired,
     away_blanket: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       name: PropTypes.string.isRequired,
       logo: PropTypes.string.isRequired,
-    }),
+    }).isRequired,
     details: PropTypes.shape({
       date: PropTypes.string.isRequired,
       location: PropTypes.string,
-    }),
+      gameday: PropTypes.number,
+    }).isRequired,
     score: PropTypes.shape({
       home: PropTypes.number.isRequired,
       away: PropTypes.number.isRequired,
-    }),
+    }).isRequired,
     status: PropTypes.string.isRequired,
   }).isRequired,
   state: PropTypes.oneOf(["desktop", "mobile"]).isRequired,
 };
+
+export default FixtureDataCell;

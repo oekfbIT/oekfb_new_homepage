@@ -1,48 +1,183 @@
-.element-transfers-desktop {
+/* =========================================================
+   Transfers Page Layout
+   ========================================================= */
+
+.transfers-page {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background-color: #f5f5f5;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  position: relative;
+  background: #f5f5f5;
 }
 
-.element-transfers-desktop .instance-node-9 {
-  align-self: stretch !important;
-  flex: 0 0 auto !important;
-  width: 100% !important;
-}
-
-.element-transfers-desktop .page-control-3 {
-  align-items: flex-start;
-  align-self: stretch;
+.transfers-page__main {
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
-  padding: 0px 32px;
-  position: relative;
   width: 100%;
+  padding: 0 32px;
+  margin: 40 32px;
 }
 
-.element-transfers-desktop .single-transfer-2 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-  width: 100%;
-}
-
-.element-transfers-desktop .footer-21 {
-  align-self: stretch !important;
-  background-color: transparent !important;
-  flex: 0 0 auto !important;
+.transfers-page__header {
+  /* align-self: stretch; */
   width: 100% !important;
 }
 
-.element-transfers-desktop .footer-22 {
-  margin-left: -324px !important;
+.transfers-page__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.transfers-page__status,
+.transfers-page__empty {
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.transfers-page__item {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================================================
+   TransferCard (PropertyDesktopWrapper)
+   ========================================================= */
+
+.transfer-card {
+  background-color: var(--themewhite);
+  border-bottom: 1px solid #e9ebed;
+  display: flex;
+  padding: 9.14px 16px 10.16px;
+  position: relative;
+
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+/* Player (left) */
+.transfer-card__player {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+
+.transfer-card__player-avatar {
+  width: 35px;
+  height: 35px;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+
+.transfer-card__player-name {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-size: 13.9px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.transfer-card__player-first {
+  color: #000e14;
+  font-weight: 400;
+}
+
+.transfer-card__player-last {
+  font-weight: 700;
+}
+
+/* Transfer body (middle + right) */
+.transfer-card__body {
+  align-items: center;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+/* Club block */
+.transfer-card__club {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 369.33px;
+  text-decoration: none;
+}
+
+.transfer-card__club-logo {
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.transfer-card__club-logo-img {
+  height: 24px;
+  background-position: 50% 50%;
+  background-size: cover;
+  flex: 1;
+}
+
+.transfer-card__club-name-wrap {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+}
+
+.transfer-card__club-name {
+  color: var(--themeswamp);
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-size: 13.7px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: -1px;
+  white-space: nowrap;
+}
+
+/* Arrow between clubs */
+.transfer-card__arrow {
+  width: 12px;
+  height: 12px;
+  position: relative;
+}
+
+/* ======= Modifiers (layout variants) ======= */
+
+.transfer-card--desktop {
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px 25px;
+  justify-content: space-between;
+}
+
+.transfer-card--mobile {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+  max-width: 390px;
+}
+
+/* Body spacing per variant */
+.transfer-card--desktop .transfer-card__body {
+  display: inline-flex;
+  gap: 25px;
+}
+
+.transfer-card--mobile .transfer-card__body {
+  align-self: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
 }

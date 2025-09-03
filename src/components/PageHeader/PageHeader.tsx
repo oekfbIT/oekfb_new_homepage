@@ -18,9 +18,9 @@ export const PageHeader = ({
   return (
     <div className={`page-header ${className}`}>
       <div className="header-wrapper">
-        <div className="title-2">{text}</div>
+        <div className="title left">{text}</div>
 
-        <div className="subtitle-2">SEASON 2025-2026</div>
+        <div className="p">SEASON 2025-2026</div>
       </div>
     </div>
   );

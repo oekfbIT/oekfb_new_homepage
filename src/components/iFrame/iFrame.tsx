@@ -1,73 +1,78 @@
+// IFrame.tsx
+// -------------------------------------------------------------
+// Card that matches ActionCell's look & structure but shows a
+// YouTube iframe instead of an <img>.
+// Reuses the same class names as ActionCell:
+//   .home__card, .home__cardLink, .home__mediaBox, .home__body
+// -------------------------------------------------------------
+
 import PropTypes from "prop-types";
-import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
-interface Props {
-    className?: string;
-    title: string;
-    subtitle: string;
-    youtubeUrl: string;
-    linkTo: string;
+type Props = {
+  className?: string;
+  title: string;
+  subtitle: string;
+  youtubeUrl: string;
+  linkTo?: string;
+};
+
+// Convert common YouTube URLs to embed form (supports /watch and /shorts)
+const getEmbedUrl = (url: string): string => {
+  try {
+    const u = new URL(url);
+    // shorts
+    if (u.pathname.includes("/shorts/")) {
+      const id = u.pathname.split("/shorts/")[1];
+      return `https://www.youtube.com/embed/${id}`;
+    }
+    // standard
+    const id = u.searchParams.get("v");
+    if (id) return `https://www.youtube.com/embed/${id}`;
+    // already an embed or unknown → pass through
+    return url;
+  } catch {
+    return "";
+  }
+};
+
+export function IFrame({
+  className = "",
+  title,
+  subtitle,
+  youtubeUrl,
+  linkTo = "#",
+}: Props) {
+  return (
+    <article className={`home__card ${className}`}>
+      <Link to={linkTo} className="home__cardLink" aria-label={`${title} – ${subtitle}`}>
+        <div className="home__mediaBox home__mediaBox--iframe">
+          <iframe
+            className="home__iframe"
+            src={getEmbedUrl(youtubeUrl)}
+            title={title}
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+        <div className="home__body">
+          <h3 className="h3">{title}</h3>
+          <p className="p">{subtitle}</p>
+        </div>
+      </Link>
+    </article>
+  );
 }
 
-// Function to convert YouTube URL to embed URL
-const getEmbedUrl = (url: string): string => {
-    try {
-        const parsedUrl = new URL(url);
-
-        // Handle shorts URL
-        if (parsedUrl.pathname.includes("/shorts/")) {
-            const videoId = parsedUrl.pathname.split("/shorts/")[1];
-            return `https://www.youtube.com/embed/${videoId}`;
-        }
-
-        // Handle standard YouTube URL
-        const videoId = parsedUrl.searchParams.get("v");
-        if (videoId) {
-            return `https://www.youtube.com/embed/${videoId}`;
-        }
-
-        return url; // Return original URL if no valid video ID is found
-    } catch (error) {
-        console.error("Invalid YouTube URL:", error);
-        return "";
-    }
-};
-
-export const IFrame = ({
-                           className = "",
-                           title,
-                           subtitle,
-                           youtubeUrl,
-                           linkTo = "#",
-                       }: Props): JSX.Element => {
-    return (
-        <Link className={`action-cell ${className}`} to={linkTo} style={{ width: "100%" }}>
-            <div className="iframe-wrapper">
-                <iframe
-                    className="youtube-iframe"
-                    src={getEmbedUrl(youtubeUrl)}
-                    title={title}
-                    frameBorder="0"
-                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                ></iframe>
-            </div>
-
-            <div className="textwrapper">
-                <div className="title-4">{title}</div>
-
-                <p className="subtitle-4">{subtitle}</p>
-            </div>
-        </Link>
-    );
-};
-
+// (Optional) runtime validation
 IFrame.propTypes = {
-    className: PropTypes.string,
-    title: PropTypes.string.isRequired,
-    subtitle: PropTypes.string.isRequired,
-    youtubeUrl: PropTypes.string.isRequired,
-    linkTo: PropTypes.string,
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  youtubeUrl: PropTypes.string.isRequired,
+  linkTo: PropTypes.string,
 };
+
+export default IFrame;

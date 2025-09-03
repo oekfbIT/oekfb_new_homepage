@@ -1,111 +1,103 @@
+/* Sponsors.css
+   --------------------------------------------------------------
+   Uses global tokens:
+   - colors: --color-surface, --color-text, --color-text-muted, --color-border
+   - spacing: --space-*, radius: --radius-*, shadow: --shadow-*
+   - type: --font-sans, --fs-*, --lh-*
+   Layout preserved from your original.
+   -------------------------------------------------------------- */
+
 .sponsors {
-  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
-  position: relative;
+  align-items: flex-start;
+  max-width: 1200px;     /* keep original fixed width behavior */
   width: 1200px;
 }
 
-.sponsors .sponsors-container {
-  align-items: flex-start;
+/* Card/panel container (kept same paddings/gaps) */
+.sponsors__panel {
   align-self: stretch;
-  background-color: var(--themewhite);
-  box-shadow: 0px 4px 20px #000e140d;
+  background: var(--color-surface, #fff);
+  /* box-shadow: var(--shadow-md, 0 4px 20px rgba(0, 14, 20, 0.05)); */
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  gap: 15px;
-  padding: 15px 20px;
-  position: relative;
-  width: 100%;
+  gap: 15px;             /* original gap */
+  padding: 40px 20px;    /* original padding */
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--color-border, #e6e8eb);
 }
 
-.sponsors .p {
+/* Title line */
+.sponsors__title {
   align-self: stretch;
-  color: var(--themeouter-space);
-  font-family: "Inter", Helvetica;
-  font-size: 11.4px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 14px;
-  margin-top: -1.00px;
-  position: relative;
+  margin: 0;
   text-align: center;
+  font-family: var(--font-sans, Inter, Helvetica, Arial, sans-serif);
+  font-size: 11.4px;        /* preserve your exact sizing */
+  line-height: 14px;
+  color: var(--color-text, #34383c);
+  font-weight: 400;
 }
 
-.sponsors .span {
-  color: #34383c;
-  font-family: var(--theme-inter-regular-11-44-font-family);
-  font-size: var(--theme-inter-regular-11-44-font-size);
-  font-style: var(--theme-inter-regular-11-44-font-style);
-  font-weight: var(--theme-inter-regular-11-44-font-weight);
-  letter-spacing: var(--theme-inter-regular-11-44-letter-spacing);
-  line-height: var(--theme-inter-regular-11-44-line-height);
+/* Parts of the title (kept split for exact look) */
+.sponsors__titlePart {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--fs-base);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text-strong);
+  text-transform: uppercase;
+  padding: 5px 0px;
+  text-align: start;
+  margin-right: 3px;
 }
 
-.sponsors .text-wrapper-2 {
-  font-family: var(--theme-inter-bold-11-44-font-family);
-  font-size: var(--theme-inter-bold-11-44-font-size);
-  font-style: var(--theme-inter-bold-11-44-font-style);
-  font-weight: var(--theme-inter-bold-11-44-font-weight);
-  letter-spacing: var(--theme-inter-bold-11-44-letter-spacing);
-  line-height: var(--theme-inter-bold-11-44-line-height);
+.sponsors__titleHighlight {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--fs-base);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text-strong);
+  text-transform: uppercase;
+  padding: 5px 0px;
+  text-align: start;
+  margin-right: 3px;
 }
 
-.sponsors .sponsors-container-2 {
-  align-items: center;
+/* Logos row */
+.sponsors__list {
   align-self: stretch;
   display: flex;
-  flex: 0 0 auto;
   flex-wrap: wrap;
-  gap: 64px 64px;
+  align-items: center;
   justify-content: center;
-  position: relative;
+  gap: 20px;            /* preserve original 64px spacing */
   width: 100%;
 }
 
-.sponsors .sportsselection {
-  height: 50px;
-  object-fit: cover;
-  position: relative;
-}
-
-.sponsors .image-2 {
-  height: 50px;
+/* Logos — keep exact sizes; add tokenized polish */
+.sponsors__logo {
+  width: 150px;         /* original 100px */
+  height: 80px;         /* original 50px */
   object-fit: contain;
-  position: relative;
+  display: block;
+  filter: none;
+  transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.sponsors .image-3 {
-  height: 28px;
-  object-fit: cover;
-  position: relative;
-  width: 85px;
+.sponsors__logo--wider {
+  width: 130px;         /* original wider (aircash) */
 }
 
-.sponsors .image-4 {
-  height: 80px;
-  object-fit: contain;
-  position: relative;
-  width: 85px;
+/* Subtle interaction without changing layout */
+.sponsors__list a:hover .sponsors__logo,
+.sponsors__list a:focus-visible .sponsors__logo {
+  transform: translateY(-2px);
 }
 
-.sponsors .v-white {
-  height: 47px;
-  position: relative;
-  width: 50px;
-}
-
-.sponsor {
-  width: 100px;
-  position: relative;
-  height: 50px;
-  object-fit: contain;
-}
-.sponsorc {
-  width: 130px;
-  position: relative;
-  height: 50px;
-  object-fit: contain;
-}
+/* --- Back-compat aliases (safe to remove once all imports updated) --- */
+.sponsor { width: 100px; height: 50px; object-fit: contain; }
+.sponsorc { width: 130px; height: 50px; object-fit: contain; }

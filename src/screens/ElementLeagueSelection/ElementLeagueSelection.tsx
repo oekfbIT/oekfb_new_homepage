@@ -1,3 +1,11 @@
+// ElementLeagueSelection.tsx
+// -------------------------------------------------------------
+// League landing page
+// - Hero/slider (optional), state filter dropdown, league cards grid
+// - Keeps your data flow & navigation logic
+// - Uses clean class names + global design tokens in CSS
+// -------------------------------------------------------------
+
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
@@ -20,17 +28,20 @@ import "./style.css";
 
 export const ElementLeagueSelection = (): JSX.Element => {
   const screenWidth = useWindowWidth();
+  const isMobile = screenWidth < 800;
+
   const clientController = new ClientController();
   const authService = new AuthService();
-  const isMobile = screenWidth < 800;
 
   const [allLeagues, setAllLeagues] = useState<any[]>([]);
   const [filteredLeagues, setFilteredLeagues] = useState<any[]>([]);
   const [homepageData, setHomepageData] = useState<any>(null);
   const [selectedState, setSelectedState] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const navigate = useNavigate();
 
+  // Static list of Austrian states
   const austrianStates = [
     { name: "Wien", value: "wien" },
     { name: "Niederösterreich", value: "niederoesterreich" },
@@ -43,29 +54,28 @@ export const ElementLeagueSelection = (): JSX.Element => {
     { name: "Burgenland", value: "burgenland" },
   ];
 
+  // Load league selection + homepage data
   useEffect(() => {
     const fetchLeagues = async () => {
       try {
         setIsLoading(true);
 
-        const [data, noneData] = await Promise.all([
+        const [leaguesResp, homepageResp] = await Promise.all([
           clientController.fetchLeagueSelection(),
           clientController.fetchHomepageData("HME"),
         ]);
 
-        setHomepageData(noneData);
+        setHomepageData(homepageResp);
 
-        // Normalize list once:
-        // 1) Drop the placeholder league
-        // 2) Only include leagues with visibility === true
-        const visibleLeagues = (data || [])
+        // Normalize once: hide placeholder + enforce visibility
+        const visible = (leaguesResp || [])
           .filter((l: any) => l?.name !== "Mannschaft aus der Liga ausgetreten")
           .filter((l: any) => l?.visibility === true);
 
-        setAllLeagues(visibleLeagues);
-        setFilteredLeagues(visibleLeagues); // initial: already visibility-filtered
-      } catch (error) {
-        console.error("Error fetching leagues:", error);
+        setAllLeagues(visible);
+        setFilteredLeagues(visible);
+      } catch (err) {
+        console.error("Error fetching leagues:", err);
       } finally {
         setIsLoading(false);
       }
@@ -74,140 +84,146 @@ export const ElementLeagueSelection = (): JSX.Element => {
     fetchLeagues();
   }, []);
 
+  // State filter
   const handleStateChange = (state: string) => {
     setSelectedState(state);
-
     if (!state) {
       setFilteredLeagues(allLeagues);
     } else {
-      setFilteredLeagues(allLeagues.filter((league) => league.state === state));
+      setFilteredLeagues(allLeagues.filter((l) => l.state === state));
     }
   };
 
+  // Navigate on league choose
   const handleLeagueSelect = (league: any) => {
     authService.setLeagueData(league.code, league.id);
     navigate("/liga");
   };
 
+  // Root min-width logic preserved
+  const rootMinWidth =
+    screenWidth < 900 ? "390px" : screenWidth >= 900 ? "900px" : undefined;
+
   return (
-    <div
-      className="element-league-selection"
-      style={{
-        minWidth:
-          screenWidth < 900
-            ? "390px"
-            : screenWidth >= 900
-            ? "900px"
-            : undefined,
-      }}
-    >
+    <div className="leaguePage" style={{ minWidth: rootMinWidth }}>
+      {/* Top nav: mobile vs desktop */}
       {isMobile ? <Navigation /> : <DesktopNav />}
 
       {isLoading ? (
         <LoadingIndicator />
       ) : (
         <>
+          {/* Optional hero slider */}
           {homepageData?.data?.sliderdata?.length > 0 && (
-            <div style={{ width: "100%", maxWidth: "1200px" }}>
-              {/* slice() to avoid mutating original array with reverse() */}
+            <div className="leaguePage__hero">
               <GalleryCarousel
                 sliderdata={homepageData.data.sliderdata.slice().reverse()}
               />
             </div>
           )}
 
-          <div className="page-content">
-            <div className="leagues-wrapper">
-              <Dropdown
-                className="instance-node-2"
-                options={austrianStates}
-                displayKey="name"
-                valueKey="value"
-                text="Bundesland auswählen"
-                placeholder="Wählen Sie ein Bundesland"
-                onChange={handleStateChange}
-                defaultValue=""
-              />
+          <main className="leaguePage__content">
+            {/* Filter + Grid */}
+            <section className="leaguePage__section">
+              <div className="leaguePage__filter">
+                <Dropdown
+                  className="leaguePage__stateDropdown"
+                  options={austrianStates}
+                  displayKey="name"
+                  valueKey="value"
+                  text="Bundesland auswählen"
+                  placeholder="Wählen Sie ein Bundesland"
+                  onChange={handleStateChange}
+                  defaultValue=""
+                />
+              </div>
 
-              <div className="league-cell-list">
+              <div className="leagueGrid">
                 {filteredLeagues.length > 0 ? (
                   filteredLeagues.map((league) => (
                     <LeagueSelection
                       key={league.id || `league-${league.code}`}
-                      className="league-selection-cell"
+                      className="leagueGrid__item"
                       name={league.name || "Unbekannte Liga"}
                       teams={league.teamcount || 0}
                       onClick={() => handleLeagueSelect(league)}
                     />
                   ))
                 ) : (
-                  <p className="no-results-text">
+                  <p className="leaguePage__empty">
                     Aktuell haben wir keine Liga in diesem Bundesland.
                   </p>
                 )}
               </div>
-            </div>
+            </section>
 
-            <div style={{ width: "100%" }}>
+            {/* Banner */}
+            <section className="leaguePage__section">
               <Banner />
-            </div>
+            </section>
 
-            <div className="action-cell-2">
-              <ActionCell
-                className="custom-class"
-                title="Livescore"
-                subtitle="Live Spiele aller Ligen"
-                imageUrl="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Flivescorelange.png?alt=media&token=75e717f4-ba8d-4b47-b0c8-0f609b09c18b"
-                linkTo="/livescore"
-              />
+            {/* Action + streaming promo (keep your 2-column -> 1-column on small) */}
+            <section className="leaguePage__section">
+              <div className="leaguePage__actions">
+                <ActionCell
+                  title="Livescore"
+                  subtitle="Live Spiele aller Ligen"
+                  imageUrl="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Flivescorelange.png?alt=media&token=75e717f4-ba8d-4b47-b0c8-0f609b09c18b"
+                  linkTo="/livescore"
+                />
+                <IFrame
+                  title="Wir streamen Spiele Live jeden Sonntag!"
+                  subtitle="Folgt unseren YouTube-Kanal, um immer die beste Aktion zu sehen."
+                  youtubeUrl={homepageData?.league?.youtube || ""}
+                  linkTo={homepageData?.league?.youtube || "#"}
+                />
+              </div>
+            </section>
 
-              <IFrame
-                className="custom-class"
-                title="Wir streamen Spiele Live jeden Sonntag!"
-                subtitle="Folgt unseren YouTube-Kanal, um immer die beste Aktion zu sehen."
-                youtubeUrl={homepageData?.league?.youtube || ""}
-                linkTo={homepageData?.league?.youtube || "#"}
-              />
-            </div>
+            {/* Sponsors */}
+            <section className="leaguePage__section">
+              <Sponsors />
+            </section>
 
-            <Sponsors className="instance-node-2" vWhite="/img/v-white-1-1.svg" />
-
-            {/* News Section */}
-            <div className="news-7">
-              <div className="news-container-6">
-                <div className="page-content-23">
-                  <div className="page-content-24" style={{ margin: "10px" }}>
-                    NEWS UND SPIELBERICHTE
-                  </div>
+            {/* News */}
+            <section className="leaguePage__section">
+              <div className="news">
+                <div className="news__header">
+                  <h2 className="h3">NEWS UND SPIELBERICHTE</h2>
                 </div>
 
-                <div className="news-container-grid-7">
+                <div className="news__grid">
                   {homepageData?.news
                     ?.slice(-6)
                     .reverse()
-                    .map((newsItem: any) => (
+                    .map((n: any) => (
                       <NewsRow
-                        key={newsItem.id}
-                        title={newsItem.title}
-                        image={newsItem.image}
-                        text={newsItem.created}
-                        id={newsItem.id}
-                        youtubeUrl={newsItem.youtube}
+                        key={n.id}
+                        title={n.title}
+                        image={n.image}
+                        text={n.created}
+                        id={n.id}
+                        youtubeUrl={n.youtube}
                       />
                     ))}
                 </div>
 
-                <Link className="item" to="/news">
-                  <button className="downloadBtn">Zu allen News Artikeln</button>
-                </Link>
+                <div className="news__cta">
+                  <Link to="/news">
+                    <button className="btn btn--ghost">Zu allen News Artikeln</button>
+                  </Link>
+                </div>
               </div>
-            </div>
+            </section>
 
-            <div style={{ paddingBottom: "40px" }}></div>
-            <Partners className="partners-section" />
-          </div>
+            {/* Partners */}
+            <section className="leaguePage__section leaguePage__section--padBottom">
+              <Partners />
+            </section>
+          </main>
         </>
       )}
+
       <Footer />
     </div>
   );

@@ -1,233 +1,107 @@
+/* ElementLivescore – clean layout
+   -------------------------------------------------------------- */
+
+/* Page shell */
 .element-livescore {
-  align-items: center;
-  background-color: #f5f5f5;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
-  position: relative;
-}
-
-.element-livescore .instance-node-7 {
-  align-self: stretch !important;
-  flex: 0 0 auto !important;
-  width: 100% !important;
-}
-
-.element-livescore .livescore {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 32px;
-  max-width: 1200px;
-  padding: 0px 32px 60px;
-  position: relative;
+  background: #f5f5f5;
   width: 100%;
 }
 
-.element-livescore .dropdown-instance {
-  overflow: unset !important;
-}
-
-.element-livescore .dropdown-2 {
-  font-weight: 400 !important;
-  margin-right: unset !important;
-}
-
-.element-livescore .dropdown-3 {
-  font-weight: 400 !important;
-}
-
-.element-livescore .livescore-header {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 1400px;
-  position: relative;
-  width: 100%;
-}
-
-.element-livescore .gameday {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-  width: 100%;
-}
-
-.element-livescore .gameday-header {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-}
-
-.element-livescore .gameday-header-date {
-  color: var(--themeouter-space);
-  font-family: "Inter", Helvetica;
-  font-size: 13.9px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 20px;
-  margin-top: -1.00px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element-livescore .text-wrapper-91 {
-  font-family: var(--theme-inter-bold-13-89-font-family);
-  font-size: var(--theme-inter-bold-13-89-font-size);
-  font-style: var(--theme-inter-bold-13-89-font-style);
-  font-weight: var(--theme-inter-bold-13-89-font-weight);
-  letter-spacing: var(--theme-inter-bold-13-89-letter-spacing);
-  line-height: var(--theme-inter-bold-13-89-line-height);
-  padding-right: 5px;
-}
-
-.element-livescore .text-wrapper-92 {
-  color: #34383c;
-  font-family: var(--theme-inter-regular-13-89-font-family);
-  font-size: var(--theme-inter-regular-13-89-font-size);
-  font-style: var(--theme-inter-regular-13-89-font-style);
-  font-weight: var(--theme-inter-regular-13-89-font-weight);
-  letter-spacing: var(--theme-inter-regular-13-89-letter-spacing);
-  line-height: var(--theme-inter-regular-13-89-line-height);
-}
-
-.element-livescore .gameday-header-time {
-  color: var(--themeouter-space);
-  font-family: "Inter", Helvetica;
-  font-size: 13.7px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 20px;
-  margin-top: -1.00px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
-}
-
-.element-livescore .text-wrapper-93 {
-  font-family: var(--theme-inter-bold-13-67-font-family);
-  font-size: var(--theme-inter-bold-13-67-font-size);
-  font-style: var(--theme-inter-bold-13-67-font-style);
-  font-weight: var(--theme-inter-bold-13-67-font-weight);
-  letter-spacing: var(--theme-inter-bold-13-67-letter-spacing);
-  line-height: var(--theme-inter-bold-13-67-line-height);
-}
-
-.element-livescore .text-wrapper-94 {
-  color: #34383c;
-  font-family: var(--theme-inter-regular-13-67-font-family);
-  font-size: var(--theme-inter-regular-13-67-font-size);
-  font-style: var(--theme-inter-regular-13-67-font-style);
-  font-weight: var(--theme-inter-regular-13-67-font-weight);
-  letter-spacing: var(--theme-inter-regular-13-67-letter-spacing);
-  line-height: var(--theme-inter-regular-13-67-line-height);
-}
-
-.element-livescore .fixture-data-cell-instance {
-  align-self: stretch !important;
-  margin-left: unset !important;
-  margin-right: unset !important;
-  width: 100% !important;
-}
-
-.element-livescore .fixture-data-cell-2 {
-  flex: 1 !important;
-  flex-grow: 1 !important;
-  width: unset !important;
-}
-
-.element-livescore .fixture-data-cell-3 {
-  margin-left: -2.75px !important;
-  margin-right: -2.75px !important;
-}
-
-.element-livescore .footer-15 {
-  align-self: stretch !important;
-  background-color: transparent !important;
-  flex: 0 0 auto !important;
-  width: 100% !important;
-}
-
-.element-livescore .footer-16 {
-  margin-left: -324px !important;
-}
-
+/* Generic centered row container used multiple times */
 .element-livescore .page-frame-2 {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
   width: 100%;
-}
-
-.element-livescore .livescore-2 {
-  align-items: center;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  gap: 32px;
-  max-width: 1200px;
-  padding: 0px 32px 60px;
-  position: relative;
+  align-items: center;
 }
 
+/* Header spans full width but is constrained by inner wrapper below */
 .element-livescore .page-header-4 {
-  flex: 0 0 auto !important;
   width: 100% !important;
 }
 
-.element-livescore .gamedays {
-  align-items: flex-start;
-  align-self: stretch;
+/* League section wrapper */
+.league-section {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 16px 24px;
+  margin: 0 auto;
+}
+
+/* League title */
+.leagueHeader {
+  font-family: var(--theme-inter-regular-13-67-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--themeswamp, #0b1f19);
+  margin: 8px 0 12px;
+}
+
+/* Fixtures list */
+.fixtures {
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  gap: 32px;
-  position: relative;
+  gap: 12px;
+}
+
+/* Each livescore cell row container */
+.element-livescore .livescore-header {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Optional: section grouping (gamedays) */
+.element-livescore .gamedays {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Empty state */
+.no-matches-message {
+  max-width: 1200px;
+  width: 100%;
+  padding: 12px 16px 24px;
+  font-family: var(--theme-inter-regular-13-67-font-family);
+  font-size: 14px;
+  color: var(--themeouter-space, #4c545a);
+  text-align: left;
+}
+
+.longP { /* just the bold first line in your message */
+  max-width: 1200px;
   width: 100%;
 }
 
-.leagueHeader {
-    font-family: var(--theme-inter-regular-13-67-font-family);
-    font-size: 16px;
-    font-weight: bold;
+/* “Header strip” (date/time) if you use it elsewhere */
+.element-livescore .gameday-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-@media (max-width: 500px) {
-    .leagueHeader {
-        padding: 12px;
-    }
-  }
+.element-livescore .gameday-header-date,
+.element-livescore .gameday-header-time {
+  font-family: "Inter", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--themeouter-space, #4c545a);
+  white-space: nowrap;
+}
 
-  .league-section {
-    width: 100%;
-    max-width: 1200px;
-  }
-
-
-  .no-matches-message {
-    font-family: var(--theme-inter-regular-13-67-font-family);
-    font-size: 14px;
-  }
-
-  .longP {
-    width: 100vw;
-    max-width: 1200px;
-  }
+/* Responsive tweaks */
+@media (max-width: 640px) {
+  .league-section { padding: 0 12px 20px; }
+  .fixtures { gap: 10px; }
+  .leagueHeader { padding: 8px 0; }
+  .no-matches-message { padding: 8px 12px 20px; }
+}

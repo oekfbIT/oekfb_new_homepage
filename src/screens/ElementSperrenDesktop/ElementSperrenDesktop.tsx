@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator";
@@ -67,7 +67,7 @@ export const ElementSperrenDesktop = (): JSX.Element => {
                     player_name: player.player_name,
                     player_image: player.player_image,
                     player_sid: player.player_sid,
-                    playerid: player.playerid,
+                    playerid: player.player,
                     teamid: player.teamid,
                     team_name: player.team_name,
                     team_image: player.team_image,

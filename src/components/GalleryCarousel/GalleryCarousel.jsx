@@ -1,73 +1,108 @@
+// GalleryCarousel.jsx
+// -------------------------------------------------------------
+// A responsive, auto-playing carousel for hero/gallery images.
+//
+// Accessibility:
+// - Uses buttons with aria-labels
+// - Slides are focusable via the buttons; track uses transform only
+//
+// Styling:
+// - See GalleryCarousel.css
+// - Typography/colors use tokens from global.css
+// - Class names are BEM-ish: .carousel, .carousel__track, etc.
+// -------------------------------------------------------------
+
 import { useEffect, useMemo, useState } from "react";
 import "./GalleryCarousel.css";
 
+const AUTOPLAY_MS = 15000;
+
 const GalleryCarousel = ({ sliderdata = [] }) => {
-  const slides = useMemo(
-    () => sliderdata.filter(Boolean),
-    [sliderdata]
-  );
+  // Normalize incoming data (strip null/undefined)
+  const slides = useMemo(() => sliderdata.filter(Boolean), [sliderdata]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalSlides = slides.length;
 
+  // Navigation handlers
   const goToPrevious = () =>
     setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
 
   const goToNext = () =>
     setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
 
-  // Reset index if the number of slides changes
+  // Reset index if slide count shrinks
   useEffect(() => {
     if (currentIndex > totalSlides - 1) setCurrentIndex(0);
-  }, [totalSlides]); // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalSlides]);
 
-  // Stable interval: only run when there's something to slide
+  // Autoplay when there are 2+ slides
   useEffect(() => {
-    if (totalSlides <= 1) return; // no autoplay for 0/1 slides
-    const id = setInterval(goToNext, 15000);
+    if (totalSlides <= 1) return;
+    const id = setInterval(goToNext, AUTOPLAY_MS);
     return () => clearInterval(id);
-    // depend on totalSlides so it restarts if the list size changes
-  }, [totalSlides]); // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalSlides]);
 
   if (totalSlides === 0) return null;
 
   return (
-    <div className="carousel-wrapper">
-      <div className="carousel-container">
+    <section className="carousel" aria-roledescription="carousel">
+      <div className="carousel__viewport">
         <div
-          className="carousel-track"
+          className="carousel__track"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {slides.map((item, index) => (
-            <div className="carousel-slide" key={item.id ?? index}>
-              <div className="carousel-image-wrapper">
-                <img
-                  src={item.image}
-                  alt={item.description || item.title || `Slide ${index + 1}`}
-                />
-              </div>
-              {(item.title || item.description) && (
-                <div className="carousel-caption">
-                  {item.description && <h3 className="header">{item.description}</h3>}
-                  {item.title && <h2 className="pRousel">{item.title}</h2>}
+          {slides.map((item, index) => {
+            const title = item.title;
+            const subtitle = item.description;
+            const alt =
+              item.description || item.title || `Slide ${index + 1}`;
+
+            return (
+              <article className="carousel__slide" key={item.id ?? index}>
+                <div className="carousel__media">
+                  <img className="carousel__img" src={item.image} alt={alt} />
                 </div>
-              )}
-            </div>
-          ))}
+
+                {(title || subtitle) && (
+                  <div className="carousel__caption">
+                    {subtitle && (
+                      <h3 className="h2">{subtitle}</h3>
+                    )}
+                    {title && (
+                      <h2 className="p">{title}</h2>
+                    )}
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </div>
 
         {totalSlides > 1 && (
           <>
-            <button className="carousel-button prev" onClick={goToPrevious} aria-label="Previous slide">
+            <button
+              className="carousel__btn carousel__btn--prev"
+              onClick={goToPrevious}
+              aria-label="Vorherige Folie"
+              type="button"
+            >
               ‹
             </button>
-            <button className="carousel-button next" onClick={goToNext} aria-label="Next slide">
+            <button
+              className="carousel__btn carousel__btn--next"
+              onClick={goToNext}
+              aria-label="Nächste Folie"
+              type="button"
+            >
               ›
             </button>
           </>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

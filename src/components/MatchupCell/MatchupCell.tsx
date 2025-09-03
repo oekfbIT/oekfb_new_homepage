@@ -5,10 +5,14 @@ import {
     formatMatchDate,
     formatMatchTime,
     getElapsedTime,
-    getMatchStatusText
+    getMatchStatusText,
 } from "../../utils/matchUtils";
 import "./style.css";
 
+/**
+ * Lightweight models mirroring the minimum data surface used by this cell.
+ * Avoids tight coupling to backend response shapes.
+ */
 interface Team {
   id?: string;
   name?: string;
@@ -23,7 +27,7 @@ interface Matchup {
   away_blanket?: Team;
   first_half_date: ISODate;
   second_half_date: ISODate;
-  status?: string;
+  status?: string; // "pending" | "first" | "halftime" | "second" | "finished" | etc.
   details?: {
     location?: string;
     date?: ISODate;
@@ -37,27 +41,27 @@ interface Matchup {
 
 interface Props {
   matchup?: Matchup;
+  /** Layout/state style flags used throughout the app */
   state: "fixture-w-top" | "fixture-no-top" | "live-top" | "live-w-top";
   className?: string;
 }
 
-const fallbackLogo = "/img/fallback-logo.png";
+const FALLBACK_LOGO = "/img/fallback-logo.png";
 
-export const MatchupCell = ({
-  matchup,
-  state,
-  className,
-}: Props): JSX.Element => {
+export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element => {
   const navigate = useNavigate();
+
+  // Live clock (minute) — updated each minute while status is "first" or "second".
   const [elapsedTime, setElapsedTime] = React.useState("0'");
 
-  const status = matchup?.status;
+  const status = matchup?.status ?? "";
   const isLive = status === "first" || status === "second";
 
   const firstHalfDate = matchup?.first_half_date;
   const secondHalfDate = matchup?.second_half_date;
 
-  const halfStartTime =
+  // Determine which half start we should base the live clock on.
+  const halfStartTime: ISODate | null =
     status === "second" && secondHalfDate
       ? secondHalfDate
       : status === "first"
@@ -69,84 +73,108 @@ export const MatchupCell = ({
 
     const update = () => {
       const offset = status === "second" ? 25 : 0;
-      const time = getElapsedTime(halfStartTime, offset);
-      setElapsedTime(time);
+      setElapsedTime(getElapsedTime(halfStartTime, offset));
     };
 
     update();
-    const interval = setInterval(update, 60000);
+    const interval = setInterval(update, 60_000);
     return () => clearInterval(interval);
   }, [halfStartTime, isLive, status]);
 
-  const formattedDate = matchup?.details?.date
-    ? `${formatMatchDate(matchup.details.date)} - ${formatMatchTime(
-        matchup.details.date
-      )}`
-    : "Datum nicht Zugewiesen";
+  // Example: "12.08.2025 - 19:30" or fallback text when absent
+  const formattedDate =
+    matchup?.details?.date
+      ? `${formatMatchDate(matchup.details.date)} - ${formatMatchTime(
+          matchup.details.date
+        )}`
+      : "Datum nicht Zugewiesen";
 
-  const backgroundColorClass = ["pending"].includes(status || "")
-    ? "state-gray"
-    : ["first", "second", "halftime"].includes(status || "")
-    ? "state-red"
-    : "";
+  // Background tone for the footer strip (pending vs live).
+  const footerTone =
+    ["first", "second", "halftime"].includes(status) ? "live" : ["pending"].includes(status) ? "pending" : "default";
 
+  // Primary status line shown in the footer; includes live minute indirectly via utils if applicable.
   const matchStatusText = getMatchStatusText(
-    status || "",
+    status,
     firstHalfDate,
     secondHalfDate,
     formattedDate
   );
 
+  const homeScore = matchup?.score?.home ?? 0;
+  const awayScore = matchup?.score?.away ?? 0;
+
   return (
-    <div className={`matchup-cell ${className || ""}`}>
-      <div className="matchup-cell-top">
-        <div className={`line ${state}`} />
+    <div
+      className={[
+        "matchup",
+        className,
+        `matchup--${state}`, // layout modifier
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      {/* Top ribbon + optional date overlay */}
+      <div className="matchup__top">
+        <div className={`matchup__ribbon matchup__ribbon--${state}`} />
         {["fixture-w-top", "live-w-top"].includes(state) && (
-          <div className="txt-overlay">
-            <div className="date-txt">{formattedDate}</div>
+          <div className="matchup__date-badge">
+            <div className="matchup__date-text">{formattedDate}</div>
           </div>
         )}
       </div>
 
-      <div className="matchup-cell-bottom">
-        <div className="matchup-cell-bottom-2">
-          <div className="link-9">
-            <div className="matchup-cell-bottom-wrapper">
-              <div
-                className="logo"
-                style={{
-                  backgroundImage: `url(${matchup?.home_blanket?.logo || fallbackLogo})`,
-                }}
-              />
-            </div>
+      {/* Card body */}
+      <div className="matchup__body">
+        {/* Teams + score row */}
+        <div className="matchup__row">
+          {/* Home team logo */}
+          <div className="matchup__team">
+            <img
+              className="matchup__team-logo"
+              src={matchup?.home_blanket?.logo || FALLBACK_LOGO}
+              alt={matchup?.home_blanket?.name || "Home Team"}
+              loading="lazy"
+            />
+          </div>
 
-            <div className="matchup-cell-bottom-4">
-              <div className={`matchup-cell-bottom-6 state-${state}`}>
-                <div className="matchup-cell-bottom-7">
-                  {matchup?.score?.home ?? 0}:{matchup?.score?.away ?? 0}
-                </div>
-              </div>
-            </div>
-
-            <div className="matchup-cell-bottom-wrapper">
-              <img
-                src={matchup?.away_blanket?.logo || fallbackLogo}
-                alt={matchup?.away_blanket?.name || "Away Team"}
-                className="team-logo"
-              />
+          {/* Score block (colors depend on 'state') */}
+          <div className={`matchup__score matchup__score--${state}`}>
+            <div className="matchup__score-text">
+              {homeScore}:{awayScore}
             </div>
           </div>
 
-          <div className={`background ${backgroundColorClass}`}>
-            <div className="container">
-              <div
-                className="vorschau"
-                onClick={() => navigate(`/match/${matchup?.id}`)}
-              >
-                {matchStatusText}
-              </div>
-            </div>
+          {/* Away team logo */}
+          <div className="matchup__team">
+            <img
+              className="matchup__team-logo"
+              src={matchup?.away_blanket?.logo || FALLBACK_LOGO}
+              alt={matchup?.away_blanket?.name || "Away Team"}
+              loading="lazy"
+            />
           </div>
+        </div>
+
+        {/* Footer status bar */}
+        <div
+          className={[
+            "matchup__footer",
+            footerTone === "live" ? "matchup__footer--live" : "",
+            footerTone === "pending" ? "matchup__footer--pending" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+        >
+          <button
+            type="button"
+            className="matchup__cta"
+            onClick={() => navigate(`/match/${matchup?.id}`)}
+          >
+            {/* If you want to explicitly append the minute, you can combine both: */}
+            {/* {isLive ? `${matchStatusText} • ${elapsedTime}` : matchStatusText} */}
+            {matchStatusText}
+          </button>
         </div>
       </div>
     </div>
