@@ -52,6 +52,7 @@ export const Postpone = ({
     );
   }
 
+
   // Safe name split
   const [first = "", ...rest] = (playerName ?? "").trim().split(" ");
   const last = rest.join(" ");
