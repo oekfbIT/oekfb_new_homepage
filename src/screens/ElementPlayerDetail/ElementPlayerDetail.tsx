@@ -401,8 +401,8 @@ export const ElementPlayerDetail = (): JSX.Element => {
       <div className="page-content" style={{ padding: "20px 0" }}>
         {/* Stats: Ewige + Saison (re-using same data for now) */}
         <section style={{ width: "-webkit-fill-available" }}>
-          <h2 className="title">{player?.name ?? "Player"} Ewige Statistik</h2>
-          <div className="h3 stats-grid" style={{ justifyItems: "center" }}>
+          <h2 className="sub_header md_base">{player?.name ?? "Player"} Ewige Statistik</h2>
+          <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>
             {playerStats.map(([k, v]) => (
               <StatCell key={k} statKey={k} statValue={v} />
             ))}
@@ -410,8 +410,8 @@ export const ElementPlayerDetail = (): JSX.Element => {
         </section>
 
         <section style={{ width: "-webkit-fill-available" }}>
-          <h2 className="title">{player?.name ?? "Player"} Saison Statistik</h2>
-          <div className="h3 stats-grid" style={{ justifyItems: "center" }}>
+          <h2 className="sub_header md_base">{player?.name ?? "Player"} Saison Statistik</h2>
+          <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>
             {playerStats.map(([k, v]) => (
               <StatCell key={`season-${k}`} statKey={k} statValue={v} />
             ))}
@@ -420,7 +420,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
 
         {/* Fixtures with filters (Saison + Spieltag), "Alle" options on top */}
         <section style={{ width: "-webkit-fill-available" }}>
-          <h2 className="title">
+          <h2 className="sub_header md_base">
             Spiele &amp; Ergebnisse{" "}
             {usingAllSeasons ? "– Alle Saisonen" : selectedSeason ? `– ${selectedSeason.season_name}` : ""}
             {selectedGameday !== ALL_GAMEDAYS ? ` · Spieltag ${selectedGameday}` : ""}

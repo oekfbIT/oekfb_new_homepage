@@ -217,7 +217,7 @@ export const ElementTeamDetail = (): JSX.Element => {
       <div className="page-content">
         {/* All-time stats */}
         <section className="section">
-          <h2 className="title">{teamData?.club?.team_name} Ewige Statistiken</h2>
+          <h2 className="sub_header md_base">{teamData?.club?.team_name} Ewige Statistiken</h2>
           <div className="h3 stats-grid" style={{ justifyItems: "center" }}>
             {teamStats.map(([statKey, statValue]) => (
               <StatCell
@@ -232,7 +232,7 @@ export const ElementTeamDetail = (): JSX.Element => {
 
         {/* Squad – Spielberechtigt first, then Gesperrt */}
         <section className="section">
-          <h2 className="title">{teamData?.club?.team_name} Kader</h2>
+          <h2 className="sub_header md_base">{teamData?.club?.team_name} Kader</h2>
           <div className="team-squad">
             {teamData?.club?.players
               ?.filter(
@@ -257,7 +257,7 @@ export const ElementTeamDetail = (): JSX.Element => {
 
         {/* Fixtures section with filters placed directly ABOVE the list */}
         <section className="section">
-          <h2 className="title">
+          <h2 className="sub_header md_base">
             Spiele &amp; Ergebnisse{" "}
             {usingAllSeasons
               ? "– Alle Saisonen"

@@ -176,6 +176,22 @@
   margin: 15px 0px;
 }
 
+.sub_header {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: var(--fs-xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text-strong);
+  text-transform: uppercase;
+  padding: 5px 0px;
+  text-align: start;
+}
+
+.md_base {
+  margin: 0px 0px 25px;
+}
+
 .p {
   font-family: var(--font-sans);
   font-weight: 300;

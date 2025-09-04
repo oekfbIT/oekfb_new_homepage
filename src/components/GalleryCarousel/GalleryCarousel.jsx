@@ -69,7 +69,7 @@ const GalleryCarousel = ({ sliderdata = [] }) => {
                 {(title || subtitle) && (
                   <div className="carousel__caption">
                     {subtitle && (
-                      <h3 className="h2">{subtitle}</h3>
+                      <h3 className="sub_header">{subtitle}</h3>
                     )}
                     {title && (
                       <h2 className="p">{title}</h2>
