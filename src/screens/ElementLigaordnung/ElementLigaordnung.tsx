@@ -1,11 +1,11 @@
-import React, { useRef } from "react";
+import React from "react";
+import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
-import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import { ParagraphWrapper } from "../../components/ParagraphWrapper";
-import "./style.css";
-import { useWindowWidth } from "../../breakpoints";
+import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import data from "../../data/ligaordnung.json";
+import "./style.css";
 
 export const ElementLigaordnung = (): JSX.Element => {
     const screenWidth = useWindowWidth();
@@ -28,9 +28,9 @@ export const ElementLigaordnung = (): JSX.Element => {
                 <div className="page-content">
                     <div className="terms">
                         <div className="terms-header-wrapper">
-                            <p className="title-3">Unsere Ligaordnung</p>
+                            <p className="title">Unsere Ligaordnung</p>
                             <div className="div-wrapper-2">
-                                <p className="text-wrapper-13">
+                                <p className="h3_alt">
                                     Das sind unsere Ligaordnung und regeln zu einem positiven
                                     spielverhältnis.
                                 </p>
@@ -43,7 +43,7 @@ export const ElementLigaordnung = (): JSX.Element => {
                                 {data.map((item, index) => (
                                     <li key={index}>
                                         <button
-                                            className="toc-link"
+                                            className="pb"
                                             onClick={() => handleScroll(index)}
                                         >
                                             {item.title}

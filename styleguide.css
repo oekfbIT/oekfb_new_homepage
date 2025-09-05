@@ -201,13 +201,24 @@
   color: var(--color-text-strong);
 }
 
+.t {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+  letter-spacing: var(--ls-normal);
+  color: var(--color-text-strong);
+}
+
 .pb {
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: var(--fs-base);
-  line-height: var(--lh-tight);
+  line-height: var(--lh-loose);
   letter-spacing: var(--ls-normal);
   color: var(--color-text-strong);
+  background: transparent;
+  border: none;
 }
 
 .h3-table {

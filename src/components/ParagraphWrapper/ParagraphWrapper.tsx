@@ -20,10 +20,10 @@ export const ParagraphWrapper = ({ className = "", title, content }: Props): JSX
     return (
         <div className={`paragraph-wrapper ${className}`}>
             <div className="div-wrapper">
-                <div className="text-wrapper-2">{title}</div>
+                <div className="h3_alt">{title}</div>
             </div>
 
-            <div className="p">{formattedContent}</div>
+            <div className="t">{formattedContent}</div>
         </div>
     );
 };
