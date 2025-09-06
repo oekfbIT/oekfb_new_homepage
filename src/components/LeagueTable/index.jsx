@@ -32,8 +32,8 @@ export const LeagueTable = () => {
       if (!code) { setLoading(false); return; }
 
       try {
-        const tbl = await clientController.fetchCurrentSeasonTablePrimary(code);
-        setTable(applyPlayboysRule(tbl));
+        const tbl = await clientController.fetchCurrentSeasonTable(code);
+        // setTable(applyPlayboysRule(tbl));
         const league = await clientController.fetchLeague(code);
         setLeagueName(league.name || "");
       } catch (err) {
