@@ -268,7 +268,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
             </div>
 
             <div className="player-hero__nameCell">
-              <span className="player-hero__number">{player?.number ?? "0"}</span>
+              <span className="title player-hero__number">{player?.number ?? "0"}</span>
               <div className="player-hero__nameBlock">
                 <span className="player-hero__first">{first}</span>
                 <span className="player-hero__last">{last}</span>
