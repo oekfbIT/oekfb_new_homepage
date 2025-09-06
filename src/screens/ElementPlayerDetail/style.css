@@ -1,5 +1,4 @@
-/* ElementPlayerDetail — tokenized & minimal */
-/* Relies on your global type & color tokens. */
+/* ElementPlayerDetail — layout + hero overhaul */
 
 .element-player-detail {
   align-items: center;
@@ -9,129 +8,117 @@
   position: relative;
 }
 
-/* Header wrapper */
-.element-player-detail .player-detail-header {
-  align-self: stretch;
-  display: flex;
-  flex-wrap: wrap;
+/* ---------- HERO ---------- */
+.player-hero {
   width: 100%;
+  background: var(--color-warning);
 }
 
-.element-player-detail .player-detail-header-2 {
-  background: var(--color-warning); /* your old #dcc91e maps well to "warning" */
-  display: flex;
-  flex: 1 1 auto;
-  justify-content: center;
-  max-width: 100%;
+.player-hero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  padding: clamp(16px, 3vw, 32px) clamp(12px, 3vw, 24px);
+  min-height: 300px;
+  align-content: center;
 }
 
-.element-player-detail .player-detail-header-3 {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 0%;
-  max-width: 500px;
-  padding: var(--space-8) 0 0;
+/* Row: [logo] [facts] [# + name] */
+.player-hero__row {
+  display: grid;
+  grid-template-columns: auto minmax(240px, 1fr) auto;
+  gap: clamp(12px, 2.5vw, 28px);
+  padding-right: clamp(160px, 28vw, 520px); /* space for portrait */align-items: center;
 }
 
-/* Large name/number row */
-.element-player-detail .large-text-container {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 0 0 var(--space-9);
-  width: 100%;
-  max-width: 1140px;
-}
-
-/* Player number (let global fonts apply; just size/weight if needed) */
-.element-player-detail .large-text-container-2 {
-  color: var(--color-text-strong);
-  font-weight: var(--font-weight-black);
-  font-size: 60px;
-  line-height: var(--lh-tight);
-  white-space: nowrap;
-}
-
-/* First/Last stacked */
-.element-player-detail .large-text-container-3 {
-  display: inline-flex;
-  flex-direction: column;
-}
-
-.element-player-detail .large-text-container-wrapper { display: flex; }
-
-.element-player-detail .large-text-container-4,
-.element-player-detail .large-text-container-5 {
-  color: var(--color-text-strong);
-  line-height: var(--lh-tight);
-  white-space: nowrap;
-}
-.element-player-detail .large-text-container-4 { font-size: var(--fs-xl); font-weight: 700; font-family: var(--font-sans); }
-.element-player-detail .large-text-container-5 { font-size: var(--fs-xl); font-weight: var(--font-weight-bold); }
-
-/* Fact grid next to name */
-.element-player-detail .small-text-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  max-width: 400px;
-  padding: 0 var(--space-7) var(--space-7);
-}
-
-.element-player-detail .small-text-container-2 {
-  display: flex;
-  flex: 1 1 0%;
-  flex-wrap: wrap;
-}
-
-.element-player-detail .small-text-cell {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  min-width: 160px;
-  height: 37px;
-  padding: var(--space-2) 0;
-}
-
-.element-player-detail .small-text-cell-key {
-  color: var(--color-text);
-  font-size: var(--fs-sm);
-  font-weight: 800;
-}
-
-.element-player-detail .small-text-cell-2 {
-  color: var(--color-text-strong);
-  font-size: var(--fs-sm);
-  font-weight: 500;
-}
-
-/* Images block (club logo + player image) */
-.element-player-detail .player-detail-header-4 {
-  display: inline-flex;
-  align-items: flex-end;
-}
-
-.element-player-detail .player-detail-4 {
-  position: absolute;
-  top: 30px;
-  left: 100px;
-  height: 70px;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
-  .element-player-detail .player-detail-4 {
-    left: 50px;
-    z-index: 1;
+@media (max-width: 1024px) {
+  .player-hero__row {
+    padding-right: clamp(120px, 35vw, 360px);
   }
 }
 
-.element-player-detail .player-detail-6 {
-  width: 232px;
-  object-fit: cover;
+@media (max-width: 760px) {
+  .player-hero__row {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding-right: 0;
+    gap: 14px;
+  }
 }
 
-/* Page content container */
+/* Logo cell */
+.player-hero__logoCell {
+  display: grid;
+  place-items: baseline;
+}
+.player-hero__logo {
+  width: clamp(60px, 10vw, 110px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.18));
+}
+
+/* Facts block (between logo and name) */
+.player-hero__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 8px 16px;
+}
+@media (max-width: 520px) { .player-hero__facts { grid-template-columns: 1fr; } }
+
+.fact { display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0px 10px;}
+.fact__k { font-size: var(--fs-sm); font-weight: 800; color: var(--color-text); }
+.fact__v { font-size: var(--fs-sm); font-weight: 600; color: var(--color-text-strong); }
+.fact__v--link { cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.fact--flag .flagicon { margin-left: 8px; }
+
+/* Number + Name (number first) */
+.player-hero__nameCell {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(8px, 1.2vw, 16px);
+  white-space: nowrap;
+}
+
+.player-hero__number {
+  font-weight: var(--font-weight-black);
+  font-size: clamp(40px, 6vw, 90px);
+  line-height: 0.9;
+  color: var(--color-text-strong);
+}
+
+.player-hero__nameBlock {
+  display: grid;
+  line-height: 1;
+}
+.player-hero__first,
+.player-hero__last {
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(22px, 3vw, 42px);
+  color: var(--color-text-strong);
+}
+
+/* Portrait at right, anchored and responsive */
+.player-hero__portrait {
+  position: absolute;
+  right: clamp(0px, 2vw, 24px);
+  bottom: 0;
+  display: grid;
+  justify-items: end;
+  align-items: end;
+  width: clamp(180px, 28vw, 520px);
+  pointer-events: none;
+}
+.player-hero__img {
+  width: 100%;
+  height: auto;
+  /* max-height: clamp(240px, 38vw, 520px); */
+  max-height: 290px;
+  object-fit: contain; /* keeps full figure crisp */
+}
+
+/* ---------- CONTENT ---------- */
 .page-content {
   width: 100%;
   max-width: 1200px;
@@ -140,7 +127,7 @@
   margin: 0 auto;
 }
 
-/* Stats grids (structure only; type comes from globals) */
+/* Stats grids */
 .stats-grid {
   display: grid;
   gap: var(--space-2);
@@ -148,26 +135,10 @@
   max-width: 1200px;
   grid-template-columns: 1fr;
 }
+@media (min-width: 600px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(3, 1fr); } }
 
-@media (min-width: 600px) {
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1024px) {
-  .stats-grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-/* Team-squad grid reused by some sections */
-.team-squad {
-  display: grid;
-  gap: var(--space-1);
-  width: 100%;
-  max-width: 1200px;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 600px) { .team-squad { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .team-squad { grid-template-columns: repeat(3, 1fr); } }
-
-/* Simple filter row above fixtures */
+/* Fixtures */
 .gameday__filters {
   display: flex;
   gap: var(--space-3);
@@ -175,34 +146,11 @@
   align-items: center;
   margin-bottom: var(--space-3);
 }
+.gameday__list { display: grid; gap: var(--space-2); }
 
-/* Fixtures list spacing */
-.gameday__list {
-  display: grid;
-  gap: var(--space-2);
-}
-
-/* Flag icon next to nationality */
+/* Flags */
 .flagicon {
   width: 18px;
   height: 12px;
   object-fit: cover;
-  margin-left: var(--space-2);
-}
-
-/* Optional: news grid helpers kept compact */
-.news-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--space-4);
-}
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-5);
-  justify-content: center;
-  padding: var(--space-5) 0;
-}
-@media (max-width: 768px) {
-  .news-grid { grid-template-columns: 1fr; }
 }

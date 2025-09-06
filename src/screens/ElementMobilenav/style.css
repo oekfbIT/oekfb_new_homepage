@@ -75,11 +75,11 @@
 }
 
 .element-mobilenav .mobile-menu-item-2 {
-  color: #888c90;
+  color: var(--color-text);
   flex: 1;
-  font-family: "Inter", Helvetica;
+  font-family: var(--font-sans);
   font-size: 16.6px;
-  font-weight: 400;
+  font-weight: 700;
   height: 27px;
   letter-spacing: 0;
   line-height: 30px;

@@ -1,17 +1,8 @@
 // ElementPlayerDetail.tsx
 // -----------------------------------------------------------------------------
-// Player detail view — cleaned & refactored to match the new backend shape.
-// SIMILAR to ElementTeamDetail/ElementGamedayMobile:
-//   • Backend returns SEASONS under `upcoming`, each with `matches`.
-//   • Default season = the one with `primary: true` (fallback: first with matches, else first).
-//   • Dropdowns: "Saison" and "Spieltag" with a top-level "Alle" option each.
-//   • Null-safe date handling (no `.details.date.$date`), robust sorting & filtering.
-//   • Concise, meaningful CSS hooks and date formatting.
-//
-// Assumes these shared components/utilities exist:
-//   - Dropdown (id/value/label API as in your other views)
-//   - FixtureDataCell (already made resilient to optional fields)
-//   - StatCell, Navigation/DesktopNav, Footer
+// Player detail view with a reorganized hero:
+//   [ club logo ] [ info/facts ] [ # number + NAME ]
+// Player portrait sits to the right, responsive and well placed.
 // -----------------------------------------------------------------------------
 
 import { useEffect, useMemo, useState } from "react";
@@ -53,7 +44,7 @@ type Player = {
 type Match = {
   id?: string;
   details?: {
-    date?: string; // ISO string e.g. "2024-10-06T11:00:00Z"
+    date?: string;
     gameday?: number;
     location?: string;
     [k: string]: any;
@@ -77,7 +68,6 @@ type PlayerDetailResponse = {
 
 // ----- Utils -----------------------------------------------------------------
 
-// split "first last ..." and Capitalize each part
 const splitAndCapitalizeName = (name: string) => {
   const cap = (s: string) => (s ? s[0].toUpperCase() + s.slice(1).toLowerCase() : s);
   const [firstName, ...rest] = (name ?? "").trim().split(/\s+/);
@@ -87,7 +77,6 @@ const splitAndCapitalizeName = (name: string) => {
   };
 };
 
-// convert "Österreich" -> "oesterreich" for flag URL
 const formatNationality = (nationality: string): string =>
   (nationality ?? "")
     .toLowerCase()
@@ -98,10 +87,8 @@ const formatNationality = (nationality: string): string =>
     .replace(/\s+/g, "")
     .replace(/[^a-z]/g, "");
 
-// Guarded date parse (returns ms epoch or NaN)
 const toMs = (iso?: string) => (iso ? new Date(iso).getTime() : NaN);
 
-// friendly date like "22.09.2024"
 const formatDateDMY = (iso?: string) => {
   const ms = toMs(iso);
   if (Number.isNaN(ms)) return "";
@@ -161,7 +148,6 @@ export const ElementPlayerDetail = (): JSX.Element => {
         const upcoming = Array.isArray(response?.upcoming) ? response.upcoming : [];
         setSeasons(upcoming);
 
-        // default season: primary -> first with matches -> first -> ALL (if nothing)
         const primary =
           upcoming.find((s) => s.primary) ??
           upcoming.find((s) => (s.matches?.length ?? 0) > 0) ??
@@ -203,7 +189,6 @@ export const ElementPlayerDetail = (): JSX.Element => {
       const dateStr = m?.details?.date;
       if (!gd || !dateStr) return;
 
-      // Keep earliest date per gameday
       const cur = toMs(dateStr);
       if (Number.isNaN(cur)) return;
 
@@ -211,7 +196,6 @@ export const ElementPlayerDetail = (): JSX.Element => {
       if (!existing) {
         map.set(gd, formatDateDMY(dateStr));
       } else {
-        // existing is formatted "dd.mm.yyyy" -> parse
         const [dd, mm, yyyy] = existing.split(".");
         const prev = new Date(`${yyyy}-${mm}-${dd}T00:00:00Z`).getTime();
         if (cur < prev) map.set(gd, formatDateDMY(dateStr));
@@ -224,7 +208,6 @@ export const ElementPlayerDetail = (): JSX.Element => {
 
     setUniqueGamedays([{ gameday: ALL_GAMEDAYS, date: "Alle Spieltage" }, ...list]);
 
-    // Default: closest to today (else ALL if no matches)
     const today = Date.now();
     let closest = ALL_GAMEDAYS;
     let min = Infinity;
@@ -259,7 +242,6 @@ export const ElementPlayerDetail = (): JSX.Element => {
     )
     .slice()
     .sort((a, b) => {
-      // sort by date asc, fallback by gameday asc
       const da = toMs(a?.details?.date);
       const db = toMs(b?.details?.date);
       if (!Number.isNaN(da) && !Number.isNaN(db) && da !== db) return da - db;
@@ -271,93 +253,59 @@ export const ElementPlayerDetail = (): JSX.Element => {
   if (loading) return <LoadingIndicator />;
 
   return (
-    <div
-      className="element-player-detail"
-      style={{ minWidth: screenWidth < 1200 ? "390px" : "1200px" }}
-    >
+    <div className="element-player-detail">
       {isMobile ? <Navigation /> : <DesktopNav />}
 
-      {/* Header */}
-      <div className="player-detail-header">
-        <div
-          className="player-detail-header-2"
-          style={{
-            alignItems:
-              screenWidth < 768 ? "flex-end" : screenWidth < 900 ? "center" : undefined,
-            padding: screenWidth < 768 ? "0 10px" : screenWidth < 900 ? "0 32px" : undefined,
-          }}
-        >
-          <div className="player-detail-header-3">
-            {/* Big number + name */}
-            <div className="large-text-container">
-              <div className="h3 large-text-container-2">{player?.number ?? "0"}</div>
-              <div
-                className="large-text-container-3"
-                style={{ marginRight: screenWidth < 768 ? "-24.61px" : undefined }}
-              >
-                <div className="large-text-container-wrapper">
-                  <div className="large-text-container-4">{first}</div>
-                </div>
-                <div className="large-text-container-wrapper">
-                  <div className="large-text-container-4">{last}</div>
-                </div>
+      {/* HERO */}
+      <header className="player-hero">
+        <div className="player-hero__inner">
+          {/* 3-column row : logo | info | number+name */}
+          <div className="player-hero__row">
+            <div className="player-hero__logoCell">
+              {player?.team?.logo && (
+                <img className="player-hero__logo" src={player.team.logo} alt="" />
+              )}
+            </div>
+
+            <div className="player-hero__nameCell">
+              <span className="player-hero__number">{player?.number ?? "0"}</span>
+              <div className="player-hero__nameBlock">
+                <span className="player-hero__first">{first}</span>
+                <span className="player-hero__last">{last}</span>
               </div>
             </div>
 
-            {/* Club quick facts */}
-            <div
-              className="small-text-container"
-              style={{
-                alignSelf: screenWidth < 768 ? "stretch" : undefined,
-                marginRight: screenWidth >= 768 && screenWidth < 900 ? "-168px" : screenWidth >= 900 ? "-100px" : undefined,
-                width: screenWidth < 768 ? "100%" : screenWidth < 900 ? "600px" : undefined,
-              }}
-            >
-              <div className="h3 small-text-container-2">
-                <div className="h3 small-text-cell">
-                  <div
-                    className="small-text-cell-key"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      if (player?.team?.id) navigate(`/team-detail/${player.team.id}`);
-                    }}
-                  >
-                    Mannschaft
-                  </div>
-                  <div
-                    className="h3 small-text-cell-2"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      if (player?.team?.id) navigate(`/team-detail/${player.team.id}`);
-                    }}
-                  >
-                    {player?.team?.team_name ?? "Unknown"}
-                  </div>
-                </div>
 
-                <div className="small-text-cell">
-                  <div className="small-text-cell-key">SID</div>
-                  <div className="small-text-cell-2">{player?.sid ?? "Unknown"}</div>
-                </div>
+            <dl className="player-hero__facts">
+              <div className="fact">
+                <dt className="p fact__k">Mannschaft</dt>
+                <dd
+                  className="p fact__v fact__v--link"
+                  onClick={() => player?.team?.id && navigate(`/team-detail/${player.team.id}`)}
+                >
+                  {player?.team?.team_name ?? "Unknown"}
+                </dd>
+              </div>
 
-                <div className="small-text-cell">
-                  <div className="small-text-cell-key">Position</div>
-                  <div className="small-text-cell-2">{player?.position ?? "Unknown"}</div>
-                </div>
-
-                <div className="small-text-cell">
-                  <div className="small-text-cell-key">Status</div>
-                  <div className="small-text-cell-2">{player?.eligibility ?? "Unknown"}</div>
-                </div>
-
-                <div className="small-text-cell">
-                  <div className="small-text-cell-key">Jahrgang</div>
-                  <div className="small-text-cell-2">{player?.birthday ?? "Unknown"}</div>
-                </div>
-
-                <div className="small-text-cell">
-                  <div className="small-text-cell-key">Nationalität</div>
-                  <div className="small-text-cell-2">{player?.nationality ?? "Unknown"}</div>
+              <div className="p fact">
+                <dt className="fact__k">SID</dt>
+                <dd className="fact__v">{player?.sid ?? "Unknown"}</dd>
+              </div>
+              <div className="p fact">
+                <dt className="fact__k">Position</dt>
+                <dd className="fact__v">{player?.position ?? "Unknown"}</dd>
+              </div>
+              <div className="p fact">
+                <dt className="fact__k">Status</dt>
+                <dd className="fact__v">{player?.eligibility ?? "Unknown"}</dd>
+              </div>
+              <div className="p fact">
+                <dt className="fact__k">Jahrgang</dt>
+                <dd className="fact__v">{player?.birthday ?? "Unknown"}</dd>
+              </div>
+              <div className="p fact fact--flag">
+                <dt className="fact__k">Nationalität</dt>
+                <dd className="fact__v">
                   {nationalityCode && (
                     <img
                       src={`https://www.zeitzonen.de/build/images/flags/${nationalityCode}.svg`}
@@ -365,41 +313,23 @@ export const ElementPlayerDetail = (): JSX.Element => {
                       alt=""
                     />
                   )}
-                </div>
+                  {player?.nationality ?? "Unknown"}
+                </dd>
               </div>
-            </div>
+            </dl>
           </div>
 
-          {/* Logos / images */}
-          <div
-            className="player-detail-header-4"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "baseline",
-              alignSelf: (screenWidth >= 768 && screenWidth < 900) || screenWidth >= 900 ? "stretch" : undefined,
-              justifyContent: screenWidth < 768 ? "flex-end" : screenWidth < 900 ? "center" : undefined,
-              minHeight: screenWidth < 768 ? "410px" : undefined,
-            }}
-          >
-            {screenWidth < 768 ? (
-              <>
-                <img className="player-detail-6" alt="Player" src={player?.image} />
-                <img className="player-detail-4" alt="Club logo" src={player?.team?.logo} />
-              </>
-            ) : (
-              <>
-                <img className="player-detail-4" alt="Club logo" src={player?.team?.logo} />
-                <img className="player-detail-6" alt="Player" src={player?.image} />
-              </>
+          {/* Portrait anchored right */}
+          <div className="player-hero__portrait">
+            {player?.image && (
+              <img className="player-hero__img" src={player.image} alt="Player" />
             )}
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Content */}
-      <div className="page-content" style={{ padding: "20px 0" }}>
-        {/* Stats: Ewige + Saison (re-using same data for now) */}
+      {/* CONTENT */}
+      <div className="page-content">
         <section style={{ width: "-webkit-fill-available" }}>
           <h2 className="sub_header md_base">{player?.name ?? "Player"} Ewige Statistik</h2>
           <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>
@@ -418,15 +348,17 @@ export const ElementPlayerDetail = (): JSX.Element => {
           </div>
         </section>
 
-        {/* Fixtures with filters (Saison + Spieltag), "Alle" options on top */}
         <section style={{ width: "-webkit-fill-available" }}>
           <h2 className="sub_header md_base">
             Spiele &amp; Ergebnisse{" "}
-            {usingAllSeasons ? "– Alle Saisonen" : selectedSeason ? `– ${selectedSeason.season_name}` : ""}
+            {!selectedSeasonId || selectedSeasonId === ALL_SEASONS
+              ? "– Alle Saisonen"
+              : selectedSeason
+              ? `– ${selectedSeason.season_name}`
+              : ""}
             {selectedGameday !== ALL_GAMEDAYS ? ` · Spieltag ${selectedGameday}` : ""}
           </h2>
 
-          {/* Filters */}
           <div className="gameday__filters" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
             <Dropdown
               className="gameday__filter"
@@ -462,7 +394,6 @@ export const ElementPlayerDetail = (): JSX.Element => {
             />
           </div>
 
-          {/* Fixtures list */}
           <div style={{ width: "100%" }}>
             {fixtures.length === 0 ? (
               <div>Keine Spiele vorhanden.</div>
