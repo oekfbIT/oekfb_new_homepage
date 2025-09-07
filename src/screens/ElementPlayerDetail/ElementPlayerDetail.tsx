@@ -38,6 +38,9 @@ type Player = {
   sid?: string;
   status?: boolean;
   team?: TeamLite;
+  allstats?: Record<string, number>;
+  seasonstats?: Record<string, number>;
+  // legacy fallback
   stats?: Record<string, number>;
 };
 
@@ -101,8 +104,8 @@ const formatDateDMY = (iso?: string) => {
 
 // ----- Constants -------------------------------------------------------------
 
-const ALL_SEASONS = "__ALL__";
-const ALL_GAMEDAYS = -1;
+const ALL_SEASONS = "__ALL__" as const;
+const ALL_GAMEDAYS = "__ALL__" as const;
 
 // ----- Component -------------------------------------------------------------
 
@@ -128,7 +131,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
   // Filters
   const [selectedSeasonId, setSelectedSeasonId] = useState<string | null>(null);
   const [uniqueGamedays, setUniqueGamedays] = useState<{ gameday: number; date: string }[]>([]);
-  const [selectedGameday, setSelectedGameday] = useState<number>(ALL_GAMEDAYS);
+  const [selectedGameday, setSelectedGameday] = useState<string>(ALL_GAMEDAYS);
 
   // ---- Fetch ----
   useEffect(() => {
@@ -174,7 +177,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
   // ---- Build gameday options whenever selected season changes ---------------
   useEffect(() => {
     if (!seasons.length) {
-      setUniqueGamedays([{ gameday: ALL_GAMEDAYS, date: "Alle Spieltage" }]);
+      setUniqueGamedays([]);
       setSelectedGameday(ALL_GAMEDAYS);
       return;
     }
@@ -206,10 +209,10 @@ export const ElementPlayerDetail = (): JSX.Element => {
       .map(([gameday, date]) => ({ gameday, date }))
       .sort((a, b) => a.gameday - b.gameday);
 
-    setUniqueGamedays([{ gameday: ALL_GAMEDAYS, date: "Alle Spieltage" }, ...list]);
+    setUniqueGamedays(list);
 
     const today = Date.now();
-    let closest = ALL_GAMEDAYS;
+    let closest = -1;
     let min = Infinity;
     matches.forEach((m) => {
       const iso = m?.details?.date;
@@ -223,11 +226,12 @@ export const ElementPlayerDetail = (): JSX.Element => {
       }
     });
 
-    setSelectedGameday(list.length ? closest : ALL_GAMEDAYS);
+    setSelectedGameday(list.length && closest > 0 ? String(closest) : ALL_GAMEDAYS);
   }, [selectedSeasonId, seasons]);
 
   // ---- Derived: stats, selections, fixtures --------------------------------
-  const playerStats = player?.stats ? Object.entries(player.stats) : [];
+  const allStatsEntries = Object.entries(player?.allstats ?? player?.stats ?? {}) as [string, number][];
+  const seasonStatsEntries = Object.entries(player?.seasonstats ?? {}) as [string, number][];
 
   const usingAllSeasons = !selectedSeasonId || selectedSeasonId === ALL_SEASONS;
   const selectedSeason = seasons.find((s) => s.season_id === selectedSeasonId) ?? null;
@@ -238,7 +242,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
 
   const fixtures = baseMatches
     .filter((m) =>
-      selectedGameday === ALL_GAMEDAYS ? true : m?.details?.gameday === selectedGameday
+      selectedGameday === ALL_GAMEDAYS ? true : m?.details?.gameday === Number(selectedGameday)
     )
     .slice()
     .sort((a, b) => {
@@ -275,13 +279,15 @@ export const ElementPlayerDetail = (): JSX.Element => {
               </div>
             </div>
 
-
             <dl className="player-hero__facts">
               <div className="fact">
                 <dt className="p fact__k">Mannschaft</dt>
                 <dd
                   className="p fact__v fact__v--link"
-                  onClick={() => player?.team?.id && navigate(`/team-detail/${player.team.id}`)}
+                  onClick={() => {
+                    const teamId = player?.team?.id;
+                    if (teamId) navigate(`/team-detail/${teamId}`);
+                  }}
                 >
                   {player?.team?.team_name ?? "Unknown"}
                 </dd>
@@ -333,7 +339,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
         <section style={{ width: "-webkit-fill-available" }}>
           <h2 className="sub_header md_base">{player?.name ?? "Player"} Ewige Statistik</h2>
           <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>
-            {playerStats.map(([k, v]) => (
+            {allStatsEntries.map(([k, v]) => (
               <StatCell key={k} statKey={k} statValue={v} />
             ))}
           </div>
@@ -342,7 +348,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
         <section style={{ width: "-webkit-fill-available" }}>
           <h2 className="sub_header md_base">{player?.name ?? "Player"} Saison Statistik</h2>
           <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>
-            {playerStats.map(([k, v]) => (
+            {seasonStatsEntries.map(([k, v]) => (
               <StatCell key={`season-${k}`} statKey={k} statValue={v} />
             ))}
           </div>
@@ -359,7 +365,10 @@ export const ElementPlayerDetail = (): JSX.Element => {
             {selectedGameday !== ALL_GAMEDAYS ? ` · Spieltag ${selectedGameday}` : ""}
           </h2>
 
-          <div className="gameday__filters" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
+          <div
+            className="gameday__filters"
+            style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}
+          >
             <Dropdown
               className="gameday__filter"
               text="Saison"
@@ -382,14 +391,17 @@ export const ElementPlayerDetail = (): JSX.Element => {
               className="gameday__filter"
               text="Spieltag"
               placeholder="Spieltag Auswahl"
-              options={uniqueGamedays.map(({ gameday, date }) => ({
-                id: gameday,
-                value: gameday,
-                label: gameday === ALL_GAMEDAYS ? "Alle Spieltage" : `Spieltag ${gameday} – ${date}`,
-              }))}
+              options={[
+                { id: ALL_GAMEDAYS, value: ALL_GAMEDAYS, label: "Alle Spieltage" },
+                ...uniqueGamedays.map(({ gameday, date }) => ({
+                  id: String(gameday),
+                  value: String(gameday),
+                  label: `Spieltag ${gameday} – ${date}`,
+                })),
+              ]}
               displayKey="label"
               valueKey="value"
-              onChange={(val) => setSelectedGameday(Number(val))}
+              onChange={(val) => setSelectedGameday(val)}
               value={selectedGameday}
             />
           </div>

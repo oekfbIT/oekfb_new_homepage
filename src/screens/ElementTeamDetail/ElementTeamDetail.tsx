@@ -1,12 +1,11 @@
 // ElementTeamDetail.tsx
 // -----------------------------------------------------------------------------
-// Team detail view with SEASON + SPIELTAG filters (similar to ElementGamedayMobile).
-// - Backend returns seasons (with `primary` flag) and each season contains `matches`.
-// - Default season: the one with `primary: true` (fallback to first).
-// - Default gameday: closest to "today" based on match date.
-// - Filters appear directly ABOVE the matches section.
-// - Each dropdown has a top "Alle" option to show all.
-// - Defensive handling for optional fields to avoid runtime crashes.
+// Team detail view with SEASON + SPIELTAG filters.
+// Updated for TeamStatsPair { all, season } and Dropdown string values.
+// Fixes:
+//  - Render stats from stats.all & stats.season (numbers only)
+//  - Dropdown value types as strings
+//  - Safe numeric id for TeamDetailSquad
 // -----------------------------------------------------------------------------
 
 import { useEffect, useMemo, useState } from "react";
@@ -34,16 +33,54 @@ type SeasonWithMatches = {
   matches: any[];
 };
 
+type TeamStats = {
+  wins: number;
+  draws: number;
+  losses: number;
+  totalScored: number;
+  totalAgainst: number;
+  goalDifference: number;
+  totalPoints: number;
+  totalYellowCards: number;
+  totalRedCards: number;
+} | {
+  // also accept snake_case from backend just in case
+  wins: number;
+  draws: number;
+  losses: number;
+  total_scored: number;
+  total_against: number;
+  goal_difference: number;
+  total_points: number;
+  total_yellow_cards: number;
+  total_red_cards: number;
+};
+
+type TeamStatsPair = {
+  all?: TeamStats;
+  season?: TeamStats;
+};
+
 const ALL_SEASONS = "__ALL__";
-const ALL_GAMEDAYS = -1;
+const ALL_GAMEDAYS = "__ALL__";
+
+const toMs = (iso?: string) => (iso ? new Date(iso).getTime() : NaN);
+const formatDateDMY = (iso?: string) => {
+  const ms = toMs(iso);
+  if (Number.isNaN(ms)) return "";
+  const d = new Date(ms);
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yyyy = d.getFullYear();
+  return `${dd}.${mm}.${yyyy}`;
+};
 
 export const ElementTeamDetail = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
-  const navigate = useNavigate(); // kept for potential future use
+  const navigate = useNavigate();
   const { id } = useParams();
 
-  // Prevent re-instantiation on re-renders
   const clientController = useMemo(() => new ClientController(), []);
   const authService = useMemo(() => new AuthService(), []);
 
@@ -53,9 +90,9 @@ export const ElementTeamDetail = (): JSX.Element => {
   const [seasons, setSeasons] = useState<SeasonWithMatches[]>([]);
   const [selectedSeasonId, setSelectedSeasonId] = useState<string | null>(null);
 
-  // Gameday selection for the selected season(s)
+  // Gameday selection (string for Dropdown)
   const [uniqueGamedays, setUniqueGamedays] = useState<{ gameday: number; date: string }[]>([]);
-  const [selectedGameday, setSelectedGameday] = useState<number | null>(null);
+  const [selectedGameday, setSelectedGameday] = useState<string>(ALL_GAMEDAYS);
 
   const [loading, setLoading] = useState(true);
 
@@ -72,21 +109,19 @@ export const ElementTeamDetail = (): JSX.Element => {
         const response = await clientController.fetchClubDetail(id);
         setTeamData(response);
 
-        // Extract seasons array from backend (new shape shows under `upcoming`)
         const upcomingSeasons: SeasonWithMatches[] = Array.isArray(response?.upcoming)
           ? response.upcoming
           : [];
 
         setSeasons(upcomingSeasons);
 
-        // Default season: primary, else first with matches, else first
         const primarySeason =
           upcomingSeasons.find((s) => s.primary) ??
           upcomingSeasons.find((s) => Array.isArray(s.matches) && s.matches.length > 0) ??
           upcomingSeasons[0] ??
           null;
 
-        setSelectedSeasonId(primarySeason ? primarySeason.season_id : null);
+        setSelectedSeasonId(primarySeason ? primarySeason.season_id : ALL_SEASONS);
       } catch (error) {
         console.error("Error fetching team detail:", error);
       } finally {
@@ -101,7 +136,7 @@ export const ElementTeamDetail = (): JSX.Element => {
   useEffect(() => {
     if (!seasons.length) {
       setUniqueGamedays([]);
-      setSelectedGameday(null);
+      setSelectedGameday(ALL_GAMEDAYS);
       return;
     }
 
@@ -115,22 +150,18 @@ export const ElementTeamDetail = (): JSX.Element => {
       const gd = m?.details?.gameday;
       const dateStr = m?.details?.date;
       if (!gd || !dateStr) return;
-      const date = new Date(dateStr);
-      if (isNaN(date.getTime())) return;
+      const ms = toMs(dateStr);
+      if (Number.isNaN(ms)) return;
 
-      const dd = String(date.getDate()).padStart(2, "0");
-      const mm = String(date.getMonth() + 1).padStart(2, "0");
-      const yyyy = String(date.getFullYear());
-      const formatted = `${dd}.${mm}.${yyyy}`;
-
-      // store the earliest date for a gameday
+      const formatted = formatDateDMY(dateStr);
       const existing = map.get(gd);
       if (!existing) {
         map.set(gd, formatted);
       } else {
+        // keep earliest date for the gameday
         const [eDD, eMM, eYYYY] = existing.split(".");
-        const existingDate = new Date(`${eYYYY}-${eMM}-${eDD}T00:00:00Z`);
-        if (date < existingDate) map.set(gd, formatted);
+        const prev = new Date(`${eYYYY}-${eMM}-${eDD}T00:00:00Z`).getTime();
+        if (ms < prev) map.set(gd, formatted);
       }
     });
 
@@ -138,38 +169,29 @@ export const ElementTeamDetail = (): JSX.Element => {
       .map(([gameday, date]) => ({ gameday, date }))
       .sort((a, b) => a.gameday - b.gameday);
 
-    // prepend "Alle Spieltage"
-    const withAll = [{ gameday: ALL_GAMEDAYS, date: "Alle Spieltage" }, ...list];
+    setUniqueGamedays(list);
 
-    setUniqueGamedays(withAll);
-
-    // Default gameday: closest fixture date to "today"
-    const today = new Date();
-    let closest: number | null = list[0]?.gameday ?? null;
+    // Default gameday: closest to "now"
+    const today = Date.now();
+    let closest: number | null = null;
     let minDiff = Infinity;
 
     matches.forEach((m: any) => {
       const whenStr = m?.details?.date;
       const gd = m?.details?.gameday;
-      if (!whenStr || !gd) return;
-      const when = new Date(whenStr);
-      if (isNaN(when.getTime())) return;
-
-      const diff = Math.abs(today.getTime() - when.getTime());
+      const ms = toMs(whenStr);
+      if (!gd || Number.isNaN(ms)) return;
+      const diff = Math.abs(today - ms);
       if (diff < minDiff) {
         minDiff = diff;
         closest = gd;
       }
     });
 
-    // If nothing found, fall back to ALL
-    setSelectedGameday(closest ?? ALL_GAMEDAYS);
+    setSelectedGameday(closest ? String(closest) : ALL_GAMEDAYS);
   }, [selectedSeasonId, seasons]);
 
-  // Flatten club stats into entries for map()
-  const teamStats = teamData?.club?.stats ? Object.entries(teamData.club.stats) : [];
-
-  // Resolve selected season(s) and fixtures for selected gameday
+  // Resolve selections
   const usingAllSeasons = selectedSeasonId === ALL_SEASONS || !selectedSeasonId;
   const selectedSeason: SeasonWithMatches | null =
     seasons.find((s) => s.season_id === selectedSeasonId) ?? null;
@@ -181,31 +203,38 @@ export const ElementTeamDetail = (): JSX.Element => {
 
   const fixtures = baseMatches
     .filter((m: any) => {
-      if (selectedGameday == null || selectedGameday === ALL_GAMEDAYS) return true;
-      return m?.details?.gameday === selectedGameday;
+      if (!selectedGameday || selectedGameday === ALL_GAMEDAYS) return true;
+      return Number(m?.details?.gameday) === Number(selectedGameday);
     })
     .slice()
     .sort((a: any, b: any) => {
-      // Sort by date asc, fallback to gameday asc
-      const da = a?.details?.date ? new Date(a.details.date).getTime() : Infinity;
-      const db = b?.details?.date ? new Date(b.details.date).getTime() : Infinity;
-      if (da !== db) return da - db;
+      const da = a?.details?.date ? toMs(a.details.date) : Infinity;
+      const db = b?.details?.date ? toMs(b.details.date) : Infinity;
+      if (da !== db) return (da as number) - (db as number);
       const ga = Number(a?.details?.gameday ?? 0);
       const gb = Number(b?.details?.gameday ?? 0);
       return ga - gb;
     });
+
+  // Stats: flatten pair into entries (numbers only)
+  const statsPair: TeamStatsPair | undefined = teamData?.club?.stats;
+  const allStatsEntries = Object.entries(statsPair?.all ?? {}) as [string, number | any][];
+  const seasonStatsEntries = Object.entries(statsPair?.season ?? {}) as [string, number | any][];
+
+  // club name helper (snake/camel fallback)
+  const clubName: string =
+    teamData?.club?.teamName ?? teamData?.club?.team_name ?? "Team";
 
   if (loading) return <LoadingIndicator />;
 
   return (
     <div
       className="element-team-detail"
-      // keep this dynamic minWidth inline—depends on runtime width
       style={{ minWidth: screenWidth < 1200 ? "390px" : "1200px" }}
     >
       {isMobile ? <Navigation /> : <DesktopNav />}
 
-      {/* Header section – visuals delegated to TeamHeader */}
+      {/* Header */}
       <div className="team-detail-top">
         {teamData?.club ? (
           <TeamHeader team={teamData.club} />
@@ -217,22 +246,37 @@ export const ElementTeamDetail = (): JSX.Element => {
       <div className="page-content">
         {/* All-time stats */}
         <section className="section">
-          <h2 className="sub_header md_base">{teamData?.club?.team_name} Ewige Statistiken</h2>
+          <h2 className="sub_header md_base">{clubName} Ewige Statistiken</h2>
           <div className="h3 stats-grid" style={{ justifyItems: "center" }}>
-            {teamStats.map(([statKey, statValue]) => (
+            {allStatsEntries.map(([k, v]) => (
               <StatCell
-                key={String(statKey)}
-                statKey={statKey}
-                statValue={statValue}
+                key={`all-${String(k)}`}
+                statKey={k}
+                statValue={typeof v === "number" ? v : Number(v) || 0}
                 className="my-stat-cell"
               />
             ))}
           </div>
         </section>
 
-        {/* Squad – Spielberechtigt first, then Gesperrt */}
+        {/* Season stats */}
         <section className="section">
-          <h2 className="sub_header md_base">{teamData?.club?.team_name} Kader</h2>
+          <h2 className="sub_header md_base">{clubName} Saison Statistiken</h2>
+          <div className="h3 stats-grid" style={{ justifyItems: "center" }}>
+            {seasonStatsEntries.map(([k, v]) => (
+              <StatCell
+                key={`season-${String(k)}`}
+                statKey={k}
+                statValue={typeof v === "number" ? v : Number(v) || 0}
+                className="my-stat-cell"
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Squad */}
+        <section className="section">
+          <h2 className="sub_header md_base">{clubName} Kader</h2>
           <div className="team-squad">
             {teamData?.club?.players
               ?.filter(
@@ -246,16 +290,22 @@ export const ElementTeamDetail = (): JSX.Element => {
                   return 1;
                 return 0;
               })
-              .map((player: any) => (
-                <div key={player.id} style={{ cursor: "pointer" }}>
-                  {/* If TeamDetailSquad expects numeric id, coerce if possible */}
-                  <TeamDetailSquad player={{ ...player, id: Number(player.id) || player.id }} />
-                </div>
-              ))}
+              .map((player: any, idx: number) => {
+                const safeId =
+                  Number(player.id) ||
+                  Number(player.sid) ||
+                  Number(player.number) ||
+                  idx;
+                return (
+                  <div key={`${player.id ?? player.sid ?? idx}`} style={{ cursor: "pointer" }}>
+                    <TeamDetailSquad player={{ ...player, id: safeId }} />
+                  </div>
+                );
+              })}
           </div>
         </section>
 
-        {/* Fixtures section with filters placed directly ABOVE the list */}
+        {/* Fixtures + Filters */}
         <section className="section">
           <h2 className="sub_header md_base">
             Spiele &amp; Ergebnisse{" "}
@@ -264,13 +314,15 @@ export const ElementTeamDetail = (): JSX.Element => {
               : selectedSeason
               ? `– ${selectedSeason.season_name}`
               : ""}
-            {selectedGameday != null && selectedGameday !== ALL_GAMEDAYS
+            {selectedGameday && selectedGameday !== ALL_GAMEDAYS
               ? ` · Spieltag ${selectedGameday}`
               : ""}
           </h2>
 
-          {/* Filters */}
-          <div className="gameday__filters" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
+          <div
+            className="gameday__filters"
+            style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}
+          >
             <Dropdown
               className="gameday__filter"
               text="Saison"
@@ -293,19 +345,21 @@ export const ElementTeamDetail = (): JSX.Element => {
               className="gameday__filter"
               text="Spieltag"
               placeholder="Spieltag Auswahl"
-              options={uniqueGamedays.map(({ gameday, date }) => ({
-                id: gameday,
-                value: gameday,
-                label: gameday === ALL_GAMEDAYS ? "Alle Spieltage" : `Spieltag ${gameday} – ${date}`,
-              }))}
+              options={[
+                { id: ALL_GAMEDAYS, value: ALL_GAMEDAYS, label: "Alle Spieltage" },
+                ...uniqueGamedays.map(({ gameday, date }) => ({
+                  id: String(gameday),
+                  value: String(gameday),
+                  label: `Spieltag ${gameday} – ${date}`,
+                })),
+              ]}
               displayKey="label"
               valueKey="value"
-              onChange={(val) => setSelectedGameday(Number(val))}
-              value={selectedGameday ?? ALL_GAMEDAYS}
+              onChange={(val) => setSelectedGameday(val)}
+              value={selectedGameday}
             />
           </div>
 
-          {/* Fixtures list */}
           <div className="full-width">
             {fixtures.length === 0 ? (
               <div>Keine Spiele vorhanden.</div>
