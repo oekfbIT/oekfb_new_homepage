@@ -69,10 +69,10 @@ export const EventRow = ({
     },
   };
 
-  const redCard = "/img/redCard.svg";
-  const yellowCard = "/img/yellowCard.svg";
-  const yellowredCard = "/img/yellowRedCard.svg";
-  const goal = "/img/goal.svg";
+  const redCard = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2FredCard.svg?alt=media&token=93f44348-a6c0-427a-a59b-5f7b2247cd06";
+  const yellowCard = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2FyellowCard.svg?alt=media&token=27014ef3-ccaa-47e9-b4ee-2394f0afd145";
+  const yellowredCard = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2FyellowRedCard.svg?alt=media&token=5e71e752-a937-44fa-975f-af3430517476";
+  const goal = "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2Fgoal.svg?alt=media&token=c1f6c28f-6c9a-454c-9efc-e26b1a79a179";
 
   const property1 =
     typeMap[event.type] && typeMap[event.type][event.assign]

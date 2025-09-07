@@ -14,10 +14,10 @@ interface Props {
 
 export const LeaderboardStat = ({ property1, statType, className = "", player, team }: Props): JSX.Element => {
   const iconMap: Record<StatType, string> = {
-    goals: "/img/goal.svg",
-    yellow: "/img/yellowCard.svg",
-    red: "/img/redCard.svg",
-    yellowRed: "/img/yellowRedCard.svg",
+    goals: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2Fgoal.svg?alt=media&token=c1f6c28f-6c9a-454c-9efc-e26b1a79a179",
+    yellow: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2FyellowCard.svg?alt=media&token=27014ef3-ccaa-47e9-b4ee-2394f0afd145",
+    red: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2FredCard.svg?alt=media&token=93f44348-a6c0-427a-a59b-5f7b2247cd06",
+    yellowRed: "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ficons%2FyellowRedCard.svg?alt=media&token=5e71e752-a937-44fa-975f-af3430517476",
   };
   const labelMap: Record<StatType, string> = {
     goals: "Tore",
