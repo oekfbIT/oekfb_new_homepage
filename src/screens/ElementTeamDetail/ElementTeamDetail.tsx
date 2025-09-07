@@ -292,7 +292,7 @@ export const ElementTeamDetail = (): JSX.Element => {
               })
               .map((player: any, idx: number) => {
                 const safeId =
-                  Number(player.id) ||
+                  player.id ||
                   Number(player.sid) ||
                   Number(player.number) ||
                   idx;
