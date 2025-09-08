@@ -123,7 +123,7 @@ export const LeagueTable = () => {
           })}
         </div>
 
-        {/* Legend */}
+        {/* Legend
         <footer className="lt__legend" aria-label="Legende">
           <h3 className="h2 lt__legendTitle">Legende</h3>
 
@@ -186,6 +186,7 @@ export const LeagueTable = () => {
             <span>Absteiger</span>
           </div>
         </footer>
+        */}
       </div>
     </section>
   );
