@@ -24,3 +24,8 @@
   flex: 0 0 auto !important;
   width: 100% !important;
 }
+
+.postpone-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;}
