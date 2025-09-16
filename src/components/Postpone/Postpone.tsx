@@ -4,15 +4,15 @@ import "./style.css";
 
 interface PostponeProps {
   className?: string;
-  playerName: string;      // mapped to requester.team_name
-  playerImage: string;     // mapped to requester.logo
-  teamName: string;        // mapped to requestee.team_name
+  playerName: string;      // requester.team_name
+  playerImage: string;     // requester.logo
+  teamName: string;        // requestee.team_name
   message: string;         // composed message text
-  teamID: string;          // mapped to requestee.id
+  teamID: string;          // requestee.id
   status: string;          // "warten" | "akzeptiert" | "abgelehnt"
-  origin: string;          // optional image url; safe to be empty
-  teamImage: string;       // mapped to requestee.logo
-  playerID: string;        // mapped to requester.id
+  origin: string;          // optional image url
+  teamImage: string;       // requestee.logo
+  playerID: string;        // requester.id (team id)
   transferID: string;      // postpone.id
   onAccept: () => void;
   onReject: () => void;
@@ -29,7 +29,7 @@ export const Postpone = ({
   status,
   origin,
   teamImage,
-  transferID, // reserved; not used in view but may be handy for test-ids
+  transferID,
   onAccept,
   onReject,
 }: PostponeProps): JSX.Element => {
@@ -40,10 +40,9 @@ export const Postpone = ({
   };
 
   const handlePlayerNavigation = () => {
-    if (playerID) navigate(`/team-detail/${playerID}`); // requester is a team; keep route semantics
+    if (playerID) navigate(`/team-detail/${playerID}`); // requester is a team
   };
 
-  // Completed / not actionable
   if (!status) {
     return (
       <div className="postpone-completed">
@@ -52,8 +51,6 @@ export const Postpone = ({
     );
   }
 
-
-  // Safe name split
   const [first = "", ...rest] = (playerName ?? "").trim().split(" ");
   const last = rest.join(" ");
 
@@ -77,7 +74,6 @@ export const Postpone = ({
 
             <div className="card-data">
               <div className="card-data-wrapper">
-                {/* origin (e.g., league/logo) only if provided */}
                 {origin ? (
                   <img
                     className="logo-5"
@@ -124,7 +120,6 @@ export const Postpone = ({
           {teamName || "Unbekanntes Team"}
         </span>
 
-        {/* message should already be corrected in the parent mapper */}
         <span className="text-wrapper-12">{` ${message}`}</span>
       </p>
 

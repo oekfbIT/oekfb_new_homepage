@@ -51,7 +51,6 @@ const App = () => (
       <Route path="/teams" element={<ElementClubsDesktop />} />
       <Route path="/tabelle" element={<ElementTableMobile />} />
       <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
-      {/* <Route path="/team/upload/:id" element={<ElementRegistration />} /> */}
       <Route path="*" element={<ElementLeagueSelection />} />
     </Routes>
   </HashRouter>
