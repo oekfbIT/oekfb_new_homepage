@@ -44,7 +44,7 @@ export const Postpone = ({
   };
 
   // Completed / not actionable
-  if (status) {
+  if (!status) {
     return (
       <div className="postpone-completed">
         <p>Diese Spielverlegungsanfrage ist bereits abgeschlossen.</p>
