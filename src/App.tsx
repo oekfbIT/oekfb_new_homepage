@@ -6,6 +6,7 @@ import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
 import { ElementContactMobile } from "./screens/ElementContactMobile";
 import { ElementGameReport } from "./screens/ElementGameReport";
 import { ElementGamedayMobile } from "./screens/ElementGamedayMobile";
+import { ElementImpressiumMobile } from "./screens/ElementImpressiumMobile/ElementImpressiumMobile";
 import { ElementLeaderboard } from "./screens/ElementLeaderboard";
 import { ElementLeagueSelection } from "./screens/ElementLeagueSelection";
 import { ElementLigaordnung } from "./screens/ElementLigaordnung";
@@ -40,6 +41,7 @@ const App = () => (
       <Route path="/strafsenat" element={<Strafsenat />} />
       <Route path="/leaderboards" element={<ElementLeaderboard />} />
       <Route path="/kontakt" element={<ElementContactMobile />} />
+      <Route path="/impressum" element={<ElementImpressiumMobile />} />
       <Route path="/sperren" element={<ElementSperrenDesktop />} />
       <Route path="/transfers" element={<ElementTransfersDesktop />} />
       <Route path="/transfer/:id" element={<ElementTransfer />} />
