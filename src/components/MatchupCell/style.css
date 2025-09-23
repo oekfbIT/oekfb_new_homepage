@@ -8,7 +8,6 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
-  min-width: 128px;
   max-width: 1148px;
   height: 121px;
   padding: 0 var(--space-2) 0 0; /* 8px */

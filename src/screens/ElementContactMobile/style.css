@@ -1,27 +1,25 @@
 .element-contact-mobile {
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: var(--color-bg);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-5);
   position: relative;
 }
 
-.element-contact-mobile .instance-node-13 {
+.element-contact-mobile .sponsors {
   align-self: stretch !important;
   flex: 0 0 auto !important;
   width: 100% !important;
 }
 
-.element-contact-mobile .page-content-19 {
+.element-contact-mobile .page-content {
   align-items: center;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-5);
   max-width: 1200px;
-  padding: 0px 16px;
-  position: relative;
+  padding: 0 var(--space-4);
   width: 100%;
 }
 
@@ -29,12 +27,10 @@
   align-items: center;
   align-self: stretch;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  gap: 32px;
+  gap: var(--space-8);
   max-width: 1200px;
-  padding: 0px 32px 60px;
-  position: relative;
+  padding: 0 var(--space-8) var(--space-9);
   width: 100%;
 }
 
@@ -42,105 +38,23 @@
   align-items: flex-start;
   align-self: stretch;
   display: flex;
-  flex: 0 0 auto;
   flex-direction: column;
-  gap: 8px;
-  position: relative;
+  gap: var(--space-2);
   width: 100%;
 }
 
-.element-contact-mobile .title-9 {
-  color: var(--themeswamp);
-  font-family: var(--theme-inter-black-37-5-font-family);
-  font-size: var(--theme-inter-black-37-5-font-size);
-  font-style: var(--theme-inter-black-37-5-font-style);
-  font-weight: var(--theme-inter-black-37-5-font-weight);
-  letter-spacing: var(--theme-inter-black-37-5-letter-spacing);
-  line-height: var(--theme-inter-black-37-5-line-height);
-  margin-top: -1.00px;
-  position: relative;
-  white-space: nowrap;
-  width: fit-content;
+.element-contact-mobile .title {
+  /* uses global .title helper */
 }
 
-.element-contact-mobile .div-wrapper-5 {
-  align-items: flex-start;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  position: relative;
-  width: 100%;
+.element-contact-mobile .sub_header {
+  /* uses global .sub_header helper */
 }
 
-.element-contact-mobile .sterreichischer {
-  align-self: stretch;
-  color: var(--themeswamp);
-  font-family: var(--theme-inter-bold-15-75-upper-font-family);
-  font-size: var(--theme-inter-bold-15-75-upper-font-size);
-  font-style: var(--theme-inter-bold-15-75-upper-font-style);
-  font-weight: var(--theme-inter-bold-15-75-upper-font-weight);
-  letter-spacing: var(--theme-inter-bold-15-75-upper-letter-spacing);
-  line-height: var(--theme-inter-bold-15-75-upper-line-height);
-  margin-top: -1.00px;
-  position: relative;
+.element-contact-mobile .t {
+  /* uses global .t helper */
 }
 
-.element-contact-mobile .contact-content-text {
-  align-self: stretch;
-  color: var(--themeouter-space);
-  font-family: var(--theme-inter-regular-15-25-font-family);
-  font-size: var(--theme-inter-regular-15-25-font-size);
-  font-style: var(--theme-inter-regular-15-25-font-style);
-  font-weight: var(--theme-inter-regular-15-25-font-weight);
-  letter-spacing: var(--theme-inter-regular-15-25-letter-spacing);
-  line-height: var(--theme-inter-regular-15-25-line-height);
-  margin-top: -1.00px;
-  position: relative;
-}
-
-.element-contact-mobile .footer-28 {
-  align-self: stretch !important;
-  background-color: transparent !important;
-  flex: 0 0 auto !important;
-  width: 100% !important;
-}
-
-.element-contact-mobile .footer-29 {
-  margin-left: -324px !important;
-}
-
-.element-contact-mobile .page-frame-3 {
-  align-items: center;
-  align-self: stretch;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 10px;
-  position: relative;
-  width: 100%;
-}
-
-.element-contact-mobile .page-content-20 {
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 1200px;
-  padding: 0px 16px;
-  position: relative;
-  width: 900px;
-}
-
-.element-contact-mobile .contact-2 {
-  align-items: center;
-  display: flex;
-  flex: 0 0 auto;
-  flex-direction: column;
-  gap: 32px;
-  max-width: 1200px;
-  padding: 0px 32px 60px;
-  position: relative;
-  width: 868px;
+.element-contact-mobile .footer-content {
+  margin-left: -324px !important; /* keep if needed, else drop */
 }

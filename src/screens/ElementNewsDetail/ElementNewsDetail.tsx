@@ -25,6 +25,54 @@ interface NewsDetail {
  * - Renders hero image and optional YouTube embed
  * - Shows formatted rich-text content from CMS
  */
+
+// utils/youtube.ts
+export function toYouTubeEmbed(url: string): { embedUrl: string; isShort: boolean } {
+  try {
+    const u = new URL(url);
+    const host = u.hostname.replace(/^www\./, "");
+    let id = "";
+    let isShort = false;
+
+    if (host === "youtu.be") {
+      id = u.pathname.slice(1);
+    } else if (host.endsWith("youtube.com")) {
+      if (u.pathname === "/watch") id = u.searchParams.get("v") ?? "";
+      else if (u.pathname.startsWith("/shorts/")) {
+        id = u.pathname.split("/shorts/")[1]?.split("/")[0] ?? "";
+        isShort = true;
+      } else if (u.pathname.startsWith("/embed/")) {
+        id = u.pathname.split("/embed/")[1]?.split("/")[0] ?? "";
+      }
+    }
+
+    // Fallback: try to grab an 11-char ID from the path
+    if (!id) {
+      const m = u.pathname.match(/([a-zA-Z0-9_-]{11})/);
+      if (m) id = m[1];
+    }
+
+    if (!id) return { embedUrl: "", isShort: false };
+
+    // Support t= / start= like t=1m30s or t=90
+    const t = u.searchParams.get("t") || u.searchParams.get("start") || "";
+    const start = t ? `?start=${toSeconds(t)}` : "";
+
+    return { embedUrl: `https://www.youtube.com/embed/${id}${start}`, isShort };
+  } catch {
+    return { embedUrl: "", isShort: false };
+  }
+}
+
+function toSeconds(t: string): number {
+  if (/^\d+$/.test(t)) return parseInt(t, 10);
+  const m = t.match(/(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?/);
+  if (!m) return 0;
+  const [_, h, mnt, s] = m;
+  return (parseInt(h || "0") * 3600) + (parseInt(mnt || "0") * 60) + parseInt(s || "0");
+}
+
+
 export const ElementNewsDetail = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
@@ -112,17 +160,25 @@ export const ElementNewsDetail = (): JSX.Element => {
             </div>
 
             {/* Optional: YouTube video */}
-            {newsDetail.youtube?.trim() && (
-              <div className="news-detail-page__media news-detail-page__media--video">
+            {newsDetail.youtube?.trim() && (() => {
+            const { embedUrl, isShort } = toYouTubeEmbed(newsDetail.youtube);
+            if (!embedUrl) return null;
+
+            return (
+                <div className="news-detail-page__media news-detail-page__media--video">
                 <IFrame
-                  className="news-detail-page__video"
-                  title=""
-                  subtitle=""
-                  youtubeUrl={newsDetail.youtube}
-                  linkTo={newsDetail.youtube}
+                    className="news-detail-page__video"
+                    title={newsDetail.title || "Video"}
+                    subtitle=""
+                    youtubeUrl={embedUrl}   // <-- pass the normalized EMBED url
+                    linkTo={newsDetail.youtube}
+                    // if your IFrame supports style/props, keep Shorts vertical:
+                    style={{ aspectRatio: isShort ? "9 / 16" : "16 / 9" }}
                 />
-              </div>
-            )}
+                </div>
+            );
+            })()}
+
           </header>
 
           {/* Body: rich text from CMS */}

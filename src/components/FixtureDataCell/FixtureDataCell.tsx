@@ -52,9 +52,9 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
       case "pending":
         return "Spielvorschau";
       case "first":
-        return "Live - 1. HB";
+        return "Live - 1. HZ";
       case "second":
-        return "Live - 2. HB";
+        return "Live - 2. HZ";
       case "halftime":
         return "Halbzeit";
       case "completed":

@@ -171,3 +171,10 @@
     padding: 16px;
   }
 }
+
+
+.news-detail-page__video {
+  width: 100%;
+  aspect-ratio: 16 / 9; /* overridden inline for Shorts */
+  border: 0;
+}
