@@ -18,7 +18,7 @@
 
 .div-wrapper .team-detail-squad-5 {
   align-items: center;
-  background-color: var(--themewhite);
+  background-color: white ;
   box-shadow: 0px 2px 8px #000e140d;
   display: flex;
   flex: 1;
