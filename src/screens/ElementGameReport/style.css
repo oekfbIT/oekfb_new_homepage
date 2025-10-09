@@ -188,6 +188,7 @@
   max-width: 80px;
   position: relative;
   width: 80px;
+  background-repeat: no-repeat;
 }
 
 .element-game-report .club-img-2 {
@@ -197,6 +198,7 @@
   max-width: 80px;
   position: relative;
   width: 80px;
+  background-repeat: no-repeat;
 }
 
 /* For screens under 500px */
