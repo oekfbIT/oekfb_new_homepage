@@ -64,6 +64,8 @@ export const ElementLigaordnung = (): JSX.Element => {
                             </div>
                         ))}
                     </div>
+                    <p className="h3_alt">
+                        Letzte Änderung der Ligaordunung 17.10.2025</p>
                 </div>
             </div>
 
