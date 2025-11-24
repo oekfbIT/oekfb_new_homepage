@@ -163,7 +163,7 @@ export const Homepage = (): JSX.Element => {
         />
         <IFrame
           className="home__iframe"
-          title="DIE SPIELE DER WOCHE – JEDEN SONNTAG AUF YOUTUBE!"
+          title="Topspiele - Jede Woche auf Yotube!"
           subtitle="Folgt unseren YouTube-Kanal, um immer die beste Aktion zu sehen."
           youtubeUrl={homepageData?.league?.youtube || ""}
           linkTo={homepageData?.league?.youtube || "#"}
