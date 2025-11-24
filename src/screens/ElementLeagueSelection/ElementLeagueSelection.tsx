@@ -172,7 +172,7 @@ export const ElementLeagueSelection = (): JSX.Element => {
                   linkTo="/livescore"
                 />
                 <IFrame
-                  title="Wir streamen Spiele Live jeden Sonntag!"
+                  title="DIE SPIELE DER WOCHE – JEDEN SONNTAG AUF YOUTUBE!"
                   subtitle="Folgt unseren YouTube-Kanal, um immer die beste Aktion zu sehen."
                   youtubeUrl={homepageData?.league?.youtube || ""}
                   linkTo={homepageData?.league?.youtube || "#"}
