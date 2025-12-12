@@ -1,0 +1,1 @@
+export { ElementImpressiumMobile } from "./ElementImpressiumMobile";

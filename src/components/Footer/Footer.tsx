@@ -27,6 +27,7 @@ export const Footer = (): JSX.Element => {
               <Link to="/news">News</Link>
               <Link to="/kontakt">Kontakt</Link>
               <Link to="/impressum">Impressum</Link>
+              <Link to="/privacy">Datenschutz</Link>
               <Link to="/transfers">Transfer Liste</Link>
               <Link to="/strafsenat">Strafsenat</Link>
             </div>

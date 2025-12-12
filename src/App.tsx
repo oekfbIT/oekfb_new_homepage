@@ -1,6 +1,7 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
 
 // Screens
+import UploadRequest from "./components/UploadRequest/UploadRequest";
 import { ElementBund } from "./screens/ElementBund";
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
 import { ElementContactMobile } from "./screens/ElementContactMobile";
@@ -16,6 +17,7 @@ import { ElementNewsDetail } from "./screens/ElementNewsDetail";
 import { ElementNewsMobile } from "./screens/ElementNewsMobile";
 import { ElementPlayerDetail } from "./screens/ElementPlayerDetail";
 import { ElementPostpone } from "./screens/ElementPostpone/ElementPostpone";
+import { ElementPrivacy } from "./screens/ElementPrivacy/ElementPrivacy";
 import { ElementRegeln } from "./screens/ElementRegeln";
 import { ElementRegister } from "./screens/ElementRegister";
 import { ElementSperrenDesktop } from "./screens/ElementSperrenDesktop";
@@ -42,6 +44,7 @@ const App = () => (
       <Route path="/leaderboards" element={<ElementLeaderboard />} />
       <Route path="/kontakt" element={<ElementContactMobile />} />
       <Route path="/impressum" element={<ElementImpressiumMobile />} />
+      <Route path="/privacy" element={<ElementPrivacy />} />
       <Route path="/sperren" element={<ElementSperrenDesktop />} />
       <Route path="/transfers" element={<ElementTransfersDesktop />} />
       <Route path="/transfer/:id" element={<ElementTransfer />} />
@@ -52,6 +55,7 @@ const App = () => (
       <Route path="/bund" element={<ElementBund />} />
       <Route path="/teams" element={<ElementClubsDesktop />} />
       <Route path="/tabelle" element={<ElementTableMobile />} />
+      <Route path="/team/upload/:id" element={<UploadRequest />} />
       <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
       <Route path="*" element={<ElementLeagueSelection />} />
     </Routes>

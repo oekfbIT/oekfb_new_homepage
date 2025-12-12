@@ -1,0 +1,51 @@
+.element-impressium-mobile {
+  align-items: center;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  position: relative;
+}
+
+.element-impressium-mobile .sponsors {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.element-impressium-mobile .page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* let content take full width */
+}
+
+.element-impressium-mobile .impressium {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* left-align the text */
+  text-align: left; /* just to be explicit */
+  margin-bottom: 30px;
+}
+
+.element-impressium-mobile .impressium-header {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.element-impressium-mobile .title {
+  /* uses global .title helper */
+}
+
+.element-impressium-mobile .sub_header {
+  /* uses global .sub_header helper */
+}
+
+.element-impressium-mobile .t {
+  /* uses global .t helper */
+}
+
+.element-impressium-mobile .footer-content {}
