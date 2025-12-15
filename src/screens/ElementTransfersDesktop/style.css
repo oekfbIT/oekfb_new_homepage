@@ -181,3 +181,16 @@
   gap: 10px;
   width: 100%;
 }
+
+.transfers-page__filters {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0 18px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.transfers-page__filter {
+  /* keep it aligned with your layout; optional */
+}
