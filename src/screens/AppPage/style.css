@@ -190,7 +190,7 @@
 /* Mobile tightening */
 @media (max-width: 600px) {
   .appHero__storeBtn {
-    width: min(360px, 92vw);
+    width: min(360px, 80vw);
   }
 
   .appHero__hand {
@@ -329,6 +329,10 @@
 
   .appInfo__stores {
     justify-content: center;
+  }
+
+  .appInfo__image {
+    max-width: 320px;
   }
 }
 
