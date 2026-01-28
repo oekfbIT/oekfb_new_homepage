@@ -135,8 +135,8 @@ export const AppPage = (): JSX.Element => {
                 <br />
                 • Liveticker, Pushes und Statistiken
                 <br />
-                • Top-Themen im Story-Format
-                <br />• Short-Clips und Highlights
+                • Teamverwaltung und Officebereich
+                <br />• News, Spielpläne und Tabellen
               </p>
 
               {/* EXACT SAME BUTTONS AS HERO */}

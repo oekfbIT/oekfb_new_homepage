@@ -209,7 +209,7 @@
 
 .appInfo {
   width: 100%;
-  padding: clamp(48px, 6vw, 90px) 16px;
+  padding: clamp(18px, 2vw, 40px) 16px;
 }
 
 .appInfo__inner {
@@ -315,8 +315,7 @@
 }
 
 .appInfo__image {
-  width: 100%;
-  max-width: 460px;
+  max-width: 650px;
   height: auto;
   display: block;
 }
