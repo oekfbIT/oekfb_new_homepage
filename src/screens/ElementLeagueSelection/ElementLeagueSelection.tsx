@@ -123,6 +123,15 @@ export const ElementLeagueSelection = (): JSX.Element => {
           )}
 
           <main className="leaguePage__content">
+            <section className="leaguePage__section">
+              <div
+                className="appPromoBanner"
+                onClick={() => navigate("/app")}
+                role="button"
+                aria-label="Zur App"
+              />
+            </section>
+
             {/* Filter + Grid */}
             <section className="leaguePage__section">
               <div className="leaguePage__filter">
@@ -210,7 +219,9 @@ export const ElementLeagueSelection = (): JSX.Element => {
 
                 <div className="news__cta">
                   <Link to="/news">
-                    <button className="btn btn--ghost">Zu allen News Artikeln</button>
+                    <button className="btn btn--ghost">
+                      Zu allen News Artikeln
+                    </button>
                   </Link>
                 </div>
               </div>

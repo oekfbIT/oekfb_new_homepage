@@ -77,7 +77,7 @@ export const Homepage = (): JSX.Element => {
     return [...list].sort(
       (a, b) =>
         new Date(a.details?.date ?? 0).getTime() -
-        new Date(b.details?.date ?? 0).getTime()
+        new Date(b.details?.date ?? 0).getTime(),
     );
   }, [homepageData]);
 
@@ -112,6 +112,16 @@ export const Homepage = (): JSX.Element => {
         </section>
       )}
 
+      {/* App promo banner */}
+      <section className="home__section">
+        <div
+          className="appPromoBanner"
+          onClick={() => navigate("/app")}
+          role="button"
+          aria-label="Zur App"
+        />
+      </section>
+
       {/* League Table */}
       <section className="home__section home__table">
         <LeagueTable />
@@ -145,7 +155,10 @@ export const Homepage = (): JSX.Element => {
       </section>
 
       {/* Sponsors / Partners */}
-      <Sponsors className="home__fullwidth-slot" vWhite="/img/v-white-1-9.svg" />
+      <Sponsors
+        className="home__fullwidth-slot"
+        vWhite="/img/v-white-1-9.svg"
+      />
 
       {/* Action shortcuts */}
       <section className="home__section home__actions">
@@ -170,7 +183,10 @@ export const Homepage = (): JSX.Element => {
         />
       </section>
 
-      <Partners className="home__fullwidth-slot" vWhite="/img/v-white-1-9.svg" />
+      <Partners
+        className="home__fullwidth-slot"
+        vWhite="/img/v-white-1-9.svg"
+      />
 
       {/* News */}
       <section className="home__section home__news">

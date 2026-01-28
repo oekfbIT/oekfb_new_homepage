@@ -10,7 +10,6 @@
   align-self: stretch !important;
   flex: 0 0 auto !important;
   width: 100% !important;
-
 }
 
 .element-league-selection .page-header-wrapper {
@@ -66,7 +65,7 @@
   font-weight: var(--theme-inter-black-37-66-font-weight);
   letter-spacing: var(--theme-inter-black-37-66-letter-spacing);
   line-height: var(--theme-inter-black-37-66-line-height);
-  margin-top: -1.00px;
+  margin-top: -1px;
   position: relative;
 }
 
@@ -113,7 +112,10 @@
 
 .element-league-selection .league-cell-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Ensures at least 260px per cell and up to 3 columns */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(260px, 1fr)
+  ); /* Ensures at least 260px per cell and up to 3 columns */
   gap: 18px; /* Single value for both row and column gaps */
   align-items: center;
   justify-items: stretch;
@@ -127,7 +129,6 @@
   flex-grow: 1; /* Allows it to expand within grid cell */
   width: 100%; /* Ensures it takes up the full width of its grid cell */
 }
-
 
 .element-league-selection .footer-instance {
   align-self: stretch !important;
@@ -193,7 +194,10 @@
 
 .element-league-selection .league-cell-list-2 {
   display: grid; /* Use CSS Grid */
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Grid with up to 3 columns */
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(260px, 1fr)
+  ); /* Grid with up to 3 columns */
   gap: 18px; /* Spacing between items */
   align-items: stretch; /* Ensure items stretch vertically */
   /*justify-items: center; !* Center the content horizontally *!*/
@@ -202,7 +206,6 @@
   width: 100%; /* Take full container width */
   box-sizing: border-box; /* Include padding in width */
 }
-
 
 .element-league-selection .sponsors-instance {
   align-items: center !important;
@@ -226,15 +229,15 @@
 }
 
 .element-league-selection .action-cell-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
-    gap: 22px; /* Space between grid items */
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+  gap: 22px; /* Space between grid items */
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 
 .element-league-selection .downloadBtn {
   background-color: white;
@@ -252,12 +255,11 @@
   background-color: orange;
 }
 
-
-  @media (max-width: 500px) {
-    .element-league-selection .action-cell-2 {
-        grid-template-columns: 1fr; /* Single column on small screens */
-    }
+@media (max-width: 500px) {
+  .element-league-selection .action-cell-2 {
+    grid-template-columns: 1fr; /* Single column on small screens */
   }
+}
 /* New override: always two columns for leagues on mobile */
 @media (max-width: 500px) {
   .element-league-selection .league-cell-list {
@@ -266,5 +268,27 @@
 
   .element-league-selection {
     font-size: 14px;
+  }
+}
+
+.appPromoBanner {
+  width: 100%;
+  aspect-ratio: 4 / 1;
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2FoekfbBanner.PNG?alt=media&token=55f858fd-9c08-402e-847d-b7671bb732dd");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.appPromoBanner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 800px) {
+  .appPromoBanner {
+    aspect-ratio: 3 / 1;
+    border-radius: 8px;
   }
 }

@@ -2,6 +2,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 
 // Screens
 import UploadRequest from "./components/UploadRequest/UploadRequest";
+import { AppPage } from "./screens/AppPage";
 import { ElementBund } from "./screens/ElementBund";
 import { ElementClubsDesktop } from "./screens/ElementClubsDesktop";
 import { ElementContactMobile } from "./screens/ElementContactMobile";
@@ -33,6 +34,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<ElementLeagueSelection />} />
       <Route path="/liga" element={<Homepage />} />
+      <Route path="/app" element={<AppPage />} />
       <Route path="/mobilenav" element={<ElementMobilenav />} />
       <Route path="/match/:id" element={<ElementGameReport />} />
       <Route path="/spielplan" element={<ElementGamedayMobile />} />
