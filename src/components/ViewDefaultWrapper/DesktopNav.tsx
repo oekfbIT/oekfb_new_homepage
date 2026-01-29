@@ -26,6 +26,7 @@ const PRIMARY_LINKS = [
   { label: "Teams", to: "/teams" },
   { label: "Tabelle", to: "/tabelle" },
   { label: "Spielplan", to: "/spielplan" },
+  { label: "App", to: "/app" },
   { label: "Livescore", to: "/livescore" },
   { label: "Spielerstatistik", to: "/leaderboards" },
   { label: "News", to: "/news" },
@@ -138,7 +139,11 @@ export const DesktopNav = ({
 
           {/* Mobile burger */}
           {view === "mobile" && (
-            <Link to={burgerTo} className="nav__burger" aria-label="Menü öffnen">
+            <Link
+              to={burgerTo}
+              className="nav__burger"
+              aria-label="Menü öffnen"
+            >
               <img className="nav__burger-icon" alt="" src={burgerIconSrc} />
             </Link>
           )}

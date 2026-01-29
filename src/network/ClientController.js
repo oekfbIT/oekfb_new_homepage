@@ -334,6 +334,32 @@ class ClientController {
   async register(registrationData) {
     return this.apiService.post(`registrations/register`, registrationData);
   }
+
+  /**
+   * Verify a user's email address (App endpoint, NOT webClient).
+   * GET /app/application/user/verify/:token
+   * @param {string} token - Verification token (last segment from verify URL).
+   * @returns {Promise<Object>} Verification response.
+   */
+  async verifyUserEmail(token) {
+    if (!token || typeof token !== "string") {
+      throw new Error("Missing or invalid verification token.");
+    }
+    return this.apiService.get(
+      `app/application/user/verify/${encodeURIComponent(token)}`,
+    );
+  }
+
+  /**
+   * Register a new user.
+   * POST /registrations/register
+   *
+   * @param {Object} registrationData - Registration data.
+   * @returns {Promise<Object>} Registration response.
+   */
+  async register(registrationData) {
+    return this.apiService.post(`registrations/register`, registrationData);
+  }
 }
 
 export default ClientController;

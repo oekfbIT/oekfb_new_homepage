@@ -30,6 +30,10 @@ export const ElementMobilenav = (): JSX.Element => {
             <div className="mobile-menu-item-2">Spielplan</div>
           </Link>
 
+          <Link className="mobile-menu-item" to="/app">
+            <div className="mobile-menu-item-2">App</div>
+          </Link>
+
           <Link className="mobile-menu-item" to="/livescore">
             <div className="mobile-menu-item-2">Livescore</div>
           </Link>
@@ -49,7 +53,6 @@ export const ElementMobilenav = (): JSX.Element => {
           <Link className="mobile-menu-item" to="/transfers">
             <div className="mobile-menu-item-2">Transfers</div>
           </Link>
-
 
           <Link className="mobile-menu-item" to="/news">
             <div className="mobile-menu-item-2">News</div>
