@@ -40,19 +40,17 @@ export const AppPage = (): JSX.Element => {
     () => [
       {
         kind: "ios",
-        label: "APP STORE ",
+        label: "APP STORE",
         href: "https://apps.apple.com/us/app/%C3%B6kfb/id6756211638",
       },
       {
         kind: "android",
         label: "GOOGLE PLAY",
-        disabled: true,
-        helperText: "Coming soon",
+        href: "https://play.google.com/store/apps/details?id=com.oekfb.app",
       },
     ],
     [],
   );
-
   /**
    * Shared renderer → guarantees identical buttons everywhere
    */
