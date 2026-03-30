@@ -64,7 +64,7 @@ export const ElementLigaordnung = (): JSX.Element => {
               </div>
             ))}
           </div>
-          <p className="h3_alt">Letzte Änderung der Ligaordunung 30.03.2026</p>
+          <p className="h3_alt">Letzte Änderung der Ligaordunung 20.03.2026</p>
         </div>
       </div>
 
