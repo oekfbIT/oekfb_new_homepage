@@ -63,24 +63,23 @@
 
 /* Desktop min width */
 @media (min-width: 400px) {
-.footer {
+  .footer {
     padding: 5%;
-}
-.footer__links {
+  }
+  .footer__links {
     gap: var(--space-9);
-}
+  }
 
   .footer__linksCol a {
-  font-family: var(--font-sans);
-  font-size: var(--fs-sm);
-  color: var(--color-surface);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.footer__linksCol a:hover {
-  color: var(--color-contrary);
-}
-
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    color: var(--color-surface);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer__linksCol a:hover {
+    color: var(--color-contrary);
+  }
 }
 
 .footer__sponsors {
@@ -108,7 +107,9 @@
   background-repeat: no-repeat;
   background-color: var(--color-surface);
 }
-
+.footer__sponsor--laola {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fpartner%2Flaola1-logo-cmyk.jpg?alt=media&token=f80a3fcb-8d4a-4b0d-9195-1b4c0886b370");
+}
 .footer__sponsor--radosport {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fats.jpeg?alt=media&token=835dca80-9546-4c2e-9a4f-630fcdb53fce");
 }
@@ -116,7 +117,7 @@
   background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ferima.png?alt=media&token=37f57c16-fcd2-467b-a132-b6e5a179da2b");
 }
 .footer__sponsor--cocacola {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Coca-Cola_logo.svg/2560px-Coca-Cola_logo.svg.png");
+  background-image: url("https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo-500x281.png");
 }
 .footer__sponsor--aircash {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Faircash-logo-red-pdf-1-removebg-preview.png?alt=media&token=c45fc5de-3dfb-4169-b7be-f6975f893cac");
@@ -131,7 +132,6 @@
   height: 80px;
 }
 
-
 .blank {
-    opacity: 0%;
+  opacity: 0%;
 }

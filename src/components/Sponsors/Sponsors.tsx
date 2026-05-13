@@ -35,6 +35,20 @@ export function Sponsors({
         {/* Logo row */}
         <div className="sponsors__list">
           <a
+            href="https://www.laola1.at/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Laola1.tv (öffnet in neuem Tab)"
+          >
+            <img
+              className="sponsors__logo"
+              alt="Coca-Cola HBC"
+              loading="lazy"
+              src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fpartner%2Flaola1-logo-cmyk.jpg?alt=media&token=f80a3fcb-8d4a-4b0d-9195-1b4c0886b370"
+            />
+          </a>
+
+          <a
             href="https://at.coca-colahellenic.com/de"
             target="_blank"
             rel="noopener noreferrer"

@@ -62,6 +62,13 @@ export const Footer = (): JSX.Element => {
             <span className="h3 footer__title">Sponsored By</span>
             <div className="footer__sponsorList">
               <a
+                href="https://www.laola1.at/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="footer__sponsor footer__sponsor--laola" />
+              </a>
+              <a
                 href="https://radosport.at/"
                 target="_blank"
                 rel="noopener noreferrer"
