@@ -96,6 +96,14 @@ export const Footer = (): JSX.Element => {
               >
                 <div className="footer__sponsor footer__sponsor--aircash" />
               </a>
+
+              <a
+                href="https://alibarbershop.at"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="footer__sponsor footer__sponsor--ali" />
+              </a>
             </div>
           </div>
 

@@ -122,6 +122,9 @@
 .footer__sponsor--aircash {
   background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Faircash-logo-red-pdf-1-removebg-preview.png?alt=media&token=c45fc5de-3dfb-4169-b7be-f6975f893cac");
 }
+.footer__sponsor--ali {
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2FAli_v1.jpg?alt=media&token=8d0be481-f8b0-41c2-8b75-145503b06911");
+}
 
 .footer__socials {
   display: flex;

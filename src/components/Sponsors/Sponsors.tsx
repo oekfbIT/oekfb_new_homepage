@@ -103,6 +103,20 @@ export function Sponsors({
               src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fats.jpeg?alt=media&token=835dca80-9546-4c2e-9a4f-630fcdb53fce"
             />
           </a>
+
+          <a
+            href="https://alibarbershop.at"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ali Barbershop"
+          >
+            <img
+              className="sponsors__logo"
+              alt="Ali Barbershop"
+              loading="lazy"
+              src="https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2FAli_v1.jpg?alt=media&token=8d0be481-f8b0-41c2-8b75-145503b06911"
+            />
+          </a>
         </div>
       </div>
     </section>
