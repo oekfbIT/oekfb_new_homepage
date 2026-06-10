@@ -1,0 +1,1 @@
+export { EventRegistrationBanner } from "./EventRegistrationBanner";

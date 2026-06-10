@@ -4,6 +4,7 @@ import { useWindowWidth } from "../../breakpoints";
 import { ActionCell } from "../../components/ActionCell";
 import Banner from "../../components/Banner";
 import { ClubCell } from "../../components/ClubCell";
+import { EventRegistrationBanner } from "../../components/EventRegistrationBanner";
 import { Footer } from "../../components/Footer";
 import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
 import { IFrame } from "../../components/iFrame";
@@ -121,6 +122,13 @@ export const Homepage = (): JSX.Element => {
           aria-label="Zur App"
         />
       </section>
+
+      {/* EVENT BANNER START
+          Comment out or remove this whole section when no active event registration is running. */}
+      <section className="home__section home__eventBanner">
+        <EventRegistrationBanner />
+      </section>
+      {/* EVENT BANNER END */}
 
       {/* League Table */}
       <section className="home__section home__table">

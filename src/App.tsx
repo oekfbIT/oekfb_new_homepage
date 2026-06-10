@@ -26,8 +26,10 @@ import { ElementTableMobile } from "./screens/ElementTableMobile";
 import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTransfer } from "./screens/ElementTransfer";
 import { ElementTransfersDesktop } from "./screens/ElementTransfersDesktop";
+import { EventRegistration } from "./screens/EventRegistration";
 import { Homepage } from "./screens/Homepage";
 import { Strafsenat } from "./screens/Strafsenat";
+import { VerifyPage } from "./screens/VerifyPage/VerifyPage";
 
 const App = () => (
   <HashRouter>
@@ -35,6 +37,8 @@ const App = () => (
       <Route path="/" element={<ElementLeagueSelection />} />
       <Route path="/liga" element={<Homepage />} />
       <Route path="/app" element={<AppPage />} />
+      <Route path="/gala-night" element={<EventRegistration />} />
+      <Route path="/app/user/verify/:id" element={<VerifyPage />} />
       <Route path="/mobilenav" element={<ElementMobilenav />} />
       <Route path="/match/:id" element={<ElementGameReport />} />
       <Route path="/spielplan" element={<ElementGamedayMobile />} />
