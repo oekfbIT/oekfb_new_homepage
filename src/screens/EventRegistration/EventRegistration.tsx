@@ -6,7 +6,7 @@ import { Navigation } from "../../components/Navigation";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
-const PEOPLE_EVENT_ID = "BBE0F77D-6377-408E-BFB6-542904D48B6F";
+const PEOPLE_EVENT_ID = "3809BD4F-D26A-4C12-9C81-3E674531AF79";
 const API_BASE_URL = "https://api.oekfb.eu/";
 
 type RegistrationFormState = {
@@ -308,11 +308,11 @@ export const EventRegistration = (): JSX.Element => {
                   />
                 </label>
 
-                <div className="eventRegistrationInfoBox">
+                {/* <div className="eventRegistrationInfoBox">
                   <strong>Hinweis:</strong> Die detaillierte Gästeliste mit
                   einzelnen Namen der Begleitpersonen wird in der App verfügbar
                   sein. Hier geht es nur um die schnelle Event-Reservierung.
-                </div>
+                </div> */}
 
                 <div className="eventRegistrationForm__actions">
                   <button
