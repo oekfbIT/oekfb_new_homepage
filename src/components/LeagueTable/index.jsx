@@ -26,6 +26,23 @@ export const LeagueTable = () => {
     ? compactHeaders
     : (isMobile ? mobileHeaders : desktopHeaders);
 
+  const getGoalDifference = (team) => {
+    if (typeof team.difference === "number") return team.difference;
+    return (team.scored || 0) - (team.against || 0);
+  };
+
+  const sortLeagueTable = (teams) => {
+    return [...teams].sort((a, b) => {
+      return (
+        (b.points || 0) - (a.points || 0) ||
+        getGoalDifference(b) - getGoalDifference(a) ||
+        (b.scored || 0) - (a.scored || 0) ||
+        (b.wins || 0) - (a.wins || 0) ||
+        (a.name || "").localeCompare(b.name || "")
+      );
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const code = authService.getLeagueCode();
@@ -33,7 +50,7 @@ export const LeagueTable = () => {
 
       try {
         const tbl = await clientController.fetchCurrentSeasonTable(code);
-        setTable(tbl);
+        setTable(sortLeagueTable(Array.isArray(tbl) ? tbl : []));
         const league = await clientController.fetchLeague(code);
         setLeagueName(league.name || "");
       } catch (err) {
@@ -44,13 +61,6 @@ export const LeagueTable = () => {
     };
     fetchData();
   }, []);
-
-  const applyPlayboysRule = (teams) => {
-    const playboys = teams.find((t) => t.name === "FC Playboys");
-    if (!playboys) return teams;
-    const rest = teams.filter((t) => t.name !== "FC Playboys");
-    return [playboys, ...rest].map((t, i) => ({ ...t, ranking: i + 1 }));
-  };
 
   if (loading) {
     return (
@@ -95,7 +105,7 @@ export const LeagueTable = () => {
                 <div className="lt__leftStripe" />
 
                 <div className="lt__cell lt__cell--rank">
-                  <span className="lt__rankBadge">{team.ranking}</span>
+                  <span className="lt__rankBadge">{index + 1}</span>
                 </div>
 
                 <div className="lt__cell lt__cell--crest">
