@@ -52,8 +52,13 @@ export const LeagueTable = () => {
 
   const sortLeagueTable = (teams) => {
     return [...teams].sort((a, b) => {
+      const pointsDiff = parseTableNumber(b.points) - parseTableNumber(a.points);
+      if (pointsDiff !== 0) return pointsDiff;
+
+      const rankingDiff = parseTableNumber(a.ranking) - parseTableNumber(b.ranking);
+      if (rankingDiff !== 0) return rankingDiff;
+
       return (
-        parseTableNumber(b.points) - parseTableNumber(a.points) ||
         getGoalDifference(b) - getGoalDifference(a) ||
         parseTableNumber(b.scored) - parseTableNumber(a.scored) ||
         parseTableNumber(b.wins) - parseTableNumber(a.wins) ||
