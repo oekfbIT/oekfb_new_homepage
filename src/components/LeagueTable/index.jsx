@@ -26,18 +26,37 @@ export const LeagueTable = () => {
     ? compactHeaders
     : (isMobile ? mobileHeaders : desktopHeaders);
 
+  const parseTableNumber = (value) => {
+    if (typeof value === "number") return value;
+    if (typeof value === "string") {
+      const parsed = Number(value.replace(",", "."));
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+    return 0;
+  };
+
+  const formatPoints = (points) => {
+    const value = parseTableNumber(points);
+    if (Number.isInteger(value)) return String(value);
+
+    return value.toLocaleString("de-AT", {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 2,
+    });
+  };
+
   const getGoalDifference = (team) => {
     if (typeof team.difference === "number") return team.difference;
-    return (team.scored || 0) - (team.against || 0);
+    return parseTableNumber(team.scored) - parseTableNumber(team.against);
   };
 
   const sortLeagueTable = (teams) => {
     return [...teams].sort((a, b) => {
       return (
-        (b.points || 0) - (a.points || 0) ||
+        parseTableNumber(b.points) - parseTableNumber(a.points) ||
         getGoalDifference(b) - getGoalDifference(a) ||
-        (b.scored || 0) - (a.scored || 0) ||
-        (b.wins || 0) - (a.wins || 0) ||
+        parseTableNumber(b.scored) - parseTableNumber(a.scored) ||
+        parseTableNumber(b.wins) - parseTableNumber(a.wins) ||
         (a.name || "").localeCompare(b.name || "")
       );
     });
@@ -127,7 +146,7 @@ export const LeagueTable = () => {
                   </div>
                 )}
 
-                <div className="lt__cell lt__cell--num">{team.points}</div>
+                <div className="lt__cell lt__cell--num">{formatPoints(team.points)}</div>
               </button>
             );
           })}
