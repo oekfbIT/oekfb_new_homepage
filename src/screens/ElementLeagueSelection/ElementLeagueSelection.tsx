@@ -12,7 +12,6 @@ import { useWindowWidth } from "../../breakpoints";
 import { ActionCell } from "../../components/ActionCell";
 import Banner from "../../components/Banner";
 import { Dropdown } from "../../components/Dropdown";
-import { EventRegistrationBanner } from "../../components/EventRegistrationBanner";
 import { Footer } from "../../components/Footer";
 import GalleryCarousel from "../../components/GalleryCarousel/GalleryCarousel";
 import { IFrame } from "../../components/iFrame";
@@ -132,13 +131,6 @@ export const ElementLeagueSelection = (): JSX.Element => {
                 aria-label="Zur App"
               />
             </section>
-
-            {/* EVENT BANNER START
-                Comment out or remove this whole section when no active event registration is running. */}
-            <section className="leaguePage__section leaguePage__eventBanner">
-              <EventRegistrationBanner />
-            </section>
-            {/* EVENT BANNER END */}
 
             {/* Filter + Grid */}
             <section className="leaguePage__section">
