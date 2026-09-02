@@ -194,6 +194,13 @@ class ClientController {
     return this.apiService.get(`webClient/player/detail/${id}`);
   }
 
+  /** Fetch public team and player search results. */
+  async fetchSearchResults(query) {
+    return this.apiService.get(
+      `webClient/search?query=${encodeURIComponent(query)}`
+    );
+  }
+
   /**
    * Fetch details of a specific player stats.
    * GET /player/detail/:id

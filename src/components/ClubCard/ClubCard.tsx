@@ -8,6 +8,7 @@
 
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../../network/AuthService";
 import "./style.css";
 
 type Club = {
@@ -15,6 +16,8 @@ type Club = {
   logo: string;
   team_name: string;
   sid: string;
+  league_id?: string;
+  league_code?: string;
 };
 
 type ClubCardProps = {
@@ -24,8 +27,14 @@ type ClubCardProps = {
 
 export const ClubCard = ({ className = "", club }: ClubCardProps): JSX.Element => {
   const navigate = useNavigate();
+  const authService = new AuthService();
 
-  const goToTeam = () => navigate(`/team-detail/${club.id}`);
+  const goToTeam = () => {
+    if (club.league_code && club.league_id) {
+      authService.setLeagueData(club.league_code, club.league_id);
+    }
+    navigate(`/team-detail/${club.id}`);
+  };
 
   const onKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (e.key === "Enter" || e.key === " ") {

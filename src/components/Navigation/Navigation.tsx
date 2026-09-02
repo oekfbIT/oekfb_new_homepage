@@ -23,6 +23,8 @@ export const Navigation = ({
 }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= MOBILE_MAX_WIDTH);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [activeLeague, setActiveLeague] = useState(null);
   const [leagues, setLeagues] = useState([]);
 
@@ -33,6 +35,7 @@ export const Navigation = ({
   const lastTimeRef = useRef(0);
   const velocityRef = useRef(0);
   const panelRef = useRef(null);
+  const searchInputRef = useRef(null);
 
   const authService = new AuthService();
   const apiService = new ApiService();
@@ -64,10 +67,14 @@ export const Navigation = ({
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // ESC + body scroll lock
+  // ESC + body scroll lock for either mobile overlay
   useEffect(() => {
-    const onKeyDown = (e) => e.key === "Escape" && setIsDrawerOpen(false);
-    if (isDrawerOpen) {
+    const onKeyDown = (e) => {
+      if (e.key !== "Escape") return;
+      setIsDrawerOpen(false);
+      setIsSearchOpen(false);
+    };
+    if (isDrawerOpen || isSearchOpen) {
       document.body.classList.add("u-no-scroll");
       window.addEventListener("keydown", onKeyDown);
     } else {
@@ -79,7 +86,19 @@ export const Navigation = ({
       document.body.classList.remove("u-no-scroll");
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [isDrawerOpen]);
+  }, [isDrawerOpen, isSearchOpen]);
+
+  useEffect(() => {
+    if (isSearchOpen) window.setTimeout(() => searchInputRef.current?.focus(), 0);
+  }, [isSearchOpen]);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const query = searchTerm.trim();
+    if (!query) return;
+    setIsSearchOpen(false);
+    navigate(`/search?q=${encodeURIComponent(query)}`);
+  };
 
   const handleLeagueClick = (code, id) => {
     authService.setLeagueData(code, id);
@@ -172,14 +191,27 @@ export const Navigation = ({
           </Link>
 
           {isMobile ? (
-            <button
-              type="button"
-              className="nav__burger"
-              aria-label="Menü öffnen"
-              onClick={() => setIsDrawerOpen(true)}
-            >
-              <img className="nav__burger-icon" src={burgerIconSrc} alt="" />
-            </button>
+            <div className="nav__mobile-actions">
+              <button
+                type="button"
+                className="nav__mobile-search-button"
+                aria-label="Suche öffnen"
+                onClick={() => setIsSearchOpen(true)}
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="10.5" cy="10.5" r="6.5" />
+                  <path d="m15.5 15.5 4.5 4.5" />
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="nav__burger"
+                aria-label="Menü öffnen"
+                onClick={() => setIsDrawerOpen(true)}
+              >
+                <img className="nav__burger-icon" src={burgerIconSrc} alt="" />
+              </button>
+            </div>
           ) : (
             <button
               type="button"
@@ -190,6 +222,46 @@ export const Navigation = ({
               <span className="nav__login-label">Login</span>
             </button>
           )}
+        </div>
+      </div>
+
+      {/* ===== Mobile search overlay ===== */}
+      <div className={`mobile-search ${isSearchOpen ? "mobile-search--open" : ""}`} aria-hidden={!isSearchOpen}>
+        <button
+          type="button"
+          className="mobile-search__backdrop"
+          aria-label="Suche schließen"
+          onClick={() => setIsSearchOpen(false)}
+        />
+        <div className="mobile-search__dialog" role="dialog" aria-modal="true" aria-label="Spieler und Teams suchen">
+          <button
+            type="button"
+            className="mobile-search__close"
+            aria-label="Suche schließen"
+            onClick={() => setIsSearchOpen(false)}
+          >
+            ×
+          </button>
+          <form className="mobile-search__form" role="search" onSubmit={handleSearch}>
+            <label className="mobile-search__label" htmlFor="mobile-site-search">Spieler und Teams suchen</label>
+            <div className="mobile-search__field">
+              <input
+                ref={searchInputRef}
+                id="mobile-site-search"
+                type="search"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                placeholder="Spieler und Teams"
+                autoComplete="off"
+              />
+              <button type="submit" aria-label="Suche starten" disabled={!searchTerm.trim()}>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="10.5" cy="10.5" r="6.5" />
+                  <path d="m15.5 15.5 4.5 4.5" />
+                </svg>
+              </button>
+            </div>
+          </form>
         </div>
       </div>
 

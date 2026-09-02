@@ -31,12 +31,109 @@
 
 .nav__leagues-track {
   display: flex;
-  gap: var(--space-3);                   /* replaced: 15px */
+  gap: var(--space-3);
   max-width: 1440px;
-  padding: 6px var(--space-4);          /* replaced: 5.08px 18px */
+  padding: 6px var(--space-4);
   margin: 0 auto;
   overflow-x: auto;
   white-space: nowrap;
+}
+
+.nav.default .nav__leagues-track {
+  align-items: center;
+  gap: var(--space-5);
+  justify-content: space-between;
+  overflow: visible;
+  padding-block: 5px;
+  white-space: normal;
+}
+
+.nav.default .nav__league-list {
+  display: flex;
+  gap: var(--space-3);
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+
+.nav.default .nav__league-list::-webkit-scrollbar {
+  display: none;
+}
+
+.nav.default .nav__search {
+  align-items: center;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-muted);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex: 0 0 clamp(300px, 26vw, 400px);
+  height: 30px;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+
+.nav.default .nav__search:focus-within {
+  border-color: var(--color-text-muted);
+  box-shadow: 0 0 0 2px rgba(0, 14, 20, .08);
+}
+
+.nav.default .nav__search-label {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.nav.default .nav__search-input {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--color-text-strong);
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  height: 100%;
+  min-width: 0;
+  outline: 0;
+  padding: 0 var(--space-3);
+}
+
+.nav.default .nav__search-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: .8;
+}
+
+.nav.default .nav__search-input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.nav.default .nav__search-submit {
+  align-items: center;
+  align-self: stretch;
+  background: transparent;
+  border: 0;
+  color: var(--color-text-strong);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 0 var(--space-3);
+}
+
+.nav.default .nav__search-submit:disabled {
+  cursor: default;
+  opacity: .35;
+}
+
+.nav.default .nav__search-submit svg {
+  fill: none;
+  height: 17px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.8;
+  width: 17px;
 }
 
 /* Single league item */
@@ -165,4 +262,5 @@
 /* Responsive polish */
 @media (max-width: 1024px) {
   .nav__link-label { font-size: var(--fs-sm); } /* tighten center labels a bit */
+  .nav.default .nav__search { flex-basis: 300px; }
 }

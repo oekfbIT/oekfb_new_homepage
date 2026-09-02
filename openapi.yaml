@@ -1,0 +1,1399 @@
+openapi: 3.0.3
+info:
+  title: OEKFB Homepage and League Web Client API
+  version: 0.1.0
+  description: |
+    API contract draft for the OEKFB public homepage/web app.
+
+    Product context:
+    This web app presents and manages a professional public-facing soccer league experience
+    for the Oesterreichischer Kleinfeld Fussball Bund. It lets visitors choose a league,
+    view homepage highlights, clubs, standings, fixtures, livescores, match reports,
+    player and team statistics, leaderboards, news, suspensions, transfers, rules,
+    registrations, and event signups.
+
+    Source of truth:
+    This file was derived from the current React frontend calls in:
+    - src/network/ClientController.js
+    - src/network/AuthService.js
+    - src/components/Navigation/Navigation.tsx
+    - src/components/ViewDefaultWrapper/DesktopNav.tsx
+    - src/screens/EventRegistration/EventRegistration.tsx
+    - src/components/UploadRequest/UploadRequest.tsx, currently commented but useful
+
+    Notes for implementers:
+    - The current frontend base URL is https://api.oekfb.eu.
+    - The current app uses a HashRouter, so frontend URLs look like /#/liga.
+    - Many response shapes are inferred from UI usage because the frontend does not include
+      full TypeScript API models.
+    - Use stable IDs for dynamic detail pages: match, club/team, player, news, transfer,
+      registration, postpone request, and verification token.
+servers:
+  - url: https://api.oekfb.eu
+    description: Production API
+  - url: https://test.oekfb.eu
+    description: Test API, referenced in frontend comments
+  - url: http://localhost:8080
+    description: Local development API, referenced in frontend comments
+tags:
+  - name: Product Screens
+    description: Mapping from frontend pages to backend needs.
+  - name: League Discovery
+    description: League selection and active league metadata.
+  - name: Homepage
+    description: Homepage content for a selected league.
+  - name: Clubs
+    description: Club/team lists and detail pages.
+  - name: Tables
+    description: League standings.
+  - name: Matches
+    description: Fixtures, livescore, and match reports.
+  - name: Players
+    description: Player detail and stats.
+  - name: Leaderboards
+    description: Ranking pages for goals and cards.
+  - name: News
+    description: News, match reports, and Strafsenat decisions.
+  - name: Discipline
+    description: Suspensions and disciplinary records.
+  - name: Transfers
+    description: Transfer list and approval/denial flows.
+  - name: Postponements
+    description: Match postponement approval/denial flows.
+  - name: Registrations
+    description: Team signup and registration document workflow.
+  - name: Events
+    description: Public event registration.
+  - name: Auth
+    description: Login, cookies, and user verification.
+paths:
+  /webClient/selection:
+    get:
+      tags: [League Discovery]
+      summary: Get public league selection data
+      description: Used by the start page to show available leagues and global content.
+      operationId: getLeagueSelection
+      responses:
+        "200":
+          description: League selection response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LeagueSelectionResponse"
+
+  /client/leagueList:
+    get:
+      tags: [League Discovery]
+      summary: Get compact league list for navigation
+      description: Used by desktop and mobile navigation league pills.
+      operationId: getClientLeagueList
+      parameters:
+        - $ref: "#/components/parameters/Per"
+      responses:
+        "200":
+          description: Compact league list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/League"
+
+  /leagues/code/{code}:
+    get:
+      tags: [League Discovery]
+      summary: Get league by code
+      operationId: getLeagueByCode
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: League metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/League"
+
+  /leagues/{id}:
+    get:
+      tags: [League Discovery]
+      summary: Get league by ID
+      operationId: getLeagueById
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: League metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/League"
+
+  /webClient/home/league/{code}:
+    get:
+      tags: [Homepage]
+      summary: Get homepage content for a league
+      description: Used by /#/liga and the start page preview.
+      operationId: getLeagueHomepage
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Homepage data including news, fixtures, videos, banners, tables, and highlights.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HomepageResponse"
+
+  /webClient/clubs/league/{code}:
+    get:
+      tags: [Clubs]
+      summary: Get clubs in a league
+      operationId: getLeagueClubs
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Clubs for the league
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Club"
+
+  /webClient/clubs/detail/{id}:
+    get:
+      tags: [Clubs]
+      summary: Get club/team detail
+      operationId: getClubDetail
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Club detail, statistics, squad, and matches
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClubDetail"
+
+  /webClient/table/league/{code}:
+    get:
+      tags: [Tables]
+      summary: Get league table
+      operationId: getLeagueTable
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Standings table
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TableRow"
+
+  /webClient/leagues/{code}/current/table:
+    get:
+      tags: [Tables]
+      summary: Get current season table for a league
+      operationId: getCurrentSeasonTable
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Current season standings table
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TableRow"
+
+  /webClient/livescore:
+    get:
+      tags: [Matches]
+      summary: Get livescore across leagues
+      operationId: getLivescore
+      responses:
+        "200":
+          description: Grouped or flat list of live/current matches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LivescoreLeague"
+
+  /webClient/matches/league/{code}:
+    get:
+      tags: [Matches]
+      summary: Get first season matches for a league
+      operationId: getFirstSeasonMatches
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Match list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Match"
+
+  /webClient/matches/league/{code}/primary:
+    get:
+      tags: [Matches]
+      summary: Get primary season matches for a league
+      operationId: getPrimarySeasonMatches
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Match list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Match"
+
+  /webClient/matches/league/{code}/index:
+    get:
+      tags: [Matches]
+      summary: Get all season match groups for a league
+      operationId: getAllSeasonMatches
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Seasons with matchdays and matches
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SeasonMatches"
+
+  /webClient/match/detail/{id}:
+    get:
+      tags: [Matches]
+      summary: Get match report/detail
+      operationId: getMatchDetail
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Match detail with teams, score, events, and player stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchDetail"
+
+  /webClient/player/detail/{id}:
+    get:
+      tags: [Players]
+      summary: Get player profile detail
+      operationId: getPlayerDetail
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Player profile, team, season, and career data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlayerDetail"
+
+  /webClient/player/{id}/summary:
+    get:
+      tags: [Players]
+      summary: Get player statistics summary
+      operationId: getPlayerSummary
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Player career and season summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlayerStatsSummary"
+
+  /webClient/leaderboard/{id}/goal:
+    get:
+      tags: [Leaderboards]
+      summary: Get top goal scorers for a league
+      operationId: getGoalLeaderboard
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Goal leaderboard
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeaderboardEntry"
+
+  /webClient/leaderboard/{id}/yellowCard:
+    get:
+      tags: [Leaderboards]
+      summary: Get yellow card leaderboard for a league
+      operationId: getYellowCardLeaderboard
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Yellow card leaderboard
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeaderboardEntry"
+
+  /webClient/leaderboard/{id}/redCard:
+    get:
+      tags: [Leaderboards]
+      summary: Get red card leaderboard for a league
+      operationId: getRedCardLeaderboard
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Red card leaderboard
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeaderboardEntry"
+
+  /webClient/leaderboard/{id}/yellowRedCard:
+    get:
+      tags: [Leaderboards]
+      summary: Get yellow-red card leaderboard for a league
+      operationId: getYellowRedCardLeaderboard
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Yellow-red card leaderboard
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/LeaderboardEntry"
+
+  /webClient/news/league/{code}:
+    get:
+      tags: [News]
+      summary: Get news for a league
+      operationId: getLeagueNews
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: News list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsItem"
+
+  /news/strafsenat:
+    get:
+      tags: [News]
+      summary: Get Strafsenat news/decisions
+      operationId: getStrafsenatNews
+      parameters:
+        - $ref: "#/components/parameters/Per"
+      responses:
+        "200":
+          description: Strafsenat news list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsItem"
+
+  /webClient/news/detail/{id}:
+    get:
+      tags: [News]
+      summary: Get news detail
+      operationId: getNewsDetail
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: News article with body/media
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsDetail"
+
+  /webClient/blocked/league/{code}:
+    get:
+      tags: [Discipline]
+      summary: Get blocked/suspended players for a league
+      operationId: getBlockedPlayers
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Suspended players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BlockedPlayer"
+
+  /webClient/transfers:
+    get:
+      tags: [Transfers]
+      summary: Get public transfer list
+      operationId: getTransferList
+      responses:
+        "200":
+          description: Transfers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Transfer"
+
+  /transfers/{id}:
+    get:
+      tags: [Transfers]
+      summary: Get transfer request detail
+      operationId: getTransfer
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Transfer request detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Transfer"
+
+  /transfers/confirm/{id}:
+    get:
+      tags: [Transfers]
+      summary: Confirm a transfer request
+      operationId: confirmTransfer
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Transfer confirmation result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionResult"
+
+  /transfers/reject/{id}:
+    get:
+      tags: [Transfers]
+      summary: Reject a transfer request
+      operationId: rejectTransfer
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Transfer rejection result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionResult"
+
+  /postpone/{id}/id:
+    get:
+      tags: [Postponements]
+      summary: Get postponement request detail
+      operationId: getPostponeRequest
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Postponement request detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PostponeRequest"
+
+  /postpone/{id}/approve:
+    post:
+      tags: [Postponements]
+      summary: Approve a postponement request
+      operationId: approvePostponeRequest
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Postponement approval result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionResult"
+
+  /postpone/{id}/deny:
+    post:
+      tags: [Postponements]
+      summary: Deny a postponement request
+      operationId: denyPostponeRequest
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Postponement denial result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionResult"
+
+  /registrations/register:
+    post:
+      tags: [Registrations]
+      summary: Register a new team
+      operationId: registerTeam
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TeamRegistrationRequest"
+      responses:
+        "200":
+          description: Registration created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamRegistration"
+
+  /registrations/{id}:
+    get:
+      tags: [Registrations]
+      summary: Get team registration detail
+      description: Intended by the commented UploadRequest screen.
+      operationId: getRegistration
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Registration detail
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamRegistration"
+    patch:
+      tags: [Registrations]
+      summary: Patch registration document URLs
+      description: Intended by the commented UploadRequest screen after file upload.
+      operationId: updateRegistration
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              example:
+                teamLogo: https://storage.example/registrations/abc/logo.png
+                customerSignedContract: https://storage.example/registrations/abc/contract.pdf
+                primary:
+                  identification: https://storage.example/registrations/abc/primary-id.pdf
+                secondary:
+                  identification: https://storage.example/registrations/abc/secondary-id.pdf
+      responses:
+        "200":
+          description: Updated registration
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamRegistration"
+
+  /people-events/{id}/register:
+    post:
+      tags: [Events]
+      summary: Register people for a public event
+      description: Used by the Gala Night registration screen.
+      operationId: registerPeopleEvent
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PeopleEventRegistrationRequest"
+      responses:
+        "200":
+          description: Event registration saved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PeopleEventRegistration"
+
+  /users/login:
+    post:
+      tags: [Auth]
+      summary: Login with Basic Auth credentials
+      description: |
+        Current AuthService sends Authorization: Basic base64(email:password)
+        and expects a token plus user object. The public homepage mostly links out
+        to the team portal, but this endpoint exists in the frontend service.
+      operationId: login
+      security:
+        - basicAuth: []
+      responses:
+        "200":
+          description: Login result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+
+  /app/application/user/verify/{token}:
+    get:
+      tags: [Auth]
+      summary: Verify a user email token
+      operationId: verifyUserEmail
+      parameters:
+        - name: token
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Verification result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ActionResult"
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: authToken
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: Entity ID, often UUID-like but treated as a string by the frontend.
+    LeagueCode:
+      name: code
+      in: path
+      required: true
+      schema:
+        type: string
+        example: HME
+      description: Short league code stored in the leagueCode cookie.
+    Per:
+      name: per
+      in: query
+      required: false
+      schema:
+        type: integer
+        default: 25
+      description: Number of records to return.
+  schemas:
+    ActionResult:
+      type: object
+      additionalProperties: true
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        status:
+          type: string
+
+    League:
+      type: object
+      additionalProperties: true
+      required: [id, code]
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+          example: HME
+        name:
+          type: string
+        title:
+          type: string
+        location:
+          type: string
+        logo:
+          type: string
+          format: uri
+
+    LeagueSelectionResponse:
+      type: object
+      additionalProperties: true
+      properties:
+        leagues:
+          type: array
+          items:
+            $ref: "#/components/schemas/League"
+        news:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewsItem"
+        homepage:
+          $ref: "#/components/schemas/HomepageResponse"
+
+    HomepageResponse:
+      type: object
+      additionalProperties: true
+      properties:
+        league:
+          $ref: "#/components/schemas/League"
+        news:
+          type: array
+          items:
+            $ref: "#/components/schemas/NewsItem"
+        table:
+          type: array
+          items:
+            $ref: "#/components/schemas/TableRow"
+        matches:
+          type: array
+          items:
+            $ref: "#/components/schemas/Match"
+        liveMatches:
+          type: array
+          items:
+            $ref: "#/components/schemas/Match"
+        banners:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaAsset"
+        videos:
+          type: array
+          items:
+            $ref: "#/components/schemas/MediaAsset"
+
+    Club:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        _id:
+          type: string
+        name:
+          type: string
+        logo:
+          type: string
+          format: uri
+        image:
+          type: string
+          format: uri
+        league:
+          $ref: "#/components/schemas/League"
+
+    ClubDetail:
+      allOf:
+        - $ref: "#/components/schemas/Club"
+        - type: object
+          additionalProperties: true
+          properties:
+            squad:
+              type: array
+              items:
+                $ref: "#/components/schemas/Player"
+            stats:
+              $ref: "#/components/schemas/StatsSummary"
+            seasonStats:
+              $ref: "#/components/schemas/StatsSummary"
+            matches:
+              type: array
+              items:
+                $ref: "#/components/schemas/Match"
+
+    Player:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        _id:
+          type: string
+        name:
+          type: string
+        first:
+          type: string
+        last:
+          type: string
+        number:
+          type: string
+        position:
+          type: string
+        profileImage:
+          type: string
+          format: uri
+        club:
+          $ref: "#/components/schemas/Club"
+
+    PlayerDetail:
+      allOf:
+        - $ref: "#/components/schemas/Player"
+        - type: object
+          additionalProperties: true
+          properties:
+            stats:
+              $ref: "#/components/schemas/PlayerStatsSummary"
+            seasonStats:
+              $ref: "#/components/schemas/PlayerStatsSummary"
+            matches:
+              type: array
+              items:
+                $ref: "#/components/schemas/Match"
+
+    StatsSummary:
+      type: object
+      additionalProperties: true
+      properties:
+        games:
+          type: integer
+        wins:
+          type: integer
+        draws:
+          type: integer
+        losses:
+          type: integer
+        goals:
+          type: integer
+        goalsAgainst:
+          type: integer
+        points:
+          type: integer
+
+    PlayerStatsSummary:
+      type: object
+      additionalProperties: true
+      properties:
+        appearances:
+          type: integer
+        goals:
+          type: integer
+        assists:
+          type: integer
+        yellowCards:
+          type: integer
+        redCards:
+          type: integer
+        yellowRedCards:
+          type: integer
+
+    TableRow:
+      type: object
+      additionalProperties: true
+      properties:
+        position:
+          type: integer
+        club:
+          $ref: "#/components/schemas/Club"
+        clubName:
+          type: string
+        games:
+          type: integer
+        wins:
+          type: integer
+        draws:
+          type: integer
+        losses:
+          type: integer
+        goalsFor:
+          type: integer
+        goalsAgainst:
+          type: integer
+        goalDifference:
+          type: integer
+        points:
+          type: integer
+
+    SeasonMatches:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        season:
+          type: string
+        matchdays:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+            properties:
+              id:
+                type: string
+              gameDay:
+                type: string
+              date:
+                type: string
+                format: date-time
+              matches:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Match"
+
+    Match:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        _id:
+          type: string
+        date:
+          type: string
+          format: date-time
+        status:
+          type: string
+        league:
+          $ref: "#/components/schemas/League"
+        home:
+          $ref: "#/components/schemas/Club"
+        away:
+          $ref: "#/components/schemas/Club"
+        home_blanket:
+          $ref: "#/components/schemas/Club"
+        away_blanket:
+          $ref: "#/components/schemas/Club"
+        homeScore:
+          type: integer
+        awayScore:
+          type: integer
+        venue:
+          type: string
+
+    LivescoreLeague:
+      type: object
+      additionalProperties: true
+      properties:
+        league:
+          type: string
+        leagueCode:
+          type: string
+        matches:
+          type: array
+          items:
+            $ref: "#/components/schemas/Match"
+
+    MatchDetail:
+      allOf:
+        - $ref: "#/components/schemas/Match"
+        - type: object
+          additionalProperties: true
+          properties:
+            events:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+            lineups:
+              type: object
+              additionalProperties: true
+            report:
+              type: string
+            videoUrl:
+              type: string
+              format: uri
+
+    LeaderboardEntry:
+      type: object
+      additionalProperties: true
+      properties:
+        player:
+          $ref: "#/components/schemas/Player"
+        playerId:
+          type: string
+        name:
+          type: string
+        club:
+          $ref: "#/components/schemas/Club"
+        count:
+          type: integer
+
+    NewsItem:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        _id:
+          type: string
+        title:
+          type: string
+        subtitle:
+          type: string
+        teaser:
+          type: string
+        image:
+          type: string
+          format: uri
+        createdAt:
+          type: string
+          format: date-time
+        date:
+          type: string
+          format: date-time
+
+    NewsDetail:
+      allOf:
+        - $ref: "#/components/schemas/NewsItem"
+        - type: object
+          additionalProperties: true
+          properties:
+            body:
+              type: string
+            content:
+              type: string
+            video:
+              type: string
+              format: uri
+            league:
+              $ref: "#/components/schemas/League"
+
+    BlockedPlayer:
+      type: object
+      additionalProperties: true
+      properties:
+        player:
+          $ref: "#/components/schemas/Player"
+        playerId:
+          type: string
+        name:
+          type: string
+        club:
+          $ref: "#/components/schemas/Club"
+        reason:
+          type: string
+        until:
+          type: string
+          format: date-time
+        gamesRemaining:
+          type: integer
+
+    Transfer:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        _id:
+          type: string
+        player:
+          $ref: "#/components/schemas/Player"
+        fromClub:
+          $ref: "#/components/schemas/Club"
+        toClub:
+          $ref: "#/components/schemas/Club"
+        status:
+          type: string
+          enum: [open, confirmed, rejected, completed, cancelled]
+        createdAt:
+          type: string
+          format: date-time
+
+    PostponeRequest:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        match:
+          $ref: "#/components/schemas/Match"
+        requestedBy:
+          $ref: "#/components/schemas/Club"
+        reason:
+          type: string
+        status:
+          type: string
+          enum: [open, approved, denied]
+        createdAt:
+          type: string
+          format: date-time
+
+    TeamRegistrationRequest:
+      type: object
+      required: [primaryContact, secondaryContact, teamName, bundesland, type, acceptedAGB]
+      additionalProperties: true
+      properties:
+        primaryContact:
+          $ref: "#/components/schemas/RegistrationContact"
+        secondaryContact:
+          $ref: "#/components/schemas/RegistrationContact"
+        teamName:
+          type: string
+        verein:
+          type: string
+        bundesland:
+          type: string
+        type:
+          type: string
+          example: privat
+        acceptedAGB:
+          type: boolean
+        referCode:
+          type: string
+        initial_password:
+          type: string
+
+    RegistrationContact:
+      type: object
+      additionalProperties: true
+      properties:
+        first:
+          type: string
+        last:
+          type: string
+        phone:
+          type: string
+        email:
+          type: string
+          format: email
+        identification:
+          type: string
+
+    TeamRegistration:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: string
+        _id:
+          type: string
+        teamName:
+          type: string
+        status:
+          type: string
+        primary:
+          $ref: "#/components/schemas/RegistrationContact"
+        secondary:
+          $ref: "#/components/schemas/RegistrationContact"
+        teamLogo:
+          type: string
+          format: uri
+        customerSignedContract:
+          type: string
+          format: uri
+
+    PeopleEventRegistrationRequest:
+      type: object
+      required: [name, numberOfPeople, status]
+      additionalProperties: false
+      properties:
+        name:
+          type: string
+        team:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        numberOfPeople:
+          type: integer
+          minimum: 1
+        status:
+          type: string
+          example: open
+        notes:
+          type: string
+
+    PeopleEventRegistration:
+      allOf:
+        - $ref: "#/components/schemas/PeopleEventRegistrationRequest"
+        - type: object
+          additionalProperties: true
+          properties:
+            id:
+              type: string
+            eventId:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+
+    LoginResponse:
+      type: object
+      additionalProperties: true
+      required: [token, user]
+      properties:
+        token:
+          type: string
+        user:
+          type: object
+          additionalProperties: true
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+              format: email
+            name:
+              type: string
+
+    MediaAsset:
+      type: object
+      additionalProperties: true
+      properties:
+        title:
+          type: string
+        subtitle:
+          type: string
+        url:
+          type: string
+          format: uri
+        image:
+          type: string
+          format: uri
+        link:
+          type: string
+          format: uri
+
+x-product-screens:
+  - route: "#/"
+    screen: League selection
+    component: ElementLeagueSelection
+    requiredApis:
+      - GET /webClient/selection
+      - GET /webClient/home/league/{code}
+  - route: "#/liga"
+    screen: League homepage
+    component: Homepage
+    requiredApis:
+      - GET /webClient/home/league/{code}
+      - GET /client/leagueList
+  - route: "#/teams"
+    screen: Teams
+    component: ElementClubsDesktop
+    requiredApis:
+      - GET /webClient/clubs/league/{code}
+  - route: "#/team-detail/{id}"
+    screen: Team detail
+    component: ElementTeamDetail
+    requiredApis:
+      - GET /webClient/clubs/detail/{id}
+  - route: "#/player-detail/{id}"
+    screen: Player detail
+    component: ElementPlayerDetail
+    requiredApis:
+      - GET /webClient/player/detail/{id}
+      - GET /webClient/player/{id}/summary
+  - route: "#/tabelle"
+    screen: Table
+    component: ElementTableMobile
+    requiredApis:
+      - GET /webClient/table/league/{code}
+      - GET /webClient/clubs/league/{code}
+  - route: "#/spielplan"
+    screen: Schedule
+    component: ElementGamedayMobile
+    requiredApis:
+      - GET /webClient/matches/league/{code}/index
+  - route: "#/match/{id}"
+    screen: Match report
+    component: ElementGameReport
+    requiredApis:
+      - GET /webClient/match/detail/{id}
+  - route: "#/livescore"
+    screen: Livescore
+    component: ElementLivescore
+    requiredApis:
+      - GET /webClient/livescore
+  - route: "#/leaderboards"
+    screen: Leaderboards
+    component: ElementLeaderboard
+    requiredApis:
+      - GET /webClient/leaderboard/{id}/goal
+      - GET /webClient/leaderboard/{id}/yellowCard
+      - GET /webClient/leaderboard/{id}/redCard
+      - GET /webClient/leaderboard/{id}/yellowRedCard
+  - route: "#/news"
+    screen: News list
+    component: ElementNewsMobile
+    requiredApis:
+      - GET /webClient/news/league/{code}
+  - route: "#/news-detail/{id}"
+    screen: News detail
+    component: ElementNewsDetail
+    requiredApis:
+      - GET /webClient/news/detail/{id}
+  - route: "#/strafsenat"
+    screen: Strafsenat
+    component: Strafsenat
+    requiredApis:
+      - GET /news/strafsenat
+  - route: "#/sperren"
+    screen: Suspensions
+    component: ElementSperrenDesktop
+    requiredApis:
+      - GET /webClient/blocked/league/{code}
+  - route: "#/transfers"
+    screen: Transfers
+    component: ElementTransfersDesktop
+    requiredApis:
+      - GET /webClient/transfers
+  - route: "#/transfer/{id}"
+    screen: Transfer action
+    component: ElementTransfer
+    requiredApis:
+      - GET /transfers/{id}
+      - GET /transfers/confirm/{id}
+      - GET /transfers/reject/{id}
+  - route: "#/postpone/{id}"
+    screen: Postponement action
+    component: ElementPostpone
+    requiredApis:
+      - GET /postpone/{id}/id
+      - POST /postpone/{id}/approve
+      - POST /postpone/{id}/deny
+  - route: "#/register"
+    screen: Team registration
+    component: ElementRegister
+    requiredApis:
+      - POST /registrations/register
+  - route: "#/team/upload/{id}"
+    screen: Registration document upload
+    component: UploadRequest
+    requiredApis:
+      - GET /registrations/{id}
+      - PATCH /registrations/{id}
+  - route: "#/gala-night"
+    screen: Event registration
+    component: EventRegistration
+    requiredApis:
+      - POST /people-events/{id}/register
+  - route: "#/app/user/verify/{id}"
+    screen: User verification
+    component: VerifyPage
+    requiredApis:
+      - GET /app/application/user/verify/{token}

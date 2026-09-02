@@ -7,8 +7,8 @@
 // -------------------------------------------------------------
 
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { FormEvent, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import ApiService from "../../network/ApiService";
 import AuthService from "../../network/AuthService";
 
@@ -46,10 +46,18 @@ export const DesktopNav = ({
 }) => {
   const [activeLeague, setActiveLeague] = useState(null);
   const [leagues, setLeagues] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const authService = new AuthService();
   const apiService = new ApiService();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname !== "/search") return;
+    const query = new URLSearchParams(location.search).get("q") ?? "";
+    setSearchTerm(query);
+  }, [location.pathname, location.search]);
 
   // Fetch leagues on mount and seed active league from AuthService
   useEffect(() => {
@@ -87,21 +95,56 @@ export const DesktopNav = ({
     }
   };
 
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const query = searchTerm.trim();
+    if (!query) return;
+    navigate(`/search?q=${encodeURIComponent(query)}`);
+  };
+
   return (
     <div className={`nav ${view} ${className}`}>
       {/* ===== League Strip ===== */}
       <div className="nav__leagues">
         <div className="nav__leagues-track u-scrollbar-hidden">
-          {leagues.map((league) => (
-            <LeaguePill
-              key={league.id}
-              code={league.code}
-              id={league.id}
-              text={league.code}
-              isActive={league.code === activeLeague}
-              onClick={handleLeagueClick}
+          <div className="nav__league-list">
+            {leagues.map((league) => (
+              <LeaguePill
+                key={league.id}
+                code={league.code}
+                id={league.id}
+                text={league.code}
+                isActive={league.code === activeLeague}
+                onClick={handleLeagueClick}
+              />
+            ))}
+          </div>
+
+          <form className="nav__search" role="search" onSubmit={handleSearch}>
+            <label className="nav__search-label" htmlFor="site-search">
+              Spieler und Teams suchen
+            </label>
+            <input
+              id="site-search"
+              className="nav__search-input"
+              type="search"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+              placeholder="Spieler und Teams"
+              autoComplete="off"
             />
-          ))}
+            <button
+              className="nav__search-submit"
+              type="submit"
+              aria-label="Suche starten"
+              disabled={!searchTerm.trim()}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5" />
+                <path d="m16 16 4 4" />
+              </svg>
+            </button>
+          </form>
         </div>
       </div>
 

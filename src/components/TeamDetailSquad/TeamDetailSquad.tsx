@@ -2,17 +2,24 @@
 import PropTypes from "prop-types";
 import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../../network/AuthService";
 import "./style.css";
 
 interface Player {
-  id: number;
-  number?: number;
+  id: string | number;
+  number?: string | number;
   name: string;        // Full name as a single string
   nationality: string;
   sid: string;
   image: string;
   eligibility: string; // "Spielberechtigt" | "Gesperrt" (others possible)
   birthday?: string;   // Accepts plain string; formatting handled upstream if needed
+  teamId?: string;
+  teamName?: string;
+  teamLogo?: string;
+  leagueId?: string;
+  leagueCode?: string;
+  leagueName?: string;
 }
 
 interface Props {
@@ -45,6 +52,14 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
   const { firstName, lastName } = splitAndCapitalizeName(player.name);
   const formattedNationality = formatNationality(player.nationality);
   const navigate = useNavigate();
+  const authService = new AuthService();
+
+  const openPlayer = () => {
+    if (player.leagueCode && player.leagueId) {
+      authService.setLeagueData(player.leagueCode, player.leagueId);
+    }
+    navigate(`/player-detail/${player.id}`);
+  };
 
   // Static icon sources (kept as-is)
   const BLOCKED =
@@ -85,10 +100,10 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
           <div className="team-detail-squad-wrapper-4">
             <div
               className="div-11 clickable"
-              onClick={() => navigate(`/player-detail/${player.id}`)}
+              onClick={openPlayer}
               role="button"
               tabIndex={0}
-              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && navigate(`/player-detail/${player.id}`)}
+              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openPlayer()}
               aria-label={`Öffne Profil von ${firstName} ${lastName}`}
             >
               <div className="first-name">{firstName}</div>
@@ -100,27 +115,41 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
             <div className="div-11 meta">
               <div className="meta-line">SID: {player.sid}</div>
               {player.birthday && <div className="meta-line">Jahrgang: {player.birthday}</div>}
+              {player.leagueName && <div className="meta-line meta-line--league">Liga: {player.leagueName}</div>}
             </div>
           </div>
 
-          {/* Flags + eligibility */}
+          {/* Nationality + team/eligibility */}
           <div className="nationality-flags">
             <img
               src={`https://www.zeitzonen.de/build/images/flags/${formattedNationality}.svg`}
               alt={`${player.nationality} Flagge`}
               className="flagicon"
             />
-            <img
-              src={eligibilityIcon}
-              alt={`Status: ${player.eligibility}`}
-              className="flagicon-no"
-              onClick={togglePopover}
-              style={{ cursor: "pointer" }}
-            />
-            {showPopover && (
-              <div className="popover" role="status" aria-live="polite">
-                {`Eligibility: ${player.eligibility}`}
-              </div>
+            {player.teamLogo ? (
+              <button
+                type="button"
+                className="team-detail-squad__team"
+                onClick={() => player.teamId && navigate(`/team-detail/${player.teamId}`)}
+                aria-label={player.teamName ? `Öffne ${player.teamName}` : "Team öffnen"}
+              >
+                <img src={player.teamLogo} alt="" className="team-detail-squad__team-logo" />
+              </button>
+            ) : (
+              <>
+                <img
+                  src={eligibilityIcon}
+                  alt={`Status: ${player.eligibility}`}
+                  className="flagicon-no"
+                  onClick={togglePopover}
+                  style={{ cursor: "pointer" }}
+                />
+                {showPopover && (
+                  <div className="popover" role="status" aria-live="polite">
+                    {`Eligibility: ${player.eligibility}`}
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -131,14 +160,20 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
 
 TeamDetailSquad.propTypes = {
   player: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    number: PropTypes.number,
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    number: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     name: PropTypes.string.isRequired,
     nationality: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     eligibility: PropTypes.string.isRequired,
     sid: PropTypes.string.isRequired,
     birthday: PropTypes.string,
+    teamId: PropTypes.string,
+    teamName: PropTypes.string,
+    teamLogo: PropTypes.string,
+    leagueId: PropTypes.string,
+    leagueCode: PropTypes.string,
+    leagueName: PropTypes.string,
   }).isRequired,
   className: PropTypes.string,
 };
