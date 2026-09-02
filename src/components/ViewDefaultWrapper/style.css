@@ -48,19 +48,6 @@
   white-space: normal;
 }
 
-.nav.default .nav__league-list {
-  display: flex;
-  gap: var(--space-3);
-  min-width: 0;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
-}
-
-.nav.default .nav__league-list::-webkit-scrollbar {
-  display: none;
-}
-
 .nav.default .nav__search {
   align-items: center;
   background: var(--color-bg);
@@ -134,35 +121,6 @@
   stroke-linecap: round;
   stroke-width: 1.8;
   width: 17px;
-}
-
-/* Single league item */
-.league {
-  display: inline-flex;
-  align-items: center;
-  height: 24px;
-  padding: 0 var(--space-2);
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  background: transparent;
-  color: var(--color-text-strong);       /* replaces themeouter-space */
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.league:hover {
-  background: var(--color-border-muted);
-}
-
-.league__code {
-  font-family: var(--font-sans);
-  font-weight: var(--font-weight-bold);  /* replaced: inter-bold-12-* */
-  font-size: var(--fs-sm);               /* ≈ 14px replaces 12px bold token */
-  line-height: var(--lh-tight);
-}
-
-.league--active {
-  background: var(--color-text-strong);
-  color: var(--color-surface);
 }
 
 /* ===== Main nav bar ===== */

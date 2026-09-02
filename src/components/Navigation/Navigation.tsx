@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import ApiService from "../../network/ApiService";
 import AuthService from "../../network/AuthService";
 import { ElementMobilenav } from "../../screens/ElementMobilenav";
+import { LeagueDropdown } from "../LeagueDropdown";
 import "./style.css";
 
 const EXCLUDED_CODES = ["NONE", "W2A"];
@@ -170,16 +171,11 @@ export const Navigation = ({
       {/* ===== League Strip ===== */}
       <div className="nav__leagues">
         <div className="nav__leagues-track u-scrollbar-hidden">
-          {leagues.map((l) => (
-            <LeaguePill
-              key={l.id}
-              code={l.code}
-              id={l.id}
-              text={l.code}
-              isActive={l.code === activeLeague}
-              onClick={handleLeagueClick}
-            />
-          ))}
+          <LeagueDropdown
+            leagues={leagues}
+            activeLeague={activeLeague}
+            onSelect={handleLeagueClick}
+          />
         </div>
       </div>
 
@@ -300,16 +296,3 @@ Navigation.propTypes = {
   burgerIconSrc: PropTypes.string,
   closeIconSrc: PropTypes.string,
 };
-
-// Reusable league pill
-const LeaguePill = ({ text, isActive, code, id, onClick }) => (
-  <Link
-    to="/liga"
-    onClick={() => onClick(code, id)}
-    reloadDocument
-    className={`league ${isActive ? "league--active" : ""}`}
-    aria-label={`Liga ${text}`}
-  >
-    <span className="league__code">{text}</span>
-  </Link>
-);

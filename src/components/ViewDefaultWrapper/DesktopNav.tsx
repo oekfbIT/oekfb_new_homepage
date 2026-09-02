@@ -11,6 +11,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import ApiService from "../../network/ApiService";
 import AuthService from "../../network/AuthService";
+import { LeagueDropdown } from "../LeagueDropdown";
 
 // Styles
 //  - global.css must be imported once at app root. If not, import here too.
@@ -107,18 +108,11 @@ export const DesktopNav = ({
       {/* ===== League Strip ===== */}
       <div className="nav__leagues">
         <div className="nav__leagues-track u-scrollbar-hidden">
-          <div className="nav__league-list">
-            {leagues.map((league) => (
-              <LeaguePill
-                key={league.id}
-                code={league.code}
-                id={league.id}
-                text={league.code}
-                isActive={league.code === activeLeague}
-                onClick={handleLeagueClick}
-              />
-            ))}
-          </div>
+          <LeagueDropdown
+            leagues={leagues}
+            activeLeague={activeLeague}
+            onSelect={handleLeagueClick}
+          />
 
           <form className="nav__search" role="search" onSubmit={handleSearch}>
             <label className="nav__search-label" htmlFor="site-search">
@@ -203,28 +197,6 @@ DesktopNav.propTypes = {
   loginIconSrc: PropTypes.string,
   burgerIconSrc: PropTypes.string,
   burgerTo: PropTypes.string,
-};
-
-// --- LeaguePill (single item) ---------------------------------
-
-const LeaguePill = ({ text, isActive, code, id, onClick }) => (
-  <Link
-    to="/liga"
-    onClick={() => onClick(code, id)}
-    reloadDocument
-    className={`league ${isActive ? "league--active" : ""}`}
-    aria-label={`Liga ${text}`}
-  >
-    <span className="league__code">{text}</span>
-  </Link>
-);
-
-LeaguePill.propTypes = {
-  text: PropTypes.string.isRequired,
-  isActive: PropTypes.bool,
-  code: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default DesktopNav;
