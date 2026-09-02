@@ -307,21 +307,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/PlayerDetail"
 
-  /webClient/player/{id}/summary:
-    get:
-      tags: [Players]
-      summary: Get player statistics summary
-      operationId: getPlayerSummary
-      parameters:
-        - $ref: "#/components/parameters/Id"
-      responses:
-        "200":
-          description: Player career and season summary statistics
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/PlayerStatsSummary"
-
   /webClient/leaderboard/{id}/goal:
     get:
       tags: [Leaderboards]
@@ -858,19 +843,23 @@ components:
           $ref: "#/components/schemas/Club"
 
     PlayerDetail:
-      allOf:
-        - $ref: "#/components/schemas/Player"
-        - type: object
-          additionalProperties: true
-          properties:
-            stats:
-              $ref: "#/components/schemas/PlayerStatsSummary"
-            seasonStats:
-              $ref: "#/components/schemas/PlayerStatsSummary"
-            matches:
-              type: array
-              items:
-                $ref: "#/components/schemas/Match"
+      type: object
+      additionalProperties: true
+      required: [player, upcoming]
+      properties:
+        player:
+          allOf:
+            - $ref: "#/components/schemas/Player"
+            - type: object
+              properties:
+                allstats:
+                  $ref: "#/components/schemas/PlayerStatsSummary"
+                seasonstats:
+                  $ref: "#/components/schemas/PlayerStatsSummary"
+        upcoming:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlayerSeasonMatches"
 
     StatsSummary:
       type: object
@@ -895,18 +884,38 @@ components:
       type: object
       additionalProperties: true
       properties:
-        appearances:
+        matches_played:
           type: integer
-        goals:
+        goals_scored:
           type: integer
-        assists:
+        yellow_cards:
           type: integer
-        yellowCards:
+        red_cards:
           type: integer
-        redCards:
+        yellow_red_crd:
           type: integer
-        yellowRedCards:
-          type: integer
+
+    PlayerSeasonMatches:
+      type: object
+      additionalProperties: false
+      required: [league_name, league_id, season_name, season_id, primary, matches]
+      properties:
+        league_name:
+          type: string
+        league_id:
+          type: string
+          format: uuid
+        season_name:
+          type: string
+        season_id:
+          type: string
+          format: uuid
+        primary:
+          type: boolean
+        matches:
+          type: array
+          items:
+            $ref: "#/components/schemas/Match"
 
     TableRow:
       type: object
@@ -1307,7 +1316,6 @@ x-product-screens:
     component: ElementPlayerDetail
     requiredApis:
       - GET /webClient/player/detail/{id}
-      - GET /webClient/player/{id}/summary
   - route: "#/tabelle"
     screen: Table
     component: ElementTableMobile

@@ -15,7 +15,6 @@ import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator
 import { Navigation } from "../../components/Navigation";
 import { StatCell } from "../../components/StatCell";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 
 import "./style.css";
@@ -24,6 +23,15 @@ type TeamLite = {
   id?: string;
   team_name?: string;
   logo?: string;
+};
+
+type PlayerStats = {
+  matches_played?: number;
+  goals_scored?: number;
+  yellow_cards?: number;
+  yellow_red_crd?: number;
+  red_cards?: number;
+  [key: string]: number | undefined;
 };
 
 type Player = {
@@ -38,10 +46,10 @@ type Player = {
   sid?: string;
   status?: boolean;
   team?: TeamLite;
-  allstats?: Record<string, number>;
-  seasonstats?: Record<string, number>;
+  allstats?: PlayerStats;
+  seasonstats?: PlayerStats;
   // legacy fallback
-  stats?: Record<string, number>;
+  stats?: PlayerStats;
 };
 
 type Match = {
@@ -106,6 +114,21 @@ const formatDateDMY = (iso?: string) => {
 
 const ALL_SEASONS = "__ALL__" as const;
 const ALL_GAMEDAYS = "__ALL__" as const;
+const PLAYER_STAT_KEYS = [
+  "matches_played",
+  "goals_scored",
+  "yellow_cards",
+  "yellow_red_crd",
+  "red_cards",
+] as const;
+
+const statsEntries = (stats?: PlayerStats): [string, number][] => {
+  const known = PLAYER_STAT_KEYS.map((key) => [key, Number(stats?.[key] ?? 0)] as [string, number]);
+  const extra = Object.entries(stats ?? {})
+    .filter(([key]) => !PLAYER_STAT_KEYS.includes(key as (typeof PLAYER_STAT_KEYS)[number]))
+    .map(([key, value]) => [key, Number(value ?? 0)] as [string, number]);
+  return [...known, ...extra];
+};
 
 // ----- Component -------------------------------------------------------------
 
@@ -116,7 +139,6 @@ export const ElementPlayerDetail = (): JSX.Element => {
   const navigate = useNavigate();
 
   const clientController = useMemo(() => new ClientController(), []);
-  const authService = useMemo(() => new AuthService(), []);
 
   // Core state
   const [player, setPlayer] = useState<Player | null>(null);
@@ -129,16 +151,14 @@ export const ElementPlayerDetail = (): JSX.Element => {
   const [nationalityCode, setNationalityCode] = useState("");
 
   // Filters
-  const [selectedSeasonId, setSelectedSeasonId] = useState<string | null>(null);
+  const [selectedSeasonId, setSelectedSeasonId] = useState<string>(ALL_SEASONS);
   const [uniqueGamedays, setUniqueGamedays] = useState<{ gameday: number; date: string }[]>([]);
   const [selectedGameday, setSelectedGameday] = useState<string>(ALL_GAMEDAYS);
 
   // ---- Fetch ----
   useEffect(() => {
     const fetchPlayerDetail = async () => {
-      const leagueCode = authService.getLeagueCode();
-      if (!leagueCode) {
-        console.error("No league code found in cookies.");
+      if (!id) {
         setLoading(false);
         return;
       }
@@ -151,12 +171,8 @@ export const ElementPlayerDetail = (): JSX.Element => {
         const upcoming = Array.isArray(response?.upcoming) ? response.upcoming : [];
         setSeasons(upcoming);
 
-        const primary =
-          upcoming.find((s) => s.primary) ??
-          upcoming.find((s) => (s.matches?.length ?? 0) > 0) ??
-          upcoming[0] ??
-          null;
-        setSelectedSeasonId(primary?.season_id ?? ALL_SEASONS);
+        // Player detail is a career view, so do not hide older appearances by default.
+        setSelectedSeasonId(ALL_SEASONS);
 
         if (response?.player?.name) {
           const { firstName, lastName } = splitAndCapitalizeName(response.player.name);
@@ -172,7 +188,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
     };
 
     fetchPlayerDetail();
-  }, [id, authService, clientController]);
+  }, [id, clientController]);
 
   // ---- Build gameday options whenever selected season changes ---------------
   useEffect(() => {
@@ -211,30 +227,16 @@ export const ElementPlayerDetail = (): JSX.Element => {
 
     setUniqueGamedays(list);
 
-    const today = Date.now();
-    let closest = -1;
-    let min = Infinity;
-    matches.forEach((m) => {
-      const iso = m?.details?.date;
-      const gd = m?.details?.gameday;
-      const ms = toMs(iso);
-      if (!gd || Number.isNaN(ms)) return;
-      const diff = Math.abs(today - ms);
-      if (diff < min) {
-        min = diff;
-        closest = gd;
-      }
-    });
-
-    setSelectedGameday(list.length && closest > 0 ? String(closest) : ALL_GAMEDAYS);
+    setSelectedGameday(ALL_GAMEDAYS);
   }, [selectedSeasonId, seasons]);
 
   // ---- Derived: stats, selections, fixtures --------------------------------
-  const allStatsEntries = Object.entries(player?.allstats ?? player?.stats ?? {}) as [string, number][];
-  const seasonStatsEntries = Object.entries(player?.seasonstats ?? {}) as [string, number][];
+  const allStatsEntries = statsEntries(player?.allstats ?? player?.stats);
+  const seasonStatsEntries = statsEntries(player?.seasonstats);
 
   const usingAllSeasons = !selectedSeasonId || selectedSeasonId === ALL_SEASONS;
   const selectedSeason = seasons.find((s) => s.season_id === selectedSeasonId) ?? null;
+  const activeSeason = seasons.find((s) => s.primary) ?? null;
 
   const baseMatches: Match[] = usingAllSeasons
     ? seasons.flatMap((s) => s.matches ?? [])
@@ -346,7 +348,10 @@ export const ElementPlayerDetail = (): JSX.Element => {
         </section>
 
         <section style={{ width: "-webkit-fill-available" }}>
-          <h2 className="sub_header md_base">{player?.name ?? "Player"} Saison Statistik</h2>
+          <h2 className="sub_header md_base">
+            {player?.name ?? "Player"} Aktuelle Saison Statistik
+            {activeSeason ? ` – ${activeSeason.season_name}` : ""}
+          </h2>
           <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>
             {seasonStatsEntries.map(([k, v]) => (
               <StatCell key={`season-${k}`} statKey={k} statValue={v} />
@@ -378,7 +383,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
                 ...seasons.map((s) => ({
                   id: s.season_id,
                   value: s.season_id,
-                  label: `${s.season_name}${s.primary ? " ★" : ""}`,
+                  label: `${s.season_name} · ${s.league_name}${s.primary ? " ★" : ""}`,
                 })),
               ]}
               displayKey="label"
