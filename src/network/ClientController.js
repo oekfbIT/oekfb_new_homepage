@@ -18,7 +18,7 @@ class ClientController {
     return this.apiService.get(`webClient/home/league/${code}`);
   }
 
-  /** Fetch ordered content for Regeln, Ligaordnung, or Bund. */
+  /** Fetch managed public content, including rules and static homepage pages. */
   async fetchLegalDocument(documentType) {
     return this.apiService.get(`legal/${encodeURIComponent(documentType)}`);
   }
