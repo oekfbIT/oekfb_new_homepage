@@ -4,6 +4,7 @@ import "./style.css";
 type League = {
   code: string;
   id: string | number;
+  name?: string;
 };
 
 type Props = {
@@ -37,7 +38,7 @@ export const LeagueDropdown = ({ leagues, activeLeague, onSelect }: Props): JSX.
       >
         {leagues.map((league) => (
           <option key={league.id} value={league.code}>
-            {league.code}
+            {league.name || league.code}
           </option>
         ))}
       </select>
@@ -53,6 +54,7 @@ LeagueDropdown.propTypes = {
     PropTypes.shape({
       code: PropTypes.string.isRequired,
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string,
     }).isRequired
   ).isRequired,
   activeLeague: PropTypes.string,
