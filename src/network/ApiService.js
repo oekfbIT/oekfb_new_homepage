@@ -1,8 +1,9 @@
 class ApiService {
   constructor() {
-    // this.baseURL = "https://test.oekfb.eu";
-    this.baseURL = "https://api.oekfb.eu";
-    // this.baseURL = "http://localhost:8080";
+    const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    this.baseURL =
+      process.env.API_BASE_URL ||
+      (isLocal ? "http://localhost:8080" : "https://api.oekfb.eu");
   }
 
   async request(method, endpoint, body = null, headers = {}) {
@@ -16,6 +17,12 @@ class ApiService {
       },
       credentials: "include",
     };
+
+    // Homepage content is managed from the admin application and must not be
+    // served from the browser's HTTP cache after an editor saves a change.
+    if (method === "GET") {
+      options.cache = "no-store";
+    }
 
     if (body) {
       options.body = JSON.stringify(body);

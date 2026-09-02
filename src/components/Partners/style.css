@@ -80,6 +80,8 @@
 /* Base logo style */
 .partners__logo {
   display: block;
+  width: 150px;
+  height: 80px;
   object-fit: contain;
   transition: transform 0.15s ease;
 }
@@ -88,34 +90,4 @@
 .partners__list a:focus-visible .partners__logo {
   transform: translateY(-2px);
   outline: none;
-}
-
-/* Exact brand sizes preserved from your CSS */
-.partners__logo--sportsselection {
-  height: 50px;
-  width: 108.78px;
-  object-fit: cover; /* as in original */
-}
-
-.partners__logo--westsidesoccer {
-  height: 70px;
-  object-fit: cover;
-}
-
-.partners__logo--veo {
-  height: 28px;
-  width: 85px;
-  object-fit: cover;
-}
-
-.partners__logo--wmf {
-  height: 80px;
-  width: 85px;
-  object-fit: contain;
-}
-
-.partners__logo--emf {
-  height: 47px;
-  width: 50px;
-  object-fit: contain;
 }

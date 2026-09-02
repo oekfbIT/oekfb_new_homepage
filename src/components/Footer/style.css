@@ -102,28 +102,16 @@
 .footer__sponsor {
   width: 200px;
   height: 60px;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
   background-color: var(--color-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.footer__sponsor--laola {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fpartner%2Flaola1-logo-cmyk.jpg?alt=media&token=f80a3fcb-8d4a-4b0d-9195-1b4c0886b370");
-}
-.footer__sponsor--radosport {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Fats.jpeg?alt=media&token=835dca80-9546-4c2e-9a4f-630fcdb53fce");
-}
-.footer__sponsor--erima {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Ferima.png?alt=media&token=37f57c16-fcd2-467b-a132-b6e5a179da2b");
-}
-.footer__sponsor--cocacola {
-  background-image: url("https://1000logos.net/wp-content/uploads/2021/05/Coca-Cola-logo-500x281.png");
-}
-.footer__sponsor--aircash {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2Faircash-logo-red-pdf-1-removebg-preview.png?alt=media&token=c45fc5de-3dfb-4169-b7be-f6975f893cac");
-}
-.footer__sponsor--ali {
-  background-image: url("https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2FAli_v1.jpg?alt=media&token=8d0be481-f8b0-41c2-8b75-145503b06911");
+
+.footer__sponsorImage {
+  width: calc(100% - 24px);
+  height: calc(100% - 12px);
+  object-fit: contain;
 }
 
 .footer__socials {

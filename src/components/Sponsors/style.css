@@ -88,16 +88,15 @@
   transition: transform 0.15s ease, filter 0.15s ease;
 }
 
-.sponsors__logo--wider {
-  width: 130px;         /* original wider (aircash) */
-}
-
 /* Subtle interaction without changing layout */
 .sponsors__list a:hover .sponsors__logo,
 .sponsors__list a:focus-visible .sponsors__logo {
   transform: translateY(-2px);
 }
 
-/* --- Back-compat aliases (safe to remove once all imports updated) --- */
-.sponsor { width: 100px; height: 50px; object-fit: contain; }
-.sponsorc { width: 130px; height: 50px; object-fit: contain; }
+.sponsor-logo-status {
+  color: var(--color-text-muted, #6b7280);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}

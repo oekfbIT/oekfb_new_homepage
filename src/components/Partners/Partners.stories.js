@@ -8,7 +8,6 @@ export default {
 export const Default = {
   args: {
     className: {},
-    vWhite: "/img/v-white-1.svg",
     sponsorsContainerClassName: {},
   },
 };

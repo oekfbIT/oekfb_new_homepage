@@ -1,4 +1,5 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
+import { SponsorProvider } from "./context/SponsorContext";
 
 // Screens
 import UploadRequest from "./components/UploadRequest/UploadRequest";
@@ -31,8 +32,9 @@ import { Strafsenat } from "./screens/Strafsenat";
 import { VerifyPage } from "./screens/VerifyPage/VerifyPage";
 
 const App = () => (
-  <HashRouter>
-    <Routes>
+  <SponsorProvider>
+    <HashRouter>
+      <Routes>
       <Route path="/" element={<ElementLeagueSelection />} />
       <Route path="/liga" element={<Homepage />} />
       <Route path="/app" element={<AppPage />} />
@@ -63,8 +65,9 @@ const App = () => (
       <Route path="/team/upload/:id" element={<UploadRequest />} />
       <Route path="/news-detail/:id" element={<ElementNewsDetail />} />
       <Route path="*" element={<ElementLeagueSelection />} />
-    </Routes>
-  </HashRouter>
+      </Routes>
+    </HashRouter>
+  </SponsorProvider>
 );
 
 export { App };

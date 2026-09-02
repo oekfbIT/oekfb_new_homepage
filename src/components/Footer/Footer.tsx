@@ -5,9 +5,12 @@
 // -------------------------------------------------------------
 
 import { Link } from "react-router-dom";
+import { useSponsorRecords } from "../../context/SponsorContext";
 import "./style.css";
 
 export const Footer = (): JSX.Element => {
+  const { items: sponsorItems, loading: sponsorsLoading } = useSponsorRecords();
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="footer__inner">
@@ -58,54 +61,26 @@ export const Footer = (): JSX.Element => {
 
         {/* === Right: Sponsors + Socials === */}
         <div className="footer__section">
-          <div className="footer__sponsors">
-            <span className="h3 footer__title">Sponsored By</span>
-            <div className="footer__sponsorList">
-              <a
-                href="https://www.laola1.at/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="footer__sponsor footer__sponsor--laola" />
-              </a>
-              <a
-                href="https://radosport.at/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="footer__sponsor footer__sponsor--radosport" />
-              </a>
-              <a
-                href="https://erima.shop/oekfb"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="footer__sponsor footer__sponsor--erima" />
-              </a>
-              <a
-                href="https://at.coca-colahellenic.com/de"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="footer__sponsor footer__sponsor--cocacola" />
-              </a>
-              <a
-                href="https://aircash.eu/de/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="footer__sponsor footer__sponsor--aircash" />
-              </a>
-
-              <a
-                href="https://alibarbershop.at"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="footer__sponsor footer__sponsor--ali" />
-              </a>
+          {sponsorItems.length > 0 && (
+            <div className="footer__sponsors">
+              <span className="h3 footer__title">Sponsored By</span>
+              <div className="footer__sponsorList" aria-busy={sponsorsLoading}>
+                {sponsorItems.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${item.name} (öffnet in neuem Tab)`}
+                  >
+                    <span className="footer__sponsor">
+                      <img className="footer__sponsorImage" src={item.logo} alt={item.name} loading="lazy" />
+                    </span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="footer__socials">
             <a

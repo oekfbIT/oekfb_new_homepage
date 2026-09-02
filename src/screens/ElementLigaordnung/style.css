@@ -166,3 +166,15 @@
   padding-top: 10px;
   width: 100%;
 }
+
+.legal-document-error {
+  align-self: stretch;
+  background: #fff;
+  border-left: 4px solid #c62828;
+  padding: 20px;
+}
+
+.legal-document-updated {
+  align-self: stretch;
+  padding: 0 32px 40px;
+}

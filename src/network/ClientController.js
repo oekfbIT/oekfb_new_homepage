@@ -18,6 +18,16 @@ class ClientController {
     return this.apiService.get(`webClient/home/league/${code}`);
   }
 
+  /** Fetch ordered content for Regeln, Ligaordnung, or Bund. */
+  async fetchLegalDocument(documentType) {
+    return this.apiService.get(`legal/${encodeURIComponent(documentType)}`);
+  }
+
+  /** Fetch the globally ordered sponsor and partner list. */
+  async fetchSponsors() {
+    return this.apiService.get("sponsor");
+  }
+
   /**
    * Fetch the league selection.
    * GET /selection
