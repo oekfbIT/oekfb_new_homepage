@@ -45,9 +45,12 @@ export const Navigation = ({
   useEffect(() => {
     const fetchLeagues = async () => {
       try {
-        const res = await apiService.get("client/leagueList?per=25");
+        const res = await apiService.get("webClient/selection");
         const filtered = Array.isArray(res)
-          ? res.filter((l) => !EXCLUDED_CODES.includes(l.code))
+          ? res
+              .filter((l) => !EXCLUDED_CODES.includes(l.code))
+              .filter((l) => l.visibility !== false)
+              .filter((l) => l.name !== "Mannschaft aus der Liga ausgetreten")
           : [];
         setLeagues(filtered);
       } catch (e) {
