@@ -4,6 +4,9 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 */
 
 import PropTypes from "prop-types";
+import { useEffect, useMemo, useState } from "react";
+import AuthService from "../../network/AuthService";
+import ClientController from "../../network/ClientController";
 import "./style.css";
 
 interface Props {
@@ -15,12 +18,37 @@ export const PageHeader = ({
   className,
   text = "Clubs",
 }: Props): JSX.Element => {
+  const authService = useMemo(() => new AuthService(), []);
+  const clientController = useMemo(() => new ClientController(), []);
+  const [seasonName, setSeasonName] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const leagueCode = authService.getLeagueCode();
+
+    if (!leagueCode) return;
+
+    clientController.fetchCurrentSeason(leagueCode)
+      .then((season) => {
+        if (!cancelled && typeof season?.name === "string") {
+          setSeasonName(season.name);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to load the active season:", error);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [authService, clientController]);
+
   return (
     <div className={`page-header ${className}`}>
       <div className="header-wrapper">
         <div className="title left">{text}</div>
 
-        <div className="p">SEASON 2025-2026</div>
+        {seasonName && <div className="p">SEASON {seasonName}</div>}
       </div>
     </div>
   );

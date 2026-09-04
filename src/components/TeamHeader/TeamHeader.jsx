@@ -31,10 +31,11 @@ export const TeamHeader = ({
                 <div className="team-detail-text">
                   <div className="title white">{team_name?.toUpperCase()}</div>
 
-                  <div className="h3 white">
-                    Mitglied Seit:{" "}
-                    {team.membership_since?.toUpperCase() || "SAISON 2024/2025"}
-                  </div>
+                  {team.membership_since && (
+                    <div className="h3 white">
+                      Mitglied Seit: {team.membership_since.toUpperCase()}
+                    </div>
+                  )}
                 </div>
 
                 {/* Kits */}

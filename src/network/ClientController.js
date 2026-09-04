@@ -1,5 +1,7 @@
 import ApiService from "./ApiService";
 
+const currentSeasonRequests = new Map();
+
 /**
  * ClientController class to interact with the Client API endpoints.
  */
@@ -113,6 +115,26 @@ class ClientController {
    */
   async fetchCurrentSeasonTable(code) {
     return this.apiService.get(`webClient/leagues/${code}/current/table`);
+  }
+
+  /**
+   * Fetch lightweight metadata for a league's active season.
+   * GET /leagues/:code/current/season
+   * @param {string} code - League code.
+   * @returns {Promise<Object>} Active season metadata.
+   */
+  async fetchCurrentSeason(code) {
+    if (!currentSeasonRequests.has(code)) {
+      const request = this.apiService
+        .get(`webClient/leagues/${code}/current/season`)
+        .catch((error) => {
+          currentSeasonRequests.delete(code);
+          throw error;
+        });
+      currentSeasonRequests.set(code, request);
+    }
+
+    return currentSeasonRequests.get(code);
   }
 
   /**

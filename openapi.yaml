@@ -211,6 +211,21 @@ paths:
                 items:
                   $ref: "#/components/schemas/TableRow"
 
+  /webClient/leagues/{code}/current/season:
+    get:
+      tags: [Leagues]
+      summary: Get the active season for a league
+      operationId: getCurrentSeason
+      parameters:
+        - $ref: "#/components/parameters/LeagueCode"
+      responses:
+        "200":
+          description: Active season metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CurrentSeason"
+
   /webClient/livescore:
     get:
       tags: [Matches]
@@ -733,6 +748,18 @@ components:
         logo:
           type: string
           format: uri
+
+    CurrentSeason:
+      type: object
+      required: [name]
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+          example: 2026/2027
 
     LeagueSelectionResponse:
       type: object
