@@ -119,18 +119,19 @@ export const ElementGameReport = (): JSX.Element => {
       {isMobile ? <Navigation /> : <DesktopNav />}
 
       <div className="game-report-wrapper">
-        <div className="game-report-wrapper-2" style={{ paddingTop: "20px" }}>
-          <div className="game-report-middle">
+        <div className="game-report-wrapper-2">
+          <div className="match-overview-card">
+            <div className="game-report-middle">
             <div className="away-team-2">
-              <div className="title">{gameData.home_blanket?.name}</div>
-              <div
-                className="club-img-2"
-                style={{
-                  backgroundImage: `url(${gameData.home_blanket?.logo})`,
-                  backgroundPosition: "50% 50%",
-                  backgroundSize: "cover",
-                }}
-              />
+              <div className="team-identity team-identity-home">
+                <div
+                  className="club-img-2"
+                  style={{
+                    backgroundImage: `url(${gameData.home_blanket?.logo})`,
+                  }}
+                />
+                <div className="title">{gameData.home_blanket?.name}</div>
+              </div>
             </div>
 
             <div className="score-wrapper">
@@ -162,35 +163,33 @@ export const ElementGameReport = (): JSX.Element => {
             </div>
 
             <div className="away-team-2">
-              <div
-                className="club-img-2"
-                style={{
-                  backgroundImage: `url(${gameData.away_blanket?.logo})`,
-                  backgroundPosition: "50% 50%",
-                  backgroundSize: "contain",
-                }}
-              />
-              <div className="title">{gameData.away_blanket?.name}</div>
+              <div className="team-identity team-identity-away">
+                <div
+                  className="club-img-2"
+                  style={{
+                    backgroundImage: `url(${gameData.away_blanket?.logo})`,
+                  }}
+                />
+                <div className="title">{gameData.away_blanket?.name}</div>
+              </div>
             </div>
           </div>
+          </div>
 
-          <div className="game-report-bottom">
-            <div className="game-report-match">
-              <div className="divider" />
-
-              <div className="game-setting-wrapper">
-                <div className="setting-wrapper">
-                  <div className="h3">
-                    {gameData.details?.date
-                      ? `${formatMatchDate(gameData.details.date)} - ${formatMatchTime(
-                          gameData.details.date
-                        )}`
-                      : "Datum nicht Zugewiesen"}
+          <div className="match-summary-card">
+                <div className="game-setting-wrapper">
+                  <div className="setting-wrapper">
+                    <div className="h3">
+                      {gameData.details?.date
+                        ? `${formatMatchDate(gameData.details.date)} - ${formatMatchTime(
+                            gameData.details.date
+                          )}`
+                        : "Datum nicht Zugewiesen"}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-            <div className="setting-wrapper">
+                <div className="setting-wrapper">
                   <div className="h3">{statusText}</div>
                 </div>
 
@@ -204,21 +203,19 @@ export const ElementGameReport = (): JSX.Element => {
                     {gameData.details.location}
                   </div>
                 </div>
-              <div className="divider" />
+          </div>
 
-              <div className="game-report-bottom">
-                <div className="game-report-match">
-                  {gameData.events.map((ev: any) => (
-                    <EventRow
-                      key={ev._id}
-                      className="design-component-instance-node-2"
-                      event={ev}
-                      homeID={ev.home}
-                      awayID={ev.away}
-                    />
-                  ))}
-                </div>
-              </div>
+          <div className="game-report-bottom event-list">
+            <div className="game-report-match">
+              {gameData.events.map((ev: any) => (
+                <EventRow
+                  key={ev._id}
+                  className="design-component-instance-node-2"
+                  event={ev}
+                  homeID={ev.home}
+                  awayID={ev.away}
+                />
+              ))}
             </div>
           </div>
         </div>

@@ -30,6 +30,7 @@
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;
+  padding-top: 20px;
   position: relative;
   width: 100%;
 }
@@ -155,6 +156,13 @@
   width: 100%;
 }
 
+.element-game-report .match-overview-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .element-game-report .away-team-2 {
   align-items: center;
   display: inline-flex;
@@ -191,46 +199,14 @@
   background-repeat: no-repeat;
 }
 
-.element-game-report .club-img-2 {
-  background-position: 50% 50%;
-  background-size: cover;
-  height: 80px;
-  max-width: 80px;
-  position: relative;
-  width: 80px;
-  background-repeat: no-repeat;
+.element-game-report .team-identity {
+  align-items: center;
+  display: flex;
+  gap: 10px;
 }
 
-/* For screens under 500px */
-@media (max-width: 500px) {
-  .element-game-report .club-img-2 {
-    height: 40px; /* Adjusted height */
-    width: 40px; /* Adjusted width */
-    background-size: contain; /* Optional: Change background size */
-  }
-
-  .element-game-report .stadium-wrapper {
-    flex-direction: column-reverse;
-    gap: 1px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .element-game-report .club-name {
-    font-size: 24px;
-  }
-
-  .element-game-report .text-wrapper-108 {
-    font-size: 16px;
-  }
-
-  .element-game-report .referee-wrapper {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .element-game-report .text-wrapper-106 {
-  }
+.element-game-report .team-identity-home {
+  flex-direction: row-reverse;
 }
 
 .element-game-report .score-wrapper {
@@ -438,6 +414,13 @@
   flex: 0 0 auto;
   justify-content: center;
   position: relative;
+  width: 100%;
+}
+
+.element-game-report .match-summary-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -685,4 +668,166 @@
 
 .white {
     color: white;
+}
+
+@media (max-width: 500px) {
+  .element-game-report {
+    gap: 10px;
+  }
+
+  .element-game-report .game-report-wrapper-2 {
+    padding-top: 12px;
+  }
+
+  .element-game-report .match-overview-card {
+    padding: 0;
+  }
+
+  .element-game-report .game-report-middle {
+    align-items: start;
+    display: grid;
+    gap: 8px;
+    grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+    overflow: hidden;
+    padding: 0 14px;
+  }
+
+  .element-game-report .away-team-2 {
+    display: block;
+    height: auto;
+    margin: 0;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .element-game-report .team-identity,
+  .element-game-report .team-identity-home {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .element-game-report .club-img-2 {
+    background-size: contain;
+    flex: 0 0 34px;
+    height: 34px;
+    width: 34px;
+  }
+
+  .element-game-report .team-identity > .title {
+    display: -webkit-box;
+    font-size: 14px;
+    line-height: 1.08;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    overflow-wrap: normal;
+    text-align: center;
+    text-wrap: balance;
+    word-break: normal;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .element-game-report .score-wrapper {
+    align-self: start;
+    height: 56px;
+    margin-top: 7px;
+    max-width: 96px;
+    padding: 0;
+    width: 96px;
+  }
+
+  .element-game-report .margin {
+    height: 56px;
+    padding: 0 1px;
+    width: 48px;
+  }
+
+  .element-game-report .background-2,
+  .element-game-report .background-3,
+  .element-game-report .container-5 {
+    height: 56px;
+    width: 46px;
+  }
+
+  .element-game-report .container-5 {
+    top: 0;
+  }
+
+  .element-game-report .container-6,
+  .element-game-report .container-8 {
+    display: none;
+  }
+
+  .element-game-report .container-7 {
+    margin: 0;
+    padding: 0;
+    width: 46px;
+  }
+
+  .element-game-report .container-7 .title {
+    font-size: 27px;
+    line-height: 1;
+  }
+
+  .element-game-report .game-report-bottom {
+    padding-top: 4px;
+  }
+
+  .element-game-report .event-list {
+    padding-top: 8px;
+  }
+
+  .element-game-report .game-report-match {
+    padding: 6px 14px;
+  }
+
+  .element-game-report .match-summary-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+    gap: 0;
+    margin: 8px 10px 0;
+    padding: 7px 10px;
+    width: calc(100% - 20px);
+  }
+
+  .element-game-report .game-setting-wrapper {
+    gap: 2px;
+  }
+
+  .element-game-report .setting-wrapper,
+  .element-game-report .stadium-wrapper {
+    flex: 0 0 auto;
+    gap: 4px;
+    padding: 1px 0;
+  }
+
+  .element-game-report .stadium-wrapper {
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .element-game-report .h3 {
+    font-size: 13px;
+    line-height: 1.1;
+    margin-top: 0;
+  }
+
+  .element-game-report .DFL-STA-b-png {
+    background-size: contain;
+    height: 17px;
+    width: 17px;
+  }
+
+  .element-game-report .stadium-img,
+  .element-game-report .dfl-image {
+    padding: 0;
+  }
 }

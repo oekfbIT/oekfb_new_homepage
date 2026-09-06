@@ -334,3 +334,74 @@
 .event-row .player-data.yellow-away .event-card-name {
   gap: 0px 0px;
 }
+
+@media (max-width: 500px) {
+  .event-row {
+    padding: 0px 0px 6px;
+  }
+
+  .event-row .event-card-bottom {
+    gap: 8px;
+    min-height: 96px;
+  }
+
+  .event-row .event-card-container,
+  .event-row .event-card-bottom-wrapper {
+    min-height: 72px;
+    padding: 8px 0px;
+  }
+
+  .event-row .player-data,
+  .event-row .player-data-2 {
+    gap: 4px;
+  }
+
+  .event-row .event-card-player {
+    background-color: transparent;
+    background-position: 50% 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+  }
+
+  .event-row .event-card-data {
+    height: 50px;
+    padding-right: 6px;
+  }
+
+  .event-row .event-card-name,
+  .event-row .event-card-name-2 {
+    gap: 3px;
+    line-height: 1.05;
+    padding: 0 !important;
+  }
+
+  .event-row .h3_alt {
+    font-size: 14px;
+    line-height: 1.05;
+  }
+
+  .event-row .event-card-minute .h3,
+  .event-row .event-card-score .h3 {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  .event-row .event-card-score {
+    gap: 7px;
+    width: 42px;
+  }
+
+  .event-row .event-card-minute {
+    width: 42px;
+  }
+
+  .event-row .event-card-type-img {
+    height: 24px;
+    min-width: 24px;
+    object-fit: contain;
+    transform: scale(1.8);
+    width: 24px;
+  }
+}
