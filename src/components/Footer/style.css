@@ -88,6 +88,20 @@
   gap: var(--space-2);
 }
 
+.footer__app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer__storeBadges {
+  justify-content: flex-start;
+}
+
+.footer__storeBadges .storeBadges__image {
+  width: 150px;
+}
+
 .footer__title {
   font-size: var(--fs-md);
   color: var(--color-surface);

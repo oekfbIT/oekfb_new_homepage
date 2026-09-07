@@ -1,8 +1,8 @@
-import { useMemo } from "react";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { Sponsors } from "../../components/Sponsors";
+import { StoreBadges } from "../../components/StoreBadges";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import "./style.css";
 
@@ -15,100 +15,9 @@ const HERO_BG =
 const HERO_HAND =
   "https://firebasestorage.googleapis.com/v0/b/oekfbbucket.appspot.com/o/adminfiles%2Fhomepage%2FappFiles%2Fhandmockup.png?alt=media&token=3c9341ba-e6cc-4fbc-ae56-cac2bcdd66a1";
 
-type StoreCta = {
-  kind: "ios" | "android";
-  label: string;
-  href?: string;
-  disabled?: boolean;
-  helperText?: string;
-};
-
 export const AppPage = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
-
-  const STORE_BADGE_IOS =
-    "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"; // replace with your Apple badge/icon image URL
-
-  const STORE_BADGE_ANDROID =
-    "https://cdn.freebiesupply.com/logos/large/2x/google-play-store-logo-png-transparent.png"; // replace with your Google Play badge/icon image URL
-
-  /**
-   * Single source of truth for store CTAs
-   */
-  const storeCtas = useMemo<StoreCta[]>(
-    () => [
-      {
-        kind: "ios",
-        label: "APP STORE",
-        href: "https://apps.apple.com/us/app/%C3%B6kfb/id6756211638",
-      },
-      {
-        kind: "android",
-        label: "GOOGLE PLAY",
-        href: "https://play.google.com/store/apps/details?id=com.oekfb.app",
-      },
-    ],
-    [],
-  );
-  /**
-   * Shared renderer → guarantees identical buttons everywhere
-   */
-  const renderStoreButtons = () => (
-    <div className="appHero__stores" role="group" aria-label="App Stores">
-      {storeCtas.map((cta) => {
-        const iconSrc =
-          cta.kind === "ios" ? STORE_BADGE_IOS : STORE_BADGE_ANDROID;
-
-        const icon = (
-          <img
-            className="appHero__storeBadge"
-            src={iconSrc}
-            alt=""
-            aria-hidden="true"
-          />
-        );
-
-        if (cta.disabled) {
-          return (
-            <button
-              key={cta.kind}
-              className="appHero__storeBtn appHero__storeBtn--disabled"
-              type="button"
-              disabled
-              aria-disabled="true"
-              title={cta.helperText ?? "Coming soon"}
-            >
-              <span className="appHero__storeBtnInner">
-                {icon}
-                <span className="appHero__storeBtnText">{cta.label}</span>
-                {cta.helperText && (
-                  <span className="appHero__storeBtnPill">
-                    {cta.helperText}
-                  </span>
-                )}
-              </span>
-            </button>
-          );
-        }
-
-        return (
-          <a
-            key={cta.kind}
-            className="appHero__storeBtn"
-            href={cta.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <span className="appHero__storeBtnInner">
-              {icon}
-              <span className="appHero__storeBtnText">{cta.label}</span>
-            </span>
-          </a>
-        );
-      })}
-    </div>
-  );
 
   return (
     <div className="element-app-page">
@@ -137,8 +46,7 @@ export const AppPage = (): JSX.Element => {
                 <br />• News, Spielpläne und Tabellen
               </p>
 
-              {/* EXACT SAME BUTTONS AS HERO */}
-              {renderStoreButtons()}
+              <StoreBadges className="appInfo__stores" />
             </div>
 
             <div className="appInfo__imageWrap">
@@ -174,7 +82,7 @@ export const AppPage = (): JSX.Element => {
                 Transfermarkt und vieles mehr direkt aus der App.
               </p>
 
-              {renderStoreButtons()}
+              <StoreBadges className="appHero__stores" />
             </div>
 
             <div className="appHero__bottom" aria-hidden="true">

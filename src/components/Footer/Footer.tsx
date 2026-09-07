@@ -6,6 +6,7 @@
 
 import { Link } from "react-router-dom";
 import { useSponsorRecords } from "../../context/SponsorContext";
+import { StoreBadges } from "../StoreBadges";
 import "./style.css";
 
 export const Footer = (): JSX.Element => {
@@ -61,6 +62,11 @@ export const Footer = (): JSX.Element => {
 
         {/* === Right: Sponsors + Socials === */}
         <div className="footer__section">
+          <div className="footer__app">
+            <span className="h3 footer__title">App</span>
+            <StoreBadges className="footer__storeBadges" />
+          </div>
+
           {sponsorItems.length > 0 && (
             <div className="footer__sponsors">
               <span className="h3 footer__title">Sponsored By</span>
