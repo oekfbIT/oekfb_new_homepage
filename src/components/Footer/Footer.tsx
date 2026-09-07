@@ -12,6 +12,9 @@ import "./style.css";
 export const Footer = (): JSX.Element => {
   const { items: sponsorItems, loading: sponsorsLoading } = useSponsorRecords();
 
+  const getFooterSponsorLogo = (logo?: string | null, fallback?: string): string =>
+    logo?.trim() || fallback || "";
+
   return (
     <footer className="footer" role="contentinfo">
       <div className="footer__inner">
@@ -80,7 +83,12 @@ export const Footer = (): JSX.Element => {
                     aria-label={`${item.name} (öffnet in neuem Tab)`}
                   >
                     <span className="footer__sponsor">
-                      <img className="footer__sponsorImage" src={item.logo} alt={item.name} loading="lazy" />
+                      <img
+                        className="footer__sponsorImage"
+                        src={getFooterSponsorLogo(item.footerLogo, item.logo)}
+                        alt={item.name}
+                        loading="lazy"
+                      />
                     </span>
                   </a>
                 ))}

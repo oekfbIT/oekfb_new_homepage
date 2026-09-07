@@ -108,9 +108,9 @@
 }
 
 .footer__sponsorList {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 200px));
   gap: var(--space-5);
-  flex-wrap: wrap;
 }
 
 .footer__sponsor {
