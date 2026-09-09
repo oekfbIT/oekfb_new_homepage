@@ -9,6 +9,7 @@ export interface SponsorRecord {
   link: string;
   logo: string;
   footerLogo?: string | null;
+  footer_logo?: string | null;
   type: SponsorType;
   position?: number;
 }

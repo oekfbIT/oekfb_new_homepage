@@ -122,6 +122,10 @@
   justify-content: center;
 }
 
+.footer__sponsor--transparent {
+  background-color: transparent;
+}
+
 .footer__sponsorImage {
   width: calc(100% - 24px);
   height: calc(100% - 12px);

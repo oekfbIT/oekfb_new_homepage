@@ -12,8 +12,8 @@ import "./style.css";
 export const Footer = (): JSX.Element => {
   const { items: sponsorItems, loading: sponsorsLoading } = useSponsorRecords();
 
-  const getFooterSponsorLogo = (logo?: string | null, fallback?: string): string =>
-    logo?.trim() || fallback || "";
+  const getFooterSponsorLogo = (footerLogo?: string | null, footerLogoSnakeCase?: string | null, fallback?: string): string =>
+    footerLogo?.trim() || footerLogoSnakeCase?.trim() || fallback || "";
 
   return (
     <footer className="footer" role="contentinfo">
@@ -74,24 +74,29 @@ export const Footer = (): JSX.Element => {
             <div className="footer__sponsors">
               <span className="h3 footer__title">Sponsored By</span>
               <div className="footer__sponsorList" aria-busy={sponsorsLoading}>
-                {sponsorItems.map((item) => (
-                  <a
-                    key={item.id}
-                    href={item.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${item.name} (öffnet in neuem Tab)`}
-                  >
-                    <span className="footer__sponsor">
-                      <img
-                        className="footer__sponsorImage"
-                        src={getFooterSponsorLogo(item.footerLogo, item.logo)}
-                        alt={item.name}
-                        loading="lazy"
-                      />
-                    </span>
-                  </a>
-                ))}
+                {sponsorItems.map((item) => {
+                  const footerLogo = item.footerLogo?.trim() || item.footer_logo?.trim();
+                  const logo = getFooterSponsorLogo(item.footerLogo, item.footer_logo, item.logo);
+
+                  return (
+                    <a
+                      key={item.id}
+                      href={item.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${item.name} (öffnet in neuem Tab)`}
+                    >
+                      <span className={`footer__sponsor ${footerLogo ? "footer__sponsor--transparent" : ""}`}>
+                        <img
+                          className="footer__sponsorImage"
+                          src={logo}
+                          alt={item.name}
+                          loading="lazy"
+                        />
+                      </span>
+                    </a>
+                  );
+                })}
               </div>
             </div>
           )}
