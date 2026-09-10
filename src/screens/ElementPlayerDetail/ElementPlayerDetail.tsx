@@ -144,6 +144,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
   const [player, setPlayer] = useState<Player | null>(null);
   const [seasons, setSeasons] = useState<SeasonWithMatches[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   // Derived display state
   const [first, setFirst] = useState("");
@@ -157,6 +158,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
 
   // ---- Fetch ----
   useEffect(() => {
+    let cancelled = false;
     const fetchPlayerDetail = async () => {
       if (!id) {
         setLoading(false);
@@ -165,7 +167,11 @@ export const ElementPlayerDetail = (): JSX.Element => {
 
       try {
         setLoading(true);
+        setLoadError(false);
+        setPlayer(null);
+        setSeasons([]);
         const response = (await clientController.fetchPlayerDetail(id)) as PlayerDetailResponse;
+        if (cancelled) return;
 
         setPlayer(response?.player ?? null);
         const upcoming = Array.isArray(response?.upcoming) ? response.upcoming : [];
@@ -181,13 +187,16 @@ export const ElementPlayerDetail = (): JSX.Element => {
         }
         setNationalityCode(formatNationality(response?.player?.nationality ?? ""));
       } catch (err) {
+        if (cancelled) return;
         console.error("Error fetching player detail:", err);
+        setLoadError(true);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
     fetchPlayerDetail();
+    return () => { cancelled = true; };
   }, [id, clientController]);
 
   // ---- Build gameday options whenever selected season changes ---------------
@@ -257,6 +266,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
     });
 
   if (loading) return <LoadingIndicator />;
+  if (loadError) return <div role="alert">Spielerstatistiken konnten nicht geladen werden. Bitte versuchen Sie es erneut.</div>;
 
   return (
     <div className="element-player-detail">

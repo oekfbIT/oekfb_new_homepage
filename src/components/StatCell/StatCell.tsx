@@ -17,6 +17,9 @@ enum StatKeyMap {
     losses = "Niederlagen",
     draws = "Unentschieden",
     total_red_cards = "Rote Karten",
+    total_yellow_red_cards = "Gelb-Rote Karten",
+    avg_goals = "Tore pro Spiel",
+    goals_average = "Tore pro Spiel",
     wins = "Siege",
     yellow_red_crd = "Gelb-Rote Karten",
     goals_scored = "Erzielte Tore",
@@ -32,6 +35,9 @@ const formatStatKey = (key: string): string => {
 
 export const StatCell = ({ className, statKey, statValue }: Props): JSX.Element => {
     const formattedKey = formatStatKey(statKey);
+    const formattedValue = typeof statValue === "number" && Number.isFinite(statValue)
+        ? new Intl.NumberFormat("de-AT", { maximumFractionDigits: 2 }).format(statValue)
+        : statValue;
 
     return (
         <div className={`stat-cell ${className}`}>
@@ -40,7 +46,7 @@ export const StatCell = ({ className, statKey, statValue }: Props): JSX.Element 
             </div>
 
             <div className="stat-cell-value">
-                <div className="stat-cell-value-text">{statValue}</div>
+                <div className="stat-cell-value-text">{formattedValue}</div>
             </div>
         </div>
     );

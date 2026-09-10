@@ -20,7 +20,6 @@ import { StatCell } from "../../components/StatCell";
 import { TeamDetailSquad } from "../../components/TeamDetailSquad";
 import { TeamHeader } from "../../components/TeamHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import AuthService from "../../network/AuthService";
 import ClientController from "../../network/ClientController";
 import "./style.css";
 
@@ -43,6 +42,7 @@ type TeamStats = {
   totalPoints: number;
   totalYellowCards: number;
   totalRedCards: number;
+  totalYellowRedCards?: number;
 } | {
   // also accept snake_case from backend just in case
   wins: number;
@@ -54,6 +54,7 @@ type TeamStats = {
   total_points: number;
   total_yellow_cards: number;
   total_red_cards: number;
+  total_yellow_red_cards?: number;
 };
 
 type TeamStatsPair = {
@@ -82,7 +83,6 @@ export const ElementTeamDetail = (): JSX.Element => {
   const { id } = useParams();
 
   const clientController = useMemo(() => new ClientController(), []);
-  const authService = useMemo(() => new AuthService(), []);
 
   const [teamData, setTeamData] = useState<any>(null);
 
@@ -95,18 +95,23 @@ export const ElementTeamDetail = (): JSX.Element => {
   const [selectedGameday, setSelectedGameday] = useState<string>(ALL_GAMEDAYS);
 
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
     const fetchTeamDetail = async () => {
-      const leagueCode = authService.getLeagueCode();
-      if (!leagueCode) {
-        console.error("No league code found in cookies.");
+      if (!id) {
         setLoading(false);
         return;
       }
 
       try {
+        setLoading(true);
+        setLoadError(false);
+        setTeamData(null);
+        setSeasons([]);
         const response = await clientController.fetchClubDetail(id);
+        if (cancelled) return;
         setTeamData(response);
 
         const upcomingSeasons: SeasonWithMatches[] = Array.isArray(response?.upcoming)
@@ -123,14 +128,17 @@ export const ElementTeamDetail = (): JSX.Element => {
 
         setSelectedSeasonId(primarySeason ? primarySeason.season_id : ALL_SEASONS);
       } catch (error) {
+        if (cancelled) return;
         console.error("Error fetching team detail:", error);
+        setLoadError(true);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
     fetchTeamDetail();
-  }, [id, authService, clientController]);
+    return () => { cancelled = true; };
+  }, [id, clientController]);
 
   // Build gameday options when season changes
   useEffect(() => {
@@ -171,24 +179,8 @@ export const ElementTeamDetail = (): JSX.Element => {
 
     setUniqueGamedays(list);
 
-    // Default gameday: closest to "now"
-    const today = Date.now();
-    let closest: number | null = null;
-    let minDiff = Infinity;
-
-    matches.forEach((m: any) => {
-      const whenStr = m?.details?.date;
-      const gd = m?.details?.gameday;
-      const ms = toMs(whenStr);
-      if (!gd || Number.isNaN(ms)) return;
-      const diff = Math.abs(today - ms);
-      if (diff < minDiff) {
-        minDiff = diff;
-        closest = gd;
-      }
-    });
-
-    setSelectedGameday(closest ? String(closest) : ALL_GAMEDAYS);
+    // Show the complete selected season until the user chooses a matchday.
+    setSelectedGameday(ALL_GAMEDAYS);
   }, [selectedSeasonId, seasons]);
 
   // Resolve selections
@@ -226,6 +218,7 @@ export const ElementTeamDetail = (): JSX.Element => {
     teamData?.club?.teamName ?? teamData?.club?.team_name ?? "Team";
 
   if (loading) return <LoadingIndicator />;
+  if (loadError) return <div role="alert">Mannschaftsstatistiken konnten nicht geladen werden. Bitte versuchen Sie es erneut.</div>;
 
   return (
     <div
@@ -261,7 +254,7 @@ export const ElementTeamDetail = (): JSX.Element => {
 
         {/* Season stats */}
         <section className="section">
-          <h2 className="sub_header md_base">{clubName} Saison Statistiken</h2>
+          <h2 className="sub_header md_base">{clubName} Saison Statistiken{seasons.find(s => s.primary)?.season_name ? ` – ${seasons.find(s => s.primary)?.season_name}` : ""}</h2>
           <div className="h3 stats-grid" style={{ justifyItems: "center" }}>
             {seasonStatsEntries.map(([k, v]) => (
               <StatCell
