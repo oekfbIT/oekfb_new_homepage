@@ -9,11 +9,14 @@
 import { DateTime } from "luxon";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { getTeamDisplayName } from "../../utils/teamUtils";
 import "./style.css";
 
 type TeamBlanket = {
   id?: string | number;
   name: string;
+  shortName?: string | null;
+  short_name?: string | null;
   logo: string;
 };
 
@@ -74,8 +77,8 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
     <section className={`fixture ${state === "mobile" ? "fixture--mobile" : "fixture--desktop"}`}>
       {/* Teams + score */}
       <div className="fixture__teams">
-        <button className="team team--home" onClick={() => goTeam(home_blanket.id)} aria-label={home_blanket.name}>
-          <span className="team__nameR">{home_blanket.name}</span>
+        <button className="team team--home" onClick={() => goTeam(home_blanket.id)} aria-label={getTeamDisplayName(home_blanket)}>
+          <span className="team__nameR">{getTeamDisplayName(home_blanket)}</span>
           <img className="team__logo" src={home_blanket.logo} alt="" />
         </button>
 
@@ -83,9 +86,9 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
           <span className="score__value">{score.home}:{score.away}</span>
         </div>
 
-        <button className="team team--away" onClick={() => goTeam(away_blanket.id)} aria-label={away_blanket.name}>
+        <button className="team team--away" onClick={() => goTeam(away_blanket.id)} aria-label={getTeamDisplayName(away_blanket)}>
           <img className="team__logo" src={away_blanket.logo} alt="" />
-          <span className="team__nameL">{away_blanket.name}</span>
+          <span className="team__nameL">{getTeamDisplayName(away_blanket)}</span>
         </button>
       </div>
 
@@ -122,11 +125,15 @@ FixtureDataCell.propTypes = {
     home_blanket: PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       name: PropTypes.string.isRequired,
+      shortName: PropTypes.string,
+      short_name: PropTypes.string,
       logo: PropTypes.string.isRequired,
     }).isRequired,
     away_blanket: PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       name: PropTypes.string.isRequired,
+      shortName: PropTypes.string,
+      short_name: PropTypes.string,
       logo: PropTypes.string.isRequired,
     }).isRequired,
     details: PropTypes.shape({

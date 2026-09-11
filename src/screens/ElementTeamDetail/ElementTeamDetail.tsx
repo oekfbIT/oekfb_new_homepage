@@ -1,3 +1,4 @@
+import AchievementsSection from "../../components/AchievementsSection/AchievementsSection";
 // ElementTeamDetail.tsx
 // -----------------------------------------------------------------------------
 // Team detail view with SEASON + SPIELTAG filters.
@@ -237,6 +238,7 @@ export const ElementTeamDetail = (): JSX.Element => {
       </div>
 
       <div className="page-content">
+        <AchievementsSection key={id} ownerType="team" ownerId={id} />
         {/* All-time stats */}
         <section className="section">
           <h2 className="sub_header md_base">{clubName} Ewige Statistiken</h2>

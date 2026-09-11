@@ -1,0 +1,6 @@
+.achievements-section { width: 100%; min-width: 0; font-family: var(--font-sans); }
+.achievements-section__list { padding: 0; margin: 16px 0; list-style: none; }
+.achievements-section__card { display: flex; align-items: center; gap: 16px; min-width: 0; padding: 6px 16px; border: 0; border-radius: 0; background: #fff; color: var(--color-text-strong, #06171c); font-size: 18px; font-weight: 600; overflow-wrap: anywhere; }
+.achievements-section__image { display: flex; align-items: center; justify-content: center; flex: 0 0 36px; width: 36px; height: 36px; overflow: hidden; }
+.achievements-section__image img { display: block; width: 36px; height: 36px; min-width: 36px; max-width: 36px; min-height: 36px; max-height: 36px; object-fit: contain; }
+.achievements-section__trophy { font-size: 34px; line-height: 1; }

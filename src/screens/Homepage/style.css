@@ -37,17 +37,32 @@
 
 /* ========= Matchups ========= */
 
+.home__matchups {
+  max-width: 1140px;
+  width: calc(100% - 32px);
+  gap: 8px;
+}
+
 .home__matchups-list {
   display: flex;
-  gap: var(--space-3); /* replaced: 12px */
+  gap: 8px;
   overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: var(--space-3); /* replaced: 10px -> 12px for scale */
-  width: -webkit-fill-available;
-  margin-left: var(--space-3); /* replaced: 12px */
+  padding: 2px 0 6px;
+  width: 100%;
+  scroll-snap-type: x proximity;
 }
-.home__matchups-list.u-scrollbar-hidden {
-} /* use utility */
+
+.home__matchups-link {
+  align-self: flex-end;
+  color: #ed0020;
+  font: 700 12px/18px var(--font-sans);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.home__matchups-link:hover { text-decoration: underline; }
+.home__matchups-link:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
 
 /* ========= Carousel ========= */
 .home__carousel {

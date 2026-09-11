@@ -26,6 +26,11 @@ class ClientController {
   }
 
   /** Fetch the globally ordered sponsor and partner list. */
+  async fetchAchievements(ownerType, ownerId) {
+    const items = await this.apiService.get(`webClient/achievements/${ownerType}/${encodeURIComponent(ownerId)}`);
+    return items.map(item => ({ ...item, imageUrl: item.image_url ?? item.imageUrl ?? null }));
+  }
+
   async fetchSponsors() {
     return this.apiService.get("sponsor");
   }

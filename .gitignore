@@ -21,3 +21,5 @@ tmp
 parcel-bundle-reports/
 .verdaccio_storage/
 sourcemap-info.json
+# Keep development assets separate from production build cleanup.
+.dev-dist/

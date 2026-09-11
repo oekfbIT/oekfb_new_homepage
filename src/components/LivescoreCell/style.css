@@ -323,3 +323,40 @@
     margin: 0px 10px;
     height: 100%;
   }
+
+/* Equal team columns keep every score centered for mixed full/short names. */
+.fixture-data-cell.state-mobile .fixture-data,
+.fixture-data-cell.state-desktop .fixture-data {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  width: 360px;
+  max-width: 100%;
+  gap: 0;
+  padding: 0;
+}
+
+.fixture-data-cell .fixture-data .home-team,
+.fixture-data-cell .fixture-data .away-team {
+  min-width: 0;
+  width: auto;
+  display: flex;
+  align-items: stretch;
+}
+
+.fixture-data-cell .home-team .gameday-livescore { justify-content: flex-start; }
+.fixture-data-cell .away-team .gameday-livescore { justify-content: flex-start; }
+.fixture-data-cell .fixture-data .gameday-livescore { min-width: 0; }
+.fixture-data-cell .fixture-data .gameday-livescore-2,
+.fixture-data-cell .fixture-data .gameday-livescore-5 {
+  min-width: 0;
+  width: auto;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  margin: 0;
+}
+.fixture-data-cell .fixture-data .gameday-livescore-5 { text-align: left; }
+.fixture-data-cell .fixture-data .gameday-livescore-3 {
+  flex: 0 0 25px;
+  object-fit: contain;
+  margin: 0 5px;
+}

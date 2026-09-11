@@ -32,9 +32,20 @@
 
 /* ===== Teams + score ===== */
 .fixture__teams {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
+  width: 340px;
+  max-width: 100%;
+  flex-shrink: 0;
 }
+
+.fixture__teams .team {
+  min-width: 0;
+}
+
+.fixture__teams .team--home { justify-content: flex-end; }
+.fixture__teams .team--away { justify-content: flex-start; }
 
 .team {
   display: inline-flex;
@@ -50,6 +61,7 @@
   width: 25px;
   height: 25px;
   object-fit: contain;
+  flex-shrink: 0;
 }
 
 /* Team name tweaks */

@@ -1,3 +1,4 @@
+import { getTeamDisplayName } from "../../utils/teamUtils";
 import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,10 +16,14 @@ interface Match {
   id: string;
   home_blanket: {
     name: string;
+    shortName?: string | null;
+    short_name?: string | null;
     logo: string;
   };
   away_blanket: {
     name: string;
+    shortName?: string | null;
+    short_name?: string | null;
     logo: string;
   };
   details: {
@@ -101,7 +106,6 @@ export const LivescoreCell = ({ match, state }: Props): JSX.Element => {
     <div className={`fixture-data-cell state-${state}`}>
       <div
         className="fixture-data"
-        style={{ maxWidth: "100%", paddingRight: "15px" }}
       >
         <div
           className="home-team clickable"
@@ -111,11 +115,11 @@ export const LivescoreCell = ({ match, state }: Props): JSX.Element => {
           <div className="gameday-livescore justRight">
             <img
               src={match?.home_blanket.logo}
-              alt={match?.home_blanket.name}
+              alt={getTeamDisplayName(match?.home_blanket)}
               className="gameday-livescore-3"
             />
             <div className="gameday-livescore-2 justRight">
-              {match?.home_blanket.name}
+              {getTeamDisplayName(match?.home_blanket)}
             </div>
           </div>
         </div>
@@ -132,10 +136,10 @@ export const LivescoreCell = ({ match, state }: Props): JSX.Element => {
           <div className="gameday-livescore">
             <img
               src={match?.away_blanket.logo}
-              alt={match?.away_blanket.name}
+              alt={getTeamDisplayName(match?.away_blanket)}
               className="gameday-livescore-3"
             />
-            <div className="gameday-livescore-5">{match?.away_blanket.name}</div>
+            <div className="gameday-livescore-5">{getTeamDisplayName(match?.away_blanket)}</div>
           </div>
         </div>
       </div>
@@ -181,10 +185,14 @@ LivescoreCell.propTypes = {
     id: PropTypes.string.isRequired,
     home_blanket: PropTypes.shape({
       name: PropTypes.string.isRequired,
+      shortName: PropTypes.string,
+      short_name: PropTypes.string,
       logo: PropTypes.string.isRequired,
     }),
     away_blanket: PropTypes.shape({
       name: PropTypes.string.isRequired,
+      shortName: PropTypes.string,
+      short_name: PropTypes.string,
       logo: PropTypes.string.isRequired,
     }),
     details: PropTypes.shape({

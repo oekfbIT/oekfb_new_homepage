@@ -1,3 +1,4 @@
+import { getTeamDisplayName } from "../../utils/teamUtils";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
@@ -137,7 +138,7 @@ export const LeagueTable = () => {
                 </div>
 
                 <div className="pb lt__cell lt__cell--team">
-                  {isMobile ? team.shortName || team.name : team.name}
+                  {getTeamDisplayName(team)}
                 </div>
 
                 <div className="lt__cell lt__cell--num">{matches}</div>

@@ -92,15 +92,20 @@ export const Homepage = (): JSX.Element => {
       {sortedUpcoming.length > 0 && (
         <section className="home__section home__matchups">
           <div className="home__matchups-list">
-            {sortedUpcoming.map((matchup: any) => (
+            {sortedUpcoming.map((matchup: any, index: number) => (
               <MatchupCell
                 key={matchup.id}
                 className="home__matchup"
                 matchup={matchup}
-                state="fixture-w-top"
+                state={index === 0 || String(matchup.details?.date) !== String(sortedUpcoming[index - 1].details?.date)
+                  ? "fixture-w-top"
+                  : "fixture-no-top"}
               />
             ))}
           </div>
+          <Link className="home__matchups-link" to="/spielplan">
+            Alle Spiele <span aria-hidden="true">→</span>
+          </Link>
         </section>
       )}
 

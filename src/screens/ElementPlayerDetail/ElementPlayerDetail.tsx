@@ -1,3 +1,4 @@
+import AchievementsSection from "../../components/AchievementsSection/AchievementsSection";
 // ElementPlayerDetail.tsx
 // -----------------------------------------------------------------------------
 // Player detail view with a reorganized hero:
@@ -348,6 +349,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
 
       {/* CONTENT */}
       <div className="page-content">
+        <AchievementsSection key={id} ownerType="player" ownerId={id} />
         <section style={{ width: "-webkit-fill-available" }}>
           <h2 className="sub_header md_base">{player?.name ?? "Player"} Ewige Statistik</h2>
           <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>

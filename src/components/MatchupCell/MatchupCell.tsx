@@ -1,3 +1,4 @@
+import { getTeamDisplayName } from "../../utils/teamUtils";
 import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,8 @@ import "./style.css";
 interface Team {
   id?: string;
   name?: string;
+  shortName?: string | null;
+  short_name?: string | null;
   logo?: string;
 }
 
@@ -55,6 +58,7 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
   const [elapsedTime, setElapsedTime] = React.useState("0'");
 
   const status = matchup?.status ?? "";
+  const isPending = status === "pending";
   const isLive = status === "first" || status === "second";
 
   const firstHalfDate = matchup?.first_half_date;
@@ -84,7 +88,7 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
   // Example: "12.08.2025 - 19:30" or fallback text when absent
   const formattedDate =
     matchup?.details?.date
-      ? `${formatMatchDate(matchup.details.date)} - ${formatMatchTime(
+      ? `${formatMatchDate(matchup.details.date)} ${formatMatchTime(
           matchup.details.date
         )}`
       : "Datum nicht Zugewiesen";
@@ -93,7 +97,7 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
   const footerTone =
     ["first", "second", "halftime"].includes(status) ? "live" : ["pending"].includes(status) ? "pending" : "default";
 
-  // Primary status line shown in the footer; includes live minute indirectly via utils if applicable.
+  // Keep the detailed status for the accessible game link.
   const matchStatusText = getMatchStatusText(
     status,
     firstHalfDate,
@@ -103,6 +107,14 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
 
   const homeScore = matchup?.score?.home ?? 0;
   const awayScore = matchup?.score?.away ?? 0;
+  const cardLabel = ({
+    pending: "-",
+    first: "Live · 1. HZ",
+    second: "Live · 2. HZ",
+    halftime: "HT",
+    cancelled: "Abgesagt",
+    abgebrochen: "Abgebrochen",
+  } as Record<string, string>)[status] ?? "Spielbericht";
 
   return (
     <div
@@ -125,7 +137,12 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
       </div>
 
       {/* Card body */}
-      <div className="matchup__body">
+      <button
+        type="button"
+        className="matchup__body"
+        onClick={() => navigate(`/match/${matchup?.id}`)}
+        aria-label={`${getTeamDisplayName(matchup?.home_blanket)} gegen ${getTeamDisplayName(matchup?.away_blanket)}, ${formattedDate}, ${matchStatusText}`}
+      >
         {/* Teams + score row */}
         <div className="matchup__row">
           {/* Home team logo */}
@@ -133,7 +150,7 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
             <img
               className="matchup__team-logo"
               src={matchup?.home_blanket?.logo || FALLBACK_LOGO}
-              alt={matchup?.home_blanket?.name || "Home Team"}
+              alt={getTeamDisplayName(matchup?.home_blanket) || "Home Team"}
               loading="lazy"
             />
           </div>
@@ -141,7 +158,7 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
           {/* Score block (colors depend on 'state') */}
           <div className={`matchup__score matchup__score--${state}`}>
             <div className="matchup__score-text">
-              {homeScore}:{awayScore}
+              {isPending ? "vs" : `${homeScore}:${awayScore}`}
             </div>
           </div>
 
@@ -150,7 +167,7 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
             <img
               className="matchup__team-logo"
               src={matchup?.away_blanket?.logo || FALLBACK_LOGO}
-              alt={matchup?.away_blanket?.name || "Away Team"}
+              alt={getTeamDisplayName(matchup?.away_blanket) || "Away Team"}
               loading="lazy"
             />
           </div>
@@ -166,17 +183,11 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
             .filter(Boolean)
             .join(" ")}
         >
-          <button
-            type="button"
-            className="matchup__cta"
-            onClick={() => navigate(`/match/${matchup?.id}`)}
-          >
-            {/* If you want to explicitly append the minute, you can combine both: */}
-            {/* {isLive ? `${matchStatusText} • ${elapsedTime}` : matchStatusText} */}
-            {matchStatusText}
-          </button>
+          <span className="matchup__cta">
+            {cardLabel}
+          </span>
         </div>
-      </div>
+      </button>
     </div>
   );
 };
@@ -187,11 +198,15 @@ MatchupCell.propTypes = {
     home_blanket: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
+      shortName: PropTypes.string,
+      short_name: PropTypes.string,
       logo: PropTypes.string,
     }),
     away_blanket: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,
+      shortName: PropTypes.string,
+      short_name: PropTypes.string,
       logo: PropTypes.string,
     }),
     status: PropTypes.string,

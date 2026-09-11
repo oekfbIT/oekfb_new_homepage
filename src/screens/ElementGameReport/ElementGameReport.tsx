@@ -1,3 +1,4 @@
+import { getTeamDisplayName } from "../../utils/teamUtils";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
@@ -130,7 +131,7 @@ export const ElementGameReport = (): JSX.Element => {
                     backgroundImage: `url(${gameData.home_blanket?.logo})`,
                   }}
                 />
-                <div className="title">{gameData.home_blanket?.name}</div>
+                <div className="title">{getTeamDisplayName(gameData.home_blanket)}</div>
               </div>
             </div>
 
@@ -170,7 +171,7 @@ export const ElementGameReport = (): JSX.Element => {
                     backgroundImage: `url(${gameData.away_blanket?.logo})`,
                   }}
                 />
-                <div className="title">{gameData.away_blanket?.name}</div>
+                <div className="title">{getTeamDisplayName(gameData.away_blanket)}</div>
               </div>
             </div>
           </div>
@@ -229,7 +230,7 @@ export const ElementGameReport = (): JSX.Element => {
                 <TeamDetailSquadWrapper
                   className="design-component-instance-node-2"
                   clubImgClassName="team-detail-squad-header"
-                  teamName={gameData.home_blanket?.name}
+                  teamName={getTeamDisplayName(gameData.home_blanket)}
                   trikot={gameData.home_blanket?.dress}
                   teamLogo={gameData.home_blanket?.logo}
                   assign="home"
@@ -265,7 +266,7 @@ export const ElementGameReport = (): JSX.Element => {
                 <TeamDetailSquadWrapper
                   className="design-component-instance-node-2"
                   clubImgClassName="team-detail-squad-header"
-                  teamName={gameData.away_blanket?.name}
+                  teamName={getTeamDisplayName(gameData.away_blanket)}
                   teamLogo={gameData.away_blanket?.logo}
                 />
                 <div className="team-detail-squad-20">
