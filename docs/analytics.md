@@ -45,7 +45,11 @@ Google provides sessions, engagement and acquisition reporting from the tag. Cus
 
 ## Backend
 
-Prepared in `../PUBLIC_REPO/BE/tools/analytics/`. This standalone Python job uses Google's official SDK and writes aggregate snapshots to the backend MongoDB database. It filters every request to the Homepage stream, because this property also contains app and admin streams. See that directory's README for environment variables and hourly deployment setup. No Google credential, scheduled deployment or live import has been configured yet.
+The existing Swift/Vapor backend now imports eight aggregate report types into its MongoDB database on startup and hourly. Every report filters to the Homepage stream. Production instructions are in `../PUBLIC_REPO/BE/docs/analytics-production.md`.
+
+In DigitalOcean's backend service runtime environment, set `GA4_ENABLED=true`, `GA4_PROPERTY_ID=443444290`, `GA4_STREAM_ID=15781098262`, and encrypted `GA4_SERVICE_ACCOUNT_JSON` containing the entire downloaded JSON. No uploaded file or separate Python job is needed. Never put this credential in the frontend.
+
+Google Analytics Data API and service-account Viewer access are configured. A read-only live test on 2026-09-15 successfully fetched all eight report types with the downloaded credential; all returned zero rows. Production deployment and database-write verification remain pending.
 
 ## Verification and release
 
