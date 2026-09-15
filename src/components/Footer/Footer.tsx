@@ -4,6 +4,7 @@
 // Layout unchanged, just renamed classes + polished styling
 // -------------------------------------------------------------
 
+import { openAnalyticsSettings } from "../../analytics/analytics";
 import { Link } from "react-router-dom";
 import { useSponsorRecords } from "../../context/SponsorContext";
 import { StoreBadges } from "../StoreBadges";
@@ -36,6 +37,7 @@ export const Footer = (): JSX.Element => {
               <Link to="/kontakt">Kontakt</Link>
               <Link to="/impressum">Impressum</Link>
               <Link to="/privacy">Datenschutz</Link>
+              <button className="footer__cookieSettings" type="button" aria-haspopup="dialog" onClick={openAnalyticsSettings}>Cookie-Einstellungen</button>
               <Link to="/transfers">Transfer Liste</Link>
               <Link to="/strafsenat">Strafsenat</Link>
             </div>

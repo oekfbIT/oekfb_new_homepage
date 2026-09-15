@@ -1,11 +1,42 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
-import { analytics, CONSENT_KEY, openAnalyticsSettings } from "./analytics";
+import { analytics, CONSENT_KEY } from "./analytics";
 import "./style.css";
 
 export function AnalyticsProvider() {
   const location = useLocation();
+  const panel = useRef<HTMLElement>(null);
   const [open, setOpen] = useState(() => !analytics?.getConsent());
+  const dismiss = () => {
+    if (!analytics?.getConsent()) analytics?.setConsent("denied");
+    setOpen(false);
+  };
+  useEffect(() => {
+    if (!open) return;
+    const previous = document.activeElement as HTMLElement | null;
+    panel.current?.focus();
+    const keyboard = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        dismiss();
+      }
+      if (event.key === "Tab") {
+        const controls = Array.from(panel.current?.querySelectorAll<HTMLElement>('button, a[href]') ?? []);
+        const first = controls[0], last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === panel.current)) {
+          event.preventDefault(); last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault(); first?.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", keyboard);
+    return () => {
+      document.removeEventListener("keydown", keyboard);
+      if (previous?.isConnected) previous.focus({ preventScroll: true });
+    };
+  }, [open]);
   useEffect(() => { analytics?.pageView(location.pathname); }, [location.pathname]);
   useEffect(() => {
     const show = () => setOpen(true);
@@ -46,8 +77,9 @@ export function AnalyticsProvider() {
     analytics?.setConsent(value);
     setOpen(false);
   };
-  return <>
-    {open && <section className="analytics-consent" aria-labelledby="analytics-consent-title">
+  return open ? createPortal(
+    <div className="analytics-overlay" onClick={(event) => { if (event.target === event.currentTarget) dismiss(); }}>
+    <section ref={panel} tabIndex={-1} role="dialog" aria-modal="true" className="analytics-consent" aria-labelledby="analytics-consent-title">
       <h2 id="analytics-consent-title">Analyse-Cookies</h2>
       <p>Mit deiner Zustimmung verwenden wir Google Analytics, um Besuche, gelesene Seiten und die Nutzung unserer Website auszuwerten. Dabei werden Cookies gesetzt und Nutzungsdaten an Google übermittelt. Ohne Zustimmung bleibt die Analyse deaktiviert.</p>
       <p>Du kannst deine Auswahl jederzeit über „Cookie-Einstellungen“ ändern. <a href="#/privacy" onClick={() => setOpen(false)}>Mehr zum Datenschutz</a></p>
@@ -56,8 +88,8 @@ export function AnalyticsProvider() {
         <button type="button" onClick={() => choose("denied")}>Analyse-Cookies ablehnen</button>
         <button type="button" onClick={() => choose("granted")}>Analyse-Cookies akzeptieren</button>
       </div>
-      {analytics?.getConsent() && <button className="analytics-consent__close" type="button" onClick={() => setOpen(false)}>Schließen</button>}
-    </section>}
-    {!open && <button className="analytics-settings" type="button" onClick={openAnalyticsSettings}>Cookie-Einstellungen</button>}
-  </>;
+      <button className="analytics-consent__close" type="button" onClick={dismiss}>Schließen</button>
+    </section>
+    </div>, document.body
+  ) : null;
 }
