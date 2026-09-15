@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { analytics } from "../../analytics/analytics";
 import { useSearchParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { ClubCard } from "../../components/ClubCard";
@@ -69,7 +70,10 @@ export const SearchResults = (): JSX.Element => {
       setError(false);
       try {
         const response = await clientController.fetchSearchResults(query);
-        if (isCurrent) setResults(response ?? { teams: [], players: [] });
+        if (isCurrent) {
+          setResults(response ?? { teams: [], players: [] });
+          analytics?.track("search_results_view", { has_results: Boolean(response?.teams?.length || response?.players?.length) });
+        }
       } catch (requestError) {
         console.error("Search failed:", requestError);
         if (isCurrent) {

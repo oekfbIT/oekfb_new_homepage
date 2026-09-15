@@ -4,6 +4,7 @@ import LoadingIndicator from "./components/LoadingIndicator/LoadingIndicator";
 import { SponsorProvider } from "./context/SponsorContext";
 import ApiService from "./network/ApiService";
 import AuthService from "./network/AuthService";
+import { AnalyticsProvider } from "./analytics/AnalyticsProvider";
 
 // Screens
 import { AppPage } from "./screens/AppPage";
@@ -70,6 +71,7 @@ const LeagueBootstrap = ({ children }: { children: ReactNode }): JSX.Element => 
 const App = () => (
   <SponsorProvider>
     <HashRouter>
+      <AnalyticsProvider />
       <LeagueBootstrap>
         <Routes>
       <Route path="/" element={<ElementLeagueSelection />} />

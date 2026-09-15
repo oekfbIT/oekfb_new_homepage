@@ -19,6 +19,7 @@ export const SponsorLogoList = ({
     {!loading && items.map((item) => (
       <a
         key={item.id}
+        data-analytics-sponsor={item.id}
         href={item.link}
         target="_blank"
         rel="noopener noreferrer"

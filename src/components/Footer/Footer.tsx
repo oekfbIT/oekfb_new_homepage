@@ -81,6 +81,7 @@ export const Footer = (): JSX.Element => {
                   return (
                     <a
                       key={item.id}
+                      data-analytics-sponsor={item.id}
                       href={item.link}
                       target="_blank"
                       rel="noopener noreferrer"

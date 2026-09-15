@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { analytics } from "../../analytics/analytics";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
@@ -179,14 +180,14 @@ export const ElementRegister = (): JSX.Element => {
       initial_password: formData.initial_password,
     };
 
-    console.log("Formatted Data:", formattedData);
+    analytics?.track("registration_submit");
 
     // Set submitting state
     setIsSubmitting(true);
 
     try {
       const response = await clientController.register(formattedData);
-      console.log("Registration successful:", response);
+      analytics?.track("registration_complete");
 
       // You can adjust the success message based on your API response
       setSuccessMessage("Registration successful! You can now log in.");

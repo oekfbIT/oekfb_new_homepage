@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { analytics } from "../../analytics/analytics";
 import { useEffect, useId, useMemo, useState } from "react";
 import "./style.css";
 
@@ -58,7 +59,10 @@ export const LeagueDropdown = ({ leagues, activeLeague, onSelect }: Props): JSX.
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const league = filteredLeagues.find((item) => item.code === event.target.value);
-    if (league) onSelect(league.code, league.id);
+    if (league) {
+      analytics?.track("select_league", { league_id: String(league.id) });
+      onSelect(league.code, league.id);
+    }
   };
 
   return (
