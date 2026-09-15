@@ -1,15 +1,11 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { analytics, CONSENT_KEY, openAnalyticsSettings } from "./analytics";
 import "./style.css";
 
 export function AnalyticsProvider() {
   const location = useLocation();
-  const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(() => !analytics?.getConsent());
-  useEffect(() => {
-    if (open && dialog.current && !dialog.current.open) dialog.current.showModal();
-  }, [open]);
   useEffect(() => { analytics?.pageView(location.pathname); }, [location.pathname]);
   useEffect(() => {
     const show = () => setOpen(true);
@@ -51,7 +47,7 @@ export function AnalyticsProvider() {
     setOpen(false);
   };
   return <>
-    {open && <dialog ref={dialog} className="analytics-consent" aria-labelledby="analytics-consent-title" onCancel={(event) => { event.preventDefault(); choose("denied"); }}>
+    {open && <section className="analytics-consent" aria-labelledby="analytics-consent-title">
       <h2 id="analytics-consent-title">Analyse-Cookies</h2>
       <p>Mit deiner Zustimmung verwenden wir Google Analytics, um Besuche, gelesene Seiten und die Nutzung unserer Website auszuwerten. Dabei werden Cookies gesetzt und Nutzungsdaten an Google übermittelt. Ohne Zustimmung bleibt die Analyse deaktiviert.</p>
       <p>Du kannst deine Auswahl jederzeit über „Cookie-Einstellungen“ ändern. <a href="#/privacy" onClick={() => setOpen(false)}>Mehr zum Datenschutz</a></p>
@@ -61,7 +57,7 @@ export function AnalyticsProvider() {
         <button type="button" onClick={() => choose("granted")}>Analyse-Cookies akzeptieren</button>
       </div>
       {analytics?.getConsent() && <button className="analytics-consent__close" type="button" onClick={() => setOpen(false)}>Schließen</button>}
-    </dialog>}
+    </section>}
     {!open && <button className="analytics-settings" type="button" onClick={openAnalyticsSettings}>Cookie-Einstellungen</button>}
   </>;
 }

@@ -1,4 +1,4 @@
-.analytics-consent { position: fixed; z-index: 10000; inset: 0; margin: auto; width: min(520px, calc(100vw - 40px)); box-sizing: border-box; padding: 24px; background: #fff; color: #17212e; border: 1px solid #d9dfe6; border-radius: 12px; box-shadow: 0 8px 40px #0003; font: 15px/1.5 Arial, sans-serif; max-height: calc(100dvh - 40px); overflow-y: auto; }
+.analytics-consent { position: fixed; z-index: 10000; bottom: 20px; left: 20px; width: min(520px, calc(100vw - 40px)); box-sizing: border-box; padding: 24px; background: #fff; color: #17212e; border: 1px solid #d9dfe6; border-radius: 12px; box-shadow: 0 8px 40px #0003; font: 15px/1.5 Arial, sans-serif; max-height: calc(100dvh - 40px); overflow-y: auto; }
 .analytics-consent h2 { font-size: 20px; line-height: 1.3; margin: 0 0 12px; color: #17212e; }
 .analytics-consent p { margin: 10px 0; }
 .analytics-consent a { color: #123c78; text-decoration: underline; }
@@ -8,5 +8,3 @@
 .analytics-consent__close { margin-top: 12px; background: transparent; border: 0; color: #173e76; text-decoration: underline; cursor: pointer; padding: 6px; }
 .analytics-settings { position: fixed; bottom: 10px; left: 10px; z-index: 9998; padding: 8px 12px; background: #fff; color: #173e76; border: 1px solid #c7d0dc; border-radius: 6px; font: 12px/1.4 Arial, sans-serif; cursor: pointer; box-shadow: 0 2px 8px #0002; }
 .analytics-consent button:focus-visible, .analytics-settings:focus-visible, .analytics-consent a:focus-visible { outline: 3px solid #e6a91e; outline-offset: 3px; }
-
-.analytics-consent::backdrop { background: rgba(12, 24, 42, 0.55); }
