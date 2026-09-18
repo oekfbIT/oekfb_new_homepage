@@ -60,15 +60,21 @@ export const ElementLeagueSelection = (): JSX.Element => {
       try {
         setIsLoading(true);
 
-        const [leaguesResp, homepageResp] = await Promise.all([
+        const [leaguesResult, homepageResult] = await Promise.allSettled([
           clientController.fetchLeagueSelection(),
           clientController.fetchHomepageData("HME"),
         ]);
 
-        setHomepageData(homepageResp);
+        if (leaguesResult.status === "rejected") {
+          throw leaguesResult.reason;
+        }
+
+        if (homepageResult.status === "fulfilled") {
+          setHomepageData(homepageResult.value);
+        }
 
         // Normalize once: hide placeholder + enforce visibility
-        const visible = (leaguesResp || [])
+        const visible = (leaguesResult.value || [])
           .filter((l: any) => l?.name !== "Mannschaft aus der Liga ausgetreten")
           .filter((l: any) => l?.visibility === true);
 
