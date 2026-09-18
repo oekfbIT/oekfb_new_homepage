@@ -1,6 +1,7 @@
 import ApiService from "./ApiService";
 
 const currentSeasonRequests = new Map();
+let leagueSelectionRequest = null;
 
 /**
  * ClientController class to interact with the Client API endpoints.
@@ -32,7 +33,7 @@ class ClientController {
   }
 
   async fetchSponsors() {
-    return this.apiService.get("sponsor");
+    return this.apiService.get("webClient/sponsors");
   }
 
   /**
@@ -41,7 +42,15 @@ class ClientController {
    * @returns {Promise<Object[]>} List of leagues.
    */
   async fetchLeagueSelection() {
-    return this.apiService.get(`webClient/selection`);
+    if (!leagueSelectionRequest) {
+      leagueSelectionRequest = this.apiService
+        .get("webClient/selection")
+        .catch((error) => {
+          leagueSelectionRequest = null;
+          throw error;
+        });
+    }
+    return leagueSelectionRequest;
   }
 
   /**
@@ -74,22 +83,28 @@ class ClientController {
 
   /**
    * Fetch a specific league.
-   * GET /leagues/code/:code
+   * Uses the allowlisted public league selection response.
    * @param {string} code - League code.
    * @returns {Promise<Object>} List of clubs.
    */
   async fetchLeague(code) {
-    return this.apiService.get(`leagues/code/${code}`);
+    const leagues = await this.fetchLeagueSelection();
+    const league = leagues.find((item) => item.code === code);
+    if (!league) throw new Error("League not found");
+    return league;
   }
 
   /**
    * Fetch a specific league.
-   * GET /leagues/code/:code
+   * Uses the allowlisted public league selection response.
    * @param {string} id - League code.
    * @returns {Promise<Object>} List of clubs.
    */
   async fetchLeagueID(id) {
-    return this.apiService.get(`leagues/${id}`);
+    const leagues = await this.fetchLeagueSelection();
+    const league = leagues.find((item) => item.id === id);
+    if (!league) throw new Error("League not found");
+    return league;
   }
 
   /**
@@ -154,11 +169,11 @@ class ClientController {
 
   /**
    * Fetch news for the Strafsenat.
-   * GET /news/strafsenat?per=250
+   * GET /webClient/news/strafsenat?per=250
    * @returns {Promise<Object[]>} List of Strafsenat news items.
    */
   async fetchStrafsenatNews() {
-    return this.apiService.get(`/news/strafsenat?per=250`);
+    return this.apiService.get("webClient/news/strafsenat?per=250");
   }
 
   /**
@@ -340,7 +355,7 @@ class ClientController {
 
   /**
    * Register a new user.
-   * POST /registrations/register
+   * POST /client/homepage/register
    *
    * @param {Object} registrationData - Registration data.
    * @param {Object} registrationData.primaryContact - Primary contact information.
@@ -366,7 +381,7 @@ class ClientController {
    * @returns {Promise<Object>} Registration response.
    */
   async register(registrationData) {
-    return this.apiService.post(`registrations/register`, registrationData);
+    return this.apiService.post("client/homepage/register", registrationData);
   }
 
   /**
@@ -384,16 +399,6 @@ class ClientController {
     );
   }
 
-  /**
-   * Register a new user.
-   * POST /registrations/register
-   *
-   * @param {Object} registrationData - Registration data.
-   * @returns {Promise<Object>} Registration response.
-   */
-  async register(registrationData) {
-    return this.apiService.post(`registrations/register`, registrationData);
-  }
 }
 
 export default ClientController;

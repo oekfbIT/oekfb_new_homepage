@@ -99,35 +99,20 @@ paths:
                 items:
                   $ref: "#/components/schemas/League"
 
-  /leagues/code/{code}:
+  /webClient/sponsors:
     get:
-      tags: [League Discovery]
-      summary: Get league by code
-      operationId: getLeagueByCode
-      parameters:
-        - $ref: "#/components/parameters/LeagueCode"
+      tags: [Homepage]
+      summary: Get public sponsor and partner display data
+      operationId: getPublicSponsors
       responses:
         "200":
-          description: League metadata
+          description: Ordered sponsor and partner list
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/League"
-
-  /leagues/{id}:
-    get:
-      tags: [League Discovery]
-      summary: Get league by ID
-      operationId: getLeagueById
-      parameters:
-        - $ref: "#/components/parameters/Id"
-      responses:
-        "200":
-          description: League metadata
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/League"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Sponsor"
 
   /webClient/home/league/{code}:
     get:
@@ -407,7 +392,7 @@ paths:
                 items:
                   $ref: "#/components/schemas/NewsItem"
 
-  /news/strafsenat:
+  /webClient/news/strafsenat:
     get:
       tags: [News]
       summary: Get Strafsenat news/decisions
@@ -475,7 +460,10 @@ paths:
     get:
       tags: [Transfers]
       summary: Get transfer request detail
+      description: Legacy administrative workflow; requires an administrator bearer token.
       operationId: getTransfer
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       responses:
@@ -490,7 +478,10 @@ paths:
     get:
       tags: [Transfers]
       summary: Confirm a transfer request
+      description: Legacy administrative workflow; requires an administrator bearer token.
       operationId: confirmTransfer
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       responses:
@@ -505,7 +496,10 @@ paths:
     get:
       tags: [Transfers]
       summary: Reject a transfer request
+      description: Legacy administrative workflow; requires an administrator bearer token.
       operationId: rejectTransfer
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       responses:
@@ -520,7 +514,10 @@ paths:
     get:
       tags: [Postponements]
       summary: Get postponement request detail
+      description: Legacy administrative workflow; requires an administrator bearer token.
       operationId: getPostponeRequest
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       responses:
@@ -535,7 +532,10 @@ paths:
     post:
       tags: [Postponements]
       summary: Approve a postponement request
+      description: Requires an authenticated user with access to the affected team.
       operationId: approvePostponeRequest
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       responses:
@@ -550,7 +550,10 @@ paths:
     post:
       tags: [Postponements]
       summary: Deny a postponement request
+      description: Requires an authenticated user with access to the affected team.
       operationId: denyPostponeRequest
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       responses:
@@ -561,7 +564,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ActionResult"
 
-  /registrations/register:
+  /client/homepage/register:
     post:
       tags: [Registrations]
       summary: Register a new team
@@ -584,8 +587,10 @@ paths:
     get:
       tags: [Registrations]
       summary: Get team registration detail
-      description: Intended by the commented UploadRequest screen.
+      description: Administrator-only legacy endpoint intended by the commented UploadRequest screen.
       operationId: getRegistration
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       responses:
@@ -598,8 +603,10 @@ paths:
     patch:
       tags: [Registrations]
       summary: Patch registration document URLs
-      description: Intended by the commented UploadRequest screen after file upload.
+      description: Administrator-only legacy endpoint intended by the commented UploadRequest screen after file upload.
       operationId: updateRegistration
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       requestBody:
@@ -627,9 +634,11 @@ paths:
   /people-events/{id}/register:
     post:
       tags: [Events]
-      summary: Register people for a public event
-      description: Used by the Gala Night registration screen.
+      summary: Register people for an event
+      description: Administrator-only legacy endpoint. The Gala Night route is disabled in the homepage until a dedicated public registration route is added.
       operationId: registerPeopleEvent
+      security:
+        - bearerAuth: []
       parameters:
         - $ref: "#/components/parameters/Id"
       requestBody:
@@ -646,7 +655,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/PeopleEventRegistration"
 
-  /users/login:
+  /app/auth/login:
     post:
       tags: [Auth]
       summary: Login with Basic Auth credentials
@@ -693,6 +702,9 @@ components:
       type: apiKey
       in: cookie
       name: authToken
+    bearerAuth:
+      type: http
+      scheme: bearer
   parameters:
     Id:
       name: id
@@ -1315,6 +1327,37 @@ components:
           type: string
           format: uri
 
+    Sponsor:
+      type: object
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        link:
+          type: string
+          format: uri
+          nullable: true
+        logo:
+          type: string
+          format: uri
+          nullable: true
+        footerLogo:
+          type: string
+          format: uri
+          nullable: true
+        type:
+          type: string
+          enum: [sponsor, partner]
+          nullable: true
+        position:
+          type: integer
+          nullable: true
+
 x-product-screens:
   - route: "#/"
     screen: League selection
@@ -1322,12 +1365,14 @@ x-product-screens:
     requiredApis:
       - GET /webClient/selection
       - GET /webClient/home/league/{code}
+      - GET /webClient/sponsors
   - route: "#/liga"
     screen: League homepage
     component: Homepage
     requiredApis:
       - GET /webClient/home/league/{code}
       - GET /client/leagueList
+      - GET /webClient/sponsors
   - route: "#/teams"
     screen: Teams
     component: ElementClubsDesktop
@@ -1386,7 +1431,7 @@ x-product-screens:
     screen: Strafsenat
     component: Strafsenat
     requiredApis:
-      - GET /news/strafsenat
+      - GET /webClient/news/strafsenat
   - route: "#/sperren"
     screen: Suspensions
     component: ElementSperrenDesktop
@@ -1415,7 +1460,7 @@ x-product-screens:
     screen: Team registration
     component: ElementRegister
     requiredApis:
-      - POST /registrations/register
+      - POST /client/homepage/register
   - route: "#/team/upload/{id}"
     screen: Registration document upload
     component: UploadRequest

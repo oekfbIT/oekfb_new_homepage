@@ -101,8 +101,7 @@ Current client behavior:
 |---|---|---|
 | `GET` | `/webClient/selection` | League selection/start page. |
 | `GET` | `/client/leagueList?per=25` | League pills in desktop/mobile navigation. |
-| `GET` | `/leagues/code/{code}` | Get league metadata by code. |
-| `GET` | `/leagues/{id}` | Get league metadata by ID. |
+| `GET` | `/webClient/sponsors` | Public allowlisted sponsor and partner display data. |
 
 ### Homepage
 
@@ -158,7 +157,7 @@ Note: The existing code passes the selected league code into these leaderboard m
 |---|---|---|
 | `GET` | `/webClient/news/league/{code}` | League news list. |
 | `GET` | `/webClient/news/detail/{id}` | News article/detail page. |
-| `GET` | `/news/strafsenat?per=250` | Strafsenat decisions/news page. |
+| `GET` | `/webClient/news/strafsenat?per=250` | Strafsenat decisions/news page. |
 
 ### Discipline
 
@@ -187,7 +186,7 @@ Note: The existing code passes the selected league code into these leaderboard m
 
 | Method | Endpoint | Used For |
 |---|---|---|
-| `POST` | `/registrations/register` | New team registration. |
+| `POST` | `/client/homepage/register` | New team registration. |
 | `GET` | `/registrations/{id}` | Registration upload page, currently commented/intended. |
 | `PATCH` | `/registrations/{id}` | Update uploaded registration document URLs, currently commented/intended. |
 
@@ -207,7 +206,7 @@ Current hardcoded event ID:
 
 | Method | Endpoint | Used For |
 |---|---|---|
-| `POST` | `/users/login` | Login via Basic Auth. Mostly service code; public homepage links to external team portal. |
+| `POST` | `/app/auth/login` | Login via Basic Auth. Mostly service code; public homepage links to external team portal. |
 | `GET` | `/app/application/user/verify/{token}` | Verify user email token. |
 
 ## 5. Main Entities / Models
@@ -591,8 +590,7 @@ Required routes/screens:
 Required API calls:
 - GET /webClient/selection
 - GET /client/leagueList?per=25
-- GET /leagues/code/{code}
-- GET /leagues/{id}
+- GET /webClient/sponsors
 - GET /webClient/home/league/{code}
 - GET /webClient/clubs/league/{code}
 - GET /webClient/clubs/detail/{id}
@@ -611,7 +609,7 @@ Required API calls:
 - GET /webClient/leaderboard/{id}/yellowRedCard
 - GET /webClient/news/league/{code}
 - GET /webClient/news/detail/{id}
-- GET /news/strafsenat?per=250
+- GET /webClient/news/strafsenat?per=250
 - GET /webClient/blocked/league/{code}
 - GET /webClient/transfers
 - GET /transfers/{id}
@@ -620,11 +618,11 @@ Required API calls:
 - GET /postpone/{id}/id
 - POST /postpone/{id}/approve
 - POST /postpone/{id}/deny
-- POST /registrations/register
+- POST /client/homepage/register
 - GET /registrations/{id}
 - PATCH /registrations/{id}
 - POST /people-events/{id}/register
-- POST /users/login
+- POST /app/auth/login
 - GET /app/application/user/verify/{token}
 
 Important data models:

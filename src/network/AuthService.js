@@ -1,8 +1,9 @@
 class AuthService {
   constructor() {
-    this.baseURL = "https://api.oekfb.eu/";
-    // this.baseURL = "https://test.oekfb.eu";
-    // this.baseURL = "http://localhost:8080"; // Uncomment for local development
+    const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    this.baseURL =
+      process.env.API_BASE_URL ||
+      (isLocal ? "http://localhost:8080" : "https://api.oekfb.eu");
   }
 
   /**
@@ -12,7 +13,7 @@ class AuthService {
    * @returns {Object} - An object indicating success or failure and any relevant data.
    */
   async login(email, password) {
-    const url = `${this.baseURL}/users/login`;
+    const url = `${this.baseURL}/app/auth/login`;
     const base64Credentials = btoa(`${email}:${password}`);
 
     try {
@@ -27,7 +28,6 @@ class AuthService {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Login response data:", data);
         const token = data.token;
 
         if (!token) {

@@ -7,12 +7,15 @@ class ApiService {
   }
 
   async request(method, endpoint, body = null, headers = {}) {
-    const url = `${this.baseURL}/${endpoint}`;
+    const normalizedEndpoint = endpoint.replace(/^\/+/, "");
+    const url = `${this.baseURL}/${normalizedEndpoint}`;
+    const authToken = this.getCookie("authToken");
     const options = {
       method,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
         ...headers,
       },
       credentials: "include",
@@ -28,31 +31,24 @@ class ApiService {
       options.body = JSON.stringify(body);
     }
 
-    // Debugging log to print the request details
-    console.log(`Request Method: ${method}`);
-    console.log(`Request URL: ${url}`);
-    if (body) {
-      console.log("Request Body:", JSON.stringify(body, null, 2));
-    }
-    console.log("Request Headers:", JSON.stringify(options.headers, null, 2));
-
     try {
       const response = await fetch(url, options);
       const text = await response.text();
 
       if (response.ok) {
         try {
-          const jsonResponse = JSON.parse(text);
-          console.log("Response:", JSON.stringify(jsonResponse, null, 2));
-          return jsonResponse;
+          return JSON.parse(text);
         } catch (e) {
-          console.log("Response:", text);
           return text;
         }
       } else {
-        const errorData = JSON.parse(text);
-        console.log("Response Error:", JSON.stringify(errorData, null, 2));
-        throw new Error(errorData.message || "Request failed");
+        let errorData = {};
+        try {
+          errorData = text ? JSON.parse(text) : {};
+        } catch {
+          errorData = {};
+        }
+        throw new Error(errorData.reason || errorData.message || `Request failed (${response.status})`);
       }
     } catch (error) {
       console.error(`Error with ${method} request to ${endpoint}:`, error);
@@ -61,33 +57,25 @@ class ApiService {
   }
 
   async get(endpoint, headers = {}) {
-    console.log(`GET Request to: ${endpoint}`);
-    const response = await this.request("GET", endpoint, null, headers);
-    console.log("Response:", JSON.stringify(response, null, 2));
-    return response;
+    return this.request("GET", endpoint, null, headers);
   }
 
   async post(endpoint, body, headers = {}) {
-    console.log(`POST Request to: ${endpoint}`);
-    console.log("Request Body:", JSON.stringify(body, null, 2));
-    const response = await this.request("POST", endpoint, body, headers);
-    console.log("Response:", JSON.stringify(response, null, 2));
-    return response;
+    return this.request("POST", endpoint, body, headers);
   }
 
   async patch(endpoint, body, headers = {}) {
-    console.log(`PATCH Request to: ${endpoint}`);
-    console.log("Request Body:", JSON.stringify(body, null, 2));
-    const response = await this.request("PATCH", endpoint, body, headers);
-    console.log("Response:", JSON.stringify(response, null, 2));
-    return response;
+    return this.request("PATCH", endpoint, body, headers);
   }
 
   async delete(endpoint, headers = {}) {
-    console.log(`DELETE Request to: ${endpoint}`);
-    const response = await this.request("DELETE", endpoint, null, headers);
-    console.log("Response:", JSON.stringify(response, null, 2));
-    return response;
+    return this.request("DELETE", endpoint, null, headers);
+  }
+
+  getCookie(name) {
+    const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = document.cookie.match(new RegExp(`(?:^|; )${escapedName}=([^;]*)`));
+    return match ? decodeURIComponent(match[1]) : null;
   }
 }
 
