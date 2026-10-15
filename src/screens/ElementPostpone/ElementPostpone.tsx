@@ -1,6 +1,6 @@
 // ElementPostpone.jsx — mapped to new postpone API shape
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
@@ -13,24 +13,26 @@ export const ElementPostpone = () => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
   const { id } = useParams();
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token") ?? "";
 
   const clientController = useMemo(() => new ClientController(), []);
 
   const [postpone, setPostpone] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!id) {
-      setError("Ungültige Postpone-ID.");
+    if (!id || !token) {
+      setError("Dieser Bestätigungslink ist ungültig. Bitte verwenden Sie den vollständigen Link aus der E-Mail.");
       setLoading(false);
       return;
     }
 
     const fetchPostpone = async () => {
       try {
-        const response = await clientController.fetchPostpone(id);
+        const response = await clientController.fetchPostpone(id, token);
 
         // Minimal shape validation for the new API
         if (!response?.requester?.team_name || !response?.requestee?.team_name) {
@@ -48,23 +50,29 @@ export const ElementPostpone = () => {
     };
 
     fetchPostpone();
-  }, [id, clientController]);
+  }, [id, token, clientController]);
 
   const handleAccept = async () => {
+    if (submitting) return;
+    setSubmitting(true);
     try {
-      await clientController.approvePostpone(id);
-      navigate("/");
+      setPostpone(await clientController.approvePostpone(id, token));
     } catch (e) {
-      console.error("Fehler beim Bestätigen der Spielverlegung:", e);
+      setError(e.message || "Die Spielverlegung konnte nicht bestätigt werden.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const handleReject = async () => {
+    if (submitting) return;
+    setSubmitting(true);
     try {
-      await clientController.denyPostpone(id);
-      navigate("/");
+      setPostpone(await clientController.denyPostpone(id, token));
     } catch (e) {
-      console.error("Fehler beim Ablehnen der Spielverlegung:", e);
+      setError(e.message || "Die Spielverlegung konnte nicht abgelehnt werden.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -102,7 +110,7 @@ export const ElementPostpone = () => {
       onAccept: handleAccept,
       onReject: handleReject,
     };
-  }, [postpone]);
+  }, [postpone, submitting]);
 
   return (
     <div className="postpone-page">

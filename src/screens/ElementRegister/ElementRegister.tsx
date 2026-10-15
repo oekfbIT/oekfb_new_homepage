@@ -4,105 +4,30 @@ import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
-import AuthService from "../../network/AuthService";
+
 import ClientController from "../../network/ClientController";
 import "./style.css";
 
-// Reusable InputField Component
-const InputField = ({
-  type = "text",
-  placeholder,
-  required,
-  name,
-  value,
-  onChange,
-}: {
-  type?: string;
-  placeholder: string;
-  required: boolean;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}): JSX.Element => (
-  <div className="div-wrapper-3">
-    <div className="authentication-form-wrapper">
-      <div className="div-15">
-        <div className="authentication-form-4">
-          <input
-            type={type}
-            name={name}
-            value={value}
-            onChange={onChange}
-            className="authentication-form-7"
-            placeholder={required ? `${placeholder} *` : placeholder}
-            required={required}
-            aria-label={placeholder}
-            style={{ backgroundColor: "clear" }}
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const DropdownField = ({
-  placeholder,
-  required,
-  name,
-  value,
-  onChange,
-  options,
-}: {
-  placeholder: string;
-  required: boolean;
-  name: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: { label: string; value: string }[];
-}): JSX.Element => (
-  <div className="div-wrapper-3">
-    <div className="authentication-form-wrapper">
-      <div className="div-15">
-        <div className="authentication-form-4">
-          <select
-            name={name}
-            value={value}
-            onChange={onChange}
-            className="authentication-form-7"
-            required={required}
-            aria-label={placeholder}
-          >
-            <option value="" disabled>
-              {placeholder}
-            </option>
-            {options.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const generatePassword = (length = 6) => {
-  const charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  let password = "";
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * charset.length);
-    password += charset[randomIndex];
-  }
-  return password;
-};
+const trimContact = (contact: {
+  first: string;
+  last: string;
+  phone: string;
+  email: string;
+  identification: string;
+}) => ({
+  ...contact,
+  first: contact.first.trim(),
+  last: contact.last.trim(),
+  phone: contact.phone.trim(),
+  email: contact.email.trim(),
+});
 
 export const ElementRegister = (): JSX.Element => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
-  const authService = new AuthService();
+
   const clientController = new ClientController();
-  const initial_password = generatePassword();
+  const initial_password = "";
 
   // State Management
   const [formData, setFormData] = useState({
@@ -133,8 +58,7 @@ export const ElementRegister = (): JSX.Element => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  // Modal State
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   // Handle Input Changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -151,32 +75,67 @@ export const ElementRegister = (): JSX.Element => {
   };
 
   // Handle Other Field Changes
-  const handleOtherChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleOtherChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
+    const { name, value, type } = e.target;
+    const nextValue =
+      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+
     setFormData((prevData) => ({
       ...prevData,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: nextValue,
     }));
   };
 
   // Handle Form Submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting || successMessage) return;
 
     // Reset feedback messages
     setSuccessMessage(null);
     setErrorMessage(null);
 
+    const primaryContact = trimContact(formData.primaryContact);
+    const secondaryContact = trimContact(formData.secondaryContact);
+    const teamName = formData.teamName.trim();
+    const verein = formData.verein.trim();
+    const bundesland = formData.bundesland.trim();
+    const type = formData.type.trim();
+    const missingRequiredField =
+      !primaryContact.first ||
+      !primaryContact.last ||
+      !primaryContact.phone ||
+      !primaryContact.email ||
+      !secondaryContact.first ||
+      !secondaryContact.last ||
+      !secondaryContact.phone ||
+      !secondaryContact.email ||
+      !teamName ||
+      !type ||
+      !bundesland;
+
+    if (missingRequiredField) {
+      setErrorMessage("Bitte füllen Sie alle Pflichtfelder aus.");
+      return;
+    }
+
+    if (!formData.acceptedAGB) {
+      setErrorMessage("Bitte akzeptieren Sie die Allgemeinen Geschäftsbedingungen.");
+      return;
+    }
+
     // Format the data as specified
     const formattedData = {
-      primaryContact: formData.primaryContact,
-      secondaryContact: formData.secondaryContact,
-      teamName: formData.teamName,
-      verein: formData.verein,
-      bundesland: formData.bundesland,
-      type: formData.type,
+      primaryContact,
+      secondaryContact,
+      teamName,
+      verein,
+      bundesland,
+      type,
       acceptedAGB: formData.acceptedAGB,
-      referCode: formData.referCode,
+      referCode: formData.referCode.trim(),
       initial_password: formData.initial_password,
     };
 
@@ -190,7 +149,7 @@ export const ElementRegister = (): JSX.Element => {
       analytics?.track("registration_complete");
 
       // You can adjust the success message based on your API response
-      setSuccessMessage("Registration successful! You can now log in.");
+      setSuccessMessage("Ihre Anfrage ist eingegangen. Sie erhalten eine Willkommens-E-Mail. Die Administration prüft Ihre Anmeldung und sendet Ihnen bei Bedarf einen Link für Vertrag und Ausweise. Ein Teamzugang wird erst nach Freigabe eingerichtet.");
 
       // Optionally, reset the form
       setFormData({
@@ -227,7 +186,7 @@ export const ElementRegister = (): JSX.Element => {
       const message =
         error?.response?.data?.message ||
         error?.message ||
-        "Registration failed. Please try again.";
+        "Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut.";
 
       setErrorMessage(message);
     } finally {
@@ -249,270 +208,53 @@ export const ElementRegister = (): JSX.Element => {
 
   const vereinOptions = [
     { label: "Privat", value: "privat" },
-    { label: "Exestierender Verein", value: "verein" },
+    { label: "Bestehender Verein", value: "verein" },
   ];
 
   return (
-    <div
-      className="element-register"
-      style={{ overflow: "hidden", minWidth: isMobile ? "366px" : "900px" }}
-    >
+    <div className="team-registration-page">
       {isMobile ? <Navigation /> : <DesktopNav />}
-
-      <div className="frame-wrapper">
-        <div className="frame-5">
-          <div className="authentication-form-14">
-            <form onSubmit={handleSubmit} className="authentication-form">
-              {/* Header Section */}
-              <div className="div-15">
-                <div className="div-wrapper-3">
-                  <div className="authentication">
-                    <div className="authentication-2">
-                      Meine Mannschaft Anmelden
-                    </div>
-
-                    <p className="authentication-3">
-                      Sie melden sich als Verein an. Die Richtigkeit Ihrer
-                      Angaben ist entscheidend. Bitte füllen Sie das Formular
-                      vollständig und sorgfältig aus.
-                    </p>
-                  </div>
-                </div>
+      <main className="registration-layout">
+        <aside className="registration-intro">
+          <span className="registration-eyebrow">DEIN TEAM. DEINE LIGA.</span>
+          <h1>Gemeinsam auf<br />den Platz.</h1>
+          <p>Meldet eure Mannschaft beim ÖKFB an. Wir begleiten euch vom ersten Kontakt bis zum Anpfiff.</p>
+          <ol className="registration-steps">
+            <li><span>01</span><div><strong>Anfrage senden</strong><p>Team und zwei Kontaktpersonen angeben. Ihr bekommt eine Willkommens-E-Mail.</p></div></li>
+            <li><span>02</span><div><strong>Unterlagen ergänzen</strong><p>Auf Einladung der Administration: Vertrag und Ausweise über euren persönlichen Link hochladen.</p></div></li>
+            <li><span>03</span><div><strong>Freigabe erhalten</strong><p>Nach Prüfung, Ligazuweisung und Zahlung entscheidet die Administration über eure Aufnahme.</p></div></li>
+          </ol>
+          <div className="registration-help"><strong>Noch Fragen?</strong><a href="mailto:office@oekfb.eu">office@oekfb.eu ↗</a></div>
+        </aside>
+        <section className="registration-panel">
+          <header><span className="registration-eyebrow">MANNSCHAFTSANMELDUNG</span><h2>Euer nächstes Spiel beginnt hier.</h2><p>Für die erste Anfrage braucht ihr noch keine Dokumente. Mit * markierte Angaben sind erforderlich.</p></header>
+          {successMessage ? <div className="registration-feedback success" role="status"><h2>Anfrage eingegangen</h2><p>{successMessage}</p><a href="#/">Zur Startseite →</a></div> : <form onSubmit={handleSubmit}>
+            {errorMessage && <div className="registration-feedback error" role="alert">{errorMessage}</div>}
+            <fieldset disabled={isSubmitting}>
+              <legend><span>01</span> Eure Mannschaft</legend>
+              <div className="registration-grid">
+                <label>Teamname *<input name="teamName" value={formData.teamName} onChange={handleOtherChange} required placeholder="z. B. FC Donaustadt" /></label>
+                <label>Bundesland *<select name="bundesland" value={formData.bundesland} onChange={handleOtherChange} required><option value="" disabled>Bitte auswählen</option>{bundeslandOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
+                <label>Organisation *<select name="type" value={formData.type} onChange={handleOtherChange} required><option value="" disabled>Bitte auswählen</option>{vereinOptions.map(option => <option key={option.value} value={option.value}>{option.label}</option>)}</select></label>
+                <label>Vereinsname <small>(optional)</small><input name="verein" value={formData.verein} onChange={handleOtherChange} placeholder="Name eures Vereins" /></label>
               </div>
-
-              {/* Display Success or Error Messages */}
-              {successMessage && (
-                <div className="success-message">{successMessage}</div>
-              )}
-              {errorMessage && (
-                <div className="error-message">{errorMessage}</div>
-              )}
-
-              {/* Primary Contact Section */}
-              <div className="authentication-form-2">
-                <div className="authentication-form-15">
-                  PRIMÄRER ANSPRECHPARTNER
-                </div>
-
-                <InputField
-                  type="text"
-                  placeholder="Vorname"
-                  required={true}
-                  name="primaryContact.first"
-                  value={formData.primaryContact.first}
-                  onChange={handleChange}
-                />
-
-                <InputField
-                  type="text"
-                  placeholder="Familiename"
-                  required={true}
-                  name="primaryContact.last"
-                  value={formData.primaryContact.last}
-                  onChange={handleChange}
-                />
-
-                <InputField
-                  type="tel"
-                  placeholder="Telefonnummer"
-                  required={true}
-                  name="primaryContact.phone"
-                  value={formData.primaryContact.phone}
-                  onChange={handleChange}
-                />
-
-                <InputField
-                  type="email"
-                  placeholder="Email"
-                  required={true}
-                  name="primaryContact.email"
-                  value={formData.primaryContact.email}
-                  onChange={handleChange}
-                />
+            </fieldset>
+            {(["primaryContact", "secondaryContact"] as const).map((contact, index) => <fieldset key={contact} disabled={isSubmitting}>
+              <legend><span>0{index + 2}</span> {index === 0 ? "Erste Kontaktperson" : "Zweite Kontaktperson"}</legend>
+              <p className="registration-field-help">{index === 0 ? "An diese E-Mail senden wir alle Informationen zu eurer Anmeldung." : "Die zweite Person, die euren Mannschaftsvertrag unterzeichnet."}</p>
+              <div className="registration-grid">
+                {([["first", "Vorname", "text"], ["last", "Nachname", "text"], ["phone", "Telefonnummer", "tel"], ["email", "E-Mail-Adresse", "email"]] as const).map(([field, label, type]) => <label key={field}>{label} *<input name={`${contact}.${field}`} type={type} value={formData[contact][field]} onChange={handleChange} required autoComplete={field === "email" ? "email" : field === "phone" ? "tel" : field === "first" ? "given-name" : "family-name"} /></label>)}
               </div>
-
-              {/* Secondary Contact Section */}
-              <div className="authentication-form-2">
-                <div className="authentication-form-15">
-                  SEKUNDARER ANSPRECHPARTNER
-                </div>
-
-                <InputField
-                  type="text"
-                  placeholder="Vorname"
-                  required={true}
-                  name="secondaryContact.first"
-                  value={formData.secondaryContact.first}
-                  onChange={handleChange}
-                />
-
-                <InputField
-                  type="text"
-                  placeholder="Familiename"
-                  required={true}
-                  name="secondaryContact.last"
-                  value={formData.secondaryContact.last}
-                  onChange={handleChange}
-                />
-
-                <InputField
-                  type="tel"
-                  placeholder="Telefonnummer"
-                  required={true}
-                  name="secondaryContact.phone"
-                  value={formData.secondaryContact.phone}
-                  onChange={handleChange}
-                />
-
-                <InputField
-                  type="email"
-                  placeholder="Email"
-                  required={true}
-                  name="secondaryContact.email"
-                  value={formData.secondaryContact.email}
-                  onChange={handleChange}
-                />
-              </div>
-
-              {/* Additional Details Section */}
-              <div className="authentication-form-2">
-                <div className="authentication-form-15">MANNSCHAFT DETAILS</div>
-
-                <InputField
-                  type="text"
-                  placeholder="Team Name"
-                  required={true}
-                  name="teamName"
-                  value={formData.teamName}
-                  onChange={handleOtherChange}
-                />
-
-                <DropdownField
-                  placeholder="Privat oder Verein"
-                  required={true}
-                  name="type"
-                  value={formData.verein} // will store enum value like "wien"
-                  onChange={handleOtherChange}
-                  options={vereinOptions} // label for display, value for submission
-                />
-
-                {/*<InputField*/}
-                {/*    type="text"*/}
-                {/*    placeholder="Bundesland"*/}
-                {/*    required={true}*/}
-                {/*    name="bundesland"*/}
-                {/*    value={formData.bundesland}*/}
-                {/*    onChange={handleOtherChange}*/}
-                {/*/>*/}
-
-                <DropdownField
-                  placeholder="Wählen Sie Ihr Bundesland"
-                  required={true}
-                  name="bundesland"
-                  value={formData.bundesland} // will store enum value like "wien"
-                  onChange={handleOtherChange}
-                  options={bundeslandOptions} // label for display, value for submission
-                />
-
-                <InputField
-                  type="text"
-                  placeholder="Verein (Optional)"
-                  required={false}
-                  name="verein"
-                  value={formData.verein}
-                  onChange={handleOtherChange}
-                />
-
-                {/*<InputField*/}
-                {/*    type="text"*/}
-                {/*    placeholder="Refer Code"*/}
-                {/*    required={false}*/}
-                {/*    name="referCode"*/}
-                {/*    value={formData.referCode}*/}
-                {/*    onChange={handleOtherChange}*/}
-                {/*/>*/}
-
-                {/* Additional Details Section */}
-                <div className="authentication-form-2">
-                  <div className="div-wrapper-3">
-                    <div className="authentication-form-wrapper">
-                      <div className="div-15">
-                        <div className="authentication-form-4">
-                          <label>
-                            <input
-                              type="checkbox"
-                              name="acceptedAGB"
-                              checked={formData.acceptedAGB}
-                              onChange={handleOtherChange}
-                            />
-                            Ich akzeptiere die{" "}
-                            <span
-                              style={{
-                                color: "black",
-                                cursor: "pointer",
-                                textDecoration: "underline",
-                              }}
-                              onClick={() => setIsModalOpen(true)}
-                            >
-                              Allgemeinen Geschäftsbedingungen
-                            </span>
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Form Footer */}
-              <div className="authentication-4">
-                <div className="authentication-form-9">* REQUIRED</div>
-                <div className="div-wrapper-3" onClick={handleSubmit}>
-                  <div className="authentication-form-12">
-                    <div className="authentication-form-13">REGISTRIEREN</div>
-                  </div>
-                </div>
-                <div className="authentication-form-9">* Weitere Infos bekommen sie automatisch per Mail.</div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+            </fieldset>)}
+            <div className="registration-submit">
+              <label className="registration-consent"><input type="checkbox" name="acceptedAGB" checked={formData.acceptedAGB} onChange={handleOtherChange} required disabled={isSubmitting} /><span>Ich akzeptiere die <a href="#/ligaordnung" target="_blank" rel="noopener noreferrer">Ligaordnung</a> und habe die <a href="#/privacy" target="_blank" rel="noopener noreferrer">Datenschutzhinweise</a> gelesen.</span></label>
+              <button type="submit" disabled={isSubmitting}>{isSubmitting ? "Anfrage wird gesendet …" : "Mannschaft anmelden"}<span aria-hidden="true">→</span></button>
+              <p>Die Anmeldung wird zuerst geprüft. Ein Team wird erst nach Freigabe angelegt.</p>
+            </div>
+          </form>}
+        </section>
+      </main>
       <Footer />
-      {/* Modal */}
-      {isModalOpen && (
-        <Modal
-          title="Clubregeln und erforderliche Dokumente"
-          content={`Wichtige Informationen und erforderliche Dokumente:
-    - Vertrag: Diese bekommen Sie automatisch nach ihrer Registrierung per Mail zugesandt
-
-    - Wohnsitz in Österreich.
-    - Kosten:: 70 € pro Spiel.
-
-    Weitere Informationen: Bei Fragen bitte FAQs durchlesen oder uns direkt kontaktieren.`}
-          onClose={() => setIsModalOpen(false)}
-        />
-      )}
     </div>
   );
 };
-
-const Modal = ({
-  title,
-  content,
-  onClose,
-}: {
-  title: string;
-  content: string;
-  onClose: () => void;
-}) => (
-  <div className="modal-overlay">
-    <div className="modal-content">
-      <button onClick={onClose} className="close-button">
-        &#x2715; {/* Close icon (X) */}
-      </button>
-      <h2 className="modal-title">{title}</h2>
-      <pre className="modal-text">{content}</pre>
-    </div>
-  </div>
-);

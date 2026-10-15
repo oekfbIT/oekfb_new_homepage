@@ -1,275 +1,98 @@
-// // views/UploadRequest.tsx
-// import React, { useEffect, useMemo, useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { useWindowWidth } from "../../breakpoints";
-// import { Footer } from "../../components/Footer";
-// import { Navigation } from "../../components/Navigation";
-// import { DesktopNav } from "../../components/ViewDefaultWrapper";
-// import ApiService from "../../network/ApiService";
-// import AuthService from "../../network/AuthService";
-// import ClientController from "../../network/ClientController";
-// // import FirebaseStorageManager from "../../utils/storage/FirebaseStorageManager";
-// import "./style.css";
+import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import ApiService from "../../network/ApiService";
 
-// type Registration = {
-//   _id: string;
-//   teamLogo?: string | null;
-//   customerSignedContract?: string | null;
-//   primary?: { identification?: string | null } | null;
-//   secondary?: { identification?: string | null } | null;
-// };
+type Contact = { first: string; last: string; phone: string; email: string; identification_uploaded: boolean };
+type Registration = { team_name: string; status: string; primary: Contact; secondary: Contact; customer_signed_contract_uploaded: boolean; team_logo_uploaded: boolean; editable: boolean; contract_url?: string };
+const fields = [
+  ["primaryIdentification", "Ausweis der ersten Kontaktperson"],
+  ["secondaryIdentification", "Ausweis der zweiten Kontaktperson"],
+  ["signedContract", "Unterschriebener Vertrag"],
+  ["teamLogo", "Mannschaftslogo (optional)"],
+];
 
-// const ICONS = {
-//   upload: "https://cdn-icons-png.flaticon.com/512/2983/2983788.png",
-//   success: "https://cdn-icons-png.flaticon.com/512/845/845646.png",
-//   error: "https://cdn-icons-png.flaticon.com/512/1828/1828843.png",
-//   pdf: "https://cdn-icons-png.flaticon.com/512/337/337946.png",
-// };
+export const UploadRequest = ({ className = "" }: { className?: string }) => {
+  const { id } = useParams();
+  const [search] = useSearchParams();
+  const token = search.get("token");
+  const api = useMemo(() => new ApiService(), []);
+  const [registration, setRegistration] = useState<Registration | null>(null);
+  const [files, setFiles] = useState<Record<string, File>>({});
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const endpoint = `email-actions/registration/${encodeURIComponent(id || "")}`;
 
-// const notify = {
-//   success: (msg: string) => alert(`✅ ${msg}`),
-//   error: (msg: string) => alert(`❌ ${msg}`),
-//   info: (msg: string) => alert(`ℹ️ ${msg}`),
-// };
+  useEffect(() => {
+    let active = true;
+    setLoading(true);
+    if (!id || !token) { setError("Bitte öffnen Sie den vollständigen Link aus Ihrer E-Mail."); setLoading(false); return; }
+    api.get(endpoint, { "X-Email-Action-Token": token })
+      .then(data => { if (active) setRegistration(data); })
+      .catch(err => { if (active) setError(err.message); })
+      .finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, [api, endpoint, id, token]);
 
-// const sanitize = (s: string) =>
-//   String(s || "")
-//     .toLowerCase()
-//     .replace(/[^a-z0-9-_]+/g, "-")
-//     .replace(/-+/g, "-")
-//     .replace(/^-|-$/g, "");
+  const save = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!registration || saving || !registration.editable) return;
+    setSaving(true); setError(""); setSuccess("");
+    const form = event.currentTarget;
+    const body = new FormData();
+    for (const key of ["primary", "secondary"] as const) {
+      for (const field of ["first", "last", "phone", "email"] as const) {
+        body.append(`${key}[${field}]`, registration[key][field].trim());
+      }
+    }
+    Object.entries(files).forEach(([key, file]) => body.append(key, file));
+    try {
+      const updated = await api.post(endpoint, body, { "X-Email-Action-Token": token || "" });
+      setRegistration(updated); setFiles({});
+      form.reset();
+      setSuccess(updated.primary.identification_uploaded && updated.secondary.identification_uploaded && updated.customer_signed_contract_uploaded ? "Ihre Unterlagen sind vollständig gespeichert. Die Administration prüft Ihre Anmeldung." : "Ihre Angaben wurden gespeichert. Bitte ergänzen Sie noch die fehlenden Pflichtunterlagen.");
+    } catch (err) { setError(err instanceof Error ? err.message : "Upload fehlgeschlagen. Bitte erneut versuchen."); }
+    finally { setSaving(false); }
+  };
 
-// const buildFileName = (registrationId: string, keySuffix: string, original: string) => {
-//   const ext = (original?.split(".").pop() || "bin").toLowerCase();
-//   return `${sanitize(registrationId)}_${sanitize(keySuffix)}.${sanitize(ext)}`;
-// };
-
-// const isImage = (url?: string) =>
-//   !!url && [".png", ".jpeg", ".jpg", ".gif", ".webp"].some((ext) => url.toLowerCase().includes(ext));
-// const isPDF = (url?: string) => !!url && url.toLowerCase().includes(".pdf");
-
-// async function safePatchRegistration(
-//   api: ApiService,
-//   registrationId: string,
-//   partial: Record<string, any>
-// ) {
-//   if ((api as any).patch) {
-//     return (api as any).patch(`registrations/${registrationId}`, partial);
-//   }
-//   if ((api as any).post) {
-//     return (api as any).post(`registrations/${registrationId}`, partial, { method: "PATCH" });
-//   }
-//   const res = await fetch(`/registrations/${registrationId}`, {
-//     method: "PATCH",
-//     headers: { "Content-Type": "application/json" },
-//     credentials: "include",
-//     body: JSON.stringify(partial),
-//   });
-//   if (!res.ok) throw new Error(`PATCH failed: ${res.status}`);
-//   return res.json();
-// }
-
-// const nestedDelta = (path: string[], value: any) =>
-//   path.reduceRight((acc, key) => ({ [key]: acc }), value);
-
-// export const UploadRequest = (): JSX.Element => {
-//   const { id } = useParams();
-//   const screenWidth = useWindowWidth();
-//   const isMobile = screenWidth < 900;
-
-//   const _authService = useMemo(() => new AuthService(), []);
-//   const _clientController = useMemo(() => new ClientController(), []);
-//   const api = useMemo(() => new ApiService(), []);
-
-//   const [registration, setRegistration] = useState<Registration | null>(null);
-//   const [loading, setLoading] = useState<boolean>(true);
-
-//   useEffect(() => {
-//     let mounted = true;
-//     (async () => {
-//       try {
-//         const data = await (api as any).get(`registrations/${id}`);
-//         if (mounted) setRegistration(data);
-//       } catch (e) {
-//         console.error("Failed to fetch registration", e);
-//         notify.error("Registrierung konnte nicht geladen werden.");
-//       } finally {
-//         if (mounted) setLoading(false);
-//       }
-//     })();
-//     return () => {
-//       mounted = false;
-//     };
-//   }, [api, id]);
-
-//   const storageBase = `registrations/${id}`;
-//   const fields = [
-//     {
-//       id: "teamLogo",
-//       labelTop: "Bitte laden sie ihr Wappen/Logo für ihre Mannschaft hoch",
-//       helper: "FÜR OPTIMALE QUALITÄT BITTE LADEN SIE EINE PDF ODER JPEG/PNG DATEI",
-//       storagePath: `${storageBase}/branding`,
-//       fieldPath: ["teamLogo"],
-//       filenameSuffix: "logo",
-//       buttonText: "Wappen/Logo hochladen",
-//       existingUrl: registration?.teamLogo || undefined,
-//     },
-//     {
-//       id: "customerSignedContract",
-//       labelTop: "Kunde: unterschriebener Vertrag",
-//       helper: "FÜR OPTIMALE QUALITÄT BITTE LADEN SIE EINE PDF ODER JPEG/PNG DATEI",
-//       storagePath: `${storageBase}/contracts`,
-//       fieldPath: ["customerSignedContract"],
-//       filenameSuffix: "kunden_vertrag_unterschrieben",
-//       buttonText: "Kunden-Vertrag hochladen",
-//       existingUrl: registration?.customerSignedContract || undefined,
-//     },
-//     {
-//       id: "primaryIdentification",
-//       labelTop: "Ausweis: Primäre Kontaktperson",
-//       helper: "FÜR OPTIMALE QUALITÄT BITTE LADEN SIE EINE PDF ODER JPEG/PNG DATEI",
-//       storagePath: `${storageBase}/ids`,
-//       fieldPath: ["primary", "identification"],
-//       filenameSuffix: "primary_identification",
-//       buttonText: "Ausweis (Primär) hochladen",
-//       existingUrl: registration?.primary?.identification || undefined,
-//     },
-//     {
-//       id: "secondaryIdentification",
-//       labelTop: "Ausweis: Sekundäre Kontaktperson",
-//       helper: "FÜR OPTIMALE QUALITÄT BITTE LADEN SIE EINE PDF ODER JPEG/PNG DATEI",
-//       storagePath: `${storageBase}/ids`,
-//       fieldPath: ["secondary", "identification"],
-//       filenameSuffix: "secondary_identification",
-//       buttonText: "Ausweis (Sekundär) hochladen",
-//       existingUrl: registration?.secondary?.identification || undefined,
-//     },
-//   ] as const;
-
-//   const handleFileSelect =
-//     (fieldPath: string[], storagePath: string, filenameSuffix: string, existing?: string) =>
-//     async (e: React.ChangeEvent<HTMLInputElement>) => {
-//       const file = e.target.files?.[0];
-//       if (!file) return;
-
-//       try {
-//         if (existing) {
-//           notify.info("Bereits vorhanden – bestehender Wert wird nicht überschrieben.");
-//           return;
-//         }
-
-//         const filename = buildFileName(String(id), filenameSuffix, file.name);
-//         const url = await FirebaseStorageManager.uploadFile(file, storagePath, filename);
-
-//         notify.success(`${file.name} erfolgreich hochgeladen.`);
-
-//         const delta = nestedDelta(fieldPath, url);
-//         await safePatchRegistration(api, String(id), delta);
-
-//         setRegistration((prev) => {
-//           const next: any = { ...(prev || {}) };
-//           let cursor = next;
-//           for (let i = 0; i < fieldPath.length - 1; i++) {
-//             const k = fieldPath[i];
-//             cursor[k] = cursor[k] || {};
-//             cursor = cursor[k];
-//           }
-//           cursor[fieldPath[fieldPath.length - 1]] = url;
-//           return next;
-//         });
-//       } catch (error) {
-//         console.error("Upload/Patch error:", error);
-//         notify.error(`${file?.name || "Datei"} Upload fehlgeschlagen.`);
-//       }
-//     };
-
-//   return (
-//     <div
-//       className="element-register"
-//       style={{ overflow: "hidden", minWidth: isMobile ? "366px" : "900px" }}
-//     >
-//       {isMobile ? <Navigation /> : <DesktopNav />}
-
-//       <div className="frame-wrapper">
-//         <div className="frame-5">
-//           <div className="authentication-form-14">
-//             <div className="authentication-form">
-//               <div className="div-15">
-//                 <div className="div-wrapper-3">
-//                   <div className="authentication">
-//                     <div className="authentication-2">Dokumente hochladen</div>
-//                     <p className="authentication-3">
-//                       Laden Sie hier die geforderten Dokumente für Ihre Registrierung hoch.
-//                     </p>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {loading ? (
-//                 <p>Lädt…</p>
-//               ) : !registration ? (
-//                 <p>Registrierung nicht gefunden.</p>
-//               ) : (
-//                 <div className="upload-request">
-//                   {fields.map(
-//                     ({
-//                       id: fieldId,
-//                       labelTop,
-//                       helper,
-//                       storagePath,
-//                       fieldPath,
-//                       filenameSuffix,
-//                       buttonText,
-//                       existingUrl,
-//                     }) => (
-//                       <div key={fieldId} style={{ marginBottom: 16 }}>
-//                         <p>{labelTop}</p>
-//                         <p>{helper}</p>
-
-//                         {existingUrl && (
-//                           <div style={{ marginBottom: 8 }}>
-//                             {isImage(existingUrl) ? (
-//                               <img
-//                                 src={existingUrl}
-//                                 alt="Uploaded File"
-//                                 style={{ height: "120px", margin: 20 }}
-//                               />
-//                             ) : isPDF(existingUrl) ? (
-//                               <img src={ICONS.pdf} alt="PDF Icon" style={{ height: "70px", margin: 20 }} />
-//                             ) : null}
-//                             <a href={existingUrl} target="_blank" rel="noopener noreferrer">
-//                               Öffnen/herunterladen
-//                             </a>
-//                           </div>
-//                         )}
-
-//                         <label style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-//                           <img src={ICONS.upload} alt="" style={{ width: 16, height: 16 }} />
-//                           {buttonText}
-//                           <input
-//                             type="file"
-//                             style={{ display: "none" }}
-//                             onChange={handleFileSelect(
-//                               fieldPath as unknown as string[],
-//                               storagePath,
-//                               filenameSuffix,
-//                               existingUrl
-//                             )}
-//                           />
-//                         </label>
-//                       </div>
-//                     )
-//                   )}
-//                 </div>
-//               )}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default UploadRequest;
+  return <section className={`registration-panel registration-upload ${className}`} style={{ maxWidth: 720, margin: "32px auto", padding: 24, background: "white", color: "#172b4d", borderRadius: 12 }}>
+    <a href="#/register">ÖKFB · Mannschaftsanmeldung</a>
+    <h1>Unterlagen zur Mannschaftsanmeldung</h1>
+    <p>Bitte prüfen Sie die Namen beider Vertragspartner und laden Sie den unterschriebenen Vertrag und beide Ausweise hoch. PDF, JPG oder PNG, maximal 10 MB pro Datei.</p>
+    {loading && <p role="status">Anmeldung wird geladen …</p>}
+    {error && <p role="alert" style={{ color: "#b42318" }}>{error}</p>}
+    {success && <p role="status" style={{ color: "#067647" }}>{success}</p>}
+    {registration && <form onSubmit={save}>
+      <h2>{registration.team_name}</h2>
+      {registration.contract_url && <p><a href={registration.contract_url} target="_blank" rel="noopener noreferrer">Vertrag herunterladen ↗</a></p>}
+      {!registration.editable && <p>Diese Anmeldung ist abgeschlossen. Änderungen sind nicht mehr möglich.</p>}
+      <fieldset disabled={saving || !registration.editable} style={{ border: 0, padding: 0 }}>
+        {(["primary", "secondary"] as const).map((key, index) => <fieldset key={key} style={{ margin: "20px 0", padding: 16 }}>
+          <legend>Kontaktperson {index + 1}</legend>
+          {([["first", "Vorname"], ["last", "Nachname"], ["phone", "Telefon"], ["email", "E-Mail"]] as const).map(([field, label]) => <label key={field} style={{ display: "block", marginBottom: 12 }}>
+            {label} *<input required type={field === "email" ? "email" : field === "phone" ? "tel" : "text"} value={registration[key][field]}
+              style={{ display: "block", padding: 10, width: "100%", boxSizing: "border-box" }}
+              onChange={event => setRegistration({ ...registration, [key]: { ...registration[key], [field]: event.target.value } })} />
+          </label>)}
+        </fieldset>)}
+        {fields.map(([key, label]) => {
+          const uploaded = key === "primaryIdentification" ? registration.primary.identification_uploaded : key === "secondaryIdentification" ? registration.secondary.identification_uploaded : key === "signedContract" ? registration.customer_signed_contract_uploaded : registration.team_logo_uploaded;
+          return <label key={key} style={{ display: "block", marginBottom: 20 }}>
+            <strong>{label}</strong><p>{uploaded ? "Bereits gespeichert – bei Bedarf ersetzen." : "Noch nicht hochgeladen."}</p>
+            <input type="file" accept=".pdf,.jpg,.jpeg,.png" onChange={event => {
+              const file = event.target.files?.[0];
+              if (!file) return;
+              if (file.size > 10 * 1024 * 1024 || !/\.(pdf|jpe?g|png)$/i.test(file.name)) {
+                setError("Bitte PDF, JPG oder PNG mit maximal 10 MB wählen."); event.target.value = ""; return;
+              }
+              setError(""); setFiles(current => ({ ...current, [key]: file }));
+            }} />
+          </label>;
+        })}
+        <button type="submit" style={{ padding: "12px 24px", cursor: "pointer" }}>{saving ? "Wird gespeichert …" : "Angaben und Unterlagen speichern"}</button>
+      </fieldset>
+    </form>}
+    <p><a href="mailto:office@oekfb.eu">Hilfe: office@oekfb.eu</a></p>
+  </section>;
+};

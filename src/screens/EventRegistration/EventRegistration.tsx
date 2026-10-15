@@ -86,10 +86,22 @@ export const EventRegistration = (): JSX.Element => {
     }
 
     const trimmedName = formData.name.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedPhone = formData.phone.trim();
     const peopleCount = Number(formData.numberOfPeople || "1");
 
     if (!trimmedName) {
       setErrorMessage("Bitte gib deinen Namen ein.");
+      return;
+    }
+
+    if (!trimmedEmail) {
+      setErrorMessage("Bitte gib deine E-Mail-Adresse ein.");
+      return;
+    }
+
+    if (!trimmedPhone) {
+      setErrorMessage("Bitte gib deine Telefonnummer ein.");
       return;
     }
 
@@ -101,8 +113,8 @@ export const EventRegistration = (): JSX.Element => {
     const payload = {
       name: trimmedName,
       team: formData.team.trim() || undefined,
-      email: formData.email.trim() || undefined,
-      phone: formData.phone.trim() || undefined,
+      email: trimmedEmail,
+      phone: trimmedPhone,
       numberOfPeople: peopleCount,
       status: "open",
       notes: formData.notes.trim() || undefined,
@@ -262,24 +274,26 @@ export const EventRegistration = (): JSX.Element => {
                   </label>
 
                   <label className="eventRegistrationForm__field">
-                    <span>E-Mail</span>
+                    <span>E-Mail *</span>
                     <input
                       name="email"
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="max@beispiel.at"
+                      required
                     />
                   </label>
 
                   <label className="eventRegistrationForm__field">
-                    <span>Telefon</span>
+                    <span>Telefon *</span>
                     <input
                       name="phone"
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+43 660 1234567"
+                      required
                     />
                   </label>
 

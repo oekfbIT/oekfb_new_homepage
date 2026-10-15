@@ -1,6 +1,6 @@
 // ElementTransfer.jsx — refactored for readability (plain JS), tokens-first styling
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { Footer } from "../../components/Footer";
 import { Navigation } from "../../components/Navigation";
@@ -13,7 +13,8 @@ export const ElementTransfer = () => {
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
   const { id } = useParams();
-  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const token = searchParams.get("token") ?? "";
 
   // Avoid re-instantiating controller on each render
   const clientController = useMemo(() => new ClientController(), []);
@@ -21,18 +22,19 @@ export const ElementTransfer = () => {
   const [transfer, setTransfer] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     // Guard invalid route params early
-    if (!id) {
-      setError("Ungültige Transfer-ID.");
+    if (!id || !token) {
+      setError("Dieser Bestätigungslink ist ungültig. Bitte verwenden Sie den vollständigen Link aus der E-Mail.");
       setLoading(false);
       return;
     }
 
     const fetchTransfer = async () => {
       try {
-        const response = await clientController.fetchTransfer(id);
+        const response = await clientController.fetchTransfer(id, token);
         if (!response || !response.player_name) {
           setError("Keine gültigen Transferdaten gefunden.");
           return;
@@ -47,24 +49,30 @@ export const ElementTransfer = () => {
     };
 
     fetchTransfer();
-  }, [id, clientController]);
+  }, [id, token, clientController]);
 
   // Actions (preserve behavior)
   const handleAccept = async () => {
+    if (submitting) return;
+    setSubmitting(true);
     try {
-      await clientController.confirmTransfer(id);
-      navigate(`/player-detail/${transfer.player}`);
+      setTransfer(await clientController.confirmTransfer(id, token));
     } catch (e) {
-      console.error("Fehler beim Bestätigen des Transfers:", e);
+      setError(e.message || "Der Transfer konnte nicht bestätigt werden.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const handleReject = async () => {
+    if (submitting) return;
+    setSubmitting(true);
     try {
-      await clientController.rejectTransfer(id);
-      navigate(`/player-detail/${transfer.player}`);
+      setTransfer(await clientController.rejectTransfer(id, token));
     } catch (e) {
-      console.error("Fehler beim Ablehnen des Transfers:", e);
+      setError(e.message || "Der Transfer konnte nicht abgelehnt werden.");
+    } finally {
+      setSubmitting(false);
     }
   };
 

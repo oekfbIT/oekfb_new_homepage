@@ -28,7 +28,12 @@ class ApiService {
     }
 
     if (body) {
-      options.body = JSON.stringify(body);
+      if (body instanceof FormData) {
+        delete options.headers["Content-Type"];
+        options.body = body;
+      } else {
+        options.body = JSON.stringify(body);
+      }
     }
 
     try {

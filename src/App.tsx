@@ -6,6 +6,8 @@ import ApiService from "./network/ApiService";
 import AuthService from "./network/AuthService";
 import { AnalyticsProvider } from "./analytics/AnalyticsProvider";
 
+import { UploadRequest } from "./components/UploadRequest";
+
 // Screens
 import { AppPage } from "./screens/AppPage";
 import { ElementBund } from "./screens/ElementBund";
@@ -78,6 +80,8 @@ const App = () => (
       <Route path="/liga" element={<Homepage />} />
       <Route path="/app" element={<AppPage />} />
       {/* <Route path="/gala-night" element={<EventRegistration />} /> */}
+      <Route path="/registration/:id" element={<UploadRequest />} />
+      <Route path="/app/application/user/verify/:id" element={<VerifyPage />} />
       <Route path="/app/user/verify/:id" element={<VerifyPage />} />
       <Route path="/mobilenav" element={<ElementMobilenav />} />
       <Route path="/match/:id" element={<ElementGameReport />} />

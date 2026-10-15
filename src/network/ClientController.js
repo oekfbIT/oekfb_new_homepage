@@ -299,8 +299,8 @@ class ClientController {
    * @param {string} id - Transfer ID.
    * @returns {Promise<Object>} Transfer details.
    */
-  async fetchTransfer(id) {
-    return this.apiService.get(`transfers/${id}`);
+  async fetchTransfer(id, token) {
+    return this.apiService.get(`email-actions/transfer/${encodeURIComponent(id)}`, { "X-Email-Action-Token": token });
   }
 
   /**
@@ -309,8 +309,8 @@ class ClientController {
    * @param {string} id - Postpone ID.
    * @returns {Promise<Object>} postpone details.
    */
-  async fetchPostpone(id) {
-    return this.apiService.get(`postpone/${id}/id`);
+  async fetchPostpone(id, token) {
+    return this.apiService.get(`email-actions/postpone/${encodeURIComponent(id)}`, { "X-Email-Action-Token": token });
   }
 
   /**
@@ -319,8 +319,8 @@ class ClientController {
    * @param {string} id - Transfer ID.
    * @returns {Promise<Object>} Transfer details.
    */
-  async confirmTransfer(id) {
-    return this.apiService.get(`transfers/confirm/${id}`);
+  async confirmTransfer(id, token) {
+    return this.apiService.post(`email-actions/transfer/${encodeURIComponent(id)}/confirm`, null, { "X-Email-Action-Token": token });
   }
 
   /**
@@ -329,8 +329,8 @@ class ClientController {
    * @param {string} id - postpone ID.
    * @returns {Promise<Object>} postpone details.
    */
-  async approvePostpone(id) {
-    return this.apiService.post(`postpone/${id}/approve`);
+  async approvePostpone(id, token) {
+    return this.apiService.post(`email-actions/postpone/${encodeURIComponent(id)}/approve`, null, { "X-Email-Action-Token": token });
   }
 
   /**
@@ -339,8 +339,8 @@ class ClientController {
    * @param {string} id - postpone ID.
    * @returns {Promise<Object>} postpone details.
    */
-  async denyPostpone(id) {
-    return this.apiService.post(`postpone/${id}/deny`);
+  async denyPostpone(id, token) {
+    return this.apiService.post(`email-actions/postpone/${encodeURIComponent(id)}/deny`, null, { "X-Email-Action-Token": token });
   }
 
   /**
@@ -349,8 +349,8 @@ class ClientController {
    * @param {string} id - Transfer ID.
    * @returns {Promise<Object>} Transfer details.
    */
-  async rejectTransfer(id) {
-    return this.apiService.get(`transfers/reject/${id}`);
+  async rejectTransfer(id, token) {
+    return this.apiService.post(`email-actions/transfer/${encodeURIComponent(id)}/reject`, null, { "X-Email-Action-Token": token });
   }
 
   /**

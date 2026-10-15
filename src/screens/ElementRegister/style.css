@@ -104,11 +104,14 @@
 .element-register .div-wrapper-3 {
   align-items: flex-start;
   align-self: stretch;
+  background: transparent;
+  border: 0;
   display: flex;
   flex: 0 0 auto;
   flex-wrap: wrap;
   gap: 00px 10px;
   justify-content: center;
+  padding: 0;
   position: relative;
   width: 100%;
 }
@@ -538,3 +541,59 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+/* New team registration: scoped so legacy homepage forms remain unaffected. */
+.team-registration-page { background: #f3f5f6; color: #182521; min-width: 0; font-family: "Inter", Arial, sans-serif; }
+.registration-layout { max-width: 1240px; margin: 0 auto; padding: 64px 32px 88px; display: grid; grid-template-columns: .85fr 1.25fr; gap: 64px; align-items: start; }
+.registration-intro { padding-top: 20px; }
+.registration-eyebrow { color: #427361; font-size: 11px; font-weight: 800; letter-spacing: 2px; }
+.registration-intro h1 { font-size: clamp(36px, 4.5vw, 64px); line-height: 1.05; letter-spacing: -2.5px; margin: 24px 0; font-weight: 800; }
+.registration-intro > p { font-size: 17px; line-height: 1.7; color: #57665e; max-width: 380px; }
+.registration-steps { padding: 0; margin: 40px 0; list-style: none; }
+.registration-steps li { display: flex; gap: 18px; margin-bottom: 28px; }
+.registration-steps li > span { flex-shrink: 0; width: 36px; height: 36px; border: 1px solid #cbd7d0; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; color: #427361; }
+.registration-steps strong { font-size: 15px; }
+.registration-steps p { margin: 8px 0 0; font-size: 14px; line-height: 1.6; color: #65716b; }
+.registration-help { border-top: 1px solid #d7dfda; padding-top: 24px; display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+.registration-help a, .registration-panel a { color: #286049; text-decoration: underline; text-underline-offset: 3px; }
+.registration-panel { background: white; border: 1px solid #e0e6e2; border-radius: 18px; padding: 36px; box-shadow: 0 8px 30px #152b1f06; }
+.registration-panel h2 { font-size: 26px; line-height: 1.25; margin: 14px 0; letter-spacing: -.6px; }
+.registration-panel header > p, .registration-field-help { font-size: 13px; line-height: 1.6; color: #68746d; }
+.registration-panel fieldset { border: 0; border-top: 1px solid #e8ece9; padding: 26px 0 10px; margin: 28px 0 0; min-width: 0; }
+.registration-panel legend { padding: 0 8px 0 0; font-size: 16px; font-weight: 750; }
+.registration-panel legend span { color: #719182; margin-right: 8px; font-size: 12px; }
+.registration-field-help { margin: -10px 0 18px; }
+.registration-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 16px; }
+.registration-grid label { font-size: 12px; color: #34483d; font-weight: 650; min-width: 0; }
+.registration-grid small { color: #77837c; font-weight: 400; }
+.registration-grid input, .registration-grid select { display: block; box-sizing: border-box; width: 100%; min-height: 45px; padding: 11px 12px; margin-top: 8px; border: 1px solid #d8e0db; border-radius: 7px; font: inherit; font-size: 14px; color: #20382b; background: #fff; }
+.registration-grid input:focus, .registration-grid select:focus { outline: 2px solid #569475; outline-offset: 2px; }
+.registration-grid input::placeholder { color: #96a098; }
+.registration-submit { margin-top: 24px; border-top: 1px solid #e8ece9; padding-top: 24px; }
+.registration-consent { display: flex; align-items: flex-start; gap: 10px; font-size: 12px; line-height: 1.7; color: #5b6b61; }
+.registration-consent input { margin-top: 4px; accent-color: #245c42; }
+.registration-submit button { display: flex; justify-content: space-between; width: 100%; padding: 16px 20px; border: 0; border-radius: 8px; background: #1e513a; color: white; font-size: 14px; font-weight: 700; margin-top: 24px; cursor: pointer; }
+.registration-submit button:hover { background: #163e2b; }
+.registration-submit button:disabled { opacity: .6; cursor: wait; }
+.registration-submit > p { text-align: center; font-size: 11px; line-height: 1.6; color: #7b867f; margin-top: 14px; }
+.registration-feedback { padding: 20px; margin: 24px 0; border-radius: 8px; font-size: 14px; line-height: 1.7; }
+.registration-feedback.success { background: #edf6ef; color: #245c42; }
+.registration-feedback.error { background: #fff1ee; color: #a93226; }
+@media (max-width: 899px) { .registration-layout { grid-template-columns: 1fr; gap: 32px; padding: 28px 18px 48px; } .registration-intro { padding: 0; } .registration-intro h1 { font-size: 44px; } .registration-steps { margin: 28px 0; } .registration-panel { padding: 24px 20px; } }
+@media (max-width: 480px) { .registration-grid { grid-template-columns: 1fr; } .registration-intro h1 { font-size: 40px; } .registration-panel h2 { font-size: 23px; } }
+
+@media (max-width: 899px) {
+  .registration-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0 0; }
+  .registration-steps li { flex-direction: column; gap: 8px; margin: 0; }
+  .registration-steps strong { font-size: 12px; }
+  .registration-steps p, .registration-help { display: none; }
+  .registration-intro > p { font-size: 15px; }
+}
+.team-registration-page { overflow-x: clip; }
+
+.registration-upload { box-sizing: border-box; font-family: "Inter", Arial, sans-serif; line-height: 1.6; }
+.registration-upload h1 { margin: 20px 0; font-size: 28px; line-height: 1.2; font-weight: 750; }
+.registration-upload h2 { margin-top: 24px; }
+.registration-upload input { border: 1px solid #d8e0db; border-radius: 6px; max-width: 100%; }
+.registration-upload button { background: #1e513a; border: 0; border-radius: 7px; color: white; font-weight: 700; }
+@media (max-width: 480px) { .registration-upload { margin: 16px 10px !important; padding: 20px !important; } }
