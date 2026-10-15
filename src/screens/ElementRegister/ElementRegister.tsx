@@ -149,7 +149,7 @@ export const ElementRegister = (): JSX.Element => {
       analytics?.track("registration_complete");
 
       // You can adjust the success message based on your API response
-      setSuccessMessage("Ihre Anfrage ist eingegangen. Sie erhalten eine Willkommens-E-Mail. Die Administration prüft Ihre Anmeldung und sendet Ihnen bei Bedarf einen Link für Vertrag und Ausweise. Ein Teamzugang wird erst nach Freigabe eingerichtet.");
+      setSuccessMessage("Ihre Anfrage ist eingegangen. Sie erhalten eine Willkommens-E-Mail. Diese enthält sofort den Vertragsdownload und Ihren persönlichen Upload-Link. Bitte laden Sie den unterschriebenen Vertrag und beide Ausweise hoch. Erst danach prüft die Administration Ihre Anmeldung. Ein Teamzugang wird erst nach Freigabe eingerichtet.");
 
       // Optionally, reset the form
       setFormData({
@@ -221,8 +221,8 @@ export const ElementRegister = (): JSX.Element => {
           <p>Meldet eure Mannschaft beim ÖKFB an. Wir begleiten euch vom ersten Kontakt bis zum Anpfiff.</p>
           <ol className="registration-steps">
             <li><span>01</span><div><strong>Anfrage senden</strong><p>Team und zwei Kontaktpersonen angeben. Ihr bekommt eine Willkommens-E-Mail.</p></div></li>
-            <li><span>02</span><div><strong>Unterlagen ergänzen</strong><p>Auf Einladung der Administration: Vertrag und Ausweise über euren persönlichen Link hochladen.</p></div></li>
-            <li><span>03</span><div><strong>Freigabe erhalten</strong><p>Nach Prüfung, Ligazuweisung und Zahlung entscheidet die Administration über eure Aufnahme.</p></div></li>
+            <li><span>02</span><div><strong>Unterlagen ergänzen</strong><p>Vertrag direkt aus der Willkommens-E-Mail herunterladen und unterschrieben mit beiden Ausweisen über euren persönlichen Link hochladen.</p></div></li>
+            <li><span>03</span><div><strong>Freigabe erhalten</strong><p>Nach vollständigen Unterlagen entscheidet die Administration über die Aufnahme und weist eine Liga zu. Ihr erhaltet Betrag und Bankverbindung per E-Mail; nach Zahlung folgt die Teamfreigabe.</p></div></li>
           </ol>
           <div className="registration-help"><strong>Noch Fragen?</strong><a href="mailto:office@oekfb.eu">office@oekfb.eu ↗</a></div>
         </aside>
