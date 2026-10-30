@@ -81,6 +81,17 @@ export const Homepage = (): JSX.Element => {
     );
   }, [homepageData]);
 
+  const latestNews = useMemo(() => {
+    const list = homepageData?.news ?? [];
+    return [...list]
+      .sort(
+        (a, b) =>
+          new Date(b.created ?? 0).getTime() -
+          new Date(a.created ?? 0).getTime(),
+      )
+      .slice(0, 6);
+  }, [homepageData]);
+
   if (loading) return <LoadingIndicator />;
 
   return (
@@ -201,10 +212,7 @@ export const Homepage = (): JSX.Element => {
           </header>
 
           <div className="home__news-grid">
-            {homepageData?.news
-              ?.slice(-6)
-              .reverse()
-              .map((newsItem: any) => (
+            {latestNews.map((newsItem: any) => (
                 <NewsRow
                   key={newsItem.id}
                   title={newsItem.title}
@@ -213,7 +221,7 @@ export const Homepage = (): JSX.Element => {
                   id={newsItem.id}
                   youtubeUrl={newsItem.youtube}
                 />
-              ))}
+            ))}
           </div>
 
           <Link className="home__news-link" to="/news">
