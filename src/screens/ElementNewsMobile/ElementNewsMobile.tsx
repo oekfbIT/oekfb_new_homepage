@@ -49,8 +49,12 @@ export const ElementNewsMobile = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Never mutate React state directly: make a reversed copy for newest-first
-  const orderedNews = [...news].reverse();
+  // Always show the newest articles first, regardless of API response order.
+  const orderedNews = [...news].sort(
+    (a, b) =>
+      new Date(b.created ?? 0).getTime() -
+      new Date(a.created ?? 0).getTime(),
+  );
 
   return (
     <div
