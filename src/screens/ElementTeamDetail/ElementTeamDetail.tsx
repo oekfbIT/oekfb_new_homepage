@@ -217,6 +217,7 @@ export const ElementTeamDetail = (): JSX.Element => {
   // club name helper (snake/camel fallback)
   const clubName: string =
     teamData?.club?.teamName ?? teamData?.club?.team_name ?? "Team";
+  const coverImage = teamData?.club?.coverimg?.trim();
 
   if (loading) return <LoadingIndicator />;
   if (loadError) return <div role="alert">Mannschaftsstatistiken konnten nicht geladen werden. Bitte versuchen Sie es erneut.</div>;
@@ -239,6 +240,11 @@ export const ElementTeamDetail = (): JSX.Element => {
 
       <div className="page-content">
         <AchievementsSection key={id} ownerType="team" ownerId={id} />
+        {coverImage && (
+          <div className="section team-detail-cover">
+            <img src={coverImage} alt={`Mannschaftsfoto ${clubName}`} />
+          </div>
+        )}
         {/* All-time stats */}
         <section className="section">
           <h2 className="sub_header md_base">{clubName} Ewige Statistiken</h2>

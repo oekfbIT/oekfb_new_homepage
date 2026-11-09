@@ -27,6 +27,18 @@
   width: 100%;
 }
 
+.element-team-detail .team-detail-cover {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.element-team-detail .team-detail-cover img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1140 / 630;
+  object-fit: cover;
+}
+
 /* ===== Headings & titles ===== */
 .secTitle {
   text-align: center;
