@@ -226,6 +226,16 @@ class ClientController {
     return this.apiService.get(`webClient/match/detail/${id}`);
   }
 
+  async fetchMatchPreview(id) {
+    try { return await this.apiService.get(`webClient/match/${encodeURIComponent(id)}/preview`); }
+    catch (error) { if (error.status === 404) return null; throw error; }
+  }
+
+  async fetchMatchForm(id) {
+    try { return await this.apiService.get(`webClient/match/${encodeURIComponent(id)}/form`); }
+    catch (error) { if (error.status === 404) return { home: [], away: [], unavailable: true }; throw error; }
+  }
+
   /**
    * Fetch details of a specific player.
    * GET /player/detail/:id

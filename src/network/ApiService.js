@@ -53,7 +53,9 @@ class ApiService {
         } catch {
           errorData = {};
         }
-        throw new Error(errorData.reason || errorData.message || `Request failed (${response.status})`);
+        const error = new Error(errorData.reason || errorData.message || `Request failed (${response.status})`);
+        error.status = response.status;
+        throw error;
       }
     } catch (error) {
       console.error(`Error with ${method} request to ${endpoint}:`, error);

@@ -1,5 +1,6 @@
 import { getTeamDisplayName } from "../../utils/teamUtils";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import TeamForm from "../../components/TeamForm/TeamForm";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { BlankettCell } from "../../components/DivWrapper";
@@ -23,11 +24,28 @@ export const ElementGameReport = (): JSX.Element => {
   const { id } = useParams();
   const screenWidth = useWindowWidth();
   const isMobile = screenWidth < 900;
-  const clientController = new ClientController();
+  const clientController = useMemo(() => new ClientController(), []);
 
   const [gameData, setGameData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [elapsedTime, setElapsedTime] = useState("0'");
+  const [preview, setPreview] = useState<any>(null);
+  const [form, setForm] = useState<any>({ home: [], away: [], loading: true });
+  const [previewError, setPreviewError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    setPreview(null); setForm({ home: [], away: [], loading: true }); setPreviewError(false);
+    if (!id) return undefined;
+    Promise.allSettled([clientController.fetchMatchPreview(id), clientController.fetchMatchForm(id)]).then(([article, history]) => {
+      if (cancelled) return;
+      if (article.status === "fulfilled") setPreview(article.value);
+      else setPreviewError(true);
+      if (history.status === "fulfilled") setForm(history.value);
+      else setForm({ home: [], away: [], unavailable: true });
+    });
+    return () => { cancelled = true; };
+  }, [id, clientController]);
 
   useEffect(() => {
     const fetchGameData = async () => {
@@ -43,17 +61,20 @@ export const ElementGameReport = (): JSX.Element => {
         let homeScore = 0;
         let awayScore = 0;
 
-        let updatedEvents = matchDetail.events.map((event: any) => {
-          const homePlayers = matchDetail.home_blanket?.players.map(
+        let updatedEvents = (matchDetail.events || []).slice().sort((a: any, b: any) => Number(a.minute?.$numberLong || a.minute) - Number(b.minute?.$numberLong || b.minute)).map((event: any) => {
+          const homePlayers = (matchDetail.home_blanket?.players || []).map(
             (p: any) => p.id
           );
-          const awayPlayers = matchDetail.away_blanket?.players.map(
+          const awayPlayers = (matchDetail.away_blanket?.players || []).map(
             (p: any) => p.id
           );
 
-          let assign = null;
-          if (homePlayers.includes(event.player?.id)) assign = "home";
-          else if (awayPlayers.includes(event.player?.id)) assign = "away";
+          let assign = event.assign || null;
+          if (!assign) {
+            if (homePlayers.includes(event.player?.id)) assign = "home";
+            else if (awayPlayers.includes(event.player?.id)) assign = "away";
+            if (event.type === "goal" && event.own_goal) assign = assign === "home" ? "away" : assign === "away" ? "home" : null;
+          }
 
           let scoreAtTime = `${homeScore} - ${awayScore}`;
           if (event.type === "goal") {
@@ -133,6 +154,7 @@ export const ElementGameReport = (): JSX.Element => {
                 />
                 <div className="title">{getTeamDisplayName(gameData.home_blanket)}</div>
               </div>
+              <TeamForm items={form.home} teamName={getTeamDisplayName(gameData.home_blanket)} unavailable={form.unavailable} loading={form.loading} />
             </div>
 
             <div className="score-wrapper">
@@ -173,6 +195,7 @@ export const ElementGameReport = (): JSX.Element => {
                 />
                 <div className="title">{getTeamDisplayName(gameData.away_blanket)}</div>
               </div>
+              <TeamForm items={form.away} teamName={getTeamDisplayName(gameData.away_blanket)} unavailable={form.unavailable} loading={form.loading} />
             </div>
           </div>
           </div>
@@ -193,6 +216,11 @@ export const ElementGameReport = (): JSX.Element => {
                 <div className="setting-wrapper">
                   <div className="h3">{statusText}</div>
                 </div>
+
+                {preview?.text && <section className="match-preview-copy" aria-label="Spielvorschau">
+                  {preview.text.split(/\n\s*\n/).filter(Boolean).map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>)}
+                </section>}
+                {previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
 
                 <div className="stadium-wrapper">
                   <div className="stadium-img">

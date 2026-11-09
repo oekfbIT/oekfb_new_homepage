@@ -144,7 +144,7 @@
 }
 
 .element-game-report .game-report-middle {
-  align-items: center;
+  align-items: start;
   align-self: stretch;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
@@ -164,6 +164,7 @@
 
 .element-game-report .away-team-2 {
   display: flex;
+  flex-direction: column;
   align-items: center;
   min-width: 0;
   width: 100%;
@@ -172,6 +173,11 @@
 .element-game-report .away-team-2:first-child {
   justify-content: flex-end;
 }
+
+.element-game-report .match-preview-copy { width: min(100%, 760px); padding: 0 24px; margin: 8px auto 18px; box-sizing: border-box; text-align: center; color: #344046; font: 400 16px/1.8 Inter, sans-serif; }
+.element-game-report .match-preview-copy p { margin: 0 0 16px; }
+.element-game-report .match-preview-copy p:last-child { margin-bottom: 0; }
+.element-game-report .match-preview-copy__error { color: #657178; font: 400 13px/1.5 Inter, sans-serif; text-align: center; }
 
 .element-game-report .team-identity > .title {
   min-width: 0;

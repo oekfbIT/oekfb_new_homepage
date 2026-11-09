@@ -1,3 +1,5 @@
+import { formatViennaMatchDate, formatViennaMatchTime } from "./viennaMatchDate.mjs";
+
 export type ISODate = string | { $date: string };
 
 export const normalizeDate = (value?: ISODate): string | null => {
@@ -49,38 +51,11 @@ export const getElapsedTime = (
 };
 
 export const formatMatchDate = (dateValue: ISODate): string => {
-  const dateStr = normalizeDate(dateValue)?.replace(/Z$/, "");
-  const date = new Date(dateStr || "");
-  if (isNaN(date.getTime())) return "Ungültiges Datum";
-
-  const parts = new Intl.DateTimeFormat("de-DE", {
-    timeZone: "Europe/Vienna",
-    day: "2-digit",
-    month: "2-digit",
-  }).formatToParts(date);
-
-  const day = parts.find((p) => p.type === "day")?.value;
-  const month = parts.find((p) => p.type === "month")?.value;
-
-  return `${day}.${month}.`;
+  return formatViennaMatchDate(dateValue);
 };
 
 export const formatMatchTime = (dateValue: ISODate): string => {
-  const dateStr = normalizeDate(dateValue)?.replace(/Z$/, "");
-  const date = new Date(dateStr || "");
-  if (isNaN(date.getTime())) return "Ungültiges Datum";
-
-  const parts = new Intl.DateTimeFormat("de-DE", {
-    timeZone: "Europe/Vienna",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).formatToParts(date);
-
-  const hour = parts.find((p) => p.type === "hour")?.value;
-  const minute = parts.find((p) => p.type === "minute")?.value;
-
-  return `${hour}:${minute}`;
+  return formatViennaMatchTime(dateValue);
 };
 
 export const getMatchStatusText = (
