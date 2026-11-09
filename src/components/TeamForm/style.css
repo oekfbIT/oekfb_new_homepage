@@ -1,12 +1,12 @@
 .team-form { display: flex; flex-direction: column; align-items: center; gap: 11px; width: 100%; margin-top: 18px; }
 .team-form__results { display: flex; align-items: center; justify-content: center; gap: 5px; }
 .team-form__badge { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 30px; width: 30px; height: 30px; border-radius: 50%; color: #fff; font: 700 14px/1 Inter, sans-serif; text-decoration: none; }
-.team-form__badge--win { background: #248242; }
-.team-form__badge--draw { background: #f6c549; color: #172023; }
-.team-form__badge--loss { background: #d93438; }
+.team-form__badge--win { --result-color: #248242; background: var(--result-color); }
+.team-form__badge--draw { --result-color: #f6c549; background: var(--result-color); color: #172023; }
+.team-form__badge--loss { --result-color: #d93438; background: var(--result-color); }
 .team-form__badge--empty { background: #e3e6e7; color: #737d82; }
 .team-form__badge--latest { position: relative; }
-.team-form__badge--latest::after { content: ""; position: absolute; bottom: -6px; left: 17.5%; width: 65%; height: 3px; border-radius: 2px; background: #172023; }
+.team-form__badge--latest::after { content: ""; position: absolute; bottom: -6px; left: 17.5%; width: 65%; height: 3px; border-radius: 2px; background: var(--result-color); }
 .team-form__badge:focus-visible { outline: 2px solid #172023; outline-offset: 3px; }
 .team-form__caption { color: #657178; font: 400 11px/1.4 Inter, sans-serif; text-align: center; }
 @media (max-width: 500px) {
