@@ -20,9 +20,10 @@ export default function TeamForm({ items = [], teamName, unavailable = false, lo
         if (!item) return <span key={`empty-${index}`} className="team-form__badge team-form__badge--empty" title="Kein früheres Ergebnis vorhanden" aria-label="Kein früheres Ergebnis">–</span>;
         const result = results[item.result];
         const score = item.score ? ` · ${item.home || "Heim"} ${item.score.home}:${item.score.away} ${item.away || "Auswärts"}` : "";
-        const label = `${result.label}${score}`;
+        const latest = index === slots.length - 1;
+        const label = `${latest ? "Letztes Spiel: " : ""}${result.label}${score}`;
         const matchId = item.match_id || item.matchID;
-        const className = `team-form__badge team-form__badge--${result.style}`;
+        const className = `team-form__badge team-form__badge--${result.style}${latest ? " team-form__badge--latest" : ""}`;
         return matchId ? <a key={`${matchId}-${index}`} href={`#/match/${matchId}`} className={className} title={label} aria-label={label}>{item.result}</a>
           : <span key={index} className={className} title={label} aria-label={label}>{item.result}</span>;
       })}
