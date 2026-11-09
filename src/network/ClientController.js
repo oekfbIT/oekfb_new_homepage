@@ -231,6 +231,16 @@ class ClientController {
     catch (error) { if (error.status === 404) return null; throw error; }
   }
 
+  async fetchPreviewFeedback(id, version) {
+    return this.apiService.get(`webClient/match/${encodeURIComponent(id)}/preview/feedback?preview_version=${encodeURIComponent(version)}`);
+  }
+
+  async submitPreviewFeedback(id, version, visitorId, vote) {
+    return this.apiService.post(`webClient/match/${encodeURIComponent(id)}/preview/feedback`, {
+      preview_version: version, visitor_id: visitorId, vote,
+    });
+  }
+
   async fetchMatchForm(id) {
     try { return await this.apiService.get(`webClient/match/${encodeURIComponent(id)}/form`); }
     catch (error) { if (error.status === 404) return { home: [], away: [], unavailable: true }; throw error; }

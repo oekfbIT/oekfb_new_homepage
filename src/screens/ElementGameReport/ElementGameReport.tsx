@@ -1,6 +1,7 @@
 import { getTeamDisplayName } from "../../utils/teamUtils";
 import { useEffect, useMemo, useState } from "react";
 import TeamForm from "../../components/TeamForm/TeamForm";
+import PreviewFeedback from "../../components/PreviewFeedback/PreviewFeedback";
 import { useNavigate, useParams } from "react-router-dom";
 import { useWindowWidth } from "../../breakpoints";
 import { BlankettCell } from "../../components/DivWrapper";
@@ -219,6 +220,7 @@ export const ElementGameReport = (): JSX.Element => {
 
                 {preview?.text && <section className="match-preview-copy" aria-label="Spielvorschau">
                   {preview.text.split(/\n\s*\n/).filter(Boolean).map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>)}
+                  {id && <PreviewFeedback matchId={id} version={preview.feedback_version || preview.feedbackVersion} />}
                 </section>}
                 {previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
 

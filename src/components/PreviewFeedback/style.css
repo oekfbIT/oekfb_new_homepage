@@ -1,0 +1,10 @@
+.preview-feedback { border-top: 1px solid #dce1e4; margin: 18px auto 0; padding-top: 12px; max-width: 600px; text-align: center; }
+.element-game-report .match-preview-copy .preview-feedback__disclaimer { color: #56636a; font-size: 12px; line-height: 1.6; margin: 0 0 10px; }
+.preview-feedback__buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+.preview-feedback__buttons button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; padding: 6px 12px; border: 1px solid #b6c0c6; border-radius: 20px; background: transparent; color: #344046; font: inherit; font-size: 12px; cursor: pointer; }
+.preview-feedback__buttons button:hover { background: #e9edf0; }
+.preview-feedback__buttons button[aria-pressed="true"] { background: #e2e9ed; border-color: #344046; font-weight: 600; }
+.preview-feedback__buttons button:focus-visible { outline: 2px solid #1e5d81; outline-offset: 3px; }
+.preview-feedback__buttons button:disabled { cursor: default; opacity: .6; }
+.preview-feedback__count { min-width: 14px; font-variant-numeric: tabular-nums; }
+.preview-feedback__status { display: block; min-height: 18px; margin-top: 6px; color: #56636a; font-size: 11px; line-height: 1.6; }
