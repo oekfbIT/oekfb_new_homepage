@@ -11,7 +11,6 @@ import {
     getMatchStatusText
 } from "../../utils/matchUtils";
 
-const { DateTime } = require("luxon");
 interface Match {
   id: string;
   home_blanket: {
@@ -74,11 +73,6 @@ export const LivescoreCell = ({ match, state }: Props): JSX.Element => {
             return () => clearInterval(interval);
           }, [halfStartTime, isLive, status]);
 
-
-  // Format using Luxon
-  const formattedTime = DateTime.fromISO(match?.details.date, {
-    zone: "gmt",
-  }).toFormat("HH:mm");
 
   const handleButtonClick = () => {
     navigate(`/match/${match.id}`);

@@ -1,6 +1,8 @@
 import { DateTime } from "luxon";
 
-const matchDate = (value) => DateTime.fromISO(typeof value === "string" ? value : value?.$date || "", { zone: "Europe/Vienna" });
+// The admin API stores Vienna wall-clock fields, usually with a Z suffix.
+// Preserve the entered clock time instead of applying another timezone offset.
+const matchDate = (value) => DateTime.fromISO(typeof value === "string" ? value : value?.$date || "", { zone: "Europe/Vienna", setZone: true });
 
 export const formatViennaMatchDate = (value) => {
   const date = matchDate(value);

@@ -6,7 +6,7 @@
 //   (on mobile they are side-by-side as requested)
 // -------------------------------------------------------------
 
-import { DateTime } from "luxon";
+import { formatMatchTime } from "../../utils/matchUtils";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { getTeamDisplayName } from "../../utils/teamUtils";
@@ -42,8 +42,7 @@ export const FixtureDataCell = ({ match, state }: Props): JSX.Element => {
   const { id, home_blanket, away_blanket, details, score, status } = match;
   const navigate = useNavigate();
 
-  // Format kickoff time (UTC → HH:mm)
-  const formattedTime = DateTime.fromISO(details.date, { zone: "gmt" }).toFormat("HH:mm");
+  const formattedTime = formatMatchTime(details.date);
 
   const goMatch = () => navigate(`/match/${id}`);
   const goTeam = (teamId?: string | number) => {
