@@ -1,6 +1,8 @@
 class ApiService {
   constructor() {
-    const isLocal = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+    const isLocal = ["localhost", "127.0.0.1"].includes(
+      window.location.hostname,
+    );
     this.baseURL =
       process.env.API_BASE_URL ||
       (isLocal ? "http://localhost:8080" : "https://api.oekfb.eu");
@@ -53,7 +55,11 @@ class ApiService {
         } catch {
           errorData = {};
         }
-        const error = new Error(errorData.reason || errorData.message || `Request failed (${response.status})`);
+        const error = new Error(
+          errorData.reason ||
+            errorData.message ||
+            `Request failed (${response.status})`,
+        );
         error.status = response.status;
         throw error;
       }
@@ -81,7 +87,9 @@ class ApiService {
 
   getCookie(name) {
     const escapedName = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const match = document.cookie.match(new RegExp(`(?:^|; )${escapedName}=([^;]*)`));
+    const match = document.cookie.match(
+      new RegExp(`(?:^|; )${escapedName}=([^;]*)`),
+    );
     return match ? decodeURIComponent(match[1]) : null;
   }
 }

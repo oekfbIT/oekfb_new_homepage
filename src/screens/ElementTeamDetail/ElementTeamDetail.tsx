@@ -97,6 +97,7 @@ export const ElementTeamDetail = (): JSX.Element => {
 
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [failedCoverImage, setFailedCoverImage] = useState<string | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -110,6 +111,7 @@ export const ElementTeamDetail = (): JSX.Element => {
         setLoading(true);
         setLoadError(false);
         setTeamData(null);
+        setFailedCoverImage(null);
         setSeasons([]);
         const response = await clientController.fetchClubDetail(id);
         if (cancelled) return;
@@ -240,9 +242,14 @@ export const ElementTeamDetail = (): JSX.Element => {
 
       <div className="page-content">
         <AchievementsSection key={id} ownerType="team" ownerId={id} />
-        {coverImage && (
+        {coverImage && coverImage !== failedCoverImage && (
           <div className="section team-detail-cover">
-            <img src={coverImage} alt={`Mannschaftsfoto ${clubName}`} />
+            <img
+              key={coverImage}
+              src={coverImage}
+              alt={`Mannschaftsfoto ${clubName}`}
+              onError={() => setFailedCoverImage(coverImage)}
+            />
           </div>
         )}
         {/* All-time stats */}

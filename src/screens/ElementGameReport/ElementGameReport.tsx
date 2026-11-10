@@ -218,12 +218,6 @@ export const ElementGameReport = (): JSX.Element => {
                   <div className="h3">{statusText}</div>
                 </div>
 
-                {preview?.text && <section className="match-preview-copy" aria-label="Spielvorschau">
-                  {preview.text.split(/\n\s*\n/).filter(Boolean).map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>)}
-                  {id && <PreviewFeedback matchId={id} version={preview.feedback_version || preview.feedbackVersion} />}
-                </section>}
-                {previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
-
                 <div className="stadium-wrapper">
                   <div className="stadium-img">
                     <div className="dfl-image">
@@ -234,6 +228,12 @@ export const ElementGameReport = (): JSX.Element => {
                     {gameData.details.location}
                   </div>
                 </div>
+
+                {preview?.text && <section className="match-preview-copy" aria-label="Spielvorschau">
+                  {preview.text.split(/\n\s*\n/).filter(Boolean).map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>)}
+                  {id && <PreviewFeedback matchId={id} version={preview.feedback_version || preview.feedbackVersion} />}
+                </section>}
+                {previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
           </div>
 
           <div className="game-report-bottom event-list">
