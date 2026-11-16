@@ -3,23 +3,21 @@ import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
+import { useMatchStatusText } from "../../hooks/useMatchStatusText";
 
-import {
-    formatMatchDate,
-    formatMatchTime,
-    getElapsedTime,
-    getMatchStatusText
-} from "../../utils/matchUtils";
+import { formatMatchDate, formatMatchTime } from "../../utils/matchUtils";
 
 interface Match {
   id: string;
   home_blanket: {
+    id: string;
     name: string;
     shortName?: string | null;
     short_name?: string | null;
     logo: string;
   };
   away_blanket: {
+    id: string;
     name: string;
     shortName?: string | null;
     short_name?: string | null;
@@ -28,12 +26,15 @@ interface Match {
   details: {
     date: string;
     location?: string;
+    gameday?: number;
   };
   score: {
     home: number;
     away: number;
   };
   status: string;
+  first_half_date?: string | { $date: string };
+  second_half_date?: string | { $date: string };
 }
 
 interface Props {
@@ -44,35 +45,9 @@ interface Props {
 export const LivescoreCell = ({ match, state }: Props): JSX.Element => {
   const navigate = useNavigate();
 
-    const [elapsedTime, setElapsedTime] = React.useState("0'");
-
-    const status = match?.status;
-    const isLive = status === "first" || status === "second";
-
-    const firstHalfDate = match?.first_half_date;
-    const secondHalfDate = match?.second_half_date;
-
-    const halfStartTime =
-      status === "second" && secondHalfDate
-        ? secondHalfDate
-        : status === "first"
-        ? firstHalfDate
-        : null;
-
-          React.useEffect(() => {
-            if (!isLive || !halfStartTime) return;
-
-            const update = () => {
-              const offset = status === "second" ? 25 : 0;
-              const time = getElapsedTime(halfStartTime, offset);
-              setElapsedTime(time);
-            };
-
-            update();
-            const interval = setInterval(update, 60000);
-            return () => clearInterval(interval);
-          }, [halfStartTime, isLive, status]);
-
+  const status = match?.status;
+  const firstHalfDate = match?.first_half_date;
+  const secondHalfDate = match?.second_half_date;
 
   const handleButtonClick = () => {
     navigate(`/match/${match.id}`);
@@ -82,18 +57,16 @@ export const LivescoreCell = ({ match, state }: Props): JSX.Element => {
     navigate(`/team-detail/${teamId}`);
   };
 
-    const formattedDate = match?.details?.date
-      ? `${formatMatchDate(match.details.date)} - ${formatMatchTime(
-          match.details.date
-        )}`
-      : "Datum nicht Zugewiesen";
+  const formattedDate = match?.details?.date
+    ? `${formatMatchDate(match.details.date)} - ${formatMatchTime(match.details.date)}`
+    : "Datum nicht Zugewiesen";
 
-        const matchStatusText = getMatchStatusText(
-          status || "",
-          firstHalfDate,
-          secondHalfDate,
-          formattedDate
-        );
+  const matchStatusText = useMatchStatusText(
+    status || "",
+    firstHalfDate,
+    secondHalfDate,
+    formattedDate
+  );
 
 
   return (

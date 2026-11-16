@@ -12,13 +12,9 @@ import { Navigation } from "../../components/Navigation";
 import { TeamDetailSquadWrapper } from "../../components/TeamDetailSquadWrapper";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import ClientController from "../../network/ClientController";
-import {
-    formatMatchDate,
-    formatMatchTime,
-    getElapsedTime,
-    getMatchStatusText
-} from "../../utils/matchUtils";
+import { formatMatchDate, formatMatchTime } from "../../utils/matchUtils";
 import "./style.css";
+import { useMatchStatusText } from "../../hooks/useMatchStatusText";
 
 export const ElementGameReport = (): JSX.Element => {
   const navigate = useNavigate();
@@ -29,7 +25,6 @@ export const ElementGameReport = (): JSX.Element => {
 
   const [gameData, setGameData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [elapsedTime, setElapsedTime] = useState("0'");
   const [preview, setPreview] = useState<any>(null);
   const [form, setForm] = useState<any>({ home: [], away: [], loading: true });
   const [previewError, setPreviewError] = useState(false);
@@ -104,26 +99,8 @@ export const ElementGameReport = (): JSX.Element => {
     fetchGameData();
   }, [id]);
 
-  useEffect(() => {
-    if (!gameData) return;
-    if (!["first", "second"].includes(gameData.status)) return;
-
-    const updateElapsedTime = () => {
-      const offset = gameData.status === "second" ? 25 : 0;
-      const halfStartTime =
-        gameData.status === "second"
-          ? gameData.second_half_date
-          : gameData.first_half_date;
-      setElapsedTime(getElapsedTime(halfStartTime, offset));
-    };
-
-    updateElapsedTime();
-    const interval = setInterval(updateElapsedTime, 60000);
-    return () => clearInterval(interval);
-  }, [gameData]);
-
   const status = gameData?.status;
-  const statusText = getMatchStatusText(
+  const statusText = useMatchStatusText(
     status || "",
     gameData?.first_half_date,
     gameData?.second_half_date,

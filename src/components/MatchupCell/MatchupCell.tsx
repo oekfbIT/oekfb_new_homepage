@@ -2,13 +2,9 @@ import { getTeamDisplayName } from "../../utils/teamUtils";
 import PropTypes from "prop-types";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-    formatMatchDate,
-    formatMatchTime,
-    getElapsedTime,
-    getMatchStatusText,
-} from "../../utils/matchUtils";
+import { formatMatchDate, formatMatchTime } from "../../utils/matchUtils";
 import "./style.css";
+import { useMatchStatusText } from "../../hooks/useMatchStatusText";
 
 /**
  * Lightweight models mirroring the minimum data surface used by this cell.
@@ -54,36 +50,10 @@ const FALLBACK_LOGO = "/img/fallback-logo.png";
 export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element => {
   const navigate = useNavigate();
 
-  // Live clock (minute) — updated each minute while status is "first" or "second".
-  const [elapsedTime, setElapsedTime] = React.useState("0'");
-
   const status = matchup?.status ?? "";
   const isPending = status === "pending";
-  const isLive = status === "first" || status === "second";
-
   const firstHalfDate = matchup?.first_half_date;
   const secondHalfDate = matchup?.second_half_date;
-
-  // Determine which half start we should base the live clock on.
-  const halfStartTime: ISODate | null =
-    status === "second" && secondHalfDate
-      ? secondHalfDate
-      : status === "first"
-      ? firstHalfDate
-      : null;
-
-  React.useEffect(() => {
-    if (!isLive || !halfStartTime) return;
-
-    const update = () => {
-      const offset = status === "second" ? 25 : 0;
-      setElapsedTime(getElapsedTime(halfStartTime, offset));
-    };
-
-    update();
-    const interval = setInterval(update, 60_000);
-    return () => clearInterval(interval);
-  }, [halfStartTime, isLive, status]);
 
   // Example: "12.08.2025 - 19:30" or fallback text when absent
   const formattedDate =
@@ -98,7 +68,7 @@ export const MatchupCell = ({ matchup, state, className }: Props): JSX.Element =
     ["first", "second", "halftime"].includes(status) ? "live" : ["pending"].includes(status) ? "pending" : "default";
 
   // Keep the detailed status for the accessible game link.
-  const matchStatusText = getMatchStatusText(
+  const matchStatusText = useMatchStatusText(
     status,
     firstHalfDate,
     secondHalfDate,
