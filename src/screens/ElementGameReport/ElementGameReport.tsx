@@ -29,21 +29,36 @@ export const ElementGameReport = (): JSX.Element => {
   const [form, setForm] = useState<any>({ home: [], away: [], loading: true });
   const [previewError, setPreviewError] = useState(false);
 
+  const status = gameData?.status;
+  const showPreview = Boolean(id && gameData?.id?.toLowerCase() === id.toLowerCase() && status === "pending");
+
   useEffect(() => {
     let cancelled = false;
-    setPreview(null); setForm({ home: [], away: [], loading: true }); setPreviewError(false);
+    setPreview(null);
+    setPreviewError(false);
+    if (!id || !showPreview) return undefined;
+    clientController.fetchMatchPreview(id).then(
+      (article) => { if (!cancelled) setPreview(article); },
+      () => { if (!cancelled) setPreviewError(true); }
+    );
+    return () => { cancelled = true; };
+  }, [id, clientController, showPreview]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setForm({ home: [], away: [], loading: true });
     if (!id) return undefined;
-    Promise.allSettled([clientController.fetchMatchPreview(id), clientController.fetchMatchForm(id)]).then(([article, history]) => {
-      if (cancelled) return;
-      if (article.status === "fulfilled") setPreview(article.value);
-      else setPreviewError(true);
-      if (history.status === "fulfilled") setForm(history.value);
-      else setForm({ home: [], away: [], unavailable: true });
-    });
+    clientController.fetchMatchForm(id).then(
+      (history) => { if (!cancelled) setForm(history); },
+      () => { if (!cancelled) setForm({ home: [], away: [], unavailable: true }); }
+    );
     return () => { cancelled = true; };
   }, [id, clientController]);
 
   useEffect(() => {
+    let cancelled = false;
+    setLoading(true);
+    setGameData(null);
     const fetchGameData = async () => {
       if (!id) {
         console.error("No match ID found in the URL.");
@@ -88,18 +103,17 @@ export const ElementGameReport = (): JSX.Element => {
             Number(b.minute?.$numberLong || b.minute)
         );
 
-        setGameData({ ...matchDetail, events: updatedEvents });
+        if (!cancelled) setGameData({ ...matchDetail, events: updatedEvents });
       } catch (error) {
         console.error("Error fetching Match details:", error);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
     fetchGameData();
-  }, [id]);
-
-  const status = gameData?.status;
+    return () => { cancelled = true; };
+  }, [id, clientController]);
   const statusText = useMatchStatusText(
     status || "",
     gameData?.first_half_date,
@@ -206,11 +220,11 @@ export const ElementGameReport = (): JSX.Element => {
                   </div>
                 </div>
 
-                {preview?.text && <section className="match-preview-copy" aria-label="Spielvorschau">
+                {showPreview && preview?.text && <section className="match-preview-copy" aria-label="Spielvorschau">
                   {preview.text.split(/\n\s*\n/).filter(Boolean).map((paragraph: string, index: number) => <p key={index}>{paragraph}</p>)}
                   {id && <PreviewFeedback matchId={id} version={preview.feedback_version || preview.feedbackVersion} />}
                 </section>}
-                {previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
+                {showPreview && previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
           </div>
 
           <div className="game-report-bottom event-list">
