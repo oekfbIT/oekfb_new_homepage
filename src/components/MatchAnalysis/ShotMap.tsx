@@ -2,10 +2,11 @@ import { useMemo, useState } from "react";
 import Pitch, { px, py } from "./Pitch";
 import SegmentedControl from "./SegmentedControl";
 import { Analytics, Side } from "./useMatchVeo";
-import { matchMinute, mirrorByPeriod, place } from "./analysisUtils";
+import { Lineups, findPlayer, matchMinute, mirrorByPeriod, place } from "./analysisUtils";
+import PlayerAvatar from "./PlayerChip";
 
 /** Every shot as a dot (goals filled), home attacking right, away left. */
-export default function ShotMap({ analytics, names }: { analytics: Analytics; names: { home: string; away: string } }) {
+export default function ShotMap({ analytics, names, lineups }: { analytics: Analytics; names: { home: string; away: string }; lineups?: Lineups }) {
   const [team, setTeam] = useState<"both" | Side>("both");
   const [hover, setHover] = useState<string | null>(null);
   const mirror = useMemo(() => mirrorByPeriod(analytics), [analytics]);
@@ -29,14 +30,27 @@ export default function ShotMap({ analytics, names }: { analytics: Analytics; na
           return (
             <circle key={id} cx={px(p.x)} cy={py(p.y)} r={s.type === "goal" ? 14 : 11}
               className={`ma-shot ma-shot--${s.team}${s.type === "goal" ? " is-goal" : ""}${hover === id ? " is-hover" : ""}`}
-              onMouseEnter={() => setHover(id)} onMouseLeave={() => setHover(null)} />
+              onMouseEnter={() => setHover(id)} onClick={() => setHover(id)} />
           );
         })}
       </Pitch>
       <div className="ma-legend">
         <span><i className="ma-legend__shot is-goal" /> Tor</span><span><i className="ma-legend__shot" /> Schuss</span>
-        {hovered && <span className="ma-legend__info">{hovered.type === "goal" ? "Tor" : "Schuss"} · {matchMinute(hovered.video_second, analytics) ?? "–"}'{hovered.jersey_number ? ` · #${hovered.jersey_number}` : ""}</span>}
       </div>
+      {(() => {
+        const shot = hovered;
+        if (!shot) return <div className="ma-shotinfo ma-shotinfo--empty p">Fahre über einen Schuss für Details</div>;
+        const player = findPlayer(lineups, { team: shot.team, number: shot.jersey_number });
+        return (
+          <div className={`ma-shotinfo ma-shotinfo--${shot.team}`}>
+            <PlayerAvatar player={player} number={shot.jersey_number} />
+            <span className="ma-shotinfo__text">
+              <span className="h3">{player?.name ?? (shot.jersey_number ? `Nr. ${shot.jersey_number}` : "Unbekannt")}</span>
+              <span className="p">{shot.type === "goal" ? "Tor" : "Schuss"} · {matchMinute(shot.video_second, analytics) ?? "–"}'{shot.jersey_number ? ` · #${shot.jersey_number}` : ""} · {shot.team === "home" ? names.home : names.away}</span>
+            </span>
+          </div>
+        );
+      })()}
     </section>
   );
 }

@@ -41,7 +41,7 @@
 .match-highlights__tabs button.is-active { background: #06171c; color: #fff; }
 .match-highlights__player video { display: block; width: 100%; max-height: 540px; background: #000; border-radius: 6px; }
 .match-highlights__list { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
-.match-highlights__item { width: 100%; display: grid; grid-template-columns: 48px 28px 1fr auto 28px; align-items: center; gap: 12px; padding: 12px 16px;
+.match-highlights__item { width: 100%; display: grid; grid-template-columns: 48px 48px 1fr auto 28px; align-items: center; gap: 12px; padding: 12px 16px;
   border: 0; border-left: 4px solid transparent; background: #fff; cursor: pointer; text-align: left; font-family: inherit; color: inherit; }
 .match-highlights__item:hover { background: #f7f7f7; }
 .match-highlights__item--home { border-left-color: #000; }

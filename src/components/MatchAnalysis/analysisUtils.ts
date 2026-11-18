@@ -42,3 +42,16 @@ export const place = (x: number, y: number, mirror: boolean) => {
 };
 
 export const sideLabel = (side: Side, names: { home: string; away: string }) => (side === "home" ? names.home : names.away);
+
+export type LineupPlayer = { id?: string; name?: string; number?: number; image?: string };
+export type Lineups = { home: LineupPlayer[]; away: LineupPlayer[] };
+
+/** Player from the match lineup: by id first, else by team + shirt number. */
+export function findPlayer(lineups: Lineups | undefined, opts: { id?: string; team?: Side; number?: number; name?: string }): LineupPlayer | undefined {
+  if (!lineups) return undefined;
+  const all = [...lineups.home, ...lineups.away];
+  if (opts.id) { const p = all.find((x) => x.id?.toLowerCase() === opts.id!.toLowerCase()); if (p) return p; }
+  if (opts.team && opts.number != null) { const p = lineups[opts.team].find((x) => Number(x.number) === Number(opts.number)); if (p) return p; }
+  if (opts.name) return all.find((x) => x.name === opts.name);
+  return undefined;
+}

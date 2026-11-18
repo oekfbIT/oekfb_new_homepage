@@ -141,6 +141,7 @@ export const ElementGameReport = (): JSX.Element => {
   if (!gameData) return <div>No game data available.</div>;
 
   const names = { home: getTeamDisplayName(gameData.home_blanket), away: getTeamDisplayName(gameData.away_blanket) };
+  const lineups = { home: gameData.home_blanket?.players ?? [], away: gameData.away_blanket?.players ?? [] };
   const tabOptions: { value: MatchTab; label: string }[] = [
     ...(veo.stats ? [{ value: "stats" as MatchTab, label: "Statistik" }] : []),
     { value: "lineup", label: "Aufstellung" },
@@ -273,8 +274,8 @@ export const ElementGameReport = (): JSX.Element => {
           {tab !== "timeline" && tab !== "lineup" && (
             <div className="ma-body">
               {tab === "stats" && veo.stats && <StatsPanel stats={veo.stats} names={names} />}
-              {tab === "highlights" && <div className="ma-panel"><MatchHighlights data={veo} names={names} /></div>}
-              {tab === "shots" && veo.analytics && <ShotMap analytics={veo.analytics} names={names} />}
+              {tab === "highlights" && <div className="ma-panel"><MatchHighlights data={veo} names={names} lineups={lineups} /></div>}
+              {tab === "shots" && veo.analytics && <ShotMap analytics={veo.analytics} names={names} lineups={lineups} />}
               {tab === "passes" && veo.analytics && <PassMap analytics={veo.analytics} names={names} />}
               {tab === "possession" && veo.analytics && <PossessionPanel analytics={veo.analytics} stats={veo.stats} names={names} />}
             </div>

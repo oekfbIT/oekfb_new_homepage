@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 import { MatchVeo } from "../MatchAnalysis/useMatchVeo";
-import { matchMinute } from "../MatchAnalysis/analysisUtils";
+import { Lineups, findPlayer, matchMinute } from "../MatchAnalysis/analysisUtils";
+import PlayerAvatar from "../MatchAnalysis/PlayerChip";
 import { Clip, clipSource, typeIcon, typeLabels } from "./videoUtils";
 import "./style.css";
 
@@ -8,7 +9,7 @@ import "./style.css";
  * Highlights tab: player on top, the clips as a list of events below (minute, scorer, score).
  * Clips play one after another; "Ganzes Spiel" switches to the full recording when there is one.
  */
-export default function MatchHighlights({ data, names }: { data: MatchVeo; names: { home: string; away: string } }) {
+export default function MatchHighlights({ data, names, lineups }: { data: MatchVeo; names: { home: string; away: string }; lineups?: Lineups }) {
   const { clips, recordingUrl: recording, analytics } = data;
   const [index, setIndex] = useState(0);
   const [mode, setMode] = useState<"highlights" | "full">("highlights");
@@ -42,15 +43,16 @@ export default function MatchHighlights({ data, names }: { data: MatchVeo; names
           {playable.map((c, i) => {
             const minute = matchMinute(c.event_second, analytics);
             const team = c.team === "home" ? names.home : c.team === "away" ? names.away : "";
+            const player = findPlayer(lineups, { id: c.player_id, team: c.team, number: c.jersey_number, name: c.player_name });
             return (
               <li key={c.id}>
                 <button type="button" className={`match-highlights__item match-highlights__item--${c.team ?? "none"}${i === index ? " is-active" : ""}`}
                         onClick={() => { setAutoplay(true); setIndex(i); videoRef.current?.scrollIntoView({ block: "nearest", behavior: "smooth" }); }}>
                   <span className="match-highlights__minute">{minute != null ? `${minute}'` : ""}</span>
-                  <span className="match-highlights__icon" aria-hidden>{typeIcon(c.type)}</span>
+                  <PlayerAvatar player={player} number={c.jersey_number} size={48} />
                   <span className="match-highlights__text">
-                    <span className="h3">{c.player_name || typeLabels[c.type] || c.type}</span>
-                    <span className="p">{typeLabels[c.type] ?? c.type}{team ? ` · ${team}` : ""}</span>
+                    <span className="h3">{player?.name || c.player_name || typeLabels[c.type] || c.type}</span>
+                    <span className="p">{typeIcon(c.type)} {typeLabels[c.type] ?? c.type}{player?.number != null ? ` · #${player.number}` : ""}{team ? ` · ${team}` : ""}</span>
                   </span>
                   {c.score_after && <span className="match-highlights__score">{c.score_after.home}:{c.score_after.away}</span>}
                   <span className="match-highlights__play" aria-hidden>{i === index ? "❚❚" : "▶"}</span>
