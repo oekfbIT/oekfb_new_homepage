@@ -19,6 +19,7 @@ import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import ClientController from "../../network/ClientController";
 
 import "./style.css";
+import ClipsSection from "../../components/Videos/ClipsSection";
 
 type TeamLite = {
   id?: string;
@@ -350,6 +351,7 @@ export const ElementPlayerDetail = (): JSX.Element => {
       {/* CONTENT */}
       <div className="page-content">
         <AchievementsSection key={id} ownerType="player" ownerId={id} />
+        <ClipsSection key={`clips-${id}`} ownerType="player" ownerId={id} name={player?.name} />
         <section style={{ width: "-webkit-fill-available" }}>
           <h2 className="sub_header md_base">{player?.name ?? "Player"} Ewige Statistik</h2>
           <div className="h3 stats-grid md_base" style={{ justifyItems: "center" }}>

@@ -29,6 +29,7 @@ import { ElementPrivacy } from "./screens/ElementPrivacy/ElementPrivacy";
 import { ElementRegeln } from "./screens/ElementRegeln";
 import { ElementRegister } from "./screens/ElementRegister";
 import { ElementSperrenDesktop } from "./screens/ElementSperrenDesktop";
+import { ElementVideos } from "./screens/ElementVideos";
 import { ElementTableMobile } from "./screens/ElementTableMobile";
 import { ElementTeamDetail } from "./screens/ElementTeamDetail";
 import { ElementTransfer } from "./screens/ElementTransfer";
@@ -97,6 +98,7 @@ const App = () => (
       <Route path="/impressum" element={<ElementImpressiumMobile />} />
       <Route path="/privacy" element={<ElementPrivacy />} />
       <Route path="/sperren" element={<ElementSperrenDesktop />} />
+      <Route path="/videos" element={<ElementVideos />} />
       <Route path="/transfers" element={<ElementTransfersDesktop />} />
       <Route path="/transfer/:id" element={<ElementTransfer />} />
       <Route path="/postpone/:id" element={<ElementPostpone />} />

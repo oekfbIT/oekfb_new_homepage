@@ -32,6 +32,24 @@ class ClientController {
     return items.map(item => ({ ...item, imageUrl: item.image_url ?? item.imageUrl ?? null }));
   }
 
+  /** Veo videos: full recording + clips of one match. */
+  async fetchMatchVideos(matchId) {
+    return this.apiService.get(`webClient/match/${encodeURIComponent(matchId)}/videos`);
+  }
+
+  async fetchPlayerClips(playerId) {
+    return this.apiService.get(`webClient/player/${encodeURIComponent(playerId)}/clips`);
+  }
+
+  async fetchTeamClips(teamId) {
+    return this.apiService.get(`webClient/team/${encodeURIComponent(teamId)}/clips`);
+  }
+
+  /** Videos page of a league: matches with video and all clips. */
+  async fetchLeagueVideos(code) {
+    return this.apiService.get(`webClient/videos/league/${encodeURIComponent(code)}`);
+  }
+
   async fetchSponsors() {
     return this.apiService.get("webClient/sponsors");
   }

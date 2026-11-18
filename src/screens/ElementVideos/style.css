@@ -1,0 +1,7 @@
+.element-videos { display: flex; flex-direction: column; align-items: center; background: var(--color-bg, #f4f4f4); min-height: 100vh; }
+.videos-page { width: 100%; max-width: 1440px; padding: 0 clamp(16px, 6vw, 120px) 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 40px; }
+.videos-page__section { display: flex; flex-direction: column; gap: 8px; }
+.videos-page__empty { text-align: center; padding: 48px 0; }
+.match-video-card { text-decoration: none; }
+.match-video-card__logos { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 24px; padding-bottom: 40px; }
+.match-video-card__logos img { width: 72px; height: 72px; object-fit: contain; }

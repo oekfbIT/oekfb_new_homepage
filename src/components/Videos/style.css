@@ -1,0 +1,46 @@
+/* Veo videos: cards, rails, modal, match player */
+.clips-section, .clip-rail { width: 100%; min-width: 0; font-family: var(--font-sans); }
+.clip-rail { margin-bottom: 24px; }
+.clip-rail__label { display: flex; align-items: center; gap: 16px; font-weight: 700; margin: 8px 0 12px; }
+.clip-rail__label::after { content: ""; flex: 1; height: 2px; background: var(--color-text-strong, #06171c); }
+.clip-rail__frame { position: relative; }
+.clip-rail__track { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 4px 0; }
+.clip-rail__track::-webkit-scrollbar { display: none; }
+.clip-rail__arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 52px; height: 52px; border-radius: 50%; border: 0;
+  background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.2); font-size: 30px; line-height: 1; cursor: pointer; color: #06171c; }
+.clip-rail__arrow--left { left: -20px; } .clip-rail__arrow--right { right: -20px; }
+@media (max-width: 900px) { .clip-rail__arrow { display: none; } }
+
+.clip-card { flex: 0 0 clamp(240px, 23%, 340px); scroll-snap-align: start; padding: 0; border: 0; background: none; cursor: pointer; text-align: left; color: #fff; }
+.clip-card--compact { flex-basis: 180px; }
+.clip-card__thumb { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; background: #1c2226; }
+.clip-card__thumb > img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+.clip-card:hover .clip-card__thumb > img { transform: scale(1.04); }
+.clip-card__placeholder { position: absolute; inset: 0; background: linear-gradient(135deg, #2b3a2f, #13181b); }
+.clip-card__thumb::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,0) 55%); pointer-events: none; }
+.clip-card__badge { position: absolute; top: 10px; right: 10px; z-index: 1; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; text-shadow: 0 1px 3px rgba(0,0,0,.6); }
+.clip-card__play { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 22px; border-radius: 4px; background: #fff; color: #000; font-size: 11px; text-shadow: none; }
+.clip-card__type { position: absolute; top: 10px; left: 10px; z-index: 1; font-size: 20px; }
+.clip-card__caption { position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 1; display: flex; flex-direction: column; gap: 2px; }
+.clip-card__title { font-weight: 900; text-transform: uppercase; font-size: 17px; line-height: 1.15; }
+.clip-card--compact .clip-card__title { font-size: 13px; }
+.clip-card__sub { font-size: 13px; opacity: .85; }
+.clip-card--active .clip-card__thumb { outline: 3px solid var(--color-accent, #f0b23f); outline-offset: -3px; }
+
+.video-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.85); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.video-modal__body { position: relative; width: min(1100px, 100%); background: #000; border-radius: 8px; overflow: hidden; }
+.video-modal__body video { display: block; width: 100%; max-height: 75vh; background: #000; }
+.video-modal__close { position: absolute; top: 8px; right: 8px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; border: 0; background: rgba(255,255,255,.9); cursor: pointer; font-size: 18px; }
+.video-modal__meta { background: #fff; padding: 14px 18px; display: flex; flex-direction: column; gap: 4px; }
+.video-modal__link { color: inherit; }
+.video-modal__missing { color: #fff; padding: 80px; text-align: center; }
+
+.match-highlights { width: 100%; box-sizing: border-box; background: #fff; padding: 20px; margin: 24px 0 0; font-family: var(--font-sans); }
+.match-highlights__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.match-highlights__head .h2 { margin: 0; }
+.match-highlights__tabs { display: flex; gap: 8px; }
+.match-highlights__tabs button { border: 1px solid #06171c; background: #fff; padding: 8px 14px; font-weight: 700; cursor: pointer; text-transform: uppercase; font-size: 13px; }
+.match-highlights__tabs button.is-active { background: #06171c; color: #fff; }
+.match-highlights__player video { display: block; width: 100%; max-height: 520px; background: #000; border-radius: 6px; }
+.match-highlights__now { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 10px 2px 0; }
+.match-highlights__strip { display: flex; gap: 12px; overflow-x: auto; padding: 14px 0 2px; }

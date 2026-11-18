@@ -23,6 +23,7 @@ import { TeamHeader } from "../../components/TeamHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import ClientController from "../../network/ClientController";
 import "./style.css";
+import ClipsSection from "../../components/Videos/ClipsSection";
 
 type SeasonWithMatches = {
   season_name: string;
@@ -253,6 +254,7 @@ export const ElementTeamDetail = (): JSX.Element => {
           </div>
         )}
         {/* All-time stats */}
+        <ClipsSection key={`clips-${id}`} ownerType="team" ownerId={id} name={clubName} />
         <section className="section">
           <h2 className="sub_header md_base">{clubName} Ewige Statistiken</h2>
           <div className="h3 stats-grid" style={{ justifyItems: "center" }}>

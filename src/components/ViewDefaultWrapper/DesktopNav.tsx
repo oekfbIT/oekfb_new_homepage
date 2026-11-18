@@ -24,6 +24,7 @@ const EXCLUDED_CODES = ["NONE"];
 // Primary site links rendered in the center of the nav
 const PRIMARY_LINKS = [
   { label: "Liga", to: "/liga" },
+  { label: "Videos", to: "/videos" },
   { label: "Teams", to: "/teams" },
   { label: "Tabelle", to: "/tabelle" },
   { label: "Spielplan", to: "/spielplan" },

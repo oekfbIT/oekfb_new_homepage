@@ -14,6 +14,7 @@ import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import ClientController from "../../network/ClientController";
 import { formatMatchDate, formatMatchTime } from "../../utils/matchUtils";
 import "./style.css";
+import MatchHighlights from "../../components/Videos/MatchHighlights";
 import { useMatchStatusText } from "../../hooks/useMatchStatusText";
 
 export const ElementGameReport = (): JSX.Element => {
@@ -226,6 +227,8 @@ export const ElementGameReport = (): JSX.Element => {
                 </section>}
                 {showPreview && previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
           </div>
+
+          <MatchHighlights key={id} matchId={id} />
 
           <div className="game-report-bottom event-list">
             <div className="game-report-match">
