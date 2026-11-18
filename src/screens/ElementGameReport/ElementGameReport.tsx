@@ -15,6 +15,15 @@ import ClientController from "../../network/ClientController";
 import { formatMatchDate, formatMatchTime } from "../../utils/matchUtils";
 import "./style.css";
 import MatchHighlights from "../../components/Videos/MatchHighlights";
+import { useMatchVeo } from "../../components/MatchAnalysis/useMatchVeo";
+import SegmentedControl from "../../components/MatchAnalysis/SegmentedControl";
+import StatsPanel from "../../components/MatchAnalysis/StatsPanel";
+import ShotMap from "../../components/MatchAnalysis/ShotMap";
+import PassMap from "../../components/MatchAnalysis/PassMap";
+import PossessionPanel from "../../components/MatchAnalysis/PossessionPanel";
+import "../../components/MatchAnalysis/style.css";
+
+type MatchTab = "stats" | "lineup" | "timeline" | "highlights" | "shots" | "passes" | "possession";
 import { useMatchStatusText } from "../../hooks/useMatchStatusText";
 
 export const ElementGameReport = (): JSX.Element => {
@@ -28,6 +37,8 @@ export const ElementGameReport = (): JSX.Element => {
   const [loading, setLoading] = useState(true);
   const [preview, setPreview] = useState<any>(null);
   const [form, setForm] = useState<any>({ home: [], away: [], loading: true });
+  const veo = useMatchVeo(id);
+  const [tab, setTab] = useState<MatchTab>("timeline");
   const [previewError, setPreviewError] = useState(false);
 
   const status = gameData?.status;
@@ -129,6 +140,19 @@ export const ElementGameReport = (): JSX.Element => {
   if (loading) return  <LoadingIndicator/> ;
   if (!gameData) return <div>No game data available.</div>;
 
+  const names = { home: getTeamDisplayName(gameData.home_blanket), away: getTeamDisplayName(gameData.away_blanket) };
+  const tabOptions: { value: MatchTab; label: string }[] = [
+    ...(veo.stats ? [{ value: "stats" as MatchTab, label: "Statistik" }] : []),
+    { value: "lineup", label: "Aufstellung" },
+    { value: "timeline", label: "Timeline" },
+    ...(veo.clips.length || veo.recordingUrl ? [{ value: "highlights" as MatchTab, label: "Highlights" }] : []),
+    ...(veo.analytics ? [
+      { value: "shots" as MatchTab, label: "Schusskarte" },
+      { value: "passes" as MatchTab, label: "Pässe" },
+      { value: "possession" as MatchTab, label: "Ballbesitz" },
+    ] : []),
+  ];
+
   return (
     <div className="element-game-report">
       {isMobile ? <Navigation /> : <DesktopNav />}
@@ -226,10 +250,12 @@ export const ElementGameReport = (): JSX.Element => {
                   {id && <PreviewFeedback matchId={id} version={preview.feedback_version || preview.feedbackVersion} />}
                 </section>}
                 {showPreview && previewError && <p className="match-preview-copy__error" role="status">Die Spielvorschau konnte nicht geladen werden.</p>}
+                <div className="ma-tabs">
+                  <SegmentedControl value={tab} onChange={setTab} options={tabOptions} />
+                </div>
           </div>
 
-          <MatchHighlights key={id} matchId={id} />
-
+          {tab === "timeline" && (
           <div className="game-report-bottom event-list">
             <div className="game-report-match">
               {gameData.events.map((ev: any) => (
@@ -243,9 +269,20 @@ export const ElementGameReport = (): JSX.Element => {
               ))}
             </div>
           </div>
+          )}
+          {tab !== "timeline" && tab !== "lineup" && (
+            <div className="ma-body">
+              {tab === "stats" && veo.stats && <StatsPanel stats={veo.stats} names={names} />}
+              {tab === "highlights" && <div className="ma-panel"><MatchHighlights data={veo} names={names} /></div>}
+              {tab === "shots" && veo.analytics && <ShotMap analytics={veo.analytics} names={names} />}
+              {tab === "passes" && veo.analytics && <PassMap analytics={veo.analytics} names={names} />}
+              {tab === "possession" && veo.analytics && <PossessionPanel analytics={veo.analytics} stats={veo.stats} names={names} />}
+            </div>
+          )}
         </div>
       </div>
 
+      {tab === "lineup" && (
       <div className="team-detail-squad-17">
         <div className="team-detail-team-5">
           <div className="team-detail-squad-18">
@@ -319,6 +356,7 @@ export const ElementGameReport = (): JSX.Element => {
           </div>
         </div>
       </div>
+      )}
 
       <Footer />
     </div>
