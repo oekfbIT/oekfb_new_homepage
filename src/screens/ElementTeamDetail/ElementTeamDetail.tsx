@@ -223,9 +223,9 @@ export const ElementTeamDetail = (): JSX.Element => {
     teamData?.club?.teamName ?? teamData?.club?.team_name ?? "Team";
   const coverImage = teamData?.club?.coverimg?.trim();
   const management: { role: string; trainer?: Trainer | null }[] = [
+    { role: "Team Obmann/President", trainer: teamData?.club?.president },
     { role: "Trainer", trainer: teamData?.club?.coach },
     { role: "Alt Trainer", trainer: teamData?.club?.alt_coach ?? teamData?.club?.altCoach },
-    { role: "Team Obmann/President", trainer: teamData?.club?.president },
   ];
 
   if (loading) return <LoadingIndicator />;
