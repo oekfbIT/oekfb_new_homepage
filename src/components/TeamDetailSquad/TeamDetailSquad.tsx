@@ -8,6 +8,7 @@ import "./style.css";
 interface Player {
   id: string | number;
   number?: string | number;
+  is_captain?: boolean;
   name: string;        // Full name as a single string
   nationality: string;
   sid: string;
@@ -22,10 +23,18 @@ interface Player {
   leagueName?: string;
 }
 
-interface Props {
-  player: Player;
-  className?: string;
+export interface Trainer {
+  name: string;
+  nationality?: string | null;
+  image?: string | null;
 }
+
+type Props = {
+  className?: string;
+} & (
+  | { player: Player; trainer?: never; trainerRole?: never }
+  | { player?: never; trainer: Trainer; trainerRole: string }
+);
 
 /** Normalize nationality to match zeitzonen.de flag filenames */
 const formatNationality = (nationality: string): string =>
@@ -48,13 +57,19 @@ const splitAndCapitalizeName = (name: string): { firstName: string; lastName: st
   };
 };
 
-export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element => {
-  const { firstName, lastName } = splitAndCapitalizeName(player.name);
-  const formattedNationality = formatNationality(player.nationality);
+export const TeamDetailSquad = ({ player, trainer, trainerRole, className = "" }: Props): JSX.Element => {
+  const person = player ?? trainer;
+  const { firstName, lastName } = splitAndCapitalizeName(person.name);
+  const nationality = person.nationality?.trim();
+  const formattedNationality = nationality ? formatNationality(nationality) : "";
+  const image = person.image?.trim();
+  const [failedTrainerImage, setFailedTrainerImage] = useState<string>();
+  const showTrainerPlaceholder = trainer && (!image || image === failedTrainerImage);
   const navigate = useNavigate();
   const authService = new AuthService();
 
   const openPlayer = () => {
+    if (!player) return;
     if (player.leagueCode && player.leagueId) {
       authService.setLeagueData(player.leagueCode, player.leagueId);
     }
@@ -66,7 +81,7 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
     "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Eo_circle_red_letter-x.svg/2048px-Eo_circle_red_letter-x.svg.png";
   const ALLOWED =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Eo_circle_green_checkmark.svg/1200px-Eo_circle_green_checkmark.svg.png";
-  const eligibilityIcon = player.eligibility === "Spielberechtigt" ? ALLOWED : BLOCKED;
+  const eligibilityIcon = player?.eligibility === "Spielberechtigt" ? ALLOWED : BLOCKED;
 
   const [showPopover, setShowPopover] = useState(false);
 
@@ -80,53 +95,68 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
     <div className={`team-detail-squad ${className}`}>
       <div className="team-detail-squad-wrapper-2">
         <div className="div-10">
-          {/* Player image */}
-          <div className="image-11">
-            <img
-              className="player-photo"
-              src={player.image}
-              alt={`${firstName} ${lastName}`}
-              loading="lazy"
-              decoding="async"
-            />
+          <div className={trainer ? "image-11 trainer-photo-slot" : "image-11"}>
+            {showTrainerPlaceholder ? (
+              <div className="trainer-photo-placeholder" aria-hidden="true" />
+            ) : image && (
+              <img
+                className="player-photo"
+                src={image}
+                alt={person.name}
+                loading="lazy"
+                decoding="async"
+                onError={trainer ? () => setFailedTrainerImage(image) : undefined}
+              />
+            )}
           </div>
 
           {/* Shirt number */}
-          <div className="team-detail-squad-wrapper-3">
-            <div className="text-number">{player.number ?? "-"}</div>
-          </div>
+          {player && (
+            <div className="team-detail-squad-wrapper-3">
+              <div className="text-number">{player.number ?? "-"}</div>
+            </div>
+          )}
 
           {/* Name + meta */}
           <div className="team-detail-squad-wrapper-4">
             <div
-              className="div-11 clickable"
-              onClick={openPlayer}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && openPlayer()}
-              aria-label={`Öffne Profil von ${firstName} ${lastName}`}
+              className={player ? "div-11 clickable" : "div-11"}
+              onClick={player ? openPlayer : undefined}
+              role={player ? "button" : undefined}
+              tabIndex={player ? 0 : undefined}
+              onKeyDown={player ? (e) => (e.key === "Enter" || e.key === " ") && openPlayer() : undefined}
+              aria-label={player ? `Öffne Profil von ${firstName} ${lastName}` : undefined}
             >
-              <div className="first-name">{firstName}</div>
+              <div className="first-name">{firstName}{player?.is_captain && <span className="captain-badge" title="Kapitän" aria-label="Kapitän">C</span>}</div>
               <div className="last-name" title={lastName}>
                 {lastName}
               </div>
             </div>
 
             <div className="div-11 meta">
-              <div className="meta-line">SID: {player.sid}</div>
-              {player.birthday && <div className="meta-line">Jahrgang: {player.birthday}</div>}
-              {player.leagueName && <div className="meta-line meta-line--league">Liga: {player.leagueName}</div>}
+              {player ? (
+                <>
+                  <div className="meta-line">SID: {player.sid}</div>
+                  {player.birthday && <div className="meta-line">Jahrgang: {player.birthday}</div>}
+                  {player.leagueName && <div className="meta-line meta-line--league">Liga: {player.leagueName}</div>}
+                </>
+              ) : (
+                <div className="meta-line">{trainerRole}</div>
+              )}
             </div>
           </div>
 
           {/* Nationality + team/eligibility */}
           <div className="nationality-flags">
-            <img
-              src={`https://www.zeitzonen.de/build/images/flags/${formattedNationality}.svg`}
-              alt={`${player.nationality} Flagge`}
-              className="flagicon"
-            />
-            {player.teamLogo ? (
+            {formattedNationality && (
+              <img
+                src={`https://www.zeitzonen.de/build/images/flags/${formattedNationality}.svg`}
+                alt={`${nationality} Flagge`}
+                title={nationality}
+                className="flagicon"
+              />
+            )}
+            {player?.teamLogo ? (
               <button
                 type="button"
                 className="team-detail-squad__team"
@@ -135,7 +165,7 @@ export const TeamDetailSquad = ({ player, className = "" }: Props): JSX.Element 
               >
                 <img src={player.teamLogo} alt="" className="team-detail-squad__team-logo" />
               </button>
-            ) : (
+            ) : player && (
               <>
                 <img
                   src={eligibilityIcon}
@@ -174,6 +204,12 @@ TeamDetailSquad.propTypes = {
     leagueId: PropTypes.string,
     leagueCode: PropTypes.string,
     leagueName: PropTypes.string,
-  }).isRequired,
+  }),
+  trainer: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    nationality: PropTypes.string,
+    image: PropTypes.string,
+  }),
+  trainerRole: PropTypes.string,
   className: PropTypes.string,
 };

@@ -19,6 +19,7 @@ import LoadingIndicator from "../../components/LoadingIndicator/LoadingIndicator
 import { Navigation } from "../../components/Navigation";
 import { StatCell } from "../../components/StatCell";
 import { TeamDetailSquad } from "../../components/TeamDetailSquad";
+import type { Trainer } from "../../components/TeamDetailSquad/TeamDetailSquad";
 import { TeamHeader } from "../../components/TeamHeader";
 import { DesktopNav } from "../../components/ViewDefaultWrapper";
 import ClientController from "../../network/ClientController";
@@ -221,6 +222,11 @@ export const ElementTeamDetail = (): JSX.Element => {
   const clubName: string =
     teamData?.club?.teamName ?? teamData?.club?.team_name ?? "Team";
   const coverImage = teamData?.club?.coverimg?.trim();
+  const management: { role: string; trainer?: Trainer | null }[] = [
+    { role: "Trainer", trainer: teamData?.club?.coach },
+    { role: "Alt Trainer", trainer: teamData?.club?.alt_coach ?? teamData?.club?.altCoach },
+    { role: "Team Obmann/President", trainer: teamData?.club?.president },
+  ];
 
   if (loading) return <LoadingIndicator />;
   if (loadError) return <div role="alert">Mannschaftsstatistiken konnten nicht geladen werden. Bitte versuchen Sie es erneut.</div>;
@@ -284,6 +290,19 @@ export const ElementTeamDetail = (): JSX.Element => {
           </div>
         </section>
 
+        {management.some(({ trainer }) => trainer?.name.trim()) && (
+          <section className="section" aria-labelledby="team-management-heading">
+            <h2 id="team-management-heading" className="sub_header md_base">Team management</h2>
+            <div className="team-squad">
+              {management.map(({ role, trainer }) =>
+                trainer?.name.trim() ? (
+                  <TeamDetailSquad key={role} trainer={trainer} trainerRole={role} />
+                ) : null
+              )}
+            </div>
+          </section>
+        )}
+
         {/* Squad */}
         <section className="section">
           <h2 className="sub_header md_base">{clubName} Kader</h2>
@@ -294,6 +313,8 @@ export const ElementTeamDetail = (): JSX.Element => {
                   p.eligibility === "Spielberechtigt" || p.eligibility === "Gesperrt"
               )
               .sort((a: any, b: any) => {
+                const captainOrder = Number(b.is_captain === true) - Number(a.is_captain === true);
+                if (captainOrder !== 0) return captainOrder;
                 if (a.eligibility === "Spielberechtigt" && b.eligibility !== "Spielberechtigt")
                   return -1;
                 if (a.eligibility !== "Spielberechtigt" && b.eligibility === "Spielberechtigt")
