@@ -76,12 +76,7 @@ export const TeamDetailSquad = ({ player, trainer, trainerRole, className = "" }
     navigate(`/player-detail/${player.id}`);
   };
 
-  // Static icon sources (kept as-is)
-  const BLOCKED =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Eo_circle_red_letter-x.svg/2048px-Eo_circle_red_letter-x.svg.png";
-  const ALLOWED =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Eo_circle_green_checkmark.svg/1200px-Eo_circle_green_checkmark.svg.png";
-  const eligibilityIcon = player?.eligibility === "Spielberechtigt" ? ALLOWED : BLOCKED;
+  const isEligible = player?.eligibility === "Spielberechtigt";
 
   const [showPopover, setShowPopover] = useState(false);
 
@@ -167,13 +162,23 @@ export const TeamDetailSquad = ({ player, trainer, trainerRole, className = "" }
               </button>
             ) : player && (
               <>
-                <img
-                  src={eligibilityIcon}
-                  alt={`Status: ${player.eligibility}`}
-                  className="flagicon-no"
+                <button
+                  type="button"
+                  className={`eligibility-icon ${isEligible ? "eligibility-icon--allowed" : "eligibility-icon--blocked"}`}
                   onClick={togglePopover}
-                  style={{ cursor: "pointer" }}
-                />
+                  aria-label={`Status: ${player.eligibility}`}
+                  title={`Status: ${player.eligibility}`}
+                >
+                  {isEligible ? (
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m5 12.5 4.5 4.5L19 7" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m6 6 12 12M18 6 6 18" />
+                    </svg>
+                  )}
+                </button>
                 {showPopover && (
                   <div className="popover" role="status" aria-live="polite">
                     {`Eligibility: ${player.eligibility}`}
