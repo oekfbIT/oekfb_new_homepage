@@ -329,7 +329,7 @@ export const ElementTeamDetail = (): JSX.Element => {
                   idx;
                 return (
                   <div key={`${player.id ?? player.sid ?? idx}`} style={{ cursor: "pointer" }}>
-                    <TeamDetailSquad player={{ ...player, id: safeId }} />
+                    <TeamDetailSquad player={{ ...player, id: safeId, blockdate: player.blockdate ?? player.blockDate ?? null }} />
                   </div>
                 );
               })}

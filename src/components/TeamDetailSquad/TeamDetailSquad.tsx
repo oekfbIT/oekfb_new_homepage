@@ -14,6 +14,7 @@ interface Player {
   sid: string;
   image: string;
   eligibility: string; // "Spielberechtigt" | "Gesperrt" (others possible)
+  blockdate?: string | null;
   birthday?: string;   // Accepts plain string; formatting handled upstream if needed
   teamId?: string;
   teamName?: string;
@@ -77,6 +78,10 @@ export const TeamDetailSquad = ({ player, trainer, trainerRole, className = "" }
   };
 
   const isEligible = player?.eligibility === "Spielberechtigt";
+  const blockDate = player?.blockdate ? new Date(player.blockdate) : null;
+  const formattedBlockDate = blockDate && !Number.isNaN(blockDate.getTime())
+    ? new Intl.DateTimeFormat("de-DE", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC" }).format(blockDate)
+    : null;
 
   const [showPopover, setShowPopover] = useState(false);
 
@@ -131,7 +136,10 @@ export const TeamDetailSquad = ({ player, trainer, trainerRole, className = "" }
             <div className="div-11 meta">
               {player ? (
                 <>
-                  <div className="meta-line">SID: {player.sid}</div>
+                  <div className="meta-line">
+                    SID: {player.sid}
+                    {!isEligible && formattedBlockDate && ` (Gesperrt bis ${formattedBlockDate})`}
+                  </div>
                   {player.birthday && <div className="meta-line">Jahrgang: {player.birthday}</div>}
                   {player.leagueName && <div className="meta-line meta-line--league">Liga: {player.leagueName}</div>}
                 </>
@@ -201,6 +209,7 @@ TeamDetailSquad.propTypes = {
     nationality: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     eligibility: PropTypes.string.isRequired,
+    blockdate: PropTypes.string,
     sid: PropTypes.string.isRequired,
     birthday: PropTypes.string,
     teamId: PropTypes.string,
