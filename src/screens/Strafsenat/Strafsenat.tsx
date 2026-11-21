@@ -10,6 +10,11 @@ import ClientController from "../../network/ClientController";
 import { NewsRow } from "../../components/NewsRow";
 import "./style.css";
 
+const publicationTime = (created: string): number => {
+    const timestamp = Date.parse(created);
+    return Number.isNaN(timestamp) ? -Infinity : timestamp;
+};
+
 export const Strafsenat = (): JSX.Element => {
     const screenWidth = useWindowWidth();
     const isMobile = screenWidth < 900;
@@ -32,7 +37,9 @@ export const Strafsenat = (): JSX.Element => {
 
             try {
                 const newsData = await clientController.fetchStrafsenatNews();
-                setNews(newsData.reverse());
+                setNews([...newsData].sort(
+                    (first, second) => publicationTime(second.created) - publicationTime(first.created)
+                ));
             } catch (error) {
                 console.error("Error fetching club data:", error);
             } finally {
